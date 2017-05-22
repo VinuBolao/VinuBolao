@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>VinuBolão | {{ $title or 'Título' }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        @if (Auth::check())
+        <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -28,15 +29,29 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand"  href="{{ route('bolao.index') }}" style="color: #fff">
+                        <i class="flaticon-ball-5"></i> VinuBolão
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li>
+                            <a href="{{ route('bolao.index') }}">Home</a>
+                        </li>
+                        <li @if(Request::segment(1) == 'classificacao') class="active" @endif>
+                            <a href="{{ route('classificacao') }}">Classificação</a>
+                        </li>
+                        <li @if(Request::segment(1) == 'jogo') class="active" @endif>
+                            <a href="{{ route('jogo.index') }}">Jogos</a>
+                        </li>
+                        <li @if(Request::segment(1) == 'palpite') class="active" @endif>
+                            <a href="{{ route('palpite.index') }}">Palpites</a>
+                        </li>
+                        <li @if(Request::segment(1) == 'regulamento') class="active" @endif>
+                            <a href="{{ route('regulamento') }}">Regulamento</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -53,12 +68,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
@@ -70,8 +80,13 @@
                 </div>
             </div>
         </nav>
+        @endif
 
-        @yield('content')
+        <div class="container">
+            <div class="row">
+                {{ $slot }}
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->

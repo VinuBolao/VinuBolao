@@ -15,11 +15,11 @@ class CreateCampeonatosTable extends Migration
     {
         Schema::create('campeonatos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome_popular', 50);
+            $table->string('nome', 50);
             $table->string('nome_completo', 50);
             $table->integer('qtd_times');
             $table->integer('qtd_rodadas');
-            $table->integer('rodada_atual')->nullable();
+            $table->integer('rodada')->nullable();
             $table->integer('temporada');
             $table->char('serie', 1);
             $table->string('estado', 2)->nullable();

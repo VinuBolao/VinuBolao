@@ -19,12 +19,12 @@ class CreateJogosTable extends Migration
             $table->foreign('campeonato_id')->references('id')->on('campeonatos');
             $table->integer('rodada');
             $table->dateTime('inicio');
-            $table->unsignedInteger('time_casa');
-            $table->foreign('time_casa')->references('id')->on('times');
+            $table->unsignedInteger('timecasa_id');
+            $table->foreign('timecasa_id')->references('id')->on('times');
             $table->integer('placar_casa')->nullable();
             $table->integer('placar_fora')->nullable();
-            $table->unsignedInteger('time_fora');
-            $table->foreign('time_fora')->references('id')->on('times');
+            $table->unsignedInteger('timefora_id');
+            $table->foreign('timefora_id')->references('id')->on('times');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateJogosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jogos');
+        Schema::dropIfExists('jogo');
     }
 }

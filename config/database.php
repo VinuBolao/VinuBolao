@@ -1,5 +1,7 @@
 <?php
 
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
 return [
 
     /*
@@ -41,11 +43,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', (getenv("APP_DEV")) ? '127.0.0.1' : $url["host"]),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', (getenv("APP_DEV")) ? 'forge' : substr($url["path"], 1)),
+            'username' => env('DB_USERNAME', (getenv("APP_DEV")) ? 'forge' : $url["user"]),
+            'password' => env('DB_PASSWORD', (getenv("APP_DEV")) ? '' : $url["pass"]),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

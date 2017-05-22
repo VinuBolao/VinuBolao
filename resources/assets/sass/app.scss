@@ -4,6 +4,25 @@
 
 // Variables
 @import "variables";
+@import "flaticon";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.box{
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.glyphicon-refresh {
+  animation: spinIt 1.5s infinite linear;
+}
+@keyframes spinIt {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
+}

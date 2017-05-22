@@ -19,8 +19,8 @@ class CreatePalpitesTable extends Migration
             $table->foreign('jogo_id')->references('id')->on('jogos');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('palpite_casa');
-            $table->integer('palpite_fora');
+            $table->integer('palpite_casa')->nullable();
+            $table->integer('palpite_fora')->nullable();
             $table->timestamp('horario');
             $table->timestamps();
         });

@@ -1,0 +1,129 @@
+/*
+  Flaticon icon font: Flaticon
+  Creation date: 29/07/2017 16:52
+  */
+
+@font-face {
+    font-family: "Flaticon";
+    src: url("/fonts/Flaticon.eot");
+    src: url("/fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/Flaticon.woff") format("woff"),
+    url("/fonts/Flaticon.ttf") format("truetype"),
+    url("/fonts/Flaticon.svg#Flaticon") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family: "Flaticon";
+        src: url("/fonts/Flaticon.svg#Flaticon") format("svg");
+    }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+    font-family: Flaticon;
+    line-height: normal;
+    font-style: normal;
+}
+
+.flaticon-champion-trophy:before { content: "\f100"; }
+.flaticon-ball-with-dots:before { content: "\f101"; }
+.flaticon-checklist-on-a-paper-with-a-pencil:before { content: "\f102"; }
+.flaticon-checklist:before { content: "\f103"; }
+.flaticon-ranking-factor:before { content: "\f104"; }
+.flaticon-goal:before { content: "\f105"; }
+.flaticon-football-ball-variant:before { content: "\f106"; }
+.flaticon-football-ball:before { content: "\f107"; }
+.flaticon-soccer-ball-5:before { content: "\f108"; }
+.flaticon-football-fans-group:before { content: "\f109"; }
+.flaticon-football-winning-trophy-with-check-mark:before { content: "\f10a"; }
+.flaticon-trophy-football-cup:before { content: "\f10b"; }
+.flaticon-trophy-cup-black-shape:before { content: "\f10c"; }
+.flaticon-football-trophy:before { content: "\f10d"; }
+.flaticon-soccer-cup-with-ball:before { content: "\f10e"; }
+.flaticon-football-4:before { content: "\f10f"; }
+.flaticon-ball-6:before { content: "\f110"; }
+.flaticon-ball-5:before { content: "\f111"; }
+.flaticon-ball-4:before { content: "\f112"; }
+.flaticon-soccer-2:before { content: "\f113"; }
+.flaticon-soccer-ball-4:before { content: "\f114"; }
+.flaticon-ball-3:before { content: "\f115"; }
+.flaticon-soccer-ball-3:before { content: "\f116"; }
+.flaticon-football-badge:before { content: "\f117"; }
+.flaticon-soccer-ball-2:before { content: "\f118"; }
+.flaticon-antique-soccer-ball:before { content: "\f119"; }
+.flaticon-footbal-pin:before { content: "\f11a"; }
+.flaticon-soccer-ball-1:before { content: "\f11b"; }
+.flaticon-flaming-football:before { content: "\f11c"; }
+.flaticon-football-3:before { content: "\f11d"; }
+.flaticon-soccer-ball-variant:before { content: "\f11e"; }
+.flaticon-soccer-ball:before { content: "\f11f"; }
+.flaticon-person-kicking-ball-with-the-knee:before { content: "\f120"; }
+.flaticon-football-player-with-the-ball-under-the-feet:before { content: "\f121"; }
+.flaticon-football-player-using-head-to-hit-ball:before { content: "\f122"; }
+.flaticon-football-player-kicking-ball-upward:before { content: "\f123"; }
+.flaticon-football-player-landing-on-field-missing-the-ball:before { content: "\f124"; }
+.flaticon-soccer-player-with-ball:before { content: "\f125"; }
+.flaticon-football-player:before { content: "\f126"; }
+.flaticon-football-player-setting-ball:before { content: "\f127"; }
+.flaticon-football-player-attempting-to-kick-ball:before { content: "\f128"; }
+.flaticon-football-player-running-behind-the-ball:before { content: "\f129"; }
+.flaticon-pele:before { content: "\f12a"; }
+.flaticon-cristiano-ronaldo:before { content: "\f12b"; }
+.flaticon-lionel-messi:before { content: "\f12c"; }
+.flaticon-football-players-on-field:before { content: "\f12d"; }
+.flaticon-soccer-field-seen-from-above:before { content: "\f12e"; }
+.flaticon-football-court-top-view:before { content: "\f12f"; }
+.flaticon-football-field-in-perspective:before { content: "\f130"; }
+.flaticon-stadium:before { content: "\f131"; }
+.flaticon-sports-1:before { content: "\f132"; }
+.flaticon-player-2:before { content: "\f133"; }
+.flaticon-football-2:before { content: "\f134"; }
+.flaticon-game-3:before { content: "\f135"; }
+.flaticon-ball-2:before { content: "\f136"; }
+.flaticon-sport-4:before { content: "\f137"; }
+.flaticon-sport-3:before { content: "\f138"; }
+.flaticon-football-referee-with-hand-gestures:before { content: "\f139"; }
+.flaticon-stop-ball:before { content: "\f13a"; }
+.flaticon-football-field:before { content: "\f13b"; }
+.flaticon-soccer-1:before { content: "\f13c"; }
+.flaticon-soccer:before { content: "\f13d"; }
+.flaticon-football-game:before { content: "\f13e"; }
+.flaticon-football-1:before { content: "\f13f"; }
+.flaticon-stripes:before { content: "\f140"; }
+.flaticon-people:before { content: "\f141"; }
+.flaticon-man-3:before { content: "\f142"; }
+.flaticon-man-2:before { content: "\f143"; }
+.flaticon-man-1:before { content: "\f144"; }
+.flaticon-sport-2:before { content: "\f145"; }
+.flaticon-symbol-3:before { content: "\f146"; }
+.flaticon-game-2:before { content: "\f147"; }
+.flaticon-sports:before { content: "\f148"; }
+.flaticon-tool-3:before { content: "\f149"; }
+.flaticon-ball-1:before { content: "\f14a"; }
+.flaticon-dark:before { content: "\f14b"; }
+.flaticon-symbol-2:before { content: "\f14c"; }
+.flaticon-cup-1:before { content: "\f14d"; }
+.flaticon-game-1:before { content: "\f14e"; }
+.flaticon-tool-2:before { content: "\f14f"; }
+.flaticon-sport-1:before { content: "\f150"; }
+.flaticon-player-1:before { content: "\f151"; }
+.flaticon-program-1:before { content: "\f152"; }
+.flaticon-point:before { content: "\f153"; }
+.flaticon-man:before { content: "\f154"; }
+.flaticon-symbol-1:before { content: "\f155"; }
+.flaticon-program:before { content: "\f156"; }
+.flaticon-tool-1:before { content: "\f157"; }
+.flaticon-two:before { content: "\f158"; }
+.flaticon-sport:before { content: "\f159"; }
+.flaticon-player:before { content: "\f15a"; }
+.flaticon-symbol:before { content: "\f15b"; }
+.flaticon-game:before { content: "\f15c"; }
+.flaticon-construction:before { content: "\f15d"; }
+.flaticon-cup:before { content: "\f15e"; }
+.flaticon-shield:before { content: "\f15f"; }
+.flaticon-person:before { content: "\f160"; }
+.flaticon-ball:before { content: "\f161"; }
+.flaticon-tool:before { content: "\f162"; }

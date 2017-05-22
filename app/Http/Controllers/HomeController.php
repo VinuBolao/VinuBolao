@@ -2,6 +2,7 @@
 
 namespace Bolao\Http\Controllers;
 
+use Bolao\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $boloes = User::all();
+        return view('bolao.home', ['boloes' => $boloes]);
     }
 }

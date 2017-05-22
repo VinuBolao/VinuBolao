@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Bolão | {{ $title or 'Título' }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -71,7 +71,9 @@
             </div>
         </nav>
 
-        @yield('content')
+        <div class="container">
+            {{ $slot }}
+        </div>
     </div>
 
     <!-- Scripts -->

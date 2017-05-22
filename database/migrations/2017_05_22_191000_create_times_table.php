@@ -15,7 +15,7 @@ class CreateTimesTable extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome_popular', 50);
+            $table->string('nome', 50);
             $table->string('nome_completo', 50);
             $table->string('sigla', 3);
             $table->string('estadio', 70)->nullable();

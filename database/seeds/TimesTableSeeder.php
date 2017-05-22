@@ -1,5 +1,6 @@
 <?php
 
+use Bolao\Time;
 use Illuminate\Database\Seeder;
 
 class TimesTableSeeder extends Seeder
@@ -14,142 +15,142 @@ class TimesTableSeeder extends Seeder
         $equipes = [
             [
                 'nome_completo' => 'Clube de Regatas do Flamengo',
-                'nome_popular' => 'Flamengo',
+                'nome' => 'Flamengo',
                 'sigla' => 'FLA',
-                'eatadio' => 'Maracanã',
+                'estadio' => 'Maracanã',
                 'estado' => 'RJ',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Clube Atlético Paranaense',
-                'nome_popular' =>  'Atlético-PR',
+                'nome' =>  'Atlético-PR',
                 'sigla' =>  'CAP',
-                'eatadio' => 'Arena da Baixada',
+                'estadio' => 'Arena da Baixada',
                 'estado' => 'PR',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Clube Atlético Mineiro',
-                'nome_popular' =>  'Atlético-MG',
+                'nome' =>  'Atlético-MG',
                 'sigla' =>  'CAM',
-                'eatadio' => 'Independência',
+                'estadio' => 'Independência',
                 'estado' => 'MG',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Botafogo de Futebol e Regatas',
-                'nome_popular' =>  'Botafogo',
+                'nome' =>  'Botafogo',
                 'sigla' =>  'BOT',
-                'eatadio' => 'Engenhão',
+                'estadio' => 'Engenhão',
                 'estado' => 'RJ',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Sport Club Corinthians Paulista',
-                'nome_popular' =>  'Corinthians',
+                'nome' =>  'Corinthians',
                 'sigla' =>  'COR',
-                'eatadio' => 'Arena Corinthians',
+                'estadio' => 'Arena Corinthians',
                 'estado' => 'SP',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Coritiba Football Club',
-                'nome_popular' =>  'Coritiba',
+                'nome' =>  'Coritiba',
                 'sigla' =>  'CTB',
-                'eatadio' => 'Couto Pereira',
+                'estadio' => 'Couto Pereira',
                 'estado' => 'PR',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Cruzeiro Esporte Clube',
-                'nome_popular' =>  'Cruzeiro',
+                'nome' =>  'Cruzeiro',
                 'sigla' =>  'CRU',
-                'eatadio' => 'Mineirão',
+                'estadio' => 'Mineirão',
                 'estado' => 'MG',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Sport Club do Recife',
-                'nome_popular' =>  'Sport',
+                'nome' =>  'Sport',
                 'sigla' =>  'SPT',
-                'eatadio' => 'Ilha do Retiro',
+                'estadio' => 'Ilha do Retiro',
                 'estado' => 'PE',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Fluminense Football Club',
-                'nome_popular' =>  'Fluminense',
+                'nome' =>  'Fluminense',
                 'sigla' =>  'FLU',
-                'eatadio' => 'Maracanã',
+                'estadio' => 'Maracanã',
                 'estado' => 'RJ',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Grêmio Foot-Ball Porto-Alegrense',
-                'nome_popular' =>  'Grêmio',
+                'nome' =>  'Grêmio',
                 'sigla' =>  'GRE',
-                'eatadio' => 'Arena Grêmio',
+                'estadio' => 'Arena Grêmio',
                 'estado' => 'RS',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Associação Chapecoense de Futebol',
-                'nome_popular' =>  'Chapecoense',
+                'nome' =>  'Chapecoense',
                 'sigla' =>  'CHA',
-                'eatadio' => 'Arena Condá',
+                'estadio' => 'Arena Condá',
                 'estado' => 'SC',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Sociedade Esportiva Palmeiras',
-                'nome_popular' =>  'Palmeiras',
+                'nome' =>  'Palmeiras',
                 'sigla' =>  'PAL',
-                'eatadio' => 'Allianz Parque',
+                'estadio' => 'Allianz Parque',
                 'estado' => 'SP',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Associação Atlética Ponte Preta',
-                'nome_popular' =>  'Ponte Preta',
+                'nome' =>  'Ponte Preta',
                 'sigla' =>  'PON',
-                'eatadio' => 'Moisés Lucarelli',
+                'estadio' => 'Moisés Lucarelli',
                 'estado' => 'SP',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Esporte Clube Vitória',
-                'nome_popular' =>  'Vitória',
+                'nome' =>  'Vitória',
                 'sigla' =>  'VIT',
-                'eatadio' => 'Fonte Nova',
+                'estadio' => 'Fonte Nova',
                 'estado' => 'BA',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Santos Futebol Clube',
-                'nome_popular' =>  'Santos',
+                'nome' =>  'Santos',
                 'sigla' =>  'SAN',
-                'eatadio' => 'Vila Belmiro',
+                'estadio' => 'Vila Belmiro',
                 'estado' => 'SP',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'São Paulo Futebol Clube',
-                'nome_popular' =>  'São Paulo',
+                'nome' =>  'São Paulo',
                 'sigla' =>  'SPA',
-                'eatadio' => 'Morumbi',
+                'estadio' => 'Morumbi',
                 'estado' => 'SP',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Atlético Clube Goianiense',
-                'nome_popular' =>  'Atlético-GO',
+                'nome' =>  'Atlético-GO',
                 'sigla' =>  'ACG',
-                'eatadio' => 'Serra Dourada',
+                'estadio' => 'Serra Dourada',
                 'estado' => 'GO',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Avaí Futebol Clube',
-                'nome_popular' =>  'Avaí',
+                'nome' =>  'Avaí',
                 'sigla' =>  'AVA',
-                'eatadio' => 'Ressacada',
+                'estadio' => 'Ressacada',
                 'estado' => 'SC',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Esporte Clube Bahia',
-                'nome_popular' =>  'Bahia',
+                'nome' =>  'Bahia',
                 'sigla' =>  'BAH',
-                'eatadio' => 'Fonte Nova',
+                'estadio' => 'Fonte Nova',
                 'estado' => 'BA',
                 'pais' => 'Brasil'
             ],[
                 'nome_completo' => 'Club de Regatas Vasco da Gama',
-                'nome_popular' =>  'Vasco',
+                'nome' =>  'Vasco',
                 'sigla' =>  'VAS',
-                'eatadio' => 'São Januário',
+                'estadio' => 'São Januário',
                 'estado' => 'RJ',
                 'pais' => 'Brasil'
             ]

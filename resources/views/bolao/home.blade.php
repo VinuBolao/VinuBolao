@@ -1,14 +1,12 @@
 @component('layouts.app')
-    @slot('title')
-        Home
-    @endslot
+
+    <div class="col-md-12 box">
+        <a href="" class="btn btn-primary" role="button">Novo</a>
+        <h2>Lista</h2>
+        <p>Veja sua posição em relação aos outros participantes!</p>
+    </div>
 
     <div class="col-sm-12 box">
-        <h2>
-            Lista de Bolões
-            <a href="" class="btn btn-primary pull-right" role="button">Novo Bolão</a>
-        </h2>
-        <hr>
         @if(!$boloes->isEmpty())
             <table class="table table-hover">
                 <thead>

@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -29,14 +29,28 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        Bolão Dos Melo Lima
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li>
+                            <a href="{{ route('home') }}" class="active">Home</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('classificacao') }}">Classificação</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('palpites') }}">Palpites</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('jogos') }}">Jogos</a>
+                        </li>
+                        <li>
+                            <a href="">Dashboard</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -72,7 +86,9 @@
         </nav>
 
         <div class="container">
-            {{ $slot }}
+            <div class="row">
+                {{ $slot }}
+            </div>
         </div>
     </div>
 

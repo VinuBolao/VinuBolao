@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/classificacao', 'HomeController@classificacao')->name('classificacao');
+Route::get('/palpites/{campeonato?}/{rodada?}', 'HomeController@palpites')->name('palpites');
+Route::get('/jogos/{campeonato?}/{rodada?}', 'HomeController@jogos')->name('jogos');
+
+Route::post('save', 'HomeController@save')->name('save');

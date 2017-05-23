@@ -7,3 +7,13 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.box{
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}

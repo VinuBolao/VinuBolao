@@ -15,6 +15,7 @@
 </head>
 <body>
     <div id="app">
+        @if (Auth::check())
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -84,6 +85,7 @@
                 </div>
             </div>
         </nav>
+        @endif
 
         <div class="container">
             <div class="row">

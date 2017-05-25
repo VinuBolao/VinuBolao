@@ -7,32 +7,29 @@
     </div>
 
     <div class="col-sm-12 box">
-        <div class="row">
-            <div class="btn-group" role="group">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="infoCampeonato">Campeonato:</label>
-                        <select id="infoCampeonato" class="form-control">
-                            @foreach($campeonatos as $campeonato)
-                                <option value="{{ $campeonato->id }}">{{ $campeonato->nome_completo }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </form>
-            </div>
+        <div class="btn-group" role="group">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="infoCampeonato">Campeonato:</label>
+                    <select id="infoCampeonato" class="form-control">
+                        @foreach($campeonatos as $campeonato)
+                            <option value="{{ $campeonato->id }}">{{ $campeonato->nome_completo }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </form>
         </div>
-        <div class="row">
-            <div class="btn-group pull-right" role="group">
-                <a href="{{ route('jogos', [$camp_id, $rodada-1]) }}" class="btn btn-default">
-                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                </a>
-                <button type="button" class="btn btn-default">
-                    {{ $rodada }}ª Rodada
-                </button>
-                <a href="{{ route('jogos', [$camp_id, $rodada+1]) }}" class="btn btn-default">
-                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                </a>
-            </div>
+
+        <div class="btn-group" role="group">
+            <a href="{{ route('jogos', [$camp_id, $rodada-1]) }}" class="btn btn-default">
+                <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+            </a>
+            <button type="button" class="btn btn-default">
+                {{ $rodada }}ª Rodada
+            </button>
+            <a href="{{ route('jogos', [$camp_id, $rodada+1]) }}" class="btn btn-default">
+                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            </a>
         </div>
     </div>
 

@@ -29,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ route('bolao.index') }}">
                         Bolão Dos Melo Lima
                     </a>
                 </div>
@@ -38,7 +38,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="{{ route('home') }}" class="active">Home</a>
+                            <a href="{{ route('bolao.index') }}" class="active">Home</a>
                         </li>
                         <li>
                             <a href="{{ route('classificacao') }}">Classificação</a>

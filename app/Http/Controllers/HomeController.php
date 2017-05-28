@@ -29,8 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = Bolao::all();
-        return view('bolao.home', ['boloes' => $data]);
+
     }
 
     public function classificacao()

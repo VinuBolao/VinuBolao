@@ -17,19 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'bolao', 'as' => 'bolao.'], function (){
-    Route::get('/', 'BolaoController@index')->name('index');
-    Route::get('/add', 'BolaoController@add')->name('add');
-    Route::post('/save', 'BolaoController@save')->name('save');
-    Route::get('/edit/{id}', 'BolaoController@edit')->name('edit');
-    Route::put('/update/{id}', 'BolaoController@save')->name('update');
-    Route::delete('/remove/{id}', 'BolaoController@destroy')->name('remove');
-});
-
-
-
-Route::get('/classificacao', 'HomeController@classificacao')->name('classificacao');
-Route::get('/palpites/{campeonato?}/{rodada?}', 'HomeController@palpites')->name('palpites');
-Route::get('/jogos/{campeonato?}/{rodada?}', 'HomeController@jogos')->name('jogos');
-
-Route::post('save', 'HomeController@save')->name('save');
+Route::resource('bolao', 'BolaoController')->middleware('auth');
+Route::resource('jogo', 'JogoController')->middleware('auth');
+//Route::resource('palpite', 'PalpiteController');

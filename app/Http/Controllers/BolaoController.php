@@ -9,16 +9,6 @@ use Illuminate\Http\Request;
 class BolaoController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -29,18 +19,23 @@ class BolaoController extends Controller
         return view('bolao.index', compact('boloes'));
     }
 
-    public function add()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
     {
         return view('bolao.add')->with('campeonatos', Campeonato::all());
     }
 
     /**
-     * Save a newly created resource in storage.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function save(Request $request)
+    public function store(Request $request)
     {
         Bolao::create($request->all());
         return redirect()->action('BolaoController@index');
@@ -80,7 +75,7 @@ class BolaoController extends Controller
     {
         $page = Bolao::findOrFail($id);
         $page->update($request->all());
-        return response()->redirectToRoute('bolao.index', $id);
+        return response()->redirectToRoute('bolao.index');
     }
 
     /**

@@ -41,13 +41,13 @@
                             <a href="{{ route('bolao.index') }}" class="active">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('classificacao') }}">Classificação</a>
+                            <a href="">Classificação</a>
                         </li>
                         <li>
-                            <a href="{{ route('palpites') }}">Palpites</a>
+                            <a href="">Palpites</a>
                         </li>
                         <li>
-                            <a href="{{ route('jogos') }}">Jogos</a>
+                            <a href="{{ route('jogo.index') }}">Jogos</a>
                         </li>
                         <li>
                             <a href="">Dashboard</a>

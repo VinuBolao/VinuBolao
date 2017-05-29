@@ -16,7 +16,7 @@ class CreatePalpitesTable extends Migration
         Schema::create('palpites', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('jogo_id');
-            $table->foreign('jogo_id')->references('id')->on('jogos');
+            $table->foreign('jogo_id')->references('id')->on('jogo');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('palpite_casa');

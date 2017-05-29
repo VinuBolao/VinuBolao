@@ -7,7 +7,7 @@
     </div>
 
     <div class="col-sm-12 box">
-        <form action="{{ route('bolao.save') }}" method="post">
+        <form action="{{ route('bolao.store') }}" method="post">
             {{ csrf_field() }}
             <div class="row">
                 <div class="form-group">

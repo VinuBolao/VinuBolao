@@ -2,6 +2,8 @@
 
 namespace Bolao\Http\Controllers;
 
+use Bolao\Campeonato;
+use Bolao\Jogo;
 use Illuminate\Http\Request;
 
 class JogoController extends Controller
@@ -11,9 +13,16 @@ class JogoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($camp_id = 1, $rodada = 1)
     {
-        //
+        $jogos = Jogo::where(['campeonato_id' => $camp_id, 'rodada' => $rodada])->get();
+        $campeonatos = Campeonato::all();
+        return view('jogo.index', [
+            'jogos' => $jogos,
+            'campeonatos' => $campeonatos,
+            'camp_id' => $camp_id,
+            'rodada' => $rodada
+        ]);
     }
 
     /**

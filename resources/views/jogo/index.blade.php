@@ -21,13 +21,13 @@
         </div>
 
         <div class="btn-group" role="group">
-            <a href="{{ route('jogos', [$camp_id, $rodada-1]) }}" class="btn btn-default">
+            <a href="{{ route('jogo.index', [$camp_id, $rodada-1]) }}" class="btn btn-default">
                 <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
             </a>
             <button type="button" class="btn btn-default">
                 {{ $rodada }}ª Rodada
             </button>
-            <a href="{{ route('jogos', [$camp_id, $rodada+1]) }}" class="btn btn-default">
+            <a href="{{ route('jogo.index', [$camp_id, $rodada+1]) }}" class="btn btn-default">
                 <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
             </a>
         </div>
@@ -59,7 +59,7 @@
             @endforeach
         </table>
 
-        <form id="formPalpites" action="{{ route('save') }}" method="post">
+        <form id="formPalpites" action="" method="post">
             {!! csrf_field() !!}
             <input type="hidden" name="user" value="{{ Auth::user()->id }}">
             <div class="row">

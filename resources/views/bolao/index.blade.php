@@ -2,7 +2,7 @@
     @slot('title') Home @endslot
 
     <div class="col-md-12 box">
-        <a href="{{ route('bolao.add') }}" class="btn btn-primary" role="button">Novo</a>
+        <a href="{{ route('bolao.create') }}" class="btn btn-primary" role="button">Novo</a>
         <h2>Lista</h2>
         <p>Veja sua posição em relação aos outros participantes!</p>
     </div>
@@ -17,7 +17,7 @@
                     <th>Campeonato</th>
                     <th>Data Inicial</th>
                     <th>Descrição</th>
-                    <th colspan="2"></th>
+                    <th colspan="3"></th>
                 </tr>
                 </thead>
                 @foreach($boloes as $bolao)
@@ -29,10 +29,13 @@
                         <td>{{ $bolao->inicio }}</td>
                         <td>{{ $bolao->descricao }}</td>
                         <td>
+                            <a href="" class="btn btn-xs btn-primary">Adicionar Participante</a>
+                        </td>
+                        <td>
                             <a href="{{ route('bolao.edit', $bolao->id) }}" class="btn btn-xs btn-primary">Editar</a>
                         </td>
                         <td>
-                            <form action="{{ route('bolao.remove', $bolao->id) }}" method="post">
+                            <form action="{{ route('bolao.destroy', $bolao->id) }}" method="post">
                                 {!! csrf_field() !!}
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="submit" value="remover" class="btn btn-xs btn-danger">

@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label for="infoDescription">Descrição:</label>
-                        <textarea class="form-control" rows="3" name="descricao" id="infoDescription" placeholder="Digite a descrição...">
+                        <textarea class="form-control" name="descricao" id="infoDescription" placeholder="Digite a descrição...">
                             {{ $bolao->descricao }}
                         </textarea>
                     </div>

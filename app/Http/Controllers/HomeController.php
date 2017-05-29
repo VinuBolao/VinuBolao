@@ -35,26 +35,14 @@ class HomeController extends Controller
     public function classificacao()
     {
         $data = User::all();
-        return view('bolao.classificacao', ['participantes' => $data]);
-    }
-
-    public function jogos($camp_id = 1, $rodada = 1)
-    {
-        $jogos = Jogo::where(['campeonato_id' => $camp_id, 'rodada' => $rodada])->get();
-        $campeonatos = Campeonato::all();
-        return view('bolao.jogos', [
-            'jogos' => $jogos,
-            'campeonatos' => $campeonatos,
-            'camp_id' => $camp_id,
-            'rodada' => $rodada
-        ]);
+        return view('classificacao.index', ['participantes' => $data]);
     }
 
     public function palpites($camp_id = 1, $rodada = 1)
     {
         $jogos = Palpite::where('user_id', Auth::user()->id)->get();
         $campeonatos = Campeonato::all();
-        return view('bolao.palpites', [
+        return view('palpite.index', [
             'palpites' => $jogos,
             'campeonatos' => $campeonatos,
             'camp_id' => $camp_id,

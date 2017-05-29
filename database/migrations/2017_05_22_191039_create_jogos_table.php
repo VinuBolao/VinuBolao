@@ -13,7 +13,7 @@ class CreateJogosTable extends Migration
      */
     public function up()
     {
-        Schema::create('jogos', function (Blueprint $table) {
+        Schema::create('jogo', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campeonato_id');
             $table->foreign('campeonato_id')->references('id')->on('campeonatos');
@@ -36,6 +36,6 @@ class CreateJogosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jogos');
+        Schema::dropIfExists('jogo');
     }
 }

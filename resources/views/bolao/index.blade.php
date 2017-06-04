@@ -17,7 +17,7 @@
                     <th>Campeonato</th>
                     <th>Data Inicial</th>
                     <th>Descrição</th>
-                    <th colspan="3"></th>
+                    <th colspan="2"></th>
                 </tr>
                 </thead>
                 @foreach($boloes as $bolao)
@@ -28,9 +28,6 @@
                         <td>{{ $bolao->campeonato->nome }} - Série {{ $bolao->campeonato->serie }}</td>
                         <td>{{ $bolao->inicio }}</td>
                         <td>{{ $bolao->descricao }}</td>
-                        <td>
-                            <a href="" class="btn btn-xs btn-primary">Adicionar Participante</a>
-                        </td>
                         <td>
                             <a href="{{ route('bolao.edit', $bolao->id) }}" class="btn btn-xs btn-primary">Editar</a>
                         </td>

@@ -30,7 +30,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ route('bolao.index') }}">
-                        Bolão Dos Melo Lima
+                        Vinu Bolão
                     </a>
                 </div>
 
@@ -41,7 +41,7 @@
                             <a href="{{ route('bolao.index') }}" class="active">Home</a>
                         </li>
                         <li>
-                            <a href="">Classificação</a>
+                            <a href="{{ route('bolao.classificacao') }}">Classificação</a>
                         </li>
                         <li>
                             <a href="">Palpites</a>

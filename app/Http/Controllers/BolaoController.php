@@ -2,8 +2,10 @@
 
 namespace Bolao\Http\Controllers;
 
+use Bolao\User;
 use Bolao\Bolao;
 use Bolao\Campeonato;
+use Bolao\Participante;
 use Illuminate\Http\Request;
 
 class BolaoController extends Controller
@@ -17,6 +19,12 @@ class BolaoController extends Controller
     {
         $boloes = Bolao::all();
         return view('bolao.index', compact('boloes'));
+    }
+
+    public function classificacao()
+    {
+        $participantes = Participante::all();
+        return view('classificacao.index', compact('participantes'));
     }
 
     /**
@@ -37,7 +45,13 @@ class BolaoController extends Controller
      */
     public function store(Request $request)
     {
-        Bolao::create($request->all());
+        $bolao_id = Bolao::create($request->all())->id;
+
+        $participante = new Participante;
+        $participante->user_id = $request->user_id;
+        $participante->bolao_id = $bolao_id;
+        $participante->save();
+
         return redirect()->action('BolaoController@index');
     }
 
@@ -61,7 +75,14 @@ class BolaoController extends Controller
     public function edit($id)
     {
         $bolao = Bolao::findOrFail($id);
-        return view('bolao.edit', compact('bolao'));
+        $participantes = Participante::where(['bolao_id' => $id])->get();
+        $users = User::all();
+
+        return view('bolao.edit', [
+            'bolao' => $bolao,
+            'users' => $users,
+            'participantes' => $participantes
+        ]);
     }
 
     /**
@@ -74,7 +95,14 @@ class BolaoController extends Controller
     public function update(Request $request, $id)
     {
         $page = Bolao::findOrFail($id);
-        $page->update($request->all());
+
+        $page->user_id       = $request->user;
+        $page->campeonato_id = $request->campeonato;
+        $page->nome          = $request->name;
+        $page->inicio        = $request->datainicio;
+        $page->descricao     = $request->description;
+        $page->save();
+
         return response()->redirectToRoute('bolao.index');
     }
 

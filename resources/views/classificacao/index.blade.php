@@ -16,10 +16,10 @@
                 <th><strong>PV</strong></th>
                 <th><strong>V</strong></th>
             </tr>
-            @foreach($participantes as $participante)
+            @foreach($participantes as $key => $participante)
                 <tr>
-                    <td>{{ $participante->id }}º</td>
-                    <td><b>{{ $participante->name }}</b></td>
+                    <td>{{ $key + 1 }}º</td>
+                    <td><b>{{ $participante->user->name }}</b></td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>

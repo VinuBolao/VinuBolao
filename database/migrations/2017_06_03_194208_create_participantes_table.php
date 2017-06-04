@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePalpitesTable extends Migration
+class CreateParticipantesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreatePalpitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('palpites', function (Blueprint $table) {
+        Schema::create('participantes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('jogo_id');
-            $table->foreign('jogo_id')->references('id')->on('jogos');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('palpite_casa');
-            $table->integer('palpite_fora');
-            $table->timestamp('horario');
+            $table->unsignedInteger('bolao_id');
+            $table->foreign('bolao_id')->references('id')->on('boloes');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreatePalpitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('palpites');
+        Schema::dropIfExists('participantes');
     }
 }

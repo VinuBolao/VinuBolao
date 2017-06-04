@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('bolao', 'BolaoController')->middleware('auth');
-Route::resource('jogo', 'JogoController')->middleware('auth');
-//Route::resource('palpite', 'PalpiteController');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/bolao/classificacao', 'BolaoController@classificacao')->name('bolao.classificacao');
+    Route::resource('bolao', 'BolaoController');
+
+    Route::resource('participante', 'ParticipanteController');
+
+    Route::resource('jogo', 'JogoController');
+});

@@ -32,12 +32,6 @@ class HomeController extends Controller
 
     }
 
-    public function classificacao()
-    {
-        $data = User::all();
-        return view('classificacao.index', ['participantes' => $data]);
-    }
-
     public function palpites($camp_id = 1, $rodada = 1)
     {
         $jogos = Palpite::where('user_id', Auth::user()->id)->get();

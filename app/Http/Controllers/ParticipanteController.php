@@ -2,8 +2,11 @@
 
 namespace Bolao\Http\Controllers;
 
+use Bolao\Bolao;
 use Bolao\Participante;
+use Bolao\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ParticipanteController extends Controller
 {
@@ -14,7 +17,14 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
-        //
+        $participantes = Participante::where(['bolao_id' => 5])->get();
+        $boloes = Bolao::where(['user_id' => Auth::user()->id])->get();
+        $users = User::all();
+        return view('participante.index', [
+            'participantes' => $participantes,
+            'boloes' => $boloes,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -36,7 +46,7 @@ class ParticipanteController extends Controller
     public function store(Request $request)
     {
         Participante::create($request->all());
-        return redirect()->action('BolaoController@edit', $request->bolao_id);
+        return redirect()->action('ParticipanteController@index');
     }
 
     /**
@@ -81,6 +91,8 @@ class ParticipanteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $participante = Participante::findOrFail($id);
+        $participante->delete();
+        return redirect()->action('ParticipanteController@index');
     }
 }

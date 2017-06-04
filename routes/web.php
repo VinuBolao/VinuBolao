@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/bolao/classificacao', 'BolaoController@classificacao')->name('bolao.classificacao');
     Route::resource('bolao', 'BolaoController');
 
+    Route::get('/participante', 'ParticipanteController@index')->name('participante.index');
     Route::resource('participante', 'ParticipanteController');
 
     Route::resource('jogo', 'JogoController');

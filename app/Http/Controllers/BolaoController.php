@@ -75,14 +75,7 @@ class BolaoController extends Controller
     public function edit($id)
     {
         $bolao = Bolao::findOrFail($id);
-        $participantes = Participante::where(['bolao_id' => $id])->get();
-        $users = User::all();
-
-        return view('bolao.edit', [
-            'bolao' => $bolao,
-            'users' => $users,
-            'participantes' => $participantes
-        ]);
+        return view('bolao.edit', ['bolao' => $bolao]);
     }
 
     /**
@@ -116,6 +109,6 @@ class BolaoController extends Controller
     {
         $page = Bolao::findOrFail($id);
         $page->delete();
-        return response()->redirectToRoute('bolao.index');
+        return redirect()->action('BolaoController@index');
     }
 }

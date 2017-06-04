@@ -29,6 +29,9 @@
                         <td>{{ $bolao->inicio }}</td>
                         <td>{{ $bolao->descricao }}</td>
                         <td>
+                            <a href="{{ route('participante.index') }}" class="btn btn-xs btn-primary">Novo participante</a>
+                        </td>
+                        <td>
                             <a href="{{ route('bolao.edit', $bolao->id) }}" class="btn btn-xs btn-primary">Editar</a>
                         </td>
                         <td>

@@ -1,7 +1,7 @@
 @component('layouts.app')
     @slot('title') Editar @endslot
 
-    <div class="col-md-12 box">
+    <div class="col-sm-12 box">
         <h2>Editando Bolão</h2>
         <p>Preencha os campos para atualizar o bolão.</p>
     </div>

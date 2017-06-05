@@ -1,7 +1,7 @@
 @component('layouts.app')
     @slot('title') Novo @endslot
 
-    <div class="col-md-12 box">
+    <div class="col-sm-12 box">
         <h2>Criando Novo Bolão</h2>
         <p>Preencha os campos para adicionar um novo bolão.</p>
     </div>

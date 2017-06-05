@@ -19,6 +19,8 @@ class CreateParticipantesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('bolao_id');
             $table->foreign('bolao_id')->references('id')->on('boloes');
+            $table->integer('placarexato')->nullable()->default(0);
+            $table->integer('placarvencedor')->nullable()->default(0);
             $table->timestamps();
         });
     }

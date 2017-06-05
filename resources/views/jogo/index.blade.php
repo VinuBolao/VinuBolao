@@ -59,11 +59,11 @@
             @endforeach
         </table>
 
-        <form id="formPalpites" action="" method="post">
+        <form id="formPalpites" action="{{ route('palpite.store') }}" method="post">
             {!! csrf_field() !!}
             <input type="hidden" name="user" value="{{ Auth::user()->id }}">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-sm-6">
                     <button type="submit" class="btn btn-success btn-block">Salvar</button>
                 </div>
             </div>

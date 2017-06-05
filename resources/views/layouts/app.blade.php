@@ -29,9 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ route('bolao.index') }}">
-                        Vinu Bolão
-                    </a>
+                    <a class="navbar-brand"  href="{{ route('bolao.index') }}">Bolão</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -44,14 +42,14 @@
                             <a href="{{ route('bolao.classificacao') }}">Classificação</a>
                         </li>
                         <li>
-                            <a href="">Palpites</a>
+                            <a href="{{ route('palpite.index') }}">Palpites</a>
                         </li>
                         <li>
                             <a href="{{ route('jogo.index') }}">Jogos</a>
                         </li>
-                        <li>
-                            <a href="">Dashboard</a>
-                        </li>
+                        {{--<li>--}}
+                            {{--<a href="">Dashboard</a>--}}
+                        {{--</li>--}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->

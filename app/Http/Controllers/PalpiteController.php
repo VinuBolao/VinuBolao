@@ -2,7 +2,10 @@
 
 namespace Bolao\Http\Controllers;
 
+use Bolao\Campeonato;
+use Bolao\Palpite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PalpiteController extends Controller
 {
@@ -13,7 +16,14 @@ class PalpiteController extends Controller
      */
     public function index()
     {
-        //
+        $jogos = Palpite::where('user_id', Auth::user()->id)->get();
+        $campeonatos = Campeonato::all();
+        return view('palpite.index', [
+            'palpites' => $jogos,
+            'campeonatos' => $campeonatos,
+            'camp_id' => $campeonatos[0]->id,
+            'rodada' => 1
+        ]);
     }
 
     /**
@@ -34,7 +44,21 @@ class PalpiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $palpites = $request->all();
+        $data =[];
+
+        foreach ($palpites['jogo'] as $key => $palpite){
+            $palpite['jogo_id'] = $key;
+            $palpite['user_id'] = $palpites['user'];
+            $palpite['horario'] = date('Y-m-d H:i:s');
+            array_push($data, $palpite);
+        }
+
+        foreach ($data as $item){
+            Palpite::create($item);
+        }
+
+        return redirect()->action('PalpiteController@index');
     }
 
     /**

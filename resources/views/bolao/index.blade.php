@@ -1,7 +1,7 @@
 @component('layouts.app')
     @slot('title') Home @endslot
 
-    <div class="col-md-12 box">
+    <div class="col-sm-12 box">
         <a href="{{ route('bolao.create') }}" class="btn btn-primary" role="button">Novo</a>
         <h2>Lista</h2>
         <p>Veja sua posição em relação aos outros participantes!</p>
@@ -29,7 +29,7 @@
                         <td>{{ $bolao->inicio }}</td>
                         <td>{{ $bolao->descricao }}</td>
                         <td>
-                            <a href="{{ route('participante.index') }}" class="btn btn-xs btn-primary">Novo participante</a>
+                            <a href="{{ route('participante.index') }}" class="btn btn-xs btn-primary">Participantes</a>
                         </td>
                         <td>
                             <a href="{{ route('bolao.edit', $bolao->id) }}" class="btn btn-xs btn-primary">Editar</a>
@@ -47,7 +47,7 @@
             </table>
         @else
             <div class="alert alert-danger">
-                <p class="text-center">Não existe produtos para listar!</p>
+                <p class="text-center">Não existe dados para listar!</p>
             </div>
         @endif
     </div>

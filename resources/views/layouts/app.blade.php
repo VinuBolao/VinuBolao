@@ -42,10 +42,10 @@
                             <a href="{{ route('bolao.classificacao') }}">Classificação</a>
                         </li>
                         <li>
-                            <a href="{{ route('palpite.index') }}">Palpites</a>
+                            <a href="{{ route('jogo.index') }}">Jogos</a>
                         </li>
                         <li>
-                            <a href="{{ route('jogo.index') }}">Jogos</a>
+                            <a href="{{ route('palpite.index') }}">Palpites</a>
                         </li>
                         {{--<li>--}}
                             {{--<a href="">Dashboard</a>--}}

@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label for="infoUser">Usuário:</label>
-                        <select class="form-control" name="user_id" id="infoUser">
+                        <select class="form-control" name="user_id" id="infoUser" required>
                             <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>
                         </select>
                     </div>
@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label for="infoCampeonato">Campeonato:</label>
-                        <select class="form-control" name="campeonato_id" id="infoCampeonato">
+                        <select class="form-control" name="campeonato_id" id="infoCampeonato" required>
                             @foreach($campeonatos as $campeonato)
                                 <option value="{{ $campeonato->id }}">{{ $campeonato->nome_completo }}</option>
                             @endforeach
@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label for="infoNome">Nome:</label>
-                        <input type="text" class="form-control" name="nome" id="infoNome" placeholder="...">
+                        <input type="text" class="form-control" name="nome" id="infoNome" placeholder="..." required>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <div class="col-sm-3">
                         <label for="infoData">Nome:</label>
-                        <input type="date" class="form-control" name="inicio" id="infoData">
+                        <input type="date" class="form-control" name="inicio" id="infoData" required>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label for="infoDescription">Descrição:</label>
-                        <input type="text" class="form-control" name="descricao" id="infoDescription" placeholder="Digite uma descrição...">
+                        <input type="text" class="form-control" name="descricao" id="infoDescription" placeholder="Digite uma descrição..." required>
                     </div>
                 </div>
             </div>

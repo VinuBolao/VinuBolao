@@ -7,6 +7,7 @@ use Bolao\Bolao;
 use Bolao\Campeonato;
 use Bolao\Participante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BolaoController extends Controller
 {
@@ -23,7 +24,15 @@ class BolaoController extends Controller
 
     public function classificacao()
     {
-        $participantes = Participante::all();
+        $boloes = Bolao::where(['user_id' => Auth::user()->id])->get();
+        $participantes = [];
+        if(count($boloes)>0){
+            $participantes = Participante::where(['bolao_id' => $boloes[0]->id])
+                ->orderBy('pontosganhos', 'DESC')
+                ->orderBy('placarexato', 'DESC')
+                ->orderBy('placarvencedor', 'DESC')
+                ->get();
+        }
         return view('classificacao.index', compact('participantes'));
     }
 

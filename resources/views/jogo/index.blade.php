@@ -45,7 +45,8 @@
                         {{ $jogo->timecasa->nome }}
                     </td>
                     <td style="width: 101px">
-                        <input form="formPalpites" name="jogo[{{ $jogo->id }}][palpite_casa]" type="number" min="0" style="width: 35px;"> x
+                        <input form="formPalpites" name="jogo[{{ $jogo->id }}][palpite_casa]" type="number" min="0" style="width: 35px;">
+                        x
                         <input form="formPalpites" name="jogo[{{ $jogo->id }}][palpite_fora]" type="number" min="0" style="width: 35px;">
                     </td>
                     <td class="text-left">
@@ -59,9 +60,8 @@
             @endforeach
         </table>
 
-        <form id="formPalpites" action="{{ route('palpite.store') }}" method="post">
+        <form id="formPalpites" action="" method="post">
             {!! csrf_field() !!}
-            <input type="hidden" name="user" value="{{ Auth::user()->id }}">
             <div class="row">
                 <div class="col-sm-6">
                     <button type="submit" class="btn btn-success btn-block">Salvar</button>

@@ -6,7 +6,7 @@
         <p>Veja sua posição em relação aos outros participantes!</p>
     </div>
 
-    @if(!$participantes->isEmpty())
+    @if(count($participantes) > 0)
         <div class="col-sm-12 box">
             <table class="table table-striped table-hover">
                 <tr style="background-color: #666; color: #fff;">
@@ -21,9 +21,9 @@
                     <tr>
                         <td>{{ $key + 1 }}º</td>
                         <td><b>{{ $participante->user->name }}</b></td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>{{ $participante->pontosganhos }}</td>
+                        <td>{{ $participante->placarexato }}</td>
+                        <td>{{ $participante->placarvencedor }}</td>
                         <td><span class="glyphicon glyphicon-stop icon-blue" aria-hidden="true"></span></td>
                     </tr>
                 @endforeach

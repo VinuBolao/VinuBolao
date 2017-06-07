@@ -14,20 +14,20 @@
                         <label for="infoCampeonato">Campeonato:</label>
                         <select id="infoCampeonato" class="form-control">
                             @foreach($campeonatos as $campeonato)
-                                <option value="{{ $campeonato->id }}">{{ $campeonato->nome }}</option>
+                                <option value="{{ $campeonato->id }}">{{ $campeonato->nome_completo }}</option>
                             @endforeach
                         </select>
                     </div>
                 </form>
             </div>
             <div class="btn-group pull-right" role="group">
-                <a href="{{ route('palpite.index', [$camp_id, $rodada-1]) }}" class="btn btn-default">
+                <a href="" class="btn btn-default">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </a>
                 <button type="button" class="btn btn-default">
                     {{ $rodada }}ª Rodada
                 </button>
-                <a href="{{ route('palpite.index', [$camp_id, $rodada+1]) }}" class="btn btn-default">
+                <a href="" class="btn btn-default">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </a>
             </div>
@@ -38,14 +38,7 @@
                 <table class="table table-striped">
                     <tr style="background-color: #666; color: #fff;">
                         <th class="text-center" colspan="3">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label for="infoCampeonato">Participante:</label>
-                                    <select id="infoCampeonato" class="form-control input-sm">
-                                        <option value="">{{ Auth::user()->name }}</option>
-                                    </select>
-                                </div>
-                            </form>
+                            Gustavo Santos
                         </th>
                     </tr>
                     @foreach($palpites as $palpite)
@@ -69,14 +62,7 @@
                 <table class="table table-striped">
                     <tr style="background-color: #666; color: #fff;">
                         <th class="text-center" colspan="3">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label for="infoCampeonato">Participante:</label>
-                                    <select id="infoCampeonato" class="form-control input-sm">
-                                        <option value="">Victor Hugo</option>
-                                    </select>
-                                </div>
-                            </form>
+                            Gustavo Santos
                         </th>
                     </tr>
                     @foreach($palpites as $palpite)

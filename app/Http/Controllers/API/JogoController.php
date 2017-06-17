@@ -26,4 +26,12 @@ class JogoController extends Controller
         }
         return response()->json($jogos);
     }
+
+    public function save(Request $request)
+    {
+        $jogo = Jogo::findOrFail($request->id);
+        $jogo->placar_casa = $request->placar_casa;
+        $jogo->placar_fora = $request->placar_fora;
+        ($jogo->save()) ? true : false;
+    }
 }

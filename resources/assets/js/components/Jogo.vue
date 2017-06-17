@@ -32,18 +32,22 @@
 
         <div class="col-sm-12 box" v-if="jogos.length > 0">
             <table class="table table-striped">
-                <tr style="background-color: #666; color: #fff;">
+                <tr class="tr-head">
+                    <th>status</th>
                     <th colspan="3" class="text-center">Jogos</th>
                     <th class="hidden-xs">Horário | Estádio</th>
                 </tr>
-                <tr v-for="jogo in jogos">
+                <tr v-for="(jogo, key) in jogos">
+                    <td>{{ (jogo.placar_casa === null && jogo.placar_fora === null) ? 'X' : 'OK' }}</td>
                     <td class="text-right">
                         {{ jogo.timecasa.nome }}
                     </td>
-                    <td style="width: 101px; padding-left: 8px">
-                        <input form="formPalpites" name="jogo[][palpite_casa]" type="number" min="0" style="width: 35px;">
+                    <td class="td-jogo">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="placar[key].casa">
+                        <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
                         x
-                        <input form="formPalpites" name="jogo[][palpite_fora]" type="number" min="0" style="width: 35px;">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_fora === null" v-model="placar[key].fora" @blur="updatedJogos(jogo, key);">
+                        <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
                     </td>
                     <td class="text-left">
                         {{ jogo.timefora.nome }}
@@ -53,14 +57,6 @@
                     </td>
                 </tr>
             </table>
-
-            <form id="formPalpites" action="" method="post">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <button type="button" class="btn btn-success btn-block" @click="">Salvar</button>
-                    </div>
-                </div>
-            </form>
         </div>
         <div class="col-sm-12 box" v-if="jogos.length == 0">
             <div class="alert alert-danger">
@@ -70,10 +66,45 @@
     </div>
 </template>
 
+<style>
+    .tr-head {
+        background-color: #666;
+        color: #fff;
+    }
+    .input-placar {
+        width: 35px;
+    }
+    .td-jogo {
+        width: 100px;
+        text-align: center;
+    }
+    .placar-casa, .placar-fora {
+        font-size: 20px;
+    }
+    .placar-casa {
+        padding-right: 11px;
+    }
+    .placar-fora {
+        padding-left: 10px;
+    }
+</style>
+
 <script>
     export default {
         data() {
             return {
+                placar: [
+                    { casa: null, fora: null },
+                    { casa: null, fora: null },
+                    { casa: null, fora: null },
+                    { casa: null, fora: null },
+                    { casa: null, fora: null },
+                    { casa: null, fora: null },
+                    { casa: null, fora: null },
+                    { casa: null, fora: null },
+                    { casa: null, fora: null },
+                    { casa: null, fora: null }
+                ],
                 jogos: [],
                 rodada: 1,
                 campeonatoId: 1,
@@ -98,6 +129,18 @@
                 this.$http.get('/api/campeonato/get').then((response) => {
                     this.campeonatos = response.data;
                 }).catch((error) => {
+                    console.error('!Get Campeonatos', error);
+                });
+            },
+
+            updatedJogos(jogo, key) {
+                jogo.placar_casa = this.placar[key].casa;
+                jogo.placar_fora = this.placar[key].fora;
+
+                this.$http.post('/api/jogo/save', jogo).then((response) => {
+                    console.log(response.data);
+                }).catch((error) => {
+                    this.getJogosCampeontato(1, this.rodada);
                     console.error('!Get Campeonatos', error);
                 });
             }

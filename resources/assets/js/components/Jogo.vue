@@ -30,11 +30,6 @@
 <template>
     <div>
         <div class="col-sm-12 box">
-            <h2>Jogos</h2>
-            <p>Aqui estão os jogos filtrados por campeonato e rodada, preencha os resultados.</p>
-        </div>
-
-        <div class="col-sm-12 box">
             <div class="btn-group" role="group">
                 <form class="form-inline">
                     <div class="form-group">
@@ -59,7 +54,7 @@
         </div>
 
         <div class="col-sm-12 box" v-if="jogos.length > 0">
-            <table class="table table-striped">
+            <table class="table table-hover">
                 <tr class="tr-head">
                     <th class="text-center">Status</th>
                     <th colspan="3" class="text-center">Jogos</th>
@@ -120,17 +115,6 @@
             this.getJogosCampeontato(this.campeonato.id, this.rodada);
         },
         methods: {
-            getJogosCampeontato(id, rodada) {
-                this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then((response) => {
-                    this.jogos = response.data;
-                    this.rodada = rodada;
-                    this.getCampeontatos(id);
-                    this.mountedData();
-                }).catch((error) => {
-                    console.error('!Get JogosCampeonato', error);
-                });
-            },
-
             getCampeontatos(id) {
                 let param = (id) ? '/' + id : '';
                 this.$http.get('/api/campeonato/get' + param).then((response) => {
@@ -144,9 +128,21 @@
                 });
             },
 
+            getJogosCampeontato(id, rodada) {
+                this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then((response) => {
+                    this.jogos = response.data;
+                    this.rodada = rodada;
+                    this.getCampeontatos(id);
+                    this.mountedData();
+                }).catch((error) => {
+                    console.error('!Get JogosCampeonato', error);
+                });
+            },
+
             updatedPlacar(jogo, key) {
-                jogo.placar_casa = (key) ? this.placar[key].casa : null;
-                jogo.placar_fora = (key) ? this.placar[key].fora : null;
+                console.log(jogo, key);
+                jogo.placar_casa = (key >= 0) ?  this.placar[key].casa : null;
+                jogo.placar_fora = (key >= 0) ?  this.placar[key].fora : null;
 
                 this.$http.post('/api/jogo/update', jogo).then((response) => {
                     console.log(response.data);

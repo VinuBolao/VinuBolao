@@ -18,7 +18,7 @@ class PalpiteController extends Controller
         }
     }
 
-    public function getPalpitesCampeonato($id, $rodada = null)
+    public function get_campeonato($id, $rodada = null)
     {
         if($rodada){
             $condition = ['user_id' => Auth::user()->id, 'campeonato_id' => $id, 'rodada' => $rodada];

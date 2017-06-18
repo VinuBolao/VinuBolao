@@ -11,9 +11,9 @@ class JogoController extends Controller
     public function get($id = null)
     {
         if($id){
-            return response()->json(Jogo::findOrFail($id));
+            return response()->json(Jogo::findOrFail($id), 200);
         } else {
-            return response()->json(Jogo::all());
+            return response()->json(Jogo::all(), 200);
         }
     }
 
@@ -24,14 +24,18 @@ class JogoController extends Controller
         } else {
             $jogos = Jogo::with('timecasa')->where(['campeonato_id' => $id])->get();
         }
-        return response()->json($jogos);
+        return response()->json($jogos, 200);
     }
 
-    public function save(Request $request)
+    public function update(Request $request)
     {
         $jogo = Jogo::findOrFail($request->id);
         $jogo->placar_casa = $request->placar_casa;
         $jogo->placar_fora = $request->placar_fora;
-        ($jogo->save()) ? true : false;
+        if($jogo->save()){
+            return response()->json(['success' => true], 200);
+        } else {
+            return response()->json(['success' => false], 400);
+        }
     }
 }

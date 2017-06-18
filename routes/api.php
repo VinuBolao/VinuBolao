@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'jogo'], function (){
     Route::get('get/{id?}', 'API\JogoController@get')->where('id', '[0-9]+');
     Route::get('get_campeonato/{id}/{rodada?}', 'API\JogoController@get_campeonato')->where('id', '[0-9]+');
-    Route::post('save', 'API\JogoController@save');
+    Route::post('update', 'API\JogoController@update');
 });
 
 Route::group(['prefix' => 'participante'], function (){

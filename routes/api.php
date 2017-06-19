@@ -33,4 +33,5 @@ Route::group(['prefix' => 'campeonato'], function (){
 
 Route::group(['prefix' => 'palpite'], function (){
     Route::get('get/{id?}', 'API\PalpiteController@get')->where('id', '[0-9]+');
+    Route::post('create', 'API\PalpiteController@create');
 });

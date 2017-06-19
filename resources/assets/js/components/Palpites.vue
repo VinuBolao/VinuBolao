@@ -42,27 +42,27 @@
         </div>
 
         <div class="col-sm-6 box" v-if="jogos.length > 0">
-            <div class="btn-group" role="group">
-                <form class="form-inline">
+            <div class="row">
+                <div class="btn-group col-xs-5" role="group">
                     <div class="form-group">
                         <select class="form-control" v-model="participante.id" @change="getParticipantesBolao(bolaoId);">
                             <option v-for="participante in participantes" :value="participante.id">{{ participante.user.name }}</option>
                         </select>
                     </div>
-                </form>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getJogosCampeontato(campeonato.id, rodada - 1);">
+                        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default">
+                        {{ rodada }}ª Rodada
+                    </button>
+                    <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
+                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
 
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getJogosCampeontato(campeonato.id, rodada - 1);">
-                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default">
-                    {{ rodada }}ª Rodada
-                </button>
-                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
-                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                </button>
-            </div>
             <table class="table">
                 <tr class="tr-head">
                     <th class="text-center">Status</th>
@@ -71,23 +71,25 @@
                 </tr>
                 <tr v-for="(jogo, key) in jogos">
                     <td class="text-center">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" v-if="jogo.palpite.casa === null && jogo.palpite.fora === null"></span>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>
                     </td>
                     <td class="text-right">
                         {{ jogo.timecasa.nome }}
                     </td>
                     <td class="td-jogo">
-                        <input class="input-placar" type="number" min="0">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.palpite.casa === null" v-model="jogo.placar_casa">
+                        <strong class="placar-casa" v-else>{{ jogo.palpite.casa }}</strong>
                         x
-                        <input class="input-placar" type="number" min="0">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.palpite.fora === null" v-model="jogo.placar_fora" @blur="savePalpite(jogo, key);">
+                        <strong class="placar-fora" v-else>{{ jogo.palpite.fora }}</strong>
                     </td>
                     <td class="text-left">
                         {{ jogo.timefora.nome }}
                     </td>
                     <td class="text-center">
                         <a href="">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true" v-if="jogo.palpite.casa !== null || jogo.palpite.fora !== null"></span>
                         </a>
                     </td>
                 </tr>
@@ -112,8 +114,10 @@
         },
         props: ['user'],
         mounted() {
-            this.mountedData(this.bolaoId, this.campeonato.id, this.rodada);
             this.getCampeontatos();
+            this.getJogosCampeontato(this.campeonato.id, this.rodada);
+            this.getParticipantesBolao(this.bolaoId);
+            this.getPalpitesCampeontato(this.campeonato.id);
         },
         methods: {
             getCampeontatos(id) {
@@ -131,6 +135,15 @@
 
             getJogosCampeontato(id, rodada) {
                 this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then((response) => {
+                    response.data.forEach(function (jogo) {
+                        jogo.placar_casa = null;
+                        jogo.placar_fora = null;
+                        jogo.palpite = {
+                            id: null,
+                            casa: null,
+                            fora: null
+                        };
+                    });
                     this.jogos = response.data;
                 }).catch((error) => {
                     console.error('!Get JogosCampeonato', error);
@@ -153,23 +166,13 @@
                 });
             },
 
-            updatedPlacar(jogo, key) {
-                jogo.placar_casa = (key >= 0) ? this.placar[key].casa : null;
-                jogo.placar_fora = (key >= 0) ? this.placar[key].fora : null;
-
-                this.$http.post('/api/jogo/update', jogo).then((response) => {
+            savePalpite(data) {
+                this.$http.post('/api/palpite/create', data).then((response) => {
                     console.log(response.data);
                 }).catch((error) => {
                     this.getJogosCampeontato(this.campeonato.id, this.rodada);
-                    console.error('!Get Update Jogo', error);
+                    console.error('!Get Create Palpite', error);
                 });
-            },
-
-            mountedData(bolaoId, campeonatoId, rodada) {
-                this.getJogosCampeontato(campeonatoId, rodada);
-                this.getParticipantesBolao(bolaoId);
-                this.getPalpitesCampeontato(campeonatoId);
-                console.log(this.jogos);
             }
         }
     }

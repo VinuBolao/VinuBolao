@@ -70,10 +70,10 @@
                         {{ jogo.timecasa.nome }}
                     </td>
                     <td class="td-jogo">
-                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="placar[key].casa">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="jogo.placar_real_casa">
                         <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
                         x
-                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_fora === null" v-model="placar[key].fora" @blur="updatedPlacar(jogo, key);">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
                         <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
                     </td>
                     <td class="text-left">
@@ -83,7 +83,7 @@
                         {{ jogo.inicio|moment('HH:mm DD/MM/YY') }} | {{ jogo.timecasa.estadio }}
                     </td>
                     <td class="text-center">
-                        <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="updatedPlacar(jogo)">
+                        <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="updatedPlacar(jogo, jogo.id)">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -102,7 +102,6 @@
     export default {
         data() {
             return {
-                placar: [],
                 jogos: [],
                 rodada: 1,
                 campeonato: { id: 1 },
@@ -110,7 +109,6 @@
             }
         },
         mounted() {
-            this.mountedData();
             this.getCampeontatos();
             this.getJogosCampeontato(this.campeonato.id, this.rodada);
         },
@@ -130,19 +128,21 @@
 
             getJogosCampeontato(id, rodada) {
                 this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then((response) => {
+                    response.data.forEach(function (jogo) {
+                        jogo.placar_real_casa = null;
+                        jogo.placar_real_fora = null;
+                    });
                     this.jogos = response.data;
                     this.rodada = rodada;
                     this.getCampeontatos(id);
-                    this.mountedData();
                 }).catch((error) => {
                     console.error('!Get JogosCampeonato', error);
                 });
             },
 
-            updatedPlacar(jogo, key) {
-                console.log(jogo, key);
-                jogo.placar_casa = (key >= 0) ?  this.placar[key].casa : null;
-                jogo.placar_fora = (key >= 0) ?  this.placar[key].fora : null;
+            updatedPlacar(jogo, id) {
+                jogo.placar_casa = (id >= 0) ? null : jogo.placar_real_casa;
+                jogo.placar_fora = (id >= 0) ? null : jogo.placar_real_fora;
 
                 this.$http.post('/api/jogo/update', jogo).then((response) => {
                     console.log(response.data);
@@ -150,21 +150,6 @@
                     this.getJogosCampeontato(this.campeonato.id, this.rodada);
                     console.error('!Get Update Jogo', error);
                 });
-            },
-
-            mountedData() {
-                this.placar = [
-                    { casa: null, fora: null },
-                    { casa: null, fora: null },
-                    { casa: null, fora: null },
-                    { casa: null, fora: null },
-                    { casa: null, fora: null },
-                    { casa: null, fora: null },
-                    { casa: null, fora: null },
-                    { casa: null, fora: null },
-                    { casa: null, fora: null },
-                    { casa: null, fora: null }
-                ]
             }
         }
     }

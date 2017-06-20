@@ -10,8 +10,13 @@ class Palpite extends Model
 
     protected $guarded = ['id'];
 
+    public function user()
+    {
+        return $this->belongsTo('Bolao\User');
+    }
+
     public function jogo()
     {
-        return $this->belongsTo('Bolao\Jogo', 'jogo_id', 'id');
+        return $this->belongsTo('Bolao\Jogo');
     }
 }

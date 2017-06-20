@@ -17710,15 +17710,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         updatedPlacar: function updatedPlacar(jogo, id) {
             var _this3 = this;
 
-            jogo.placar_casa = id >= 0 ? null : jogo.placar_real_casa;
-            jogo.placar_fora = id >= 0 ? null : jogo.placar_real_fora;
+            if (id || jogo.placar_real_casa !== null && jogo.placar_real_fora !== null) {
+                jogo.placar_casa = id >= 0 ? null : jogo.placar_real_casa;
+                jogo.placar_fora = id >= 0 ? null : jogo.placar_real_fora;
 
-            this.$http.post('/api/jogo/update', jogo).then(function (response) {
-                console.log(response.data);
-            }).catch(function (error) {
-                _this3.getJogosCampeontato(_this3.campeonato.id, _this3.rodada);
-                console.error('!Get Update Jogo', error);
-            });
+                this.$http.post('/api/jogo/update', jogo).then(function (response) {
+                    console.log(response.data);
+                }).catch(function (error) {
+                    _this3.getJogosCampeontato(_this3.campeonato.id, _this3.rodada);
+                    console.error('!Get Update Jogo', error);
+                });
+            }
         }
     }
 });
@@ -17847,12 +17849,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['user'],
     mounted: function mounted() {
         this.getCampeontatos();
-        this.getJogosCampeontato(this.campeonato.id, this.rodada);
-        this.getParticipantesBolao(this.bolaoId);
-        this.getPalpitesCampeontato(this.campeonato.id);
+        this.loadList();
     },
 
     methods: {
+        loadList: function loadList() {
+            this.getJogosCampeontato(this.campeonato.id, this.rodada);
+            this.getParticipantesBolao(this.bolaoId);
+            this.getPalpitesCampeontato(this.campeonato.id);
+        },
         getCampeontatos: function getCampeontatos(id) {
             var _this = this;
 
@@ -17889,7 +17894,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             this.$http.get('/api/palpite/get').then(function (response) {
-                _this3.palpites = response.data;
+                _this3.jogos.forEach(function (jogo) {
+                    response.data.forEach(function (item) {
+                        if (jogo.id === item.jogo_id) {
+                            jogo.palpite.casa = item.palpite_casa;
+                            jogo.palpite.fora = item.palpite_fora;
+                        }
+                    });
+                });
             }).catch(function (error) {
                 console.error('!Get PalpitesCampeontato', error);
             });
@@ -17903,13 +17915,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.error('!Get Participantes Bolao', error);
             });
         },
-        savePalpite: function savePalpite(data) {
+        savePalpite: function savePalpite(data, id) {
             var _this5 = this;
 
-            this.$http.post('/api/palpite/create', data).then(function (response) {
+            if (id >= 0) {
+                id = '/' + id;
+                data.placar_casa = null;
+                data.placar_fora = null;
+            } else {
+                id = '';
+            }
+
+            this.$http.post('/api/palpite/save' + id, data).then(function (response) {
                 console.log(response.data);
+                _this5.loadList();
             }).catch(function (error) {
-                _this5.getJogosCampeontato(_this5.campeonato.id, _this5.rodada);
                 console.error('!Get Create Palpite', error);
             });
         }
@@ -48429,7 +48449,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "blur": [function($event) {
-          _vm.savePalpite(jogo, key);
+          _vm.savePalpite(jogo);
         }, function($event) {
           _vm.$forceUpdate()
         }],
@@ -48444,16 +48464,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "text-left"
     }, [_vm._v("\n                    " + _vm._s(jogo.timefora.nome) + "\n                ")]), _vm._v(" "), _c('td', {
       staticClass: "text-center"
-    }, [_c('a', {
+    }, [(jogo.palpite.casa !== null || jogo.palpite.fora !== null) ? _c('a', {
       attrs: {
         "href": ""
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.savePalpite(jogo, jogo.id)
+        }
       }
     }, [(jogo.palpite.casa !== null || jogo.palpite.fora !== null) ? _c('span', {
       staticClass: "glyphicon glyphicon-edit",
       attrs: {
         "aria-hidden": "true"
       }
-    }) : _vm._e()])])])
+    }) : _vm._e()]) : _vm._e()])])
   })], 2)]) : _vm._e()])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('tr', {
@@ -48553,7 +48579,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "btn btn-default",
     attrs: {
       "type": "button",
-      "disabled": _vm.rodada >= _vm.campeonato.rodada
+      "disabled": _vm.rodada >= _vm.campeonato.qtd_rodada
     },
     on: {
       "click": function($event) {
@@ -48602,12 +48628,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": (jogo.placar_real_casa)
       },
       on: {
+        "blur": [function($event) {
+          _vm.updatedPlacar(jogo);
+        }, function($event) {
+          _vm.$forceUpdate()
+        }],
         "input": function($event) {
           if ($event.target.composing) { return; }
           jogo.placar_real_casa = $event.target.value
-        },
-        "blur": function($event) {
-          _vm.$forceUpdate()
         }
       }
     }) : _c('strong', {

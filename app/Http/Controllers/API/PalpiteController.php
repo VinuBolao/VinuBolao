@@ -29,15 +29,20 @@ class PalpiteController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function save(Request $request, $id = null)
     {
-        $jogo = new Palpite;
-        $jogo->jogo_id = $request->id;
-        $jogo->user_id = 1;
-        $jogo->palpite_casa = $request->placar_casa;
-        $jogo->palpite_fora = $request->placar_fora;
-        $jogo->horario = "2017-06-18 00:00:00";
-        if($jogo->save()){
+        if($id){
+            $palpite = Palpite::findOrFail($id);
+        } else {
+            $palpite = new Palpite;
+        }
+
+        $palpite->jogo_id = $request->id;
+        $palpite->user_id = 1;
+        $palpite->palpite_casa = $request->placar_casa;
+        $palpite->palpite_fora = $request->placar_fora;
+        $palpite->horario = "2017-06-18 00:00:00";
+        if($palpite->save()){
             return response()->json(['success' => true], 200);
         } else {
             return response()->json(['success' => false], 400);

@@ -81,14 +81,14 @@
                         <input class="input-placar" type="number" min="0" v-if="jogo.palpite.casa === null" v-model="jogo.placar_casa">
                         <strong class="placar-casa" v-else>{{ jogo.palpite.casa }}</strong>
                         x
-                        <input class="input-placar" type="number" min="0" v-if="jogo.palpite.fora === null" v-model="jogo.placar_fora" @blur="savePalpite(jogo, key);">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.palpite.fora === null" v-model="jogo.placar_fora" @blur="savePalpite(jogo);">
                         <strong class="placar-fora" v-else>{{ jogo.palpite.fora }}</strong>
                     </td>
                     <td class="text-left">
                         {{ jogo.timefora.nome }}
                     </td>
                     <td class="text-center">
-                        <a href="">
+                        <a href="" v-if="jogo.palpite.casa !== null || jogo.palpite.fora !== null" @click.prevent="savePalpite(jogo, jogo.id)">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true" v-if="jogo.palpite.casa !== null || jogo.palpite.fora !== null"></span>
                         </a>
                     </td>
@@ -115,11 +115,15 @@
         props: ['user'],
         mounted() {
             this.getCampeontatos();
-            this.getJogosCampeontato(this.campeonato.id, this.rodada);
-            this.getParticipantesBolao(this.bolaoId);
-            this.getPalpitesCampeontato(this.campeonato.id);
+            this.loadList();
         },
         methods: {
+            loadList(){
+                this.getJogosCampeontato(this.campeonato.id, this.rodada);
+                this.getParticipantesBolao(this.bolaoId);
+                this.getPalpitesCampeontato(this.campeonato.id);
+            },
+
             getCampeontatos(id) {
                 let param = (id) ? '/' + id : '';
                 this.$http.get('/api/campeonato/get' + param).then((response) => {
@@ -152,7 +156,14 @@
 
             getPalpitesCampeontato(id) {
                 this.$http.get('/api/palpite/get').then((response) => {
-                    this.palpites = response.data;
+                    this.jogos.forEach(function (jogo) {
+                        response.data.forEach(function (item) {
+                            if(jogo.id === item.jogo_id){
+                                jogo.palpite.casa = item.palpite_casa;
+                                jogo.palpite.fora = item.palpite_fora;
+                            }
+                        });
+                    });
                 }).catch((error) => {
                     console.error('!Get PalpitesCampeontato', error);
                 });
@@ -166,11 +177,19 @@
                 });
             },
 
-            savePalpite(data) {
-                this.$http.post('/api/palpite/create', data).then((response) => {
+            savePalpite(data, id) {
+                if(id >= 0){
+                    id = '/' + id;
+                    data.placar_casa = null;
+                    data.placar_fora = null;
+                } else {
+                    id = '';
+                }
+
+                this.$http.post('/api/palpite/save' + id, data).then((response) => {
                     console.log(response.data);
+                    this.loadList();
                 }).catch((error) => {
-                    this.getJogosCampeontato(this.campeonato.id, this.rodada);
                     console.error('!Get Create Palpite', error);
                 });
             }

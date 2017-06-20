@@ -47,7 +47,7 @@
                 <button type="button" class="btn btn-default">
                     {{ rodada }}ª Rodada
                 </button>
-                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>
@@ -70,7 +70,7 @@
                         {{ jogo.timecasa.nome }}
                     </td>
                     <td class="td-jogo">
-                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="jogo.placar_real_casa">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
                         <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
                         x
                         <input class="input-placar" type="number" min="0" v-if="jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
@@ -141,15 +141,17 @@
             },
 
             updatedPlacar(jogo, id) {
-                jogo.placar_casa = (id >= 0) ? null : jogo.placar_real_casa;
-                jogo.placar_fora = (id >= 0) ? null : jogo.placar_real_fora;
+                if( (id) || (jogo.placar_real_casa !== null && jogo.placar_real_fora !== null) ){
+                    jogo.placar_casa = (id >= 0) ? null : jogo.placar_real_casa;
+                    jogo.placar_fora = (id >= 0) ? null : jogo.placar_real_fora;
 
-                this.$http.post('/api/jogo/update', jogo).then((response) => {
-                    console.log(response.data);
-                }).catch((error) => {
-                    this.getJogosCampeontato(this.campeonato.id, this.rodada);
-                    console.error('!Get Update Jogo', error);
-                });
+                    this.$http.post('/api/jogo/update', jogo).then((response) => {
+                        console.log(response.data);
+                    }).catch((error) => {
+                        this.getJogosCampeontato(this.campeonato.id, this.rodada);
+                        console.error('!Get Update Jogo', error);
+                    });
+                }
             }
         }
     }

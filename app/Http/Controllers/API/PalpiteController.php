@@ -2,6 +2,7 @@
 
 namespace Bolao\Http\Controllers\API;
 
+use Bolao\Jogo;
 use Bolao\Palpite;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
@@ -21,18 +22,33 @@ class PalpiteController extends Controller
     public function get_campeonato($id, $rodada = null)
     {
         if($rodada){
-            $condition = ['user_id' => Auth::user()->id, 'campeonato_id' => $id, 'rodada' => $rodada];
-            return response()->json(Palpite::with('jogo', 'user')->where($condition)->get());
+            $palpites = Palpite::with('jogo', 'user')->where(['user_id' => 1])->get();
+            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $id, 'rodada' => $rodada])->get();
+
+            foreach ($jogos as $jogo) {
+                $jogo->placar_casa = null;
+                $jogo->placar_fora = null;
+
+                foreach ($palpites as $palpite) {
+                    if($jogo->id === $palpite->jogo_id){
+                        $jogo->palpite_id = $palpite->id;
+                        $jogo->placar_casa = $palpite->palpite_casa;
+                        $jogo->placar_fora = $palpite->palpite_fora;
+                    }
+                }
+            }
+
+            return response()->json($jogos);
         } else {
             $condition = ['user_id' => Auth::user()->id, 'campeonato_id' => $id];
             return response()->json(Palpite::with('jogo', 'user')->where($condition)->get());
         }
     }
 
-    public function save(Request $request, $id = null)
+    public function save(Request $request)
     {
-        if($id){
-            $palpite = Palpite::findOrFail($id);
+        if(isset($request->palpite_id)){
+            $palpite = Palpite::find($request->palpite_id);
         } else {
             $palpite = new Palpite;
         }

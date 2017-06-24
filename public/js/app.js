@@ -17838,7 +17838,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             jogos: [],
             rodada: 1,
             bolaoId: 1,
-            palpites: [],
             campeonatos: [],
             participantes: [],
             campeonato: { id: 1 },
@@ -17849,15 +17848,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['user'],
     mounted: function mounted() {
         this.getCampeontatos();
-        this.loadList();
+        this.getPalpitesCampeontato(this.campeonato.id, this.rodada);
+        this.getParticipantesBolao(this.bolaoId);
     },
 
     methods: {
-        loadList: function loadList() {
-            this.getJogosCampeontato(this.campeonato.id, this.rodada);
-            this.getParticipantesBolao(this.bolaoId);
-            this.getPalpitesCampeontato(this.campeonato.id);
-        },
         getCampeontatos: function getCampeontatos(id) {
             var _this = this;
 
@@ -17872,66 +17867,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.error('!Get Campeonatos', error);
             });
         },
-        getJogosCampeontato: function getJogosCampeontato(id, rodada) {
+        getPalpitesCampeontato: function getPalpitesCampeontato(id, rodada) {
             var _this2 = this;
 
-            this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then(function (response) {
+            this.$http.get('/api/palpite/get_campeonato/' + id + '/' + rodada).then(function (response) {
                 response.data.forEach(function (jogo) {
-                    jogo.placar_casa = null;
-                    jogo.placar_fora = null;
                     jogo.palpite = {
-                        id: null,
                         casa: null,
                         fora: null
                     };
                 });
+
                 _this2.jogos = response.data;
+                _this2.rodada = rodada;
             }).catch(function (error) {
                 console.error('!Get JogosCampeonato', error);
             });
         },
-        getPalpitesCampeontato: function getPalpitesCampeontato(id) {
+        getParticipantesBolao: function getParticipantesBolao(id) {
             var _this3 = this;
 
-            this.$http.get('/api/palpite/get').then(function (response) {
-                _this3.jogos.forEach(function (jogo) {
-                    response.data.forEach(function (item) {
-                        if (jogo.id === item.jogo_id) {
-                            jogo.palpite.casa = item.palpite_casa;
-                            jogo.palpite.fora = item.palpite_fora;
-                        }
-                    });
-                });
-            }).catch(function (error) {
-                console.error('!Get PalpitesCampeontato', error);
-            });
-        },
-        getParticipantesBolao: function getParticipantesBolao(id) {
-            var _this4 = this;
-
             this.$http.get('/api/participante/get_bolao/' + id).then(function (response) {
-                _this4.participantes = response.data;
+                _this3.participantes = response.data;
             }).catch(function (error) {
                 console.error('!Get Participantes Bolao', error);
             });
         },
-        savePalpite: function savePalpite(data, id) {
-            var _this5 = this;
+        savePalpite: function savePalpite(jogo, edit) {
+            if (edit || jogo.palpite.casa !== null && jogo.palpite.fora !== null) {
+                jogo.placar_casa = jogo.placar_casa === null ? jogo.palpite.casa : null;
+                jogo.placar_fora = jogo.placar_fora === null ? jogo.palpite.fora : null;
 
-            if (id >= 0) {
-                id = '/' + id;
-                data.placar_casa = null;
-                data.placar_fora = null;
-            } else {
-                id = '';
+                this.$http.post('/api/palpite/save', jogo).then(function (response) {
+                    console.log(response.data);
+                }).catch(function (error) {
+                    console.error('!Get Create Palpite', error);
+                });
+
+                this.getPalpitesCampeontato(this.campeonato.id, this.rodada);
             }
-
-            this.$http.post('/api/palpite/save' + id, data).then(function (response) {
-                console.log(response.data);
-                _this5.loadList();
-            }).catch(function (error) {
-                console.error('!Get Create Palpite', error);
-            });
         }
     }
 });
@@ -48203,7 +48177,7 @@ var Component = __webpack_require__(124)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\Gustavo-PC\\DEV\\NovoBolao\\resources\\assets\\js\\components\\Jogo.vue"
+Component.options.__file = "C:\\Users\\Gustavo-PC\\DEV\\VinuBolao\\resources\\assets\\js\\components\\Jogo.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Jogo.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48214,9 +48188,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-db0242f0", Component.options)
+    hotAPI.createRecord("data-v-3deff9f0", Component.options)
   } else {
-    hotAPI.reload("data-v-db0242f0", Component.options)
+    hotAPI.reload("data-v-3deff9f0", Component.options)
   }
 })()}
 
@@ -48241,7 +48215,7 @@ var Component = __webpack_require__(124)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\Gustavo-PC\\DEV\\NovoBolao\\resources\\assets\\js\\components\\Palpites.vue"
+Component.options.__file = "C:\\Users\\Gustavo-PC\\DEV\\VinuBolao\\resources\\assets\\js\\components\\Palpites.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Palpites.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48252,9 +48226,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-335f6b69", Component.options)
+    hotAPI.createRecord("data-v-17c24fe9", Component.options)
   } else {
-    hotAPI.reload("data-v-335f6b69", Component.options)
+    hotAPI.reload("data-v-17c24fe9", Component.options)
   }
 })()}
 
@@ -48358,7 +48332,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.getJogosCampeontato(_vm.campeonato.id, _vm.rodada - 1);
+        _vm.getPalpitesCampeontato(_vm.campeonato.id, _vm.rodada - 1);
       }
     }
   }, [_c('span', {
@@ -48379,7 +48353,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.getJogosCampeontato(_vm.campeonato.id, _vm.rodada + 1);
+        _vm.getPalpitesCampeontato(_vm.campeonato.id, _vm.rodada + 1);
       }
     }
   }, [_c('span', {
@@ -48392,7 +48366,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.jogos), function(jogo, key) {
     return _c('tr', [_c('td', {
       staticClass: "text-center"
-    }, [(jogo.palpite.casa === null && jogo.palpite.fora === null) ? _c('span', {
+    }, [(jogo.placar_casa === null && jogo.placar_fora === null) ? _c('span', {
       staticClass: "glyphicon glyphicon-remove",
       attrs: {
         "aria-hidden": "true"
@@ -48406,12 +48380,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "text-right"
     }, [_vm._v("\n                    " + _vm._s(jogo.timecasa.nome) + "\n                ")]), _vm._v(" "), _c('td', {
       staticClass: "td-jogo"
-    }, [(jogo.palpite.casa === null) ? _c('input', {
+    }, [(jogo.placar_casa === null) ? _c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
-        value: (jogo.placar_casa),
-        expression: "jogo.placar_casa"
+        value: (jogo.palpite.casa),
+        expression: "jogo.palpite.casa"
       }],
       staticClass: "input-placar",
       attrs: {
@@ -48419,33 +48393,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "min": "0"
       },
       domProps: {
-        "value": (jogo.placar_casa)
-      },
-      on: {
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          jogo.placar_casa = $event.target.value
-        },
-        "blur": function($event) {
-          _vm.$forceUpdate()
-        }
-      }
-    }) : _c('strong', {
-      staticClass: "placar-casa"
-    }, [_vm._v(_vm._s(jogo.palpite.casa))]), _vm._v("\n                    x\n                    "), (jogo.palpite.fora === null) ? _c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (jogo.placar_fora),
-        expression: "jogo.placar_fora"
-      }],
-      staticClass: "input-placar",
-      attrs: {
-        "type": "number",
-        "min": "0"
-      },
-      domProps: {
-        "value": (jogo.placar_fora)
+        "value": (jogo.palpite.casa)
       },
       on: {
         "blur": [function($event) {
@@ -48455,26 +48403,54 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }],
         "input": function($event) {
           if ($event.target.composing) { return; }
-          jogo.placar_fora = $event.target.value
+          jogo.palpite.casa = $event.target.value
+        }
+      }
+    }) : _c('strong', {
+      staticClass: "placar-casa"
+    }, [_vm._v(_vm._s(jogo.placar_casa))]), _vm._v("\n                    x\n                    "), (jogo.placar_fora === null) ? _c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (jogo.palpite.fora),
+        expression: "jogo.palpite.fora"
+      }],
+      staticClass: "input-placar",
+      attrs: {
+        "type": "number",
+        "min": "0"
+      },
+      domProps: {
+        "value": (jogo.palpite.fora)
+      },
+      on: {
+        "blur": [function($event) {
+          _vm.savePalpite(jogo);
+        }, function($event) {
+          _vm.$forceUpdate()
+        }],
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          jogo.palpite.fora = $event.target.value
         }
       }
     }) : _c('strong', {
       staticClass: "placar-fora"
-    }, [_vm._v(_vm._s(jogo.palpite.fora))])]), _vm._v(" "), _c('td', {
+    }, [_vm._v(_vm._s(jogo.placar_fora))])]), _vm._v(" "), _c('td', {
       staticClass: "text-left"
     }, [_vm._v("\n                    " + _vm._s(jogo.timefora.nome) + "\n                ")]), _vm._v(" "), _c('td', {
       staticClass: "text-center"
-    }, [(jogo.palpite.casa !== null || jogo.palpite.fora !== null) ? _c('a', {
+    }, [(jogo.placar_casa !== null || jogo.placar_fora !== null) ? _c('a', {
       attrs: {
         "href": ""
       },
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.savePalpite(jogo, jogo.id)
+          _vm.savePalpite(jogo, true)
         }
       }
-    }, [(jogo.palpite.casa !== null || jogo.palpite.fora !== null) ? _c('span', {
+    }, [(jogo.placar_casa !== null || jogo.placar_fora !== null) ? _c('span', {
       staticClass: "glyphicon glyphicon-edit",
       attrs: {
         "aria-hidden": "true"
@@ -48499,7 +48475,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-335f6b69", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-17c24fe9", module.exports)
   }
 }
 
@@ -48719,7 +48695,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-db0242f0", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-3deff9f0", module.exports)
   }
 }
 
@@ -50457,13 +50433,13 @@ var content = __webpack_require__(152);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(125)("0489fe8c", content, false);
+var update = __webpack_require__(125)("2201dc5e", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-335f6b69\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Palpites.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-335f6b69\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Palpites.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-17c24fe9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Palpites.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-17c24fe9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Palpites.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -50483,13 +50459,13 @@ var content = __webpack_require__(153);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(125)("d9a072b6", content, false);
+var update = __webpack_require__(125)("114f4884", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-db0242f0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Jogo.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-db0242f0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Jogo.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3deff9f0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Jogo.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3deff9f0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Jogo.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

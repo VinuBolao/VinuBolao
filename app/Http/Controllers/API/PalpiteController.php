@@ -19,11 +19,11 @@ class PalpiteController extends Controller
         }
     }
 
-    public function get_campeonato($id, $rodada = null)
+    public function get_palpites($user_id, $campeonato_id, $rodada = null)
     {
         if($rodada){
-            $palpites = Palpite::with('jogo', 'user')->where(['user_id' => 1])->get();
-            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $id, 'rodada' => $rodada])->get();
+            $palpites = Palpite::with('jogo', 'user')->where(['user_id' => $user_id])->get();
+            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $campeonato_id, 'rodada' => $rodada])->get();
 
             foreach ($jogos as $jogo) {
                 $jogo->placar_casa = null;
@@ -40,8 +40,9 @@ class PalpiteController extends Controller
 
             return response()->json($jogos);
         } else {
-            $condition = ['user_id' => Auth::user()->id, 'campeonato_id' => $id];
-            return response()->json(Palpite::with('jogo', 'user')->where($condition)->get());
+            return response()->json(
+                Palpite::with('jogo', 'user')->where(['user_id' => $user_id, 'campeonato_id' => $campeonato_id])->get()
+            );
         }
     }
 

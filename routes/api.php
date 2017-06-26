@@ -33,6 +33,6 @@ Route::group(['prefix' => 'campeonato'], function (){
 
 Route::group(['prefix' => 'palpite'], function (){
     Route::get('get/{id?}', 'API\PalpiteController@get')->where('id', '[0-9]+');
-    Route::get('get_campeonato/{id}/{rodada?}', 'API\PalpiteController@get_campeonato');
+    Route::get('get_palpites/{userId}/{campeonatoId}/{rodada?}', 'API\PalpiteController@get_palpites');
     Route::post('save', 'API\PalpiteController@save');
 });

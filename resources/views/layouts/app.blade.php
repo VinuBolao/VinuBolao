@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Bolão | {{ $title or 'Título' }}</title>
+    <title>VinuBolão | {{ $title or 'Título' }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand"  href="{{ route('bolao.index') }}">Bolão</a>
+                    <a class="navbar-brand"  href="{{ route('bolao.index') }}">VinuBolão</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

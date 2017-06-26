@@ -17831,6 +17831,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -17838,18 +17856,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             jogos: [],
             rodada: 1,
             bolaoId: 1,
+            palpites: [],
             campeonatos: [],
             participantes: [],
             campeonato: { id: 1 },
-            participante: { id: this.user }
+            participante: JSON.parse(this.user)
         };
     },
 
     props: ['user'],
     mounted: function mounted() {
         this.getCampeontatos();
-        this.getPalpitesCampeontato(this.campeonato.id, this.rodada);
         this.getParticipantesBolao(this.bolaoId);
+        this.getPalpites(this.participante.id, this.campeonato.id, this.rodada);
     },
 
     methods: {
@@ -17867,10 +17886,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.error('!Get Campeonatos', error);
             });
         },
-        getPalpitesCampeontato: function getPalpitesCampeontato(id, rodada) {
+        getPalpites: function getPalpites(userId, campeonatoId, rodada) {
             var _this2 = this;
 
-            this.$http.get('/api/palpite/get_campeonato/' + id + '/' + rodada).then(function (response) {
+            this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then(function (response) {
                 response.data.forEach(function (jogo) {
                     jogo.palpite = {
                         casa: null,
@@ -17884,11 +17903,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.error('!Get JogosCampeonato', error);
             });
         },
-        getParticipantesBolao: function getParticipantesBolao(id) {
+        compararPalpites: function compararPalpites(userId, campeonatoId, rodada) {
             var _this3 = this;
 
+            this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then(function (response) {
+                _this3.palpites = response.data;
+            }).catch(function (error) {
+                console.error('!Get CompararPalpites', error);
+            });
+        },
+        getParticipantesBolao: function getParticipantesBolao(id) {
+            var _this4 = this;
+
             this.$http.get('/api/participante/get_bolao/' + id).then(function (response) {
-                _this3.participantes = response.data;
+                _this4.participantes = response.data;
             }).catch(function (error) {
                 console.error('!Get Participantes Bolao', error);
             });
@@ -17904,7 +17932,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     console.error('!Get Create Palpite', error);
                 });
 
-                this.getPalpitesCampeontato(this.campeonato.id, this.rodada);
+                this.getPalpites(this.participante.id, this.campeonato.id, this.rodada);
             }
         }
     }
@@ -48281,45 +48309,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": campeonato.id
       }
     }, [_vm._v(_vm._s(campeonato.nome_completo))])
-  }))])])])]), _vm._v(" "), (_vm.jogos.length > 0) ? _c('div', {
-    staticClass: "col-sm-6 box"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "btn-group col-xs-5",
-    attrs: {
-      "role": "group"
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.participante.id),
-      expression: "participante.id"
-    }],
-    staticClass: "form-control",
-    on: {
-      "change": [function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.participante.id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }, function($event) {
-        _vm.getParticipantesBolao(_vm.bolaoId);
-      }]
-    }
-  }, _vm._l((_vm.participantes), function(participante) {
-    return _c('option', {
-      domProps: {
-        "value": participante.id
-      }
-    }, [_vm._v(_vm._s(participante.user.name))])
-  }))])]), _vm._v(" "), _c('div', {
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "btn-group",
     attrs: {
       "role": "group"
@@ -48332,7 +48322,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.getPalpitesCampeontato(_vm.campeonato.id, _vm.rodada - 1);
+        _vm.getPalpites(_vm.participante.id, _vm.campeonato.id, _vm.rodada - 1);
       }
     }
   }, [_c('span', {
@@ -48345,7 +48335,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "button"
     }
-  }, [_vm._v("\n                    " + _vm._s(_vm.rodada) + "ª Rodada\n                ")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("\n                " + _vm._s(_vm.rodada) + "ª Rodada\n            ")]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-default",
     attrs: {
       "type": "button",
@@ -48353,7 +48343,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.getPalpitesCampeontato(_vm.campeonato.id, _vm.rodada + 1);
+        _vm.getPalpites(_vm.participante.id, _vm.campeonato.id, _vm.rodada + 1);
       }
     }
   }, [_c('span', {
@@ -48361,9 +48351,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  })])])]), _vm._v(" "), _c('table', {
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_c('div', {
+    staticClass: "col-sm-8"
+  }, [(_vm.jogos.length > 0) ? _c('table', {
     staticClass: "table"
-  }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.jogos), function(jogo, key) {
+  }, [_c('tr', {
+    staticClass: "tr-head"
+  }, [_c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Status")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center",
+    attrs: {
+      "colspan": "3"
+    }
+  }, [_vm._v(_vm._s(_vm.participante.name))]), _vm._v(" "), _c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Editar")])]), _vm._v(" "), _vm._l((_vm.jogos), function(jogo, key) {
     return _c('tr', [_c('td', {
       staticClass: "text-center"
     }, [(jogo.placar_casa === null && jogo.placar_fora === null) ? _c('span', {
@@ -48378,7 +48383,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     })]), _vm._v(" "), _c('td', {
       staticClass: "text-right"
-    }, [_vm._v("\n                    " + _vm._s(jogo.timecasa.nome) + "\n                ")]), _vm._v(" "), _c('td', {
+    }, [_vm._v("\n                        " + _vm._s(jogo.timecasa.nome) + "\n                    ")]), _vm._v(" "), _c('td', {
       staticClass: "td-jogo"
     }, [(jogo.placar_casa === null) ? _c('input', {
       directives: [{
@@ -48408,7 +48413,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }) : _c('strong', {
       staticClass: "placar-casa"
-    }, [_vm._v(_vm._s(jogo.placar_casa))]), _vm._v("\n                    x\n                    "), (jogo.placar_fora === null) ? _c('input', {
+    }, [_vm._v(_vm._s(jogo.placar_casa))]), _vm._v("\n                        x\n                        "), (jogo.placar_fora === null) ? _c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -48438,7 +48443,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "placar-fora"
     }, [_vm._v(_vm._s(jogo.placar_fora))])]), _vm._v(" "), _c('td', {
       staticClass: "text-left"
-    }, [_vm._v("\n                    " + _vm._s(jogo.timefora.nome) + "\n                ")]), _vm._v(" "), _c('td', {
+    }, [_vm._v("\n                        " + _vm._s(jogo.timefora.nome) + "\n                    ")]), _vm._v(" "), _c('td', {
       staticClass: "text-center"
     }, [(jogo.placar_casa !== null || jogo.placar_fora !== null) ? _c('a', {
       attrs: {
@@ -48456,20 +48461,53 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "aria-hidden": "true"
       }
     }) : _vm._e()]) : _vm._e()])])
-  })], 2)]) : _vm._e()])
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.jogos.length == 0) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_c('p', {
+    staticClass: "text-center"
+  }, [_vm._v("Não existe dados para listar!")])]) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('select', {
+    staticClass: "form-control input-sm",
+    on: {
+      "change": function($event) {
+        _vm.compararPalpites($event.target.value, _vm.campeonato.id, _vm.rodada);
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("Selecione um participante...")]), _vm._v(" "), _vm._l((_vm.participantes), function(participante) {
+    return _c('option', {
+      domProps: {
+        "value": participante.id
+      }
+    }, [_vm._v(_vm._s(participante.user.name))])
+  })], 2), _vm._v(" "), (_vm.palpites.length > 0) ? _c('table', {
+    staticClass: "table table-striped"
+  }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.palpites), function(palpite) {
+    return _c('tr', [_c('td', {
+      staticClass: "text-right"
+    }, [_vm._v("\n                        " + _vm._s(palpite.timecasa.nome) + "\n                    ")]), _vm._v(" "), _c('td', {
+      staticClass: "td-jogo"
+    }, [_c('strong', {
+      staticClass: "placar-casa"
+    }, [_vm._v(_vm._s(palpite.placar_casa))]), _vm._v("\n                        x\n                        "), _c('strong', {
+      staticClass: "placar-fora"
+    }, [_vm._v(_vm._s(palpite.placar_fora))])]), _vm._v(" "), _c('td', {
+      staticClass: "text-left"
+    }, [_vm._v("\n                        " + _vm._s(palpite.timefora.nome) + "\n                    ")])])
+  })], 2) : _vm._e()])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('tr', {
     staticClass: "tr-head"
   }, [_c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Status")]), _vm._v(" "), _c('th', {
     staticClass: "text-center",
     attrs: {
       "colspan": "3"
     }
-  }, [_vm._v("Palpites")]), _vm._v(" "), _c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Editar")])])
+  }, [_vm._v("Palpites")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

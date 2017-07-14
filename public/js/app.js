@@ -17662,6 +17662,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -20384,7 +20409,7 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(8)();
-exports.push([module.i, "\n.tr-head {\n    background-color: #666;\n    color: #fff;\n}\n.input-placar {\n    width: 35px;\n}\n.td-jogo {\n    width: 100px;\n    text-align: center;\n}\n.placar-casa, .placar-fora {\n    font-size: 20px;\n}\n.placar-casa {\n    padding-right: 11px;\n}\n.placar-fora {\n    padding-left: 10px;\n}\n.glyphicon.glyphicon-remove {\n    color: #d9534f;\n}\n.glyphicon.glyphicon-ok {\n    color: #398439;\n}\n", ""]);
+exports.push([module.i, "\n.tr-head {\n    background-color: #666;\n    color: #fff;\n}\n.input-placar {\n    width: 35px;\n}\n.td-jogo {\n    width: 100px;\n    text-align: center;\n}\n.placar-casa, .placar-fora {\n    font-size: 20px;\n}\n.placar-casa {\n    padding-right: 11px;\n}\n.placar-fora {\n    padding-left: 10px;\n}\n.glyphicon.glyphicon-remove {\n    color: #d9534f;\n}\n.glyphicon.glyphicon-ok {\n    color: #398439;\n}\n.dropdown-rodada-ol{\n    left: -39px;\n    min-width: 170px;\n}\n.dropdown-rodada-li{\n    display: inline-table;\n    border: 1px solid #cccecf;\n    width: 30%;\n    margin-left: 2.5px;\n    margin-bottom: 5px;\n    padding: 0;\n    font-size: 14px;\n    border-radius: 2px;\n}\n.dropdown-rodada-a {\n    padding: 5px !important;\n    text-align: center;\n}\n", ""]);
 
 /***/ }),
 /* 153 */
@@ -48193,19 +48218,19 @@ process.umask = function() { return 0; };
 
 
 /* styles */
-__webpack_require__(165)
+__webpack_require__(164)
 
 var Component = __webpack_require__(124)(
   /* script */
   __webpack_require__(148),
   /* template */
-  __webpack_require__(161),
+  __webpack_require__(160),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\Gustavo-PC\\DEV\\VinuBolao\\resources\\assets\\js\\components\\Jogo.vue"
+Component.options.__file = "C:\\Users\\Atitude-DEV\\Documents\\Sites\\newbolao\\resources\\assets\\js\\components\\Jogo.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Jogo.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48216,9 +48241,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3deff9f0", Component.options)
+    hotAPI.createRecord("data-v-0ea8d764", Component.options)
   } else {
-    hotAPI.reload("data-v-3deff9f0", Component.options)
+    hotAPI.reload("data-v-0ea8d764", Component.options)
   }
 })()}
 
@@ -48231,19 +48256,19 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(164)
+__webpack_require__(165)
 
 var Component = __webpack_require__(124)(
   /* script */
   __webpack_require__(149),
   /* template */
-  __webpack_require__(160),
+  __webpack_require__(161),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\Gustavo-PC\\DEV\\VinuBolao\\resources\\assets\\js\\components\\Palpites.vue"
+Component.options.__file = "C:\\Users\\Atitude-DEV\\Documents\\Sites\\newbolao\\resources\\assets\\js\\components\\Palpites.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Palpites.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48254,9 +48279,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-17c24fe9", Component.options)
+    hotAPI.createRecord("data-v-b5e063a2", Component.options)
   } else {
-    hotAPI.reload("data-v-17c24fe9", Component.options)
+    hotAPI.reload("data-v-b5e063a2", Component.options)
   }
 })()}
 
@@ -48265,6 +48290,242 @@ module.exports = Component.exports
 
 /***/ }),
 /* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_c('div', {
+    staticClass: "btn-group",
+    attrs: {
+      "role": "group"
+    }
+  }, [_c('form', {
+    staticClass: "form-inline"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.campeonato.id),
+      expression: "campeonato.id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "infoCampeonato"
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.campeonato.id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        _vm.getJogosCampeontato(_vm.campeonato.id, 1);
+      }]
+    }
+  }, _vm._l((_vm.campeonatos), function(campeonato) {
+    return _c('option', {
+      domProps: {
+        "value": campeonato.id
+      }
+    }, [_vm._v(_vm._s(campeonato.nome_completo))])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "btn-group",
+    attrs: {
+      "role": "group"
+    }
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "button",
+      "disabled": _vm.rodada < 2
+    },
+    on: {
+      "click": function($event) {
+        _vm.getJogosCampeontato(_vm.campeonato.id, _vm.rodada - 1);
+      }
+    }
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-menu-left",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "btn-group"
+  }, [_c('button', {
+    staticClass: "btn btn-default dropdown-toggle",
+    attrs: {
+      "type": "button",
+      "data-toggle": "dropdown",
+      "aria-haspopup": "true",
+      "aria-expanded": "false"
+    }
+  }, [_vm._v("\n                    " + _vm._s(_vm.rodada) + "ª Rodada\n                ")]), _vm._v(" "), _c('ol', {
+    staticClass: "dropdown-menu dropdown-rodada-ol"
+  }, _vm._l((38), function(n) {
+    return _c('li', {
+      staticClass: "dropdown-rodada-li"
+    }, [_c('a', {
+      staticClass: "dropdown-rodada-a",
+      attrs: {
+        "href": "#"
+      }
+    }, [_vm._v(_vm._s(n) + "ª")])])
+  }))]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "button",
+      "disabled": _vm.rodada >= _vm.campeonato.qtd_rodada
+    },
+    on: {
+      "click": function($event) {
+        _vm.getJogosCampeontato(_vm.campeonato.id, _vm.rodada + 1);
+      }
+    }
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-menu-right",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])])]), _vm._v(" "), (_vm.jogos.length > 0) ? _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_c('table', {
+    staticClass: "table table-hover"
+  }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.jogos), function(jogo, key) {
+    return _c('tr', [_c('td', {
+      staticClass: "text-center"
+    }, [(jogo.placar_casa === null && jogo.placar_fora === null) ? _c('span', {
+      staticClass: "glyphicon glyphicon-remove",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }) : _c('span', {
+      staticClass: "glyphicon glyphicon-ok",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('td', {
+      staticClass: "text-right"
+    }, [_vm._v("\n                    " + _vm._s(jogo.timecasa.nome) + "\n                ")]), _vm._v(" "), _c('td', {
+      staticClass: "td-jogo"
+    }, [(jogo.placar_casa === null) ? _c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (jogo.placar_real_casa),
+        expression: "jogo.placar_real_casa"
+      }],
+      staticClass: "input-placar",
+      attrs: {
+        "type": "number",
+        "min": "0"
+      },
+      domProps: {
+        "value": (jogo.placar_real_casa)
+      },
+      on: {
+        "blur": [function($event) {
+          _vm.updatedPlacar(jogo);
+        }, function($event) {
+          _vm.$forceUpdate()
+        }],
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          jogo.placar_real_casa = $event.target.value
+        }
+      }
+    }) : _c('strong', {
+      staticClass: "placar-casa"
+    }, [_vm._v(_vm._s(jogo.placar_casa))]), _vm._v("\n                    x\n                    "), (jogo.placar_fora === null) ? _c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (jogo.placar_real_fora),
+        expression: "jogo.placar_real_fora"
+      }],
+      staticClass: "input-placar",
+      attrs: {
+        "type": "number",
+        "min": "0"
+      },
+      domProps: {
+        "value": (jogo.placar_real_fora)
+      },
+      on: {
+        "blur": [function($event) {
+          _vm.updatedPlacar(jogo);
+        }, function($event) {
+          _vm.$forceUpdate()
+        }],
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          jogo.placar_real_fora = $event.target.value
+        }
+      }
+    }) : _c('strong', {
+      staticClass: "placar-fora"
+    }, [_vm._v(_vm._s(jogo.placar_fora))])]), _vm._v(" "), _c('td', {
+      staticClass: "text-left"
+    }, [_vm._v("\n                    " + _vm._s(jogo.timefora.nome) + "\n                ")]), _vm._v(" "), _c('td', {
+      staticClass: "hidden-xs"
+    }, [_vm._v("\n                    " + _vm._s(_vm._f("moment")(jogo.inicio, 'HH:mm DD/MM/YY')) + " | " + _vm._s(jogo.timecasa.estadio) + "\n                ")]), _vm._v(" "), _c('td', {
+      staticClass: "text-center"
+    }, [(jogo.placar_casa !== null || jogo.placar_fora !== null) ? _c('a', {
+      attrs: {
+        "href": ""
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.updatedPlacar(jogo, jogo.id)
+        }
+      }
+    }, [_c('span', {
+      staticClass: "glyphicon glyphicon-edit",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e()])])
+  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.jogos.length == 0) ? _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_vm._m(1)]) : _vm._e()])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', {
+    staticClass: "tr-head"
+  }, [_c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Status")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center",
+    attrs: {
+      "colspan": "3"
+    }
+  }, [_vm._v("Jogos")]), _vm._v(" "), _c('th', {
+    staticClass: "hidden-xs"
+  }, [_vm._v("Horário | Estádio")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Editar")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_c('p', {
+    staticClass: "text-center"
+  }, [_vm._v("Não existe dados para listar!")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0ea8d764", module.exports)
+  }
+}
+
+/***/ }),
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -48513,227 +48774,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-17c24fe9", module.exports)
-  }
-}
-
-/***/ }),
-/* 161 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "col-sm-12 box"
-  }, [_c('div', {
-    staticClass: "btn-group",
-    attrs: {
-      "role": "group"
-    }
-  }, [_c('form', {
-    staticClass: "form-inline"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.campeonato.id),
-      expression: "campeonato.id"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "infoCampeonato"
-    },
-    on: {
-      "change": [function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.campeonato.id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }, function($event) {
-        _vm.getJogosCampeontato(_vm.campeonato.id, 1);
-      }]
-    }
-  }, _vm._l((_vm.campeonatos), function(campeonato) {
-    return _c('option', {
-      domProps: {
-        "value": campeonato.id
-      }
-    }, [_vm._v(_vm._s(campeonato.nome_completo))])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "btn-group",
-    attrs: {
-      "role": "group"
-    }
-  }, [_c('button', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "type": "button",
-      "disabled": _vm.rodada < 2
-    },
-    on: {
-      "click": function($event) {
-        _vm.getJogosCampeontato(_vm.campeonato.id, _vm.rodada - 1);
-      }
-    }
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-menu-left",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  })]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "type": "button"
-    }
-  }, [_vm._v("\n                " + _vm._s(_vm.rodada) + "ª Rodada\n            ")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "type": "button",
-      "disabled": _vm.rodada >= _vm.campeonato.qtd_rodada
-    },
-    on: {
-      "click": function($event) {
-        _vm.getJogosCampeontato(_vm.campeonato.id, _vm.rodada + 1);
-      }
-    }
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-menu-right",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  })])])]), _vm._v(" "), (_vm.jogos.length > 0) ? _c('div', {
-    staticClass: "col-sm-12 box"
-  }, [_c('table', {
-    staticClass: "table table-hover"
-  }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.jogos), function(jogo, key) {
-    return _c('tr', [_c('td', {
-      staticClass: "text-center"
-    }, [(jogo.placar_casa === null && jogo.placar_fora === null) ? _c('span', {
-      staticClass: "glyphicon glyphicon-remove",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    }) : _c('span', {
-      staticClass: "glyphicon glyphicon-ok",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), _c('td', {
-      staticClass: "text-right"
-    }, [_vm._v("\n                    " + _vm._s(jogo.timecasa.nome) + "\n                ")]), _vm._v(" "), _c('td', {
-      staticClass: "td-jogo"
-    }, [(jogo.placar_casa === null) ? _c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (jogo.placar_real_casa),
-        expression: "jogo.placar_real_casa"
-      }],
-      staticClass: "input-placar",
-      attrs: {
-        "type": "number",
-        "min": "0"
-      },
-      domProps: {
-        "value": (jogo.placar_real_casa)
-      },
-      on: {
-        "blur": [function($event) {
-          _vm.updatedPlacar(jogo);
-        }, function($event) {
-          _vm.$forceUpdate()
-        }],
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          jogo.placar_real_casa = $event.target.value
-        }
-      }
-    }) : _c('strong', {
-      staticClass: "placar-casa"
-    }, [_vm._v(_vm._s(jogo.placar_casa))]), _vm._v("\n                    x\n                    "), (jogo.placar_fora === null) ? _c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (jogo.placar_real_fora),
-        expression: "jogo.placar_real_fora"
-      }],
-      staticClass: "input-placar",
-      attrs: {
-        "type": "number",
-        "min": "0"
-      },
-      domProps: {
-        "value": (jogo.placar_real_fora)
-      },
-      on: {
-        "blur": [function($event) {
-          _vm.updatedPlacar(jogo);
-        }, function($event) {
-          _vm.$forceUpdate()
-        }],
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          jogo.placar_real_fora = $event.target.value
-        }
-      }
-    }) : _c('strong', {
-      staticClass: "placar-fora"
-    }, [_vm._v(_vm._s(jogo.placar_fora))])]), _vm._v(" "), _c('td', {
-      staticClass: "text-left"
-    }, [_vm._v("\n                    " + _vm._s(jogo.timefora.nome) + "\n                ")]), _vm._v(" "), _c('td', {
-      staticClass: "hidden-xs"
-    }, [_vm._v("\n                    " + _vm._s(_vm._f("moment")(jogo.inicio, 'HH:mm DD/MM/YY')) + " | " + _vm._s(jogo.timecasa.estadio) + "\n                ")]), _vm._v(" "), _c('td', {
-      staticClass: "text-center"
-    }, [(jogo.placar_casa !== null || jogo.placar_fora !== null) ? _c('a', {
-      attrs: {
-        "href": ""
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.updatedPlacar(jogo, jogo.id)
-        }
-      }
-    }, [_c('span', {
-      staticClass: "glyphicon glyphicon-edit",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e()])])
-  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.jogos.length == 0) ? _c('div', {
-    staticClass: "col-sm-12 box"
-  }, [_vm._m(1)]) : _vm._e()])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', {
-    staticClass: "tr-head"
-  }, [_c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Status")]), _vm._v(" "), _c('th', {
-    staticClass: "text-center",
-    attrs: {
-      "colspan": "3"
-    }
-  }, [_vm._v("Jogos")]), _vm._v(" "), _c('th', {
-    staticClass: "hidden-xs"
-  }, [_vm._v("Horário | Estádio")]), _vm._v(" "), _c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Editar")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "alert alert-danger"
-  }, [_c('p', {
-    staticClass: "text-center"
-  }, [_vm._v("Não existe dados para listar!")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3deff9f0", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-b5e063a2", module.exports)
   }
 }
 
@@ -50471,13 +50512,13 @@ var content = __webpack_require__(152);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(125)("2201dc5e", content, false);
+var update = __webpack_require__(125)("959112e0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-17c24fe9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Palpites.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-17c24fe9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Palpites.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-0ea8d764\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Jogo.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-0ea8d764\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Jogo.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -50497,13 +50538,13 @@ var content = __webpack_require__(153);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(125)("114f4884", content, false);
+var update = __webpack_require__(125)("3b22ad40", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3deff9f0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Jogo.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-3deff9f0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Jogo.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-b5e063a2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Palpites.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-b5e063a2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Palpites.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -50551,7 +50592,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/*!
- * Vue.js v2.3.4
+ * Vue.js v2.3.3
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -54980,7 +55021,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.3.4';
+Vue$3.version = '2.3.3';
 
 /*  */
 
@@ -55471,7 +55512,6 @@ function createPatchFunction (backend) {
   function initComponent (vnode, insertedVnodeQueue) {
     if (isDef(vnode.data.pendingInsert)) {
       insertedVnodeQueue.push.apply(insertedVnodeQueue, vnode.data.pendingInsert);
-      vnode.data.pendingInsert = null;
     }
     vnode.elm = vnode.componentInstance.$el;
     if (isPatchable(vnode)) {

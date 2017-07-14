@@ -25,6 +25,24 @@
     .glyphicon.glyphicon-ok {
         color: #398439;
     }
+    .dropdown-rodada-ol{
+        left: -39px;
+        min-width: 170px;
+    }
+    .dropdown-rodada-li{
+        display: inline-table;
+        border: 1px solid #cccecf;
+        width: 30%;
+        margin-left: 2.5px;
+        margin-bottom: 5px;
+        padding: 0;
+        font-size: 14px;
+        border-radius: 2px;
+    }
+    .dropdown-rodada-a {
+        padding: 5px !important;
+        text-align: center;
+    }
 </style>
 
 <template>
@@ -44,9 +62,16 @@
                 <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getJogosCampeontato(campeonato.id, rodada - 1);">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="btn btn-default">
-                    {{ rodada }}ª Rodada
-                </button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ rodada }}ª Rodada
+                    </button>
+                    <ol class="dropdown-menu dropdown-rodada-ol">
+                        <li class="dropdown-rodada-li" v-for="n in 38">
+                            <a href="#" class="dropdown-rodada-a">{{ n }}ª</a>
+                        </li>
+                    </ol>
+                </div>
                 <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>

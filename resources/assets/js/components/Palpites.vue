@@ -25,6 +25,26 @@
     .glyphicon.glyphicon-ok {
         color: #398439;
     }
+    .dropdown-rodada-ol{
+        left: -39px;
+        min-width: 170px;
+        height: 150px;
+        overflow-y: auto;
+    }
+    .dropdown-rodada-li{
+        display: inline-table;
+        border: 1px solid #cccecf;
+        width: 30%;
+        margin-left: 4px;
+        margin-bottom: 5px;
+        padding: 0;
+        font-size: 14px;
+        border-radius: 2px;
+    }
+    .dropdown-rodada-a {
+        padding: 5px !important;
+        text-align: center;
+    }
 </style>
 
 <template>
@@ -43,10 +63,17 @@
                 <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(participante.id, campeonato.id, rodada - 1);">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="btn btn-default">
-                    {{ rodada }}ª Rodada
-                </button>
-                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.rodada" @click="getPalpites(participante.id, campeonato.id, rodada + 1);">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ rodada }}ª Rodada
+                    </button>
+                    <ol class="dropdown-menu dropdown-rodada-ol">
+                        <li class="dropdown-rodada-li" v-for="n in 38">
+                            <a @click="getPalpites(participante.id, campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
+                        </li>
+                    </ol>
+                </div>
+                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(participante.id, campeonato.id, rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>
@@ -65,7 +92,8 @@
                             <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>
                         </td>
                         <td class="text-right">
-                            {{ jogo.timecasa.nome }}
+                            <span class="hidden-sm hidden-xs">{{ jogo.timecasa.nome }}</span>
+                            <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
                         </td>
                         <td class="td-jogo">
                             <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
@@ -75,7 +103,8 @@
                             <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
                         </td>
                         <td class="text-left">
-                            {{ jogo.timefora.nome }}
+                            <span class="hidden-sm hidden-xs">{{ jogo.timefora.nome }}</span>
+                            <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                         </td>
                         <td class="text-center">
                             <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="savePalpite(jogo, true)">
@@ -121,12 +150,12 @@
         data() {
             return {
                 jogos: [],
-                rodada: 1,
+                rodada: null,
                 bolaoId: 1,
                 palpites: [],
                 campeonatos: [],
                 participantes: [],
-                campeonato: { id: 2 },
+                campeonato: {},
                 participante: JSON.parse(this.user)
             }
         },
@@ -134,7 +163,6 @@
         mounted() {
             this.getCampeontatos();
             this.getParticipantesBolao(this.bolaoId);
-            this.getPalpites(this.participante.id, this.campeonato.id, this.rodada);
         },
         methods: {
             getCampeontatos(id) {
@@ -144,6 +172,10 @@
                         this.campeonato = response.data;
                     } else {
                         this.campeonatos = response.data;
+                        this.campeonato = this.campeonatos[0];
+                        this.rodada = this.campeonato.rodada;
+
+                        this.getPalpites(this.participante.id, this.campeonato.id, this.rodada);
                     }
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);

@@ -94,7 +94,8 @@
                         <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>
                     </td>
                     <td class="text-right">
-                        {{ jogo.timecasa.nome }}
+                        <span class="hidden-sm hidden-xs">{{ jogo.timecasa.nome }}</span>
+                        <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
                     </td>
                     <td class="td-jogo">
                         <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
@@ -104,7 +105,8 @@
                         <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
                     </td>
                     <td class="text-left">
-                        {{ jogo.timefora.nome }}
+                        <span class="hidden-sm hidden-xs">{{ jogo.timefora.nome }}</span>
+                        <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                     </td>
                     <td class="hidden-xs">
                         {{ jogo.inicio|moment('HH:mm DD/MM/YY') }} | {{ jogo.timecasa.estadio }}
@@ -130,14 +132,13 @@
         data() {
             return {
                 jogos: [],
-                rodada: 1,
-                campeonato: { id: 2 },
+                rodada: null,
+                campeonato: {},
                 campeonatos: []
             }
         },
         mounted() {
             this.getCampeontatos();
-            this.getJogosCampeontato(this.campeonato.id, this.rodada);
         },
         methods: {
             getCampeontatos(id) {
@@ -147,6 +148,10 @@
                         this.campeonato = response.data;
                     } else {
                         this.campeonatos = response.data;
+                        this.campeonato = this.campeonatos[0];
+                        this.rodada = this.campeonato.rodada;
+
+                        this.getJogosCampeontato(this.campeonato.id, this.rodada);
                     }
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);
@@ -154,7 +159,6 @@
             },
 
             getJogosCampeontato(id, rodada) {
-                console.log(id, rodada);
                 this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then((response) => {
                     response.data.forEach(function (jogo) {
                         jogo.placar_real_casa = null;
@@ -162,7 +166,6 @@
                     });
                     this.jogos = response.data;
                     this.rodada = rodada;
-                    //this.getCampeontatos(id);
                 }).catch((error) => {
                     console.error('!Get JogosCampeonato', error);
                 });

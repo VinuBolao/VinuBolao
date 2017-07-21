@@ -34,13 +34,13 @@
                         <td>
                             <a href="{{ route('bolao.edit', $bolao->id) }}" class="btn btn-xs btn-primary">Editar</a>
                         </td>
-                        <td>
-                            <form action="{{ route('bolao.destroy', $bolao->id) }}" method="post">
-                                {!! csrf_field() !!}
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="submit" value="remover" class="btn btn-xs btn-danger">
-                            </form>
-                        </td>
+                        {{--<td>--}}
+                            {{--<form action="{{ route('bolao.destroy', $bolao->id) }}" method="post">--}}
+                                {{--{!! csrf_field() !!}--}}
+                                {{--<input type="hidden" name="_method" value="DELETE">--}}
+                                {{--<input type="submit" value="remover" class="btn btn-xs btn-danger">--}}
+                            {{--</form>--}}
+                        {{--</td>--}}
                     </tr>
                     </tbody>
                 @endforeach

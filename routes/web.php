@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/michael', function () {
+    return 'teste1';
+});
+
 Route::get('/', function () {
     return redirect('/bolao');
 });

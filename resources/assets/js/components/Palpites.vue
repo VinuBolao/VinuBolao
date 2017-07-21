@@ -126,7 +126,7 @@
                 palpites: [],
                 campeonatos: [],
                 participantes: [],
-                campeonato: { id: 1 },
+                campeonato: { id: 2 },
                 participante: JSON.parse(this.user)
             }
         },

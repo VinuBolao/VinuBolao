@@ -28,12 +28,14 @@
     .dropdown-rodada-ol{
         left: -39px;
         min-width: 170px;
+        height: 150px;
+        overflow-y: auto;
     }
     .dropdown-rodada-li{
         display: inline-table;
         border: 1px solid #cccecf;
         width: 30%;
-        margin-left: 2.5px;
+        margin-left: 4px;
         margin-bottom: 5px;
         padding: 0;
         font-size: 14px;
@@ -51,7 +53,7 @@
             <div class="btn-group" role="group">
                 <form class="form-inline">
                     <div class="form-group">
-                        <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getJogosCampeontato(campeonato.id, 1);">
+                        <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getJogosCampeontato(campeonato.id, rodada);">
                             <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
                         </select>
                     </div>
@@ -68,11 +70,11 @@
                     </button>
                     <ol class="dropdown-menu dropdown-rodada-ol">
                         <li class="dropdown-rodada-li" v-for="n in 38">
-                            <a href="#" class="dropdown-rodada-a">{{ n }}ª</a>
+                            <a @click="getJogosCampeontato(campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
                         </li>
                     </ol>
                 </div>
-                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>
@@ -129,7 +131,7 @@
             return {
                 jogos: [],
                 rodada: 1,
-                campeonato: { id: 1 },
+                campeonato: { id: 2 },
                 campeonatos: []
             }
         },

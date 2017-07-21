@@ -74,7 +74,7 @@
                         </li>
                     </ol>
                 </div>
-                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada">
+                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>
@@ -154,6 +154,7 @@
             },
 
             getJogosCampeontato(id, rodada) {
+                console.log(id, rodada);
                 this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then((response) => {
                     response.data.forEach(function (jogo) {
                         jogo.placar_real_casa = null;
@@ -161,7 +162,7 @@
                     });
                     this.jogos = response.data;
                     this.rodada = rodada;
-                    this.getCampeontatos(id);
+                    //this.getCampeontatos(id);
                 }).catch((error) => {
                     console.error('!Get JogosCampeonato', error);
                 });

@@ -36,15 +36,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="{{ route('bolao.index') }}" class="active">Home</a>
+                            <a href="{{ route('bolao.index') }}">Home</a>
                         </li>
                         <li>
                             <a href="{{ route('bolao.classificacao') }}">Classificação</a>
                         </li>
-                        <li>
+                        <li @if(Request::segment(1) == 'jogo') class="active" @endif>
                             <a href="{{ route('jogo.index') }}">Jogos</a>
                         </li>
-                        <li>
+                        <li @if(Request::segment(1) == 'palpite') class="active" @endif>
                             <a href="{{ route('palpite.index') }}">Palpites</a>
                         </li>
                         {{--<li>--}}

@@ -53,14 +53,14 @@
             <div class="btn-group" role="group">
                 <form class="form-inline">
                     <div class="form-group">
-                        <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getJogosCampeontato(campeonato.id, 1);">
+                        <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getPalpites(campeonato.id, rodada);">
                             <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
                         </select>
                     </div>
                 </form>
             </div>
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(participante.id, campeonato.id, rodada - 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(campeonato.id, rodada - 1);">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </button>
                 <div class="btn-group">
@@ -69,77 +69,51 @@
                     </button>
                     <ol class="dropdown-menu dropdown-rodada-ol">
                         <li class="dropdown-rodada-li" v-for="n in 38">
-                            <a @click="getPalpites(participante.id, campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
+                            <a @click="getPalpites(campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
                         </li>
                     </ol>
                 </div>
-                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(participante.id, campeonato.id, rodada + 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(campeonato.id, rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>
         </div>
         <div class="col-sm-12 box">
-            <div class="col-sm-8">
-                <table class="table" v-if="jogos.length > 0">
-                    <tr class="tr-head">
-                        <th class="text-center">Status</th>
-                        <th colspan="3" class="text-center">{{ participante.name }}</th>
-                        <th class="text-center">Editar</th>
-                    </tr>
-                    <tr v-for="(jogo, key) in jogos">
-                        <td class="text-center">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></span>
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>
-                        </td>
-                        <td class="text-right">
-                            <span class="hidden-sm hidden-xs">{{ jogo.timecasa.nome }}</span>
-                            <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
-                        </td>
-                        <td class="td-jogo">
-                            <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
-                            <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
-                            x
-                            <input class="input-placar" type="number" min="0" v-if="jogo.placar_fora === null" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
-                            <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
-                        </td>
-                        <td class="text-left">
-                            <span class="hidden-sm hidden-xs">{{ jogo.timefora.nome }}</span>
-                            <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
-                        </td>
-                        <td class="text-center">
-                            <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="savePalpite(jogo, true)">
-                                <span class="glyphicon glyphicon-edit" aria-hidden="true" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></span>
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-                <div class="alert alert-danger" v-if="jogos.length == 0">
-                    <p class="text-center">Não existe dados para listar!</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <select class="form-control input-sm" @change="compararPalpites($event.target.value, campeonato.id, rodada);">
-                    <option value="0">Selecione um participante...</option>
-                    <option v-for="participante in participantes" :value="participante.id">{{ participante.user.name }}</option>
-                </select>
-                <table class="table table-striped" v-if="palpites.length > 0">
-                    <tr class="tr-head">
-                        <th colspan="3" class="text-center">Palpites</th>
-                    </tr>
-                    <tr v-for="palpite in palpites">
-                        <td class="text-right">
-                            {{ palpite.timecasa.nome }}
-                        </td>
-                        <td class="td-jogo">
-                            <strong class="placar-casa">{{ palpite.placar_casa }}</strong>
-                            x
-                            <strong class="placar-fora">{{ palpite.placar_fora }}</strong>
-                        </td>
-                        <td class="text-left">
-                            {{ palpite.timefora.nome }}
-                        </td>
-                    </tr>
-                </table>
+            <table class="table" v-if="jogos.length > 0">
+                <tr class="tr-head">
+                    <th class="text-center">Status</th>
+                    <th colspan="3" class="text-center">Palpites</th>
+                    <th class="text-center">Editar</th>
+                </tr>
+                <tr v-for="(jogo, key) in jogos">
+                    <td class="text-center">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></span>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>
+                    </td>
+                    <td class="text-right">
+                        <span class="hidden-sm hidden-xs">{{ jogo.timecasa.nome }}</span>
+                        <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
+                    </td>
+                    <td class="td-jogo">
+                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_casa === null" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
+                        <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
+                        x
+                        <input class="input-placar" type="number" min="0" v-if="jogo.placar_fora === null" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
+                        <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
+                    </td>
+                    <td class="text-left">
+                        <span class="hidden-sm hidden-xs">{{ jogo.timefora.nome }}</span>
+                        <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
+                    </td>
+                    <td class="text-center">
+                        <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="savePalpite(jogo, true)">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <div class="alert alert-danger" v-if="jogos.length == 0">
+                <p class="text-center">Não existe dados para listar!</p>
             </div>
         </div>
     </div>
@@ -150,19 +124,15 @@
         data() {
             return {
                 jogos: [],
-                rodada: null,
+                rodada: 1,
                 bolaoId: 1,
                 palpites: [],
                 campeonatos: [],
-                participantes: [],
-                campeonato: {},
-                participante: JSON.parse(this.user)
+                campeonato: {}
             }
         },
-        props: ['user'],
         mounted() {
             this.getCampeontatos();
-            this.getParticipantesBolao(this.bolaoId);
         },
         methods: {
             getCampeontatos(id) {
@@ -175,15 +145,15 @@
                         this.campeonato = this.campeonatos[0];
                         this.rodada = this.campeonato.rodada;
 
-                        this.getPalpites(this.participante.id, this.campeonato.id, this.rodada);
+                        this.getPalpites(this.campeonato.id, this.rodada);
                     }
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);
                 });
             },
 
-            getPalpites(userId, campeonatoId, rodada) {
-                this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
+            getPalpites(campeonatoId, rodada) {
+                this.$http.get('/api/palpite/get_palpites/' + campeonatoId + '/' + rodada).then((response) => {
                     response.data.forEach(function (jogo) {
                         jogo.palpite = {
                             casa: null,
@@ -198,34 +168,16 @@
                 });
             },
 
-            compararPalpites(userId, campeonatoId, rodada) {
-                this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
-                    this.palpites = response.data;
-                }).catch((error) => {
-                    console.error('!Get CompararPalpites', error);
-                });
-            },
-
-            getParticipantesBolao(id) {
-                this.$http.get('/api/participante/get_bolao/' + id).then((response) => {
-                    this.participantes = response.data;
-                }).catch((error) => {
-                    console.error('!Get Participantes Bolao', error);
-                });
-            },
-
             savePalpite(jogo, edit) {
                 if( (edit) || (jogo.palpite.casa !== null && jogo.palpite.fora !== null) ){
                     jogo.placar_casa = (jogo.placar_casa === null) ? jogo.palpite.casa : null;
                     jogo.placar_fora = (jogo.placar_fora === null) ? jogo.palpite.fora : null;
 
                     this.$http.post('/api/palpite/save', jogo).then((response) => {
-                        console.log(response.data);
+                        this.getPalpites(this.campeonato.id, this.rodada);
                     }).catch((error) => {
-                        console.error('!Get Create Palpite', error);
+                        console.error('!Save Palpite', error);
                     });
-
-                    this.getPalpites(this.participante.id, this.campeonato.id, this.rodada);
                 }
             }
         }

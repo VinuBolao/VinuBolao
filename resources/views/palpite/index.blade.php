@@ -6,5 +6,5 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi!</p>
     </div>
 
-    <palpites user="{{ Auth::user()->id }}"></palpites>
+    <palpites user="{{ Auth::id() }}"></palpites>
 @endcomponent

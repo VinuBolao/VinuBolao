@@ -31,4 +31,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('jogo', 'JogoController');
 
     Route::resource('palpite', 'PalpiteController');
+    Route::get('regulamento', 'BolaoController@regulamento')->name('regulamento');
 });

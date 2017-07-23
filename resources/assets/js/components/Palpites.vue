@@ -131,6 +131,7 @@
                 campeonato: {}
             }
         },
+        props: ['user'],
         mounted() {
             this.getCampeontatos();
         },
@@ -173,8 +174,10 @@
                     jogo.placar_casa = (jogo.placar_casa === null) ? jogo.palpite.casa : null;
                     jogo.placar_fora = (jogo.placar_fora === null) ? jogo.palpite.fora : null;
 
+                    jogo.userId = this.user;
+
                     this.$http.post('/api/palpite/save', jogo).then((response) => {
-                        this.getPalpites(this.campeonato.id, this.rodada);
+                        console.log(response.data);
                     }).catch((error) => {
                         console.error('!Save Palpite', error);
                     });

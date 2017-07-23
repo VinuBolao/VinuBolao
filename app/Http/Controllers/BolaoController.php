@@ -22,6 +22,11 @@ class BolaoController extends Controller
         return view('bolao.index', compact('boloes'));
     }
 
+    public function regulamento()
+    {
+        return view('regulamento');
+    }
+
     public function classificacao()
     {
         $boloes = Bolao::where(['user_id' => Auth::user()->id])->get();

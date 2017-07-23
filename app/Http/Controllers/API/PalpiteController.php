@@ -55,7 +55,7 @@ class PalpiteController extends Controller
         }
 
         $palpite->jogo_id = $request->id;
-        $palpite->user_id = 1;
+        $palpite->user_id = $request->userId;
         $palpite->palpite_casa = $request->placar_casa;
         $palpite->palpite_fora = $request->placar_fora;
         $palpite->horario = "2017-06-18 00:00:00";

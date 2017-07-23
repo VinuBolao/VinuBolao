@@ -17895,6 +17895,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             campeonato: {}
         };
     },
+
+    props: ['user'],
     mounted: function mounted() {
         this.getCampeontatos();
     },
@@ -17936,14 +17938,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         savePalpite: function savePalpite(jogo, edit) {
-            var _this3 = this;
-
             if (edit || jogo.palpite.casa !== null && jogo.palpite.fora !== null) {
                 jogo.placar_casa = jogo.placar_casa === null ? jogo.palpite.casa : null;
                 jogo.placar_fora = jogo.placar_fora === null ? jogo.palpite.fora : null;
 
+                jogo.userId = this.user;
+
                 this.$http.post('/api/palpite/save', jogo).then(function (response) {
-                    _this3.getPalpites(_this3.campeonato.id, _this3.rodada);
+                    console.log(response.data);
                 }).catch(function (error) {
                     console.error('!Save Palpite', error);
                 });

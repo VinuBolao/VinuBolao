@@ -47,6 +47,9 @@
                         <li @if(Request::segment(1) == 'palpite') class="active" @endif>
                             <a href="{{ route('palpite.index') }}">Palpites</a>
                         </li>
+                        <li @if(Request::segment(1) == 'regulamento') class="active" @endif>
+                            <a href="{{ route('regulamento') }}">Regulamento</a>
+                        </li>
                         {{--<li>--}}
                             {{--<a href="">Dashboard</a>--}}
                         {{--</li>--}}

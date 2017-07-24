@@ -22,7 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/bolao/classificacao', 'BolaoController@classificacao')->name('bolao.classificacao');
+    Route::get('classificacao', 'BolaoController@classificacao')->name('classificacao');
     Route::resource('bolao', 'BolaoController');
 
     Route::resource('participante', 'ParticipanteController');
@@ -31,5 +31,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('jogo', 'JogoController');
 
     Route::resource('palpite', 'PalpiteController');
+
     Route::get('regulamento', 'BolaoController@regulamento')->name('regulamento');
 });

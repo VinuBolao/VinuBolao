@@ -29,16 +29,7 @@ class BolaoController extends Controller
 
     public function classificacao()
     {
-        $boloes = Bolao::where(['user_id' => Auth::user()->id])->get();
-        $participantes = [];
-        if(count($boloes)>0){
-            $participantes = Participante::where(['bolao_id' => $boloes[0]->id])
-                ->orderBy('pontosganhos', 'DESC')
-                ->orderBy('placarexato', 'DESC')
-                ->orderBy('placarvencedor', 'DESC')
-                ->get();
-        }
-        return view('classificacao.index', compact('participantes'));
+        return view('classificacao.index');
     }
 
     /**

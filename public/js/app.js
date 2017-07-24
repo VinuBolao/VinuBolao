@@ -16701,6 +16701,7 @@ window.Vue.use(__webpack_require__(162));
 
 Vue.component('jogo', __webpack_require__(158));
 Vue.component('palpites', __webpack_require__(159));
+Vue.component('classificacao', __webpack_require__(179));
 
 var app = new Vue({
   el: '#app',
@@ -60671,6 +60672,205 @@ module.exports = Vue$3;
 __webpack_require__(128);
 module.exports = __webpack_require__(129);
 
+
+/***/ }),
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            participantes: []
+        };
+    },
+    mounted: function mounted() {
+        this.getCampeontatos();
+    },
+
+    methods: {
+        getCampeontatos: function getCampeontatos(id) {
+            var _this = this;
+
+            //let param = (id) ? '/' + id : '';
+            this.$http.get('/api/participante/get').then(function (response) {
+                _this.participantes = response.data;
+            }).catch(function (error) {
+                console.error('!Get Campeonatos', error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 178 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)();
+exports.push([module.i, "\n\n", ""]);
+
+/***/ }),
+/* 179 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(181)
+
+var Component = __webpack_require__(124)(
+  /* script */
+  __webpack_require__(177),
+  /* template */
+  __webpack_require__(180),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/gustavosantos/Sites/VinuBolao/resources/assets/js/components/Classificacao.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Classificacao.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-abb74d98", Component.options)
+  } else {
+    hotAPI.reload("data-v-abb74d98", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 180 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [(_vm.participantes.length > 0) ? _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_c('table', {
+    staticClass: "table table-striped table-hover"
+  }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.participantes), function(participante, key) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(key + 1) + "º")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s(participante.user.name))])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(participante.pontosganhos))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(participante.placarexato))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(participante.placarvencedor))]), _vm._v(" "), _vm._m(1, true)])
+  })], 2)]), _vm._v(" "), _vm._m(2)]) : _vm._e(), _vm._v(" "), (_vm.participantes.length == 0) ? _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_vm._m(3)]) : _vm._e()])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', {
+    staticStyle: {
+      "background-color": "#666",
+      "color": "#fff"
+    }
+  }, [_c('th', [_c('strong', [_vm._v("Posição")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("Participante")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("PG")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("PE")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("PV")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("V")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('td', [_c('span', {
+    staticClass: "glyphicon glyphicon-stop icon-blue",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_c('h4', [_c('strong', [_vm._v("Legenda")])]), _vm._v(" "), _c('p', [_c('strong', [_vm._v("PG")]), _vm._v(" - Pontos Ganhos, "), _c('strong', [_vm._v("PE")]), _vm._v(" - Placar Exato, "), _c('strong', [_vm._v("PV")]), _vm._v(" - Placar Vencedor, "), _c('strong', [_vm._v("V")]), _vm._v(" - Variação de posição")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_c('p', {
+    staticClass: "text-center"
+  }, [_vm._v("Não existe dados para listar!")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-abb74d98", module.exports)
+  }
+}
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(178);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(125)("637b8d40", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-abb74d98\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Classificacao.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-abb74d98\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Classificacao.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

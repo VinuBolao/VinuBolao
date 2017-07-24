@@ -3,6 +3,7 @@
 namespace Bolao\Http\Controllers\API;
 
 use Bolao\Jogo;
+use Bolao\Participante;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
 
@@ -10,7 +11,7 @@ class JogoController extends Controller
 {
     public function get($id = null)
     {
-        if($id){
+        if ($id) {
             return response()->json(Jogo::findOrFail($id), 200);
         } else {
             return response()->json(Jogo::all(), 200);
@@ -19,7 +20,7 @@ class JogoController extends Controller
 
     public function get_campeonato($id, $rodada = null)
     {
-        if ($rodada){
+        if ($rodada) {
             $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $id, 'rodada' => $rodada])->get();
         } else {
             $jogos = Jogo::with('timecasa')->where(['campeonato_id' => $id])->get();

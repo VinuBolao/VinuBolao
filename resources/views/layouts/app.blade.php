@@ -39,7 +39,7 @@
                             <a href="{{ route('bolao.index') }}">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('bolao.classificacao') }}">Classificação</a>
+                            <a href="{{ route('classificacao') }}">Classificação</a>
                         </li>
                         <li @if(Request::segment(1) == 'jogo') class="active" @endif>
                             <a href="{{ route('jogo.index') }}">Jogos</a>

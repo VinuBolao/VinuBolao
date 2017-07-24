@@ -13,19 +13,10 @@ class JogoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($camp_id = 1, $rodada = 1)
+    public function index()
     {
-        $jogos = Jogo::where(['campeonato_id' => $camp_id, 'rodada' => $rodada])->get();
-        $campeonatos = Campeonato::all();
-        return view('jogo.index', [
-            'jogos' => $jogos,
-            'campeonatos' => $campeonatos,
-            'camp_id' => $camp_id,
-            'rodada' => $rodada
-        ]);
+        return view('jogo.index');
     }
-
-
 
     /**
      * Show the form for creating a new resource.

@@ -15,7 +15,7 @@
                         <th><strong>PV</strong></th>
                         <th><strong>V</strong></th>
                     </tr>
-                    <tr v-for="(participante, key) in participantes">
+                    <tr v-for="(participante, key) in participantesFiltered">
                         <td>{{ key + 1 }}º</td>
                         <td><b>{{ participante.user.name }}</b></td>
                         <td>{{ participante.pontosganhos }}</td>
@@ -43,15 +43,23 @@
     export default {
         data() {
             return {
+                order: {
+                    keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
+                    sort: ['desc', 'desc', 'desc']
+                },
                 participantes: []
             }
         },
         mounted() {
-            this.getCampeontatos();
+            this.getParticipantes();
+        },
+        computed: {
+            participantesFiltered(){
+                return _.orderBy(this.participantes, this.order.keys, this.order.sort);
+            }
         },
         methods: {
-            getCampeontatos(id) {
-                //let param = (id) ? '/' + id : '';
+            getParticipantes() {
                 this.$http.get('/api/participante/get').then((response) => {
                     this.participantes = response.data;
                 }).catch((error) => {

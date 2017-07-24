@@ -12,12 +12,7 @@ class ParticipanteController extends Controller
         if($id){
             return response()->json(Participante::with('user')->findOrFail($id));
         } else {
-            return response()->json(Participante::with('user')
-                ->orderBy('pontosganhos', 'DESC')
-                ->orderBy('placarexato', 'DESC')
-                ->orderBy('placarvencedor', 'DESC')
-                ->get()
-            );
+            return response()->json(Participante::with('user')->get());
         }
     }
 }

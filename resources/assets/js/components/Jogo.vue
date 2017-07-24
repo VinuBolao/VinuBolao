@@ -137,6 +137,7 @@
                 campeonatos: []
             }
         },
+        props: ['user'],
         mounted() {
             this.getCampeontatos();
         },
@@ -175,6 +176,8 @@
                 if( (id) || (jogo.placar_real_casa !== null && jogo.placar_real_fora !== null) ){
                     jogo.placar_casa = (id >= 0) ? null : jogo.placar_real_casa;
                     jogo.placar_fora = (id >= 0) ? null : jogo.placar_real_fora;
+
+                    jogo.userId = this.user;
 
                     this.$http.post('/api/jogo/update', jogo).then((response) => {
                         console.log(response.data);

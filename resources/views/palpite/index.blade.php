@@ -3,7 +3,7 @@
 
     <div class="col-sm-12 box">
         <h2>Palpites</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi!</p>
+        <p>Insira seus palpites para a rodada vigente, lembrando que os palpites devem ser inseridos com pelo menos <strong>15 minutos</strong> de antecedência ao início da rodada.</p>
     </div>
 
     <palpites user="{{ Auth::id() }}"></palpites>

@@ -12,27 +12,31 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Administrador</th>
+                    <th class="hidden-sm hidden-xs">Administrador</th>
                     <th>Nome</th>
                     <th>Campeonato</th>
                     <th>Data Inicial</th>
-                    <th>Descrição</th>
+                    <th class="hidden-sm hidden-xs">Descrição</th>
                     <th colspan="2"></th>
                 </tr>
                 </thead>
                 @foreach($boloes as $bolao)
                     <tbody>
                     <tr>
-                        <td>{{ $bolao->user->name }}</td>
+                        <td class="hidden-sm hidden-xs">{{ $bolao->user->name }}</td>
                         <td>{{ $bolao->nome }}</td>
                         <td>{{ $bolao->campeonato->nome }} - Série {{ $bolao->campeonato->serie }}</td>
                         <td>{{ $bolao->inicio }}</td>
-                        <td>{{ $bolao->descricao }}</td>
+                        <td class="hidden-sm hidden-xs">{{ $bolao->descricao }}</td>
                         <td>
-                            <a href="{{ route('participante.index') }}" class="btn btn-xs btn-primary">Participantes</a>
+                            <a href="{{ route('participante.index') }}" data-toggle="tooltip" data-placement="top" title="Participantes">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </a>
                         </td>
                         <td>
-                            <a href="{{ route('bolao.edit', $bolao->id) }}" class="btn btn-xs btn-primary">Editar</a>
+                            <a href="{{ route('bolao.edit', $bolao->id) }}" data-toggle="tooltip" data-placement="top" title="Editar">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
                         </td>
                         {{--<td>--}}
                             {{--<form action="{{ route('bolao.destroy', $bolao->id) }}" method="post">--}}

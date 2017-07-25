@@ -53,14 +53,14 @@
             <div class="btn-group" role="group">
                 <form class="form-inline">
                     <div class="form-group">
-                        <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getPalpites(campeonato.id, rodada);">
+                        <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getPalpites(user, campeonato.id, rodada);">
                             <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
                         </select>
                     </div>
                 </form>
             </div>
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(campeonato.id, rodada - 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user, campeonato.id, rodada - 1);">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </button>
                 <div class="btn-group">
@@ -69,11 +69,11 @@
                     </button>
                     <ol class="dropdown-menu dropdown-rodada-ol">
                         <li class="dropdown-rodada-li" v-for="n in 38">
-                            <a @click="getPalpites(campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
+                            <a @click="getPalpites(user, campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
                         </li>
                     </ol>
                 </div>
-                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(campeonato.id, rodada + 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(user, campeonato.id, rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>
@@ -125,7 +125,6 @@
             return {
                 jogos: [],
                 rodada: 1,
-                bolaoId: 1,
                 palpites: [],
                 campeonatos: [],
                 campeonato: {}
@@ -146,15 +145,16 @@
                         this.campeonato = this.campeonatos[0];
                         this.rodada = this.campeonato.rodada;
 
-                        this.getPalpites(this.campeonato.id, this.rodada);
+                        this.getPalpites(this.user, this.campeonato.id, this.rodada);
                     }
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);
                 });
             },
 
-            getPalpites(campeonatoId, rodada) {
-                this.$http.get('/api/palpite/get_palpites/' + campeonatoId + '/' + rodada).then((response) => {
+            getPalpites(userId, campeonatoId, rodada) {
+                this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
+                    console.log(response.data);
                     response.data.forEach(function (jogo) {
                         jogo.palpite = {
                             casa: null,

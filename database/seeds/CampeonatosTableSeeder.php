@@ -13,6 +13,7 @@ class CampeonatosTableSeeder extends Seeder
     public function run()
     {
         $campeonato = [
+            'id' => 2,
             'nome' => 'Brasileirão',
             'nome_completo' => 'Campeonato Brasileiro',
             'qtd_times' => 20,

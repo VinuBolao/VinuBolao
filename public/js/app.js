@@ -17974,7 +17974,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             jogos: [],
             rodada: 1,
-            bolaoId: 1,
             palpites: [],
             campeonatos: [],
             campeonato: {}
@@ -17999,16 +17998,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.campeonato = _this.campeonatos[0];
                     _this.rodada = _this.campeonato.rodada;
 
-                    _this.getPalpites(_this.campeonato.id, _this.rodada);
+                    _this.getPalpites(_this.user, _this.campeonato.id, _this.rodada);
                 }
             }).catch(function (error) {
                 console.error('!Get Campeonatos', error);
             });
         },
-        getPalpites: function getPalpites(campeonatoId, rodada) {
+        getPalpites: function getPalpites(userId, campeonatoId, rodada) {
             var _this2 = this;
 
-            this.$http.get('/api/palpite/get_palpites/' + campeonatoId + '/' + rodada).then(function (response) {
+            this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then(function (response) {
+                console.log(response.data);
                 response.data.forEach(function (jogo) {
                     jogo.palpite = {
                         casa: null,
@@ -48446,7 +48446,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         });
         _vm.campeonato.id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }, function($event) {
-        _vm.getPalpites(_vm.campeonato.id, _vm.rodada);
+        _vm.getPalpites(_vm.user, _vm.campeonato.id, _vm.rodada);
       }]
     }
   }, _vm._l((_vm.campeonatos), function(campeonato) {
@@ -48468,7 +48468,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.getPalpites(_vm.campeonato.id, _vm.rodada - 1);
+        _vm.getPalpites(_vm.user, _vm.campeonato.id, _vm.rodada - 1);
       }
     }
   }, [_c('span', {
@@ -48495,7 +48495,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "dropdown-rodada-a",
       on: {
         "click": function($event) {
-          _vm.getPalpites(_vm.campeonato.id, n);
+          _vm.getPalpites(_vm.user, _vm.campeonato.id, n);
         }
       }
     }, [_vm._v(_vm._s(n) + "ª")])])
@@ -48507,7 +48507,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.getPalpites(_vm.campeonato.id, _vm.rodada + 1);
+        _vm.getPalpites(_vm.user, _vm.campeonato.id, _vm.rodada + 1);
       }
     }
   }, [_c('span', {

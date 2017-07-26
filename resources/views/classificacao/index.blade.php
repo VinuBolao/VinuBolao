@@ -6,5 +6,5 @@
         <p>Veja sua posição em relação aos outros participantes!</p>
     </div>
 
-    <classificacao></classificacao>
+    <classificacao bolao="{{ $bolao }}"></classificacao>
 @endcomponent

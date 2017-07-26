@@ -13,7 +13,7 @@ class PalpiteController extends Controller
     public function get($id = null)
     {
         if($id){
-            return response()->json(Palpite::with('jogo', 'user')->findOrFail());
+            return response()->json(Palpite::with('jogo', 'user')->findOrFail($id));
         } else {
             return response()->json(Palpite::with('jogo', 'user')->get());
         }

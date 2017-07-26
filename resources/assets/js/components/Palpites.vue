@@ -49,7 +49,7 @@
 
 <template>
     <div>
-        <div class="col-sm-12 box">
+        <div class="col-sm-12 box" v-if="boloes.length > 0 && jogos.length > 0">
             <div class="btn-group" role="group">
                 <form class="form-inline">
                     <div class="form-group">
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="col-sm-12 box">
-            <table class="table" v-if="jogos.length > 0">
+            <table class="table" v-if="boloes.length > 0 && jogos.length > 0">
                 <tr class="tr-head">
                     <th class="text-center">Status</th>
                     <th colspan="3" class="text-center">Palpites</th>
@@ -123,6 +123,7 @@
     export default {
         data() {
             return {
+                boloes: JSON.parse(this.bolao),
                 jogos: [],
                 rodada: 1,
                 palpites: [],
@@ -130,9 +131,9 @@
                 campeonato: {}
             }
         },
-        props: ['user'],
+        props: ['bolao'],
         mounted() {
-            this.getCampeontatos();
+            if(this.boloes.length > 0) this.getCampeontatos();
         },
         methods: {
             getCampeontatos(id) {
@@ -145,7 +146,7 @@
                         this.campeonato = this.campeonatos[0];
                         this.rodada = this.campeonato.rodada;
 
-                        this.getPalpites(this.user, this.campeonato.id, this.rodada);
+                        this.getPalpites(this.boloes[0].user_id, this.campeonato.id, this.rodada);
                     }
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);
@@ -154,7 +155,6 @@
 
             getPalpites(userId, campeonatoId, rodada) {
                 this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
-                    console.log(response.data);
                     response.data.forEach(function (jogo) {
                         jogo.palpite = {
                             casa: null,
@@ -174,7 +174,7 @@
                     jogo.placar_casa = (jogo.placar_casa === null) ? jogo.palpite.casa : null;
                     jogo.placar_fora = (jogo.placar_fora === null) ? jogo.palpite.fora : null;
 
-                    jogo.userId = this.user;
+                    jogo.userId = this.boloes[0].user_id;
 
                     this.$http.post('/api/palpite/save', jogo).then((response) => {
                         console.log(response.data);

@@ -2,8 +2,7 @@
 
 namespace Bolao\Http\Controllers;
 
-use Bolao\Campeonato;
-use Bolao\Palpite;
+use Bolao\Bolao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +15,8 @@ class PalpiteController extends Controller
      */
     public function index()
     {
-        return view('palpite.index');
+        $bolao = Bolao::where('user_id', Auth::id())->get();
+        return view('palpite.index', compact('bolao'));
     }
 
     /**

@@ -17600,15 +17600,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            boloes: JSON.parse(this.bolao),
+            participantes: [],
             order: {
                 keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
                 sort: ['desc', 'desc', 'desc']
-            },
-            participantes: []
+            }
         };
     },
+
+    props: ['bolao'],
     mounted: function mounted() {
-        this.getParticipantes();
+        if (this.boloes.length > 0) this.updatedData();
     },
 
     computed: {
@@ -17624,6 +17627,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.participantes = response.data;
             }).catch(function (error) {
                 console.error('!Get Campeonatos', error);
+            });
+        },
+        updatedData: function updatedData() {
+            var _this2 = this;
+
+            this.$http.get('/api/participante/updated_data').then(function (response) {
+                _this2.getParticipantes();
+            }).catch(function (error) {
+                console.error('!Get Updated Data', error);
             });
         }
     }
@@ -17714,11 +17726,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            boloes: JSON.parse(this.bolao),
             jogos: [],
             rodada: null,
             campeonato: {},
@@ -17726,9 +17738,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    props: ['user'],
+    props: ['bolao'],
     mounted: function mounted() {
-        this.getCampeontatos();
+        if (this.boloes.length > 0) this.getCampeontatos();
     },
 
     methods: {
@@ -17771,7 +17783,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 jogo.placar_casa = id >= 0 ? null : jogo.placar_real_casa;
                 jogo.placar_fora = id >= 0 ? null : jogo.placar_real_fora;
 
-                jogo.userId = this.user;
+                jogo.userId = this.boloes[0].user_id;
 
                 this.$http.post('/api/jogo/update', jogo).then(function (response) {
                     console.log(response.data);
@@ -17915,6 +17927,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            boloes: JSON.parse(this.bolao),
             jogos: [],
             rodada: 1,
             palpites: [],
@@ -17923,9 +17936,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    props: ['user'],
+    props: ['bolao'],
     mounted: function mounted() {
-        this.getCampeontatos();
+        if (this.boloes.length > 0) this.getCampeontatos();
     },
 
     methods: {
@@ -17941,7 +17954,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.campeonato = _this.campeonatos[0];
                     _this.rodada = _this.campeonato.rodada;
 
-                    _this.getPalpites(_this.user, _this.campeonato.id, _this.rodada);
+                    _this.getPalpites(_this.boloes[0].user_id, _this.campeonato.id, _this.rodada);
                 }
             }).catch(function (error) {
                 console.error('!Get Campeonatos', error);
@@ -17951,7 +17964,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then(function (response) {
-                console.log(response.data);
                 response.data.forEach(function (jogo) {
                     jogo.palpite = {
                         casa: null,
@@ -17970,7 +17982,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 jogo.placar_casa = jogo.placar_casa === null ? jogo.palpite.casa : null;
                 jogo.placar_fora = jogo.placar_fora === null ? jogo.palpite.fora : null;
 
-                jogo.userId = this.user;
+                jogo.userId = this.boloes[0].user_id;
 
                 this.$http.post('/api/palpite/save', jogo).then(function (response) {
                     console.log(response.data);
@@ -48245,7 +48257,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/gustavosantos/Sites/VinuBolao/resources/assets/js/components/Classificacao.vue"
+Component.options.__file = "C:\\Users\\Atitude-DEV\\Documents\\Sites\\VinuBolao\\resources\\assets\\js\\components\\Classificacao.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Classificacao.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48283,7 +48295,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/gustavosantos/Sites/VinuBolao/resources/assets/js/components/Jogo.vue"
+Component.options.__file = "C:\\Users\\Atitude-DEV\\Documents\\Sites\\VinuBolao\\resources\\assets\\js\\components\\Jogo.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Jogo.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48321,7 +48333,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/gustavosantos/Sites/VinuBolao/resources/assets/js/components/Palpites.vue"
+Component.options.__file = "C:\\Users\\Atitude-DEV\\Documents\\Sites\\VinuBolao\\resources\\assets\\js\\components\\Palpites.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Palpites.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48346,7 +48358,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
+  return _c('div', [(_vm.boloes.length > 0 && _vm.jogos.length > 0) ? _c('div', {
     staticClass: "col-sm-12 box"
   }, [_c('div', {
     staticClass: "btn-group",
@@ -48447,9 +48459,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  })])])]), _vm._v(" "), _c('div', {
+  })])])]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "col-sm-12 box"
-  }, [(_vm.jogos.length > 0) ? _c('table', {
+  }, [(_vm.boloes.length > 0 && _vm.jogos.length > 0) ? _c('table', {
     staticClass: "table"
   }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.jogos), function(jogo, key) {
     return _c('tr', [_c('td', {
@@ -48580,7 +48592,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
+  return _c('div', [(_vm.boloes.length > 0 && _vm.jogos.length > 0) ? _c('div', {
     staticClass: "col-sm-12 box"
   }, [_c('div', {
     staticClass: "btn-group",
@@ -48681,9 +48693,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  })])])]), _vm._v(" "), (_vm.jogos.length > 0) ? _c('div', {
+  })])])]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "col-sm-12 box"
-  }, [_c('table', {
+  }, [(_vm.boloes.length > 0 && _vm.jogos.length > 0) ? _c('table', {
     staticClass: "table table-hover"
   }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.jogos), function(jogo, key) {
     return _c('tr', [_c('td', {
@@ -48784,9 +48796,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "aria-hidden": "true"
       }
     })]) : _vm._e()])])
-  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.jogos.length == 0) ? _c('div', {
-    staticClass: "col-sm-12 box"
-  }, [_vm._m(1)]) : _vm._e()])
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.boloes.length == 0 || _vm.jogos.length == 0) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_c('p', {
+    staticClass: "text-center"
+  }, [_vm._v("Não existe dados para listar!")])]) : _vm._e()])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('tr', {
     staticClass: "tr-head"
@@ -48802,12 +48816,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Horário | Estádio")]), _vm._v(" "), _c('th', {
     staticClass: "text-center"
   }, [_vm._v("Editar")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "alert alert-danger"
-  }, [_c('p', {
-    staticClass: "text-center"
-  }, [_vm._v("Não existe dados para listar!")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -48822,13 +48830,13 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(_vm.participantes.length > 0) ? _c('div', {
+  return _c('div', [(_vm.boloes.length > 0 && _vm.participantes.length > 0) ? _c('div', {
     staticClass: "col-sm-12 box"
   }, [_c('table', {
     staticClass: "table table-striped table-hover"
   }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.participantesFiltered), function(participante, key) {
     return _c('tr', [_c('td', [_vm._v(_vm._s(key + 1) + "º")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s(participante.user.name))])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(participante.pontosganhos))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(participante.placarexato))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(participante.placarvencedor))]), _vm._v(" "), _vm._m(1, true)])
-  })], 2), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)]) : _vm._e(), _vm._v(" "), (_vm.participantes.length == 0) ? _c('div', {
+  })], 2), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)]) : _vm._e(), _vm._v(" "), (_vm.boloes.length == 0 || _vm.participantes.length == 0) ? _c('div', {
     staticClass: "col-sm-12 box"
   }, [_vm._m(4)]) : _vm._e()])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -50678,7 +50686,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/*!
- * Vue.js v2.4.2
+ * Vue.js v2.4.1
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -50708,11 +50716,7 @@ function isFalse (v) {
  * Check if value is primitive
  */
 function isPrimitive (value) {
-  return (
-    typeof value === 'string' ||
-    typeof value === 'number' ||
-    typeof value === 'boolean'
-  )
+  return typeof value === 'string' || typeof value === 'number'
 }
 
 /**
@@ -50935,30 +50939,14 @@ function genStaticKeys (modules) {
  * if they are plain objects, do they have the same shape?
  */
 function looseEqual (a, b) {
-  if (a === b) { return true }
   var isObjectA = isObject(a);
   var isObjectB = isObject(b);
   if (isObjectA && isObjectB) {
     try {
-      var isArrayA = Array.isArray(a);
-      var isArrayB = Array.isArray(b);
-      if (isArrayA && isArrayB) {
-        return a.length === b.length && a.every(function (e, i) {
-          return looseEqual(e, b[i])
-        })
-      } else if (!isArrayA && !isArrayB) {
-        var keysA = Object.keys(a);
-        var keysB = Object.keys(b);
-        return keysA.length === keysB.length && keysA.every(function (key) {
-          return looseEqual(a[key], b[key])
-        })
-      } else {
-        /* istanbul ignore next */
-        return false
-      }
+      return JSON.stringify(a) === JSON.stringify(b)
     } catch (e) {
-      /* istanbul ignore next */
-      return false
+      // possible circular reference
+      return a === b
     }
   } else if (!isObjectA && !isObjectB) {
     return String(a) === String(b)
@@ -51823,7 +51811,7 @@ function mergeDataOrFn (
     return function mergedDataFn () {
       return mergeData(
         typeof childVal === 'function' ? childVal.call(this) : childVal,
-        typeof parentVal === 'function' ? parentVal.call(this) : parentVal
+        parentVal.call(this)
       )
     }
   } else if (parentVal || childVal) {
@@ -51939,10 +51927,11 @@ strats.props =
 strats.methods =
 strats.inject =
 strats.computed = function (parentVal, childVal) {
+  if (!childVal) { return Object.create(parentVal || null) }
   if (!parentVal) { return childVal }
   var ret = Object.create(null);
   extend(ret, parentVal);
-  if (childVal) { extend(ret, childVal); }
+  extend(ret, childVal);
   return ret
 };
 strats.provide = mergeDataOrFn;
@@ -53888,14 +53877,17 @@ function initComputed (vm, computed) {
   for (var key in computed) {
     var userDef = computed[key];
     var getter = typeof userDef === 'function' ? userDef : userDef.get;
-    if ("development" !== 'production' && getter == null) {
-      warn(
-        ("Getter is missing for computed property \"" + key + "\"."),
-        vm
-      );
+    if (true) {
+      if (getter === undefined) {
+        warn(
+          ("No getter function has been defined for computed property \"" + key + "\"."),
+          vm
+        );
+        getter = noop;
+      }
     }
     // create internal watcher for the computed property.
-    watchers[key] = new Watcher(vm, getter || noop, noop, computedWatcherOptions);
+    watchers[key] = new Watcher(vm, getter, noop, computedWatcherOptions);
 
     // component-defined computed properties are already defined on the
     // component prototype. We only need to define computed properties defined
@@ -53925,15 +53917,6 @@ function defineComputed (target, key, userDef) {
     sharedPropertyDefinition.set = userDef.set
       ? userDef.set
       : noop;
-  }
-  if ("development" !== 'production' &&
-      sharedPropertyDefinition.set === noop) {
-    sharedPropertyDefinition.set = function () {
-      warn(
-        ("Computed property \"" + key + "\" was assigned to but it has no setter."),
-        this
-      );
-    };
   }
   Object.defineProperty(target, key, sharedPropertyDefinition);
 }
@@ -54106,7 +54089,7 @@ function resolveInject (inject, vm) {
         }
         source = source.$parent;
       }
-      if ("development" !== 'production' && !source) {
+      if ("development" !== 'production' && !hasOwn(result, key)) {
         warn(("Injection \"" + key + "\" not found"), vm);
       }
     }
@@ -54299,12 +54282,8 @@ function createComponent (
     return createFunctionalComponent(Ctor, propsData, data, context, children)
   }
 
-  // extract listeners, since these needs to be treated as
-  // child component listeners instead of DOM listeners
+  // keep listeners
   var listeners = data.on;
-  // replace with listeners with .native modifier
-  // so it gets processed during parent component patch.
-  data.on = data.nativeOn;
 
   if (isTrue(Ctor.options.abstract)) {
     // abstract components do not keep anything
@@ -54767,12 +54746,12 @@ function initRender (vm) {
     defineReactive$$1(vm, '$attrs', parentData && parentData.attrs, function () {
       !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
     }, true);
-    defineReactive$$1(vm, '$listeners', vm.$options._parentListeners, function () {
+    defineReactive$$1(vm, '$listeners', parentData && parentData.on, function () {
       !isUpdatingChildComponent && warn("$listeners is readonly.", vm);
     }, true);
   } else {
     defineReactive$$1(vm, '$attrs', parentData && parentData.attrs, null, true);
-    defineReactive$$1(vm, '$listeners', vm.$options._parentListeners, null, true);
+    defineReactive$$1(vm, '$listeners', parentData && parentData.on, null, true);
   }
 }
 
@@ -55336,7 +55315,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.4.2';
+Vue$3.version = '2.4.1';
 
 /*  */
 
@@ -56996,7 +56975,7 @@ function genCheckboxModel (
     'if(Array.isArray($$a)){' +
       "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
           '$$i=_i($$a,$$v);' +
-      "if($$el.checked){$$i<0&&(" + value + "=$$a.concat($$v))}" +
+      "if($$c){$$i<0&&(" + value + "=$$a.concat($$v))}" +
       "else{$$i>-1&&(" + value + "=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}" +
     "}else{" + (genAssignmentCode(value, '$$c')) + "}",
     null, true
@@ -57132,11 +57111,14 @@ function remove$2 (
 }
 
 function updateDOMListeners (oldVnode, vnode) {
-  if (isUndef(oldVnode.data.on) && isUndef(vnode.data.on)) {
+  var isComponentRoot = isDef(vnode.componentOptions);
+  var oldOn = isComponentRoot ? oldVnode.data.nativeOn : oldVnode.data.on;
+  var on = isComponentRoot ? vnode.data.nativeOn : vnode.data.on;
+  if (isUndef(oldOn) && isUndef(on)) {
     return
   }
-  var on = vnode.data.on || {};
-  var oldOn = oldVnode.data.on || {};
+  on = on || {};
+  oldOn = oldOn || {};
   target$1 = vnode.elm;
   normalizeEvents(on);
   updateListeners(on, oldOn, add$1, remove$2, vnode.context);
@@ -57210,11 +57192,7 @@ function shouldUpdateValue (
 function isDirty (elm, checkVal) {
   // return true when textbox (.number and .trim) loses focus and its value is
   // not equal to the updated value
-  var notInFocus = true;
-  // #6157
-  // work around IE bug when accessing document.activeElement in an iframe
-  try { notInFocus = document.activeElement !== elm; } catch (e) {}
-  return notInFocus && elm.value !== checkVal
+  return document.activeElement !== elm && elm.value !== checkVal
 }
 
 function isInputChanged (elm, newVal) {
@@ -57994,7 +57972,6 @@ var model$1 = {
       if (isIE || isEdge) {
         setTimeout(cb, 0);
       }
-      el._vOptions = [].map.call(el.options, getValue);
     } else if (vnode.tag === 'textarea' || isTextInputType(el.type)) {
       el._vModifiers = binding.modifiers;
       if (!binding.modifiers.lazy) {
@@ -58021,9 +57998,10 @@ var model$1 = {
       // it's possible that the value is out-of-sync with the rendered options.
       // detect such cases and filter out values that no longer has a matching
       // option in the DOM.
-      var prevOptions = el._vOptions;
-      var curOptions = el._vOptions = [].map.call(el.options, getValue);
-      if (curOptions.some(function (o, i) { return !looseEqual(o, prevOptions[i]); })) {
+      var needReset = el.multiple
+        ? binding.value.some(function (v) { return hasNoMatchingOption(v, el.options); })
+        : binding.value !== binding.oldValue && hasNoMatchingOption(binding.value, el.options);
+      if (needReset) {
         trigger(el, 'change');
       }
     }
@@ -58061,6 +58039,15 @@ function setSelected (el, binding, vm) {
   if (!isMultiple) {
     el.selectedIndex = -1;
   }
+}
+
+function hasNoMatchingOption (value, options) {
+  for (var i = 0, l = options.length; i < l; i++) {
+    if (looseEqual(getValue(options[i]), value)) {
+      return false
+    }
+  }
+  return true
 }
 
 function getValue (option) {
@@ -58103,7 +58090,7 @@ var show = {
     var transition$$1 = vnode.data && vnode.data.transition;
     var originalDisplay = el.__vOriginalDisplay =
       el.style.display === 'none' ? '' : el.style.display;
-    if (value && transition$$1) {
+    if (value && transition$$1 && !isIE9) {
       vnode.data.show = true;
       enter(vnode, function () {
         el.style.display = originalDisplay;
@@ -58121,7 +58108,7 @@ var show = {
     if (value === oldValue) { return }
     vnode = locateNode(vnode);
     var transition$$1 = vnode.data && vnode.data.transition;
-    if (transition$$1) {
+    if (transition$$1 && !isIE9) {
       vnode.data.show = true;
       if (value) {
         enter(vnode, function () {
@@ -58862,6 +58849,9 @@ function parseHTML (html, options) {
     last = html;
     // Make sure we're not in a plaintext content element like script/style
     if (!lastTag || !isPlainTextElement(lastTag)) {
+      if (shouldIgnoreFirstNewline(lastTag, html)) {
+        advance(1);
+      }
       var textEnd = html.indexOf('<');
       if (textEnd === 0) {
         // Comment:
@@ -58907,9 +58897,6 @@ function parseHTML (html, options) {
         var startTagMatch = parseStartTag();
         if (startTagMatch) {
           handleStartTag(startTagMatch);
-          if (shouldIgnoreFirstNewline(lastTag, html)) {
-            advance(1);
-          }
           continue
         }
       }
@@ -59570,8 +59557,8 @@ function processAttrs (el) {
             );
           }
         }
-        if (isProp || (
-          !el.component && platformMustUseProp(el.tag, el.attrsMap.type, name)
+        if (!el.component && (
+          isProp || platformMustUseProp(el.tag, el.attrsMap.type, name)
         )) {
           addProp(el, name, value);
         } else {
@@ -60357,7 +60344,7 @@ function genText (text) {
 }
 
 function genComment (comment) {
-  return ("_e(" + (JSON.stringify(comment.text)) + ")")
+  return ("_e('" + (comment.text) + "')")
 }
 
 function genSlot (el, state) {

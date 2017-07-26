@@ -1,6 +1,6 @@
 <template v-html="rawHtml">
     <div>
-        <div class="col-sm-12 box" v-if="participantes.length > 0">
+        <div class="col-sm-12 box" v-if="boloes.length > 0 && participantes.length > 0">
             <table class="table table-striped table-hover">
                 <tr style="background-color: #666; color: #fff;">
                     <th><strong>Posição</strong></th>
@@ -23,7 +23,7 @@
             <h4><strong>Legenda</strong></h4>
             <p><strong>PG</strong> - Pontos Ganhos, <strong>PE</strong> - Placar Exato, <strong>PV</strong> - Placar Vencedor, <strong>V</strong> - Variação de posição</p>
         </div>
-        <div class="col-sm-12 box" v-if="participantes.length == 0">
+        <div class="col-sm-12 box" v-if="boloes.length == 0 || participantes.length == 0">
             <div class="alert alert-danger">
                 <p class="text-center">Não existe dados para listar!</p>
             </div>
@@ -35,15 +35,17 @@
     export default {
         data() {
             return {
+                boloes: JSON.parse(this.bolao),
+                participantes: [],
                 order: {
                     keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
                     sort: ['desc', 'desc', 'desc']
-                },
-                participantes: []
+                }
             }
         },
+        props: ['bolao'],
         mounted() {
-            this.getParticipantes();
+            if(this.boloes.length > 0) this.updatedData();
         },
         computed: {
             participantesFiltered(){
@@ -56,6 +58,14 @@
                     this.participantes = response.data;
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);
+                });
+            },
+
+            updatedData() {
+                this.$http.get('/api/participante/updated_data').then((response) => {
+                    this.getParticipantes();
+                }).catch((error) => {
+                    console.error('!Get Updated Data', error);
                 });
             }
         }

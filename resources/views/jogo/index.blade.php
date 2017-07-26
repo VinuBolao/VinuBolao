@@ -6,5 +6,5 @@
         <p>Aqui estão os jogos filtrados por campeonato e rodada, preencha os resultados.</p>
     </div>
 
-    <jogo user="{{ Auth::id() }}"></jogo>
+    <jogo bolao="{{ $bolao }}"></jogo>
 @endcomponent

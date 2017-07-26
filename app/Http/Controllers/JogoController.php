@@ -2,9 +2,9 @@
 
 namespace Bolao\Http\Controllers;
 
-use Bolao\Campeonato;
-use Bolao\Jogo;
+use Bolao\Bolao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JogoController extends Controller
 {
@@ -15,7 +15,8 @@ class JogoController extends Controller
      */
     public function index()
     {
-        return view('jogo.index');
+        $bolao = Bolao::where('user_id', Auth::id())->get();
+        return view('jogo.index', compact('bolao'));
     }
 
     /**

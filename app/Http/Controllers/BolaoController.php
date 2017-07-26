@@ -2,7 +2,6 @@
 
 namespace Bolao\Http\Controllers;
 
-use Bolao\User;
 use Bolao\Bolao;
 use Bolao\Campeonato;
 use Bolao\Participante;
@@ -29,7 +28,8 @@ class BolaoController extends Controller
 
     public function classificacao()
     {
-        return view('classificacao.index');
+        $bolao = Bolao::where('user_id', Auth::id())->get();
+        return view('classificacao.index', compact('bolao'));
     }
 
     /**

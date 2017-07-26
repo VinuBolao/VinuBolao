@@ -1,52 +1,3 @@
-<style>
-    .tr-head {
-        background-color: #666;
-        color: #fff;
-    }
-    .input-placar {
-        width: 35px;
-    }
-    .td-jogo {
-        width: 100px;
-        text-align: center;
-    }
-    .placar-casa, .placar-fora {
-        font-size: 20px;
-    }
-    .placar-casa {
-        padding-right: 11px;
-    }
-    .placar-fora {
-        padding-left: 10px;
-    }
-    .glyphicon.glyphicon-remove {
-        color: #d9534f;
-    }
-    .glyphicon.glyphicon-ok {
-        color: #398439;
-    }
-    .dropdown-rodada-ol{
-        left: -39px;
-        min-width: 170px;
-        height: 150px;
-        overflow-y: auto;
-    }
-    .dropdown-rodada-li{
-        display: inline-table;
-        border: 1px solid #cccecf;
-        width: 30%;
-        margin-left: 4px;
-        margin-bottom: 5px;
-        padding: 0;
-        font-size: 14px;
-        border-radius: 2px;
-    }
-    .dropdown-rodada-a {
-        padding: 5px !important;
-        text-align: center;
-    }
-</style>
-
 <template>
     <div>
         <div class="col-sm-12 box">
@@ -190,3 +141,52 @@
         }
     }
 </script>
+
+<style scoped>
+    .tr-head {
+        background-color: #666;
+        color: #fff;
+    }
+    .input-placar {
+        width: 35px;
+    }
+    .td-jogo {
+        width: 100px;
+        text-align: center;
+    }
+    .placar-casa, .placar-fora {
+        font-size: 20px;
+    }
+    .placar-casa {
+        padding-right: 11px;
+    }
+    .placar-fora {
+        padding-left: 10px;
+    }
+    .glyphicon.glyphicon-remove {
+        color: #d9534f;
+    }
+    .glyphicon.glyphicon-ok {
+        color: #398439;
+    }
+    .dropdown-rodada-ol{
+        left: -39px;
+        min-width: 170px;
+        height: 150px;
+        overflow-y: auto;
+    }
+    .dropdown-rodada-li{
+        display: inline-table;
+        border: 1px solid #cccecf;
+        width: 30%;
+        margin-left: 4px;
+        margin-bottom: 5px;
+        padding: 0;
+        font-size: 14px;
+        border-radius: 2px;
+    }
+    .dropdown-rodada-a {
+        padding: 5px !important;
+        text-align: center;
+    }
+</style>

@@ -70,6 +70,9 @@ class JogoController extends Controller
                             $dados['pontosganhos'] = $dados['pontosganhos'] + 7;
                             $dados['placarvencedor'] = $dados['placarvencedor'] + 1;
                             break;
+                        case ($palpite->palpite_casa == null && $palpite->palpite_fora == null):
+                            $dados['pontosganhos'] = $dados['pontosganhos'] + 0;
+                            $dados['placarvencedor'] = $dados['placarvencedor'] + 0;
                     }
 
                 }

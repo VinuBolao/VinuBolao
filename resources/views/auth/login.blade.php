@@ -8,9 +8,9 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="text-center">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size: 5em; padding-top: 20px;"></span>
+                    <i class="flaticon-footbal-pin" style="font-size: 6em; color: #333333"></i>
                 </div>
-                <div class="panel-heading text-center" style="font-size: 2em">VinuBolão</div>
+                <div class="panel-heading text-center" style="font-size: 2em; padding: 0 10px 15px">VinuBolão</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}

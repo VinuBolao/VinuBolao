@@ -67,7 +67,7 @@ class JogoController extends Controller
                         case ($palpite->jogo->placar_casa == $palpite->jogo->placar_fora && $palpite->palpite_casa == $palpite->palpite_fora):
                         case ($palpite->jogo->placar_casa > $palpite->jogo->placar_fora && $palpite->palpite_casa > $palpite->palpite_fora):
                         case ($palpite->jogo->placar_casa < $palpite->jogo->placar_fora && $palpite->palpite_casa < $palpite->palpite_fora):
-                        $dados['pontosganhos'] = $dados['pontosganhos'] + 7;
+                            $dados['pontosganhos'] = $dados['pontosganhos'] + 7;
                             $dados['placarvencedor'] = $dados['placarvencedor'] + 1;
                             break;
                     }

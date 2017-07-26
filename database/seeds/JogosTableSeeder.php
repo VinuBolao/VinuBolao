@@ -1619,8 +1619,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-29 16:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -1629,8 +1629,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-29 19:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -1639,8 +1639,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-29 21:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -1649,8 +1649,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-30 16:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -1659,8 +1659,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-30 11:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -1669,8 +1669,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-30 16:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -1679,8 +1679,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-30 16:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -1689,8 +1689,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-30 16:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -1699,8 +1699,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-30 19:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -1709,8 +1709,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 17,
                 "inicio" => "2017-07-31 20:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -1719,8 +1719,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-02 19:30:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -1729,8 +1729,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-02 19:30:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -1739,8 +1739,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-02 21:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -1749,8 +1749,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-02 21:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -1759,8 +1759,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-02 21:45:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -1769,8 +1769,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-02 21:45:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -1779,8 +1779,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-02 21:45:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -1789,8 +1789,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-03 19:30:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -1799,8 +1799,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-03 19:30:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -1809,8 +1809,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 18,
                 "inicio" => "2017-08-03 21:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -1819,8 +1819,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-05 19:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -1829,8 +1829,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-06 11:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -1839,8 +1839,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-06 16:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -1849,8 +1849,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-06 16:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -1859,8 +1859,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-06 16:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -1869,8 +1869,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-06 16:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -1879,8 +1879,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-06 16:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -1889,8 +1889,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-06 19:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -1899,8 +1899,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-06 19:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -1909,8 +1909,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 19,
                 "inicio" => "2017-08-07 20:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -1919,8 +1919,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-12 16:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -1929,8 +1929,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-12 19:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -1939,8 +1939,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-13 16:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -1949,8 +1949,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-13 11:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -1959,8 +1959,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-13 16:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -1969,8 +1969,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-13 16:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -1979,8 +1979,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-13 16:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -1989,8 +1989,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-13 19:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -1999,8 +1999,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-14 20:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -2009,8 +2009,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 20,
                 "inicio" => "2017-08-23 19:30:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -2019,8 +2019,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -2029,8 +2029,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -2039,8 +2039,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -2049,8 +2049,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -2059,8 +2059,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -2069,8 +2069,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -2079,8 +2079,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -2089,8 +2089,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -2099,8 +2099,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -2109,8 +2109,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 21,
                 "inicio" => "2017-08-20 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -2119,8 +2119,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -2129,8 +2129,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -2139,8 +2139,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -2149,8 +2149,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -2159,8 +2159,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -2169,8 +2169,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -2179,8 +2179,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -2189,8 +2189,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -2199,8 +2199,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -2209,8 +2209,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 22,
                 "inicio" => "2017-08-27 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -2219,8 +2219,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -2229,8 +2229,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -2239,8 +2239,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -2249,8 +2249,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -2259,8 +2259,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -2269,8 +2269,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -2279,8 +2279,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -2289,8 +2289,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -2299,8 +2299,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -2309,8 +2309,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 23,
                 "inicio" => "2017-09-10 00:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -2319,8 +2319,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -2329,8 +2329,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -2339,8 +2339,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -2349,8 +2349,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -2359,8 +2359,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -2369,8 +2369,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -2379,8 +2379,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -2389,8 +2389,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -2399,8 +2399,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -2409,8 +2409,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 24,
                 "inicio" => "2017-09-17 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -2419,8 +2419,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -2429,8 +2429,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -2439,8 +2439,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -2449,8 +2449,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -2459,8 +2459,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -2469,8 +2469,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -2479,8 +2479,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -2489,8 +2489,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -2499,8 +2499,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -2509,8 +2509,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 25,
                 "inicio" => "2017-09-24 00:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -2519,8 +2519,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -2529,8 +2529,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -2539,8 +2539,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -2549,8 +2549,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -2559,8 +2559,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -2569,8 +2569,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -2579,8 +2579,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -2589,8 +2589,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -2599,8 +2599,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -2609,8 +2609,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 26,
                 "inicio" => "2017-09-27 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -2619,8 +2619,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -2629,8 +2629,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -2639,8 +2639,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -2649,8 +2649,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -2659,8 +2659,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -2669,8 +2669,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -2679,8 +2679,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -2689,8 +2689,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -2699,8 +2699,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -2709,8 +2709,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 27,
                 "inicio" => "2017-10-01 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -2719,8 +2719,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -2729,8 +2729,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -2739,8 +2739,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -2749,8 +2749,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -2759,8 +2759,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -2769,8 +2769,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -2779,8 +2779,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -2789,8 +2789,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -2799,8 +2799,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -2809,8 +2809,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 28,
                 "inicio" => "2017-10-15 00:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -2819,8 +2819,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -2829,8 +2829,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -2839,8 +2839,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -2849,8 +2849,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -2859,8 +2859,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -2869,8 +2869,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -2879,8 +2879,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -2889,8 +2889,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -2899,8 +2899,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -2909,8 +2909,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 29,
                 "inicio" => "2017-10-18 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -2919,8 +2919,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -2929,8 +2929,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -2939,8 +2939,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -2949,8 +2949,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -2959,8 +2959,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -2969,8 +2969,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -2979,8 +2979,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -2989,8 +2989,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -2999,8 +2999,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -3009,8 +3009,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 30,
                 "inicio" => "2017-10-22 00:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -3019,8 +3019,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -3029,8 +3029,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -3039,8 +3039,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -3049,8 +3049,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -3059,8 +3059,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -3069,8 +3069,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -3079,8 +3079,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -3089,8 +3089,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -3099,8 +3099,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -3109,8 +3109,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 31,
                 "inicio" => "2017-10-29 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -3119,8 +3119,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -3129,8 +3129,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -3139,8 +3139,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -3149,8 +3149,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -3159,8 +3159,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -3169,8 +3169,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -3179,8 +3179,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -3189,8 +3189,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -3199,8 +3199,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -3209,8 +3209,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 32,
                 "inicio" => "2017-11-05 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -3219,8 +3219,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -3229,8 +3229,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -3239,8 +3239,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -3249,8 +3249,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -3259,8 +3259,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -3269,8 +3269,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -3279,8 +3279,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -3289,8 +3289,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -3299,8 +3299,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -3309,8 +3309,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 33,
                 "inicio" => "2017-11-08 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -3319,8 +3319,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -3329,8 +3329,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -3339,8 +3339,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -3349,8 +3349,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -3359,8 +3359,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -3369,8 +3369,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -3379,8 +3379,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -3389,8 +3389,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -3399,8 +3399,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -3409,8 +3409,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 34,
                 "inicio" => "2017-11-12 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -3419,8 +3419,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -3429,8 +3429,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -3439,8 +3439,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -3449,8 +3449,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -3459,8 +3459,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -3469,8 +3469,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -3479,8 +3479,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -3489,8 +3489,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -3499,8 +3499,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -3509,8 +3509,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 35,
                 "inicio" => "2017-11-15 00:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -3519,8 +3519,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -3529,8 +3529,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -3539,8 +3539,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -3549,8 +3549,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ],
             [
@@ -3559,8 +3559,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -3569,8 +3569,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -3579,8 +3579,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -3589,8 +3589,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -3599,8 +3599,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -3609,8 +3609,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 36,
                 "inicio" => "2017-11-19 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -3619,8 +3619,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 102,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 152
             ],
             [
@@ -3629,8 +3629,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 112,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 172
             ],
             [
@@ -3639,8 +3639,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 72,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 12
             ],
             [
@@ -3649,8 +3649,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 132,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 52
             ],
             [
@@ -3659,8 +3659,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 122,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 2
             ],
             [
@@ -3669,8 +3669,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 92,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 182
             ],
             [
@@ -3679,8 +3679,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 142,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 192
             ],
             [
@@ -3689,8 +3689,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 82,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 162
             ],
             [
@@ -3699,8 +3699,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 32,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 22
             ],
             [
@@ -3709,8 +3709,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 37,
                 "inicio" => "2017-11-26 00:00:00",
                 "timecasa_id" => 42,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 62
             ],
             [
@@ -3719,8 +3719,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 52,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 92
             ],
             [
@@ -3729,8 +3729,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 182,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 142
             ],
             [
@@ -3739,8 +3739,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 32
             ],
             [
@@ -3749,8 +3749,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 42
             ],
             [
@@ -3759,8 +3759,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 12,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 122
             ],
             [
@@ -3769,8 +3769,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 22,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 132
             ],
             [
@@ -3779,8 +3779,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 172,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 72
             ],
             [
@@ -3789,8 +3789,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 192,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 102
             ],
             [
@@ -3799,8 +3799,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 2,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 112
             ],
             [
@@ -3809,8 +3809,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 38,
                 "inicio" => "2017-12-03 00:00:00",
                 "timecasa_id" => 62,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => null,
+                "placar_fora" => null,
                 "timefora_id" => 82
             ]
         ];

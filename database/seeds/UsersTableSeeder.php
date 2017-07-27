@@ -14,23 +14,76 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
-                'id' => 2,
-                'name' => 'Gustavo Santos',
-                'email' => 'gustavo@teste.com',
-                'master' => 1,
-                'password' => bcrypt('123456')
+                "id" => 2,
+                "name" => "Gustavo Santos",
+                "email" => "gtvslima@gmail.com",
+                "master" => 1
             ],
             [
-                'id' => 12,
-                'name' => 'Felipe Santos',
-                'email' => 'felipe@teste.com',
-                'password' => bcrypt('123456')
+                "id" => 22,
+                "name" => "Victor Hugo",
+                "email" => "victorhugo.jsantos@gmail.com",
+                "master" => 1
             ],
             [
-                'id' => 22,
-                'name' => 'Victor Hugo',
-                'email' => 'victor@teste.com',
-                'password' => bcrypt('123456')
+                "id" => 32,
+                "name" => "Marcelo de Melo Lima",
+                "email" => "marceloml1804@gmail.com",
+                "master" => 0
+            ],
+            [
+                "id" => 42,
+                "name" => "Felipe Lima",
+                "email" => "fslima06@gmail.com",
+                "master" => 1
+            ],
+            [
+                "id" => 52,
+                "name" => "Douglas Santos",
+                "email" => "douglasf.s791@gmail.com",
+                "master" => 0
+            ],
+            [
+                "id" => 62,
+                "name" => "Roberto Melo Lima",
+                "email" => "roberto.melolima@gmail.com",
+                "master" => 0
+            ],
+            [
+                "id" => 72,
+                "name" => "Milton de Melo Lima",
+                "email" => "miltao601957@gmail.com",
+                "master" => 0
+            ],
+            [
+                "id" => 82,
+                "name" => "Denis Santos de Lima",
+                "email" => "denis1703@gmail.com",
+                "master" => 0
+            ],
+            [
+                "id" => 92,
+                "name" => "Thiago Moreira",
+                "email" => "thiago.sanvel10@gmail.com",
+                "master" => 0
+            ],
+            [
+                "id" => 102,
+                "name" => "Moacir de Melo Lima",
+                "email" => "mlmoacir1910@gmail.com",
+                "master" => 0
+            ],
+            [
+                "id" => 112,
+                "name" => "Leandro Reis",
+                "email" => "leandro0318@gmail.com",
+                "master" => 0
+            ],
+            [
+                "id" => 122,
+                "name" => "Fabrício Lima",
+                "email" => "fabriciodelima@gmail.com",
+                "master" => 0
             ]
         ];
 

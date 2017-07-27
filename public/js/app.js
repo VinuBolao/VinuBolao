@@ -17611,7 +17611,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['bolao'],
     mounted: function mounted() {
-        if (this.boloes.length > 0) this.updatedData();
+        if (this.boloes.length > 0) {
+            this.updatedData();
+            this.getParticipantes();
+        }
     },
 
     computed: {
@@ -17630,10 +17633,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updatedData: function updatedData() {
-            var _this2 = this;
-
             this.$http.get('/api/participante/updated_data').then(function (response) {
-                _this2.getParticipantes();
+                console.log(response.data);
             }).catch(function (error) {
                 console.error('!Get Updated Data', error);
             });

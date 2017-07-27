@@ -53,11 +53,9 @@ class ParticipanteController extends Controller
     {
         $palpites = Palpite::with('jogo')->where(['user_id' => $userId])->get();
 
-        $dados = [];
+        $dados = ['pontosganhos' => 0, 'placarexato' => 0, 'placarvencedor' => 0];
 
         if(count($palpites) > 0){
-            $dados = ['pontosganhos' => 0, 'placarexato' => 0, 'placarvencedor' => 0];
-
             foreach ($palpites as $palpite) {
                 if(isset($palpite->jogo->placar_casa) && isset($palpite->jogo->placar_fora)){
 

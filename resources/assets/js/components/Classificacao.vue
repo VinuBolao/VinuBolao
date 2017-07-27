@@ -45,7 +45,10 @@
         },
         props: ['bolao'],
         mounted() {
-            if(this.boloes.length > 0) this.updatedData();
+            if(this.boloes.length > 0) {
+                this.updatedData();
+                this.getParticipantes();
+            }
         },
         computed: {
             participantesFiltered(){
@@ -63,7 +66,7 @@
 
             updatedData() {
                 this.$http.get('/api/participante/updated_data').then((response) => {
-                    this.getParticipantes();
+                    console.log(response.data);
                 }).catch((error) => {
                     console.error('!Get Updated Data', error);
                 });

@@ -4,14 +4,14 @@
             <div class="btn-group" role="group">
                 <form class="form-inline">
                     <div class="form-group">
-                        <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getPalpites(user, campeonato.id, rodada);">
+                        <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getPalpites(user.user_id, campeonato.id, rodada);">
                             <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
                         </select>
                     </div>
                 </form>
             </div>
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user, campeonato.id, rodada - 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user.user_id, campeonato.id, rodada - 1);">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </button>
                 <div class="btn-group">
@@ -20,11 +20,11 @@
                     </button>
                     <ol class="dropdown-menu dropdown-rodada-ol">
                         <li class="dropdown-rodada-li" v-for="n in 38">
-                            <a @click="getPalpites(user, campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
+                            <a @click="getPalpites(user.user_id, campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
                         </li>
                     </ol>
                 </div>
-                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(user, campeonato.id, rodada + 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(user.user_id, campeonato.id, rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>

@@ -28,8 +28,8 @@ class BolaoController extends Controller
 
     public function classificacao()
     {
-        $bolao = Bolao::where('user_id', Auth::id())->get();
-        return view('classificacao.index', compact('bolao'));
+        $participantes = Participante::where('user_id', Auth::id())->first();
+        return view('classificacao.index', compact('participantes'));
     }
 
     /**

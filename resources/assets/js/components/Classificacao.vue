@@ -1,6 +1,6 @@
 <template v-html="rawHtml">
     <div>
-        <div class="col-sm-12 box" v-if="boloes.length > 0 && participantes.length > 0">
+        <div class="col-sm-12 box" v-if="user && participantes.length > 0">
             <table class="table table-striped table-hover">
                 <tr style="background-color: #666; color: #fff;">
                     <th><strong>Posição</strong></th>
@@ -23,7 +23,7 @@
             <h4><strong>Legenda</strong></h4>
             <p><strong>PG</strong> - Pontos Ganhos, <strong>PE</strong> - Placar Exato, <strong>PV</strong> - Placar Vencedor, <strong>V</strong> - Variação de posição</p>
         </div>
-        <div class="col-sm-12 box" v-if="boloes.length == 0 || participantes.length == 0">
+        <div class="col-sm-12 box" v-else="">
             <div class="alert alert-danger">
                 <p class="text-center">Não existe dados para listar!</p>
             </div>
@@ -35,7 +35,7 @@
     export default {
         data() {
             return {
-                boloes: JSON.parse(this.bolao),
+                user: (this.users) ? JSON.parse(this.users) : null,
                 participantes: [],
                 order: {
                     keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
@@ -43,12 +43,9 @@
                 }
             }
         },
-        props: ['bolao'],
+        props: ['users'],
         mounted() {
-            if(this.boloes.length > 0) {
-                this.updatedData();
-                this.getParticipantes();
-            }
+            this.updatedData();
         },
         computed: {
             participantesFiltered(){
@@ -66,8 +63,9 @@
 
             updatedData() {
                 this.$http.get('/api/participante/updated_data').then((response) => {
-                    console.log(response.data);
+                    this.getParticipantes();
                 }).catch((error) => {
+                    this.getParticipantes();
                     console.error('!Get Updated Data', error);
                 });
             }

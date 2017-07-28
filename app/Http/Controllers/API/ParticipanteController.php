@@ -38,8 +38,6 @@ class ParticipanteController extends Controller
                     'placarexato' => $dados['placarexato']
                 ]);
             }
-
-            ($saved) ? true : false;
         }
 
         if($saved){

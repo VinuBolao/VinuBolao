@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="col-sm-12 box" v-if="boloes.length > 0 && jogos.length > 0">
+        <div class="col-sm-12 box" v-if="user && jogos.length > 0">
             <div class="btn-group" role="group">
                 <form class="form-inline">
                     <div class="form-group">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="col-sm-12 box">
-            <table class="table table-hover" v-if="boloes.length > 0 && jogos.length > 0">
+            <table class="table table-hover" v-if="user && jogos.length > 0">
                 <tr class="tr-head">
                     <th class="text-center">Status</th>
                     <th colspan="3" class="text-center">Jogos</th>
@@ -70,7 +70,7 @@
                 </tr>
             </table>
 
-            <div class="alert alert-danger" v-if="boloes.length == 0 || jogos.length == 0">
+            <div class="alert alert-danger" v-else="">
                 <p class="text-center">Não existe dados para listar!</p>
             </div>
         </div>
@@ -81,16 +81,16 @@
     export default {
         data() {
             return {
-                boloes: JSON.parse(this.bolao),
+                user: (this.users) ? JSON.parse(this.users) : null,
                 jogos: [],
                 rodada: null,
                 campeonato: {},
                 campeonatos: []
             }
         },
-        props: ['bolao'],
+        props: ['users'],
         mounted() {
-            if(this.boloes.length > 0) this.getCampeontatos();
+            if(this.user) this.getCampeontatos();
         },
         methods: {
             getCampeontatos(id) {
@@ -128,7 +128,7 @@
                     jogo.placar_casa = (id >= 0) ? null : jogo.placar_real_casa;
                     jogo.placar_fora = (id >= 0) ? null : jogo.placar_real_fora;
 
-                    jogo.userId = this.boloes[0].user_id;
+                    jogo.userId = this.user.user_id;
 
                     this.$http.post('/api/jogo/update', jogo).then((response) => {
                         console.log(response.data);

@@ -12,7 +12,7 @@ class Participante extends Model
 
     public function user()
     {
-        return $this->belongsTo('Bolao\User', 'user_id', 'id')->orderBy('name');
+        return $this->belongsTo('Bolao\User', 'user_id', 'id');
     }
 
     public function bolao()

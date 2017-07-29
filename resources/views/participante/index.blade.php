@@ -23,29 +23,7 @@
 
     <div class="col-sm-12 box">
         @if(!$participantes->isEmpty())
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th colspan="3" class="text-center">Participantes</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($participantes as $participante)
-                    <tr>
-                        <td class="text-center">{{ $participante->user->name }}</td>
-                        <td class="text-right">Desde: {{ $participante->created_at->format('d/m/Y') }}</td>
-                        <td class="text-center">
-                            <form action="{{ route('participante.destroy', $participante->id) }}" method="post">
-                                {!! csrf_field() !!}
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="submit" value="Excluir" class="btn btn-xs btn-danger">
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <form id="formParticipante" action="{{ route('participante.store') }}" method="post" class="form-horizontal">
+            <form id="formParticipante" action="{{ route('participante.store') }}" method="post" class="form-horizontal" style="margin-bottom: 15px">
                 <div class="row">
                     <div class="col-sm-9">
                         {{ csrf_field() }}
@@ -62,6 +40,29 @@
                     </div>
                 </div>
             </form>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Participantes</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($participantes as $key => $participante)
+                    <tr>
+                        <td class="text-center">{{ $key + 1 }}</td>
+                        <td class="text-center">{{ $participante->user->name }}</td>
+                        <td class="text-right">Desde: {{ $participante->created_at->format('d/m/Y') }}</td>
+                        <td class="text-center">
+                            <form action="{{ route('participante.destroy', $participante->id) }}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="submit" value="Excluir" class="btn btn-xs btn-danger">
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         @else
             <div class="alert alert-danger">
                 <p class="text-center">Você não participa de nenhum bolão ainda.</p>

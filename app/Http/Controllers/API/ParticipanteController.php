@@ -58,16 +58,16 @@ class ParticipanteController extends Controller
                 if(isset($palpite->jogo->placar_casa) && isset($palpite->jogo->placar_fora)){
 
                     switch ($palpite){
-                        case ($palpite->palpite_casa == null && $palpite->palpite_fora == null):
+                        case ($palpite->palpite_casa === null && $palpite->palpite_fora === null):
                             $dados['placarexato'] = $dados['placarexato'] + 0;
                             $dados['pontosganhos'] = $dados['pontosganhos'] + 0;
                             $dados['placarvencedor'] = $dados['placarvencedor'] + 0;
                             break;
-                        case ($palpite->jogo->placar_casa == $palpite->palpite_casa && $palpite->jogo->placar_fora == $palpite->palpite_fora):
+                        case ($palpite->jogo->placar_casa === $palpite->palpite_casa && $palpite->jogo->placar_fora === $palpite->palpite_fora):
                             $dados['pontosganhos'] = $dados['pontosganhos'] + 10;
                             $dados['placarexato'] = $dados['placarexato'] + 1;
                             break;
-                        case ($palpite->jogo->placar_casa == $palpite->jogo->placar_fora && $palpite->palpite_casa == $palpite->palpite_fora):
+                        case ($palpite->jogo->placar_casa === $palpite->jogo->placar_fora && $palpite->palpite_casa === $palpite->palpite_fora):
                         case ($palpite->jogo->placar_casa > $palpite->jogo->placar_fora && $palpite->palpite_casa > $palpite->palpite_fora):
                         case ($palpite->jogo->placar_casa < $palpite->jogo->placar_fora && $palpite->palpite_casa < $palpite->palpite_fora):
                             $dados['pontosganhos'] = $dados['pontosganhos'] + 7;

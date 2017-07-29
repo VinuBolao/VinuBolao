@@ -14,4 +14,9 @@ class Participante extends Model
     {
         return $this->belongsTo('Bolao\User', 'user_id', 'id')->orderBy('name');
     }
+
+    public function bolao()
+    {
+        return $this->belongsTo('Bolao\Bolao', 'bolao_id', 'id');
+    }
 }

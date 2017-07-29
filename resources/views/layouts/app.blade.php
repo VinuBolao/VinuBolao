@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/flaticon.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -30,7 +29,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand"  href="{{ route('bolao.index') }}">VinuBolão</a>
+                    <a class="navbar-brand"  href="{{ route('bolao.index') }}" style="color: #fff">
+                        <i class="flaticon-ball-5"></i> VinuBolão
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

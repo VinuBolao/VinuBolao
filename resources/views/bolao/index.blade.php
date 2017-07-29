@@ -2,13 +2,15 @@
     @slot('title') Home @endslot
 
     <div class="col-sm-12 box">
+        @if (Auth::user()->master)
         <a href="{{ route('bolao.create') }}" class="btn btn-primary" role="button">Novo</a>
+        @endif
         <h2>Lista</h2>
-        <p>Veja sua posição em relação aos outros participantes!</p>
+        <p>Veja a lista de bolões que você participa!</p>
     </div>
 
     <div class="col-sm-12 box">
-        @if(!$boloes->isEmpty())
+        @if(count($boloes) > 0)
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -28,6 +30,7 @@
                         <td>{{ $bolao->campeonato->nome }} - Série {{ $bolao->campeonato->serie }}</td>
                         <td>{{ $bolao->inicio }}</td>
                         <td class="hidden-sm hidden-xs">{{ $bolao->descricao }}</td>
+                        @if (Auth::user()->master)
                         <td>
                             <a href="{{ route('participante.index') }}" data-toggle="tooltip" data-placement="top" title="Participantes">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -38,6 +41,7 @@
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </a>
                         </td>
+                        @endif
                         {{--<td>--}}
                             {{--<form action="{{ route('bolao.destroy', $bolao->id) }}" method="post">--}}
                                 {{--{!! csrf_field() !!}--}}

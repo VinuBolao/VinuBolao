@@ -16,7 +16,7 @@
                 </button>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ rodada }}ª Rodada
+                        {{ rodada }}ª Rodada <span class="caret"></span>
                     </button>
                     <ol class="dropdown-menu dropdown-rodada-ol">
                         <li class="dropdown-rodada-li" v-for="n in 38">

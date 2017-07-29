@@ -19,7 +19,7 @@
                     <td><span class="glyphicon glyphicon-stop icon-blue" aria-hidden="true"></span></td>
                 </tr>
             </table>
-
+            <hr>
             <h4><strong>Legenda</strong></h4>
             <p><strong>PG</strong> - Pontos Ganhos, <strong>PE</strong> - Placar Exato, <strong>PV</strong> - Placar Vencedor, <strong>V</strong> - Variação de posição</p>
         </div>

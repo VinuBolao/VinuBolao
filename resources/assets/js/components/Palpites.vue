@@ -128,6 +128,7 @@
                     jogo.userId = this.user.user_id;
 
                     this.$http.post('/api/palpite/save', jogo).then((response) => {
+                        this.getPalpites(this.user.user_id, this.campeonato.id, this.rodada);
                         console.log(response.data);
                     }).catch((error) => {
                         console.error('!Save Palpite', error);

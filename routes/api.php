@@ -25,6 +25,7 @@ Route::group(['prefix' => 'jogo'], function (){
 
 Route::group(['prefix' => 'participante'], function (){
     Route::get('updated_data', 'API\ParticipanteController@updated_data');
+    Route::get('get_dados/{id}/{rodada?}', 'API\ParticipanteController@get_dados');
     Route::get('get_bolao/{id}', 'API\ParticipanteController@get_bolao')->where('id', '[0-9]+');
     Route::get('get/{id?}', 'API\ParticipanteController@get')->where('id', '[0-9]+');
 });

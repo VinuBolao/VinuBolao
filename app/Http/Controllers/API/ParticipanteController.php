@@ -47,9 +47,15 @@ class ParticipanteController extends Controller
         }
     }
 
-    private function get_dados($userId)
+    public function get_dados($userId, $rodada = null)
     {
-        $palpites = Palpite::with('jogo')->where(['user_id' => $userId])->get();
+        if($rodada){
+            $palpites = Palpite::with(['jogo' => function ($query) use ($rodada) {
+                $query->where('rodada', '=', $rodada);
+            }])->where(['user_id' => $userId])->get();
+        } else {
+            $palpites = Palpite::with('jogo')->where(['user_id' => $userId])->get();
+        }
 
         $dados = ['pontosganhos' => 0, 'placarexato' => 0, 'placarvencedor' => 0];
 

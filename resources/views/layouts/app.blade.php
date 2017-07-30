@@ -40,7 +40,7 @@
                         <li>
                             <a href="{{ route('bolao.index') }}">Home</a>
                         </li>
-                        <li>
+                        <li @if(Request::segment(1) == 'classificacao') class="active" @endif>
                             <a href="{{ route('classificacao') }}">Classificação</a>
                         </li>
                         <li @if(Request::segment(1) == 'jogo') class="active" @endif>
@@ -52,9 +52,6 @@
                         <li @if(Request::segment(1) == 'regulamento') class="active" @endif>
                             <a href="{{ route('regulamento') }}">Regulamento</a>
                         </li>
-                        {{--<li>--}}
-                            {{--<a href="">Dashboard</a>--}}
-                        {{--</li>--}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->

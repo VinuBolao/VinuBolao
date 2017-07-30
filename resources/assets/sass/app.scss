@@ -18,3 +18,11 @@
 .container .text-muted {
   margin: 20px 0;
 }
+
+.glyphicon-refresh {
+  animation: spinIt 1.5s infinite linear;
+}
+@keyframes spinIt {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
+}

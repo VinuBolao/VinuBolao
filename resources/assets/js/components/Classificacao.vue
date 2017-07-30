@@ -1,31 +1,36 @@
 <template v-html="rawHtml">
     <div>
-        <div class="col-sm-12 box" v-if="user && participantes.length > 0">
-            <table class="table table-striped table-hover">
-                <tr style="background-color: #666; color: #fff;">
-                    <th><strong>Posição</strong></th>
-                    <th><strong>Participante</strong></th>
-                    <th><strong>PG</strong></th>
-                    <th><strong>PE</strong></th>
-                    <th><strong>PV</strong></th>
-                    <th><strong>V</strong></th>
-                </tr>
-                <tr v-for="(participante, key) in participantesFiltered">
-                    <td>{{ key + 1 }}º</td>
-                    <td><b>{{ participante.user.name }}</b></td>
-                    <td>{{ participante.pontosganhos }}</td>
-                    <td>{{ participante.placarexato }}</td>
-                    <td>{{ participante.placarvencedor }}</td>
-                    <td><span class="glyphicon glyphicon-stop icon-blue" aria-hidden="true"></span></td>
-                </tr>
-            </table>
-            <hr>
-            <h4><strong>Legenda</strong></h4>
-            <p><strong>PG</strong> - Pontos Ganhos, <strong>PE</strong> - Placar Exato, <strong>PV</strong> - Placar Vencedor, <strong>V</strong> - Variação de posição</p>
+        <div class="col-sm-12 box" v-if="dataLoading">
+            <i class="glyphicon glyphicon-refresh"></i> Loading...
         </div>
-        <div class="col-sm-12 box" v-else="">
-            <div class="alert alert-danger">
-                <p class="text-center">Não existe dados para listar!</p>
+        <div class="col-sm-12 box" v-if="!dataLoading">
+            <div class="col-sm-12 box" v-if="!user && participantes.length == 0">
+                <div class="alert alert-danger">
+                    <p class="text-center">Não existe dados para listar!</p>
+                </div>
+            </div>
+            <div class="col-sm-12 box" v-else="">
+                <table class="table table-striped table-hover">
+                    <tr style="background-color: #666; color: #fff;">
+                        <th><strong>Posição</strong></th>
+                        <th><strong>Participante</strong></th>
+                        <th><strong>PG</strong></th>
+                        <th><strong>PE</strong></th>
+                        <th><strong>PV</strong></th>
+                        <th><strong>V</strong></th>
+                    </tr>
+                    <tr v-for="(participante, key) in participantesFiltered">
+                        <td>{{ key + 1 }}º</td>
+                        <td><b>{{ participante.user.name }}</b></td>
+                        <td>{{ participante.pontosganhos }}</td>
+                        <td>{{ participante.placarexato }}</td>
+                        <td>{{ participante.placarvencedor }}</td>
+                        <td><span class="glyphicon glyphicon-stop icon-blue" aria-hidden="true"></span></td>
+                    </tr>
+                </table>
+                <hr>
+                <h4><strong>Legenda</strong></h4>
+                <p><strong>PG</strong> - Pontos Ganhos, <strong>PE</strong> - Placar Exato, <strong>PV</strong> - Placar Vencedor, <strong>V</strong> - Variação de posição</p>
             </div>
         </div>
     </div>
@@ -35,6 +40,7 @@
     export default {
         data() {
             return {
+                dataLoading: false,
                 user: (this.users) ? JSON.parse(this.users) : null,
                 participantes: [],
                 order: {
@@ -45,6 +51,7 @@
         },
         props: ['users'],
         mounted() {
+            this.dataLoading = true;
             this.updatedData();
         },
         computed: {
@@ -64,8 +71,10 @@
             updatedData() {
                 this.$http.get('/api/participante/updated_data').then((response) => {
                     this.getParticipantes();
+                    this.dataLoading = false;
                 }).catch((error) => {
                     this.getParticipantes();
+                    this.dataLoading = false;
                     console.error('!Get Updated Data', error);
                 });
             }

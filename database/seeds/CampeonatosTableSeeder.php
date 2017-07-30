@@ -18,7 +18,7 @@ class CampeonatosTableSeeder extends Seeder
             'nome_completo' => 'Campeonato Brasileiro',
             'qtd_times' => 20,
             'qtd_rodadas' => 38,
-            'rodada' => 1,
+            'rodada' => 17,
             'temporada' => 2017,
             'serie' => 'A',
             'pais' => 'Brasil',

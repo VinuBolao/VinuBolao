@@ -70,9 +70,11 @@
                                 <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                             </td>
                             <td class="text-center">
-                                <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="savePalpite(jogo, true)">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></span>
-                                </a>
+                                <div v-show="!disableLoading">
+                                    <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="savePalpite(jogo, true)">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></span>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -152,7 +154,6 @@
 
                     this.$http.post('/api/palpite/save', jogo).then((response) => {
                         this.getPalpites(this.user.user_id, this.campeonato.id, this.rodada);
-                        console.log(response.data);
                     }).catch((error) => {
                         console.error('!Save Palpite', error);
                     });

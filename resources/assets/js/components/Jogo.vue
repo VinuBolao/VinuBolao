@@ -76,9 +76,11 @@
                                 {{ jogo.inicio|moment('HH:mm DD/MM/YY') }} | {{ jogo.timecasa.estadio }}
                             </td>
                             <td class="text-center">
-                                <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="updatedPlacar(jogo, jogo.id)">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </a>
+                                <div v-show="!disableLoading">
+                                    <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="updatedPlacar(jogo, jogo.id)">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -151,7 +153,6 @@
                     jogo.userId = this.user.user_id;
 
                     this.$http.post('/api/jogo/update', jogo).then((response) => {
-                        console.log(response.data);
                         this.getJogosCampeontato(this.campeonato.id, this.rodada);
                     }).catch((error) => {
                         this.getJogosCampeontato(this.campeonato.id, this.rodada);

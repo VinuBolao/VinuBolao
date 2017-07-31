@@ -1539,7 +1539,7 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 16,
                 "inicio" => "2017-07-23 11:00:00",
                 "timecasa_id" => 152,
-                "placar_casa" => 1,
+                "placar_casa" => 3,
                 "placar_fora" => 0,
                 "timefora_id" => 42
             ],
@@ -1609,8 +1609,8 @@ class JogosTableSeeder extends Seeder
                 "rodada" => 16,
                 "inicio" => "2017-07-24 20:00:00",
                 "timecasa_id" => 162,
-                "placar_casa" => 0,
-                "placar_fora" => 0,
+                "placar_casa" => 1,
+                "placar_fora" => 1,
                 "timefora_id" => 122
             ],
             [

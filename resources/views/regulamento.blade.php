@@ -2,7 +2,7 @@
     @slot('title') Classificação @endslot
 
     <div class="col-sm-12 box">
-        <h2>Regulamento</h2>
+        <h2>Regulamento </h2>
         <p>Confira como participar do VINUBOLÃO, quais os critérios que usamos para pontuação e outras informações importantes.</p>
     </div>
 

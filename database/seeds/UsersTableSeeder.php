@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 "id" => 32,
-                "name" => "Marcelo de Melo Lima",
+                "name" => "Marcelo Lima",
                 "email" => "marceloml1804@gmail.com",
                 'password' => bcrypt('123456'),
                 "master" => 0
@@ -50,21 +50,21 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 "id" => 62,
-                "name" => "Roberto Melo Lima",
+                "name" => "Roberto Lima",
                 "email" => "roberto.melolima@gmail.com",
                 'password' => bcrypt('123456'),
                 "master" => 0
             ],
             [
                 "id" => 72,
-                "name" => "Milton de Melo Lima",
+                "name" => "Milton Lima",
                 "email" => "miltao601957@gmail.com",
                 'password' => bcrypt('123456'),
                 "master" => 0
             ],
             [
                 "id" => 82,
-                "name" => "Denis Santos de Lima",
+                "name" => "Denis Lima",
                 "email" => "denis1703@gmail.com",
                 'password' => bcrypt('123456'),
                 "master" => 0
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 "id" => 102,
-                "name" => "Moacir de Melo Lima",
+                "name" => "Moacir Lima",
                 "email" => "mlmoacir1910@gmail.com",
                 'password' => bcrypt('123456'),
                 "master" => 0

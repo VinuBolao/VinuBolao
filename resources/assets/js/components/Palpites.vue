@@ -1,44 +1,44 @@
 <template>
     <div>
-        <div class="col-sm-12 box" v-if="dataLoading">
-            <i class="glyphicon glyphicon-refresh"></i> Loading...
+        <div class="col-sm-12 box" v-if="!user && jogos.length == 0">
+            <div class="alert alert-danger">
+                <p class="text-center">Não existe dados para listar!</p>
+            </div>
         </div>
-        <div v-if="!dataLoading">
-            <div class="col-sm-12 box" v-if="!user && jogos.length == 0">
-                <div class="alert alert-danger">
-                    <p class="text-center">Não existe dados para listar!</p>
+        <div v-else="">
+            <div class="col-sm-12 box">
+                <div class="btn-group" role="group">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getPalpites(user.user_id, campeonato.id, rodada);">
+                                <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user.user_id, campeonato.id, rodada - 1);">
+                        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                    </button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ rodada }}ª Rodada <span class="caret"></span>
+                        </button>
+                        <ol class="dropdown-menu dropdown-rodada-ol">
+                            <li class="dropdown-rodada-li" v-for="n in 38">
+                                <a @click="getPalpites(user.user_id, campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
+                            </li>
+                        </ol>
+                    </div>
+                    <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(user.user_id, campeonato.id, rodada + 1);">
+                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
-            <div v-else="">
-                <div class="col-sm-12 box">
-                    <div class="btn-group" role="group">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getPalpites(user.user_id, campeonato.id, rodada);">
-                                    <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user.user_id, campeonato.id, rodada - 1);">
-                            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                        </button>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ rodada }}ª Rodada <span class="caret"></span>
-                            </button>
-                            <ol class="dropdown-menu dropdown-rodada-ol">
-                                <li class="dropdown-rodada-li" v-for="n in 38">
-                                    <a @click="getPalpites(user.user_id, campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
-                                </li>
-                            </ol>
-                        </div>
-                        <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(user.user_id, campeonato.id, rodada + 1);">
-                            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                </div>
+            <div class="col-sm-12 box" v-if="dataLoading">
+                <i class="glyphicon glyphicon-refresh"></i> Loading...
+            </div>
+            <div v-if="!dataLoading">
                 <div class="col-sm-12 box">
                     <div v-if="disableLoading" style="margin-bottom: 5px;">
                         <i class="glyphicon glyphicon-refresh"></i> Loading...
@@ -125,6 +125,7 @@
             },
 
             getPalpites(userId, campeonatoId, rodada) {
+                this.dataLoading = true;
                 this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
                     response.data.forEach(function (jogo) {
                         jogo.palpite = {

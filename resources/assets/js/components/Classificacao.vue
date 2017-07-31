@@ -10,27 +10,32 @@
                 </div>
             </div>
             <div class="col-sm-12 box" v-else="">
-                <table class="table table-striped table-hover">
-                    <tr style="background-color: #666; color: #fff;">
-                        <th><strong>Posição</strong></th>
-                        <th><strong>Participante</strong></th>
-                        <th><strong>PG</strong></th>
-                        <th><strong>PE</strong></th>
-                        <th><strong>PV</strong></th>
-                        <th><strong>V</strong></th>
-                    </tr>
-                    <tr v-for="(participante, key) in participantesFiltered">
-                        <td>{{ key + 1 }}º</td>
-                        <td><b>{{ participante.user.name }}</b></td>
-                        <td>{{ participante.pontosganhos }}</td>
-                        <td>{{ participante.placarexato }}</td>
-                        <td>{{ participante.placarvencedor }}</td>
-                        <td><span class="glyphicon glyphicon-stop icon-blue" aria-hidden="true"></span></td>
-                    </tr>
-                </table>
-                <hr>
-                <h4><strong>Legenda</strong></h4>
-                <p><strong>PG</strong> - Pontos Ganhos, <strong>PE</strong> - Placar Exato, <strong>PV</strong> - Placar Vencedor, <strong>V</strong> - Variação de posição</p>
+                <div class="row table-head">
+                    <div class="col-xs-2 col-sm-1 table-td"><strong>Posição</strong></div>
+                    <div class="col-xs-5 col-sm-7 table-td"><strong>Participante</strong></div>
+                    <div class="col-xs-2 col-sm-1 table-td"><strong>PG</strong></div>
+                    <div class="col-xs-2 col-sm-1 table-td"><strong>PE</strong></div>
+                    <div class="col-xs-1 col-sm-1 table-td"><strong>PV</strong></div>
+                    <div class="col-sm-1 table-td hidden-xs"><strong>V</strong></div>
+                </div>
+                <div class="row table-body" v-for="(participante, key) in participantesFiltered">
+                    <div class="col-xs-2 col-sm-1 table-td">{{ key + 1 }}º</div>
+                    <div class="col-xs-5 col-sm-7 table-td"><b>{{ participante.user.name }}</b></div>
+                    <div class="col-xs-2 col-sm-1 table-td">{{ participante.pontosganhos }}</div>
+                    <div class="col-xs-2 col-sm-1 table-td">{{ participante.placarexato }}</div>
+                    <div class="col-xs-1 col-sm-1 table-td">{{ participante.placarvencedor }}</div>
+                    <div class="col-sm-1 table-td hidden-xs"><span class="glyphicon glyphicon-stop icon-blue" aria-hidden="true"></span></div>
+                </div>
+                <div class="row">
+                    <hr>
+                    <h4><strong>Legenda</strong></h4>
+                    <p>
+                        <strong>PG</strong> - Pontos Ganhos,
+                        <strong>PE</strong> - Placar Exato,
+                        <strong>PV</strong> - Placar Vencedor,
+                        <strong>V</strong> - Variação de posição
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -81,3 +86,19 @@
         }
     }
 </script>
+
+<style>
+    .table-head {
+        background-color: #666;
+        color: #fff;
+    }
+    .table-body:hover {
+        background-color: #dfe7ea;
+    }
+    .table-td {
+        padding: 8px;
+        line-height: 1.6;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+</style>

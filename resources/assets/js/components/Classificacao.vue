@@ -74,7 +74,7 @@
             },
 
             updatedData() {
-                this.$http.get('/api/participante/updated_data').then((response) => {
+                this.$http.get('/api/participante/updatedData').then((response) => {
                     this.getParticipantes();
                     this.dataLoading = false;
                 }).catch((error) => {

@@ -43,7 +43,7 @@
 
             <div v-if="!dataLoading">
                 <div class="col-sm-12 box">
-                    <div v-if="disableLoading" style="margin-bottom: 5px;">
+                    <div v-if="saveLoading" style="margin-bottom: 5px;">
                         <i class="glyphicon glyphicon-refresh"></i> Loading...
                     </div>
                     <table class="table table-hover">
@@ -63,10 +63,10 @@
                                 <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
                             </td>
                             <td class="td-jogo">
-                                <input class="input-placar" type="number" min="0" :disabled="disableLoading" v-if="jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
+                                <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
                                 <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
                                 x
-                                <input class="input-placar" type="number" min="0" :disabled="disableLoading" v-if="jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
+                                <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
                                 <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
                             </td>
                             <td class="text-left">
@@ -77,7 +77,7 @@
                                 {{ jogo.inicio|moment('HH:mm DD/MM/YY') }} | {{ jogo.timecasa.estadio }}
                             </td>
                             <td class="text-center">
-                                <div v-show="!disableLoading">
+                                <div v-show="!saveLoading">
                                     <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="updatedPlacar(jogo, jogo.id)">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
@@ -96,7 +96,7 @@
         data() {
             return {
                 dataLoading: false,
-                disableLoading: false,
+                saveLoading: false,
                 user: (this.users) ? JSON.parse(this.users) : null,
                 jogos: [],
                 rodada: null,
@@ -106,7 +106,6 @@
         },
         props: ['users'],
         mounted() {
-
             if(this.user) this.getCampeontatos();
         },
         methods: {
@@ -129,8 +128,8 @@
             },
 
             getJogosCampeontato(id, rodada) {
-                this.dataLoading = true;
-                this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then((response) => {
+                this.saveLoading = true;
+                this.$http.get('/api/jogo/getCampeonato/' + id + '/' + rodada).then((response) => {
                     response.data.forEach(function (jogo) {
                         jogo.placar_real_casa = null;
                         jogo.placar_real_fora = null;
@@ -140,7 +139,7 @@
 
                     //Remove Loading
                     this.dataLoading = false;
-                    this.disableLoading = false;
+                    this.saveLoading = false;
                 }).catch((error) => {
                     console.error('!Get JogosCampeonato', error);
                 });
@@ -148,7 +147,7 @@
 
             updatedPlacar(jogo, id) {
                 if( (id) || (jogo.placar_real_casa !== null && jogo.placar_real_fora !== null) ){
-                    this.disableLoading = true;
+                    this.saveLoading = true;
                     jogo.placar_casa = (id >= 0) ? null : jogo.placar_real_casa;
                     jogo.placar_fora = (id >= 0) ? null : jogo.placar_real_fora;
 

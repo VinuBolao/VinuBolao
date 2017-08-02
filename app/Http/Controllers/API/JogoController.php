@@ -8,22 +8,23 @@ use Bolao\Http\Controllers\Controller;
 
 class JogoController extends Controller
 {
-    public function get($id = null)
+    public function get($jogoId = null)
     {
-        if ($id) {
-            return response()->json(Jogo::findOrFail($id), 200);
+        if ($jogoId) {
+            return response()->json(Jogo::findOrFail($jogoId), 200);
         } else {
             return response()->json(Jogo::all(), 200);
         }
     }
 
-    public function get_campeonato($id, $rodada = null)
+    public function getCampeonato($campeonatoId, $rodada = null)
     {
         if ($rodada) {
-            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $id, 'rodada' => $rodada])->get();
+            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $campeonatoId, 'rodada' => $rodada])->get();
         } else {
-            $jogos = Jogo::with('timecasa')->where(['campeonato_id' => $id])->get();
+            $jogos = Jogo::with('timecasa')->where(['campeonato_id' => $campeonatoId])->get();
         }
+
         return response()->json($jogos, 200);
     }
 

@@ -50,11 +50,11 @@ class BolaoController extends Controller
      */
     public function store(Request $request)
     {
-        $bolao_id = Bolao::create($request->all())->id;
+        $bolaoId = Bolao::create($request->all())->id;
 
         $participante = new Participante;
         $participante->user_id = $request->user_id;
-        $participante->bolao_id = $bolao_id;
+        $participante->bolao_id = $bolaoId;
         $participante->save();
 
         return redirect()->action('BolaoController@index');
@@ -66,7 +66,7 @@ class BolaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($bolaoId)
     {
         //
     }
@@ -77,9 +77,9 @@ class BolaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($bolaoId)
     {
-        $bolao = Bolao::findOrFail($id);
+        $bolao = Bolao::findOrFail($bolaoId);
         return view('bolao.edit', ['bolao' => $bolao]);
     }
 
@@ -90,9 +90,9 @@ class BolaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $bolaoId)
     {
-        $page = Bolao::findOrFail($id);
+        $page = Bolao::findOrFail($bolaoId);
 
         $page->user_id       = $request->user;
         $page->campeonato_id = $request->campeonato;
@@ -110,9 +110,9 @@ class BolaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($bolaoId)
     {
-        $page = Bolao::findOrFail($id);
+        $page = Bolao::findOrFail($bolaoId);
         $page->delete();
         return redirect()->action('BolaoController@index');
     }

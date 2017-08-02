@@ -19,14 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'jogo'], function (){
     Route::get('get/{id?}', 'API\JogoController@get')->where('id', '[0-9]+');
-    Route::get('get_campeonato/{id}/{rodada?}', 'API\JogoController@get_campeonato')->where('id', '[0-9]+');
+    Route::get('getCampeonato/{id}/{rodada?}', 'API\JogoController@getCampeonato')->where('id', '[0-9]+');
     Route::post('update', 'API\JogoController@update');
 });
 
 Route::group(['prefix' => 'participante'], function (){
-    Route::get('updated_data', 'API\ParticipanteController@updated_data');
-    Route::get('get_dados/{id}/{rodada?}', 'API\ParticipanteController@get_dados');
-    Route::get('get_bolao/{id}', 'API\ParticipanteController@get_bolao')->where('id', '[0-9]+');
+    Route::get('updatedData', 'API\ParticipanteController@updatedData');
+    Route::get('getDados/{id}/{rodada?}', 'API\ParticipanteController@getDados');
+    Route::get('getBolao/{id}', 'API\ParticipanteController@getBolao')->where('id', '[0-9]+');
     Route::get('get/{id?}', 'API\ParticipanteController@get')->where('id', '[0-9]+');
 });
 
@@ -36,6 +36,6 @@ Route::group(['prefix' => 'campeonato'], function (){
 
 Route::group(['prefix' => 'palpite'], function (){
     Route::get('get/{id?}', 'API\PalpiteController@get')->where('id', '[0-9]+');
-    Route::get('get_palpites/{userId}/{campeonatoId}/{rodada?}', 'API\PalpiteController@get_palpites');
+    Route::get('getPalpites/{userId}/{campeonatoId}/{rodada?}', 'API\PalpiteController@getPalpites');
     Route::post('save', 'API\PalpiteController@save');
 });

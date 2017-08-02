@@ -40,7 +40,7 @@
             </div>
             <div v-if="!dataLoading">
                 <div class="col-sm-12 box">
-                    <div v-if="disableLoading" style="margin-bottom: 5px;">
+                    <div v-if="saveLoading" style="margin-bottom: 5px;">
                         <i class="glyphicon glyphicon-refresh"></i> Loading...
                     </div>
                     <table class="table">
@@ -59,10 +59,10 @@
                                 <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
                             </td>
                             <td class="td-jogo">
-                                <input class="input-placar" type="number" :disabled="disableLoading" min="0" v-if="jogo.placar_casa === null" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
+                                <input class="input-placar" type="number" :disabled="saveLoading" min="0" v-if="jogo.placar_casa === null" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
                                 <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
                                 x
-                                <input class="input-placar" type="number" :disabled="disableLoading" min="0" v-if="jogo.placar_fora === null" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
+                                <input class="input-placar" type="number" :disabled="saveLoading" min="0" v-if="jogo.placar_fora === null" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
                                 <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
                             </td>
                             <td class="text-left">
@@ -70,7 +70,7 @@
                                 <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                             </td>
                             <td class="text-center">
-                                <div v-show="!disableLoading">
+                                <div v-show="!saveLoading">
                                     <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="savePalpite(jogo, true)">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></span>
                                     </a>
@@ -89,7 +89,7 @@
         data() {
             return {
                 dataLoading: false,
-                disableLoading: false,
+                saveLoading: false,
                 user: (this.users) ? JSON.parse(this.users) : null,
                 jogos: [],
                 rodada: 1,
@@ -125,8 +125,8 @@
             },
 
             getPalpites(userId, campeonatoId, rodada) {
-                this.dataLoading = true;
-                this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
+                this.saveLoading = true;
+                this.$http.get('/api/palpite/getPalpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
                     response.data.forEach(function (jogo) {
                         jogo.palpite = {
                             casa: null,
@@ -139,7 +139,7 @@
 
                     //Remove Loading
                     this.dataLoading = false;
-                    this.disableLoading = false;
+                    this.saveLoading = false;
                 }).catch((error) => {
                     console.error('!Get JogosCampeonato', error);
                 });
@@ -147,7 +147,7 @@
 
             savePalpite(jogo, edit) {
                 if( (edit) || (jogo.palpite.casa !== null && jogo.palpite.fora !== null) ){
-                    this.disableLoading = true;
+                    this.saveLoading = true;
                     jogo.placar_casa = (jogo.placar_casa === null) ? jogo.palpite.casa : null;
                     jogo.placar_fora = (jogo.placar_fora === null) ? jogo.palpite.fora : null;
 

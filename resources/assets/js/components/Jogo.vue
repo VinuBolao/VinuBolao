@@ -128,8 +128,8 @@
             },
 
             getJogosCampeontato(id, rodada) {
-                this.dataLoading = true;
-                this.$http.get('/api/jogo/get_campeonato/' + id + '/' + rodada).then((response) => {
+                this.saveLoading = true;
+                this.$http.get('/api/jogo/getCampeonato/' + id + '/' + rodada).then((response) => {
                     response.data.forEach(function (jogo) {
                         jogo.placar_real_casa = null;
                         jogo.placar_real_fora = null;

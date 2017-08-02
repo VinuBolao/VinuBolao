@@ -8,10 +8,10 @@ use Bolao\Http\Controllers\Controller;
 
 class CampeonatoController extends Controller
 {
-    public function get($id = null)
+    public function get($campeonatoId = null)
     {
-        if($id){
-            return response()->json(Campeonato::findOrFail($id));
+        if($campeonatoId){
+            return response()->json(Campeonato::findOrFail($campeonatoId));
         } else {
             return response()->json(Campeonato::all());
         }

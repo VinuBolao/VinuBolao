@@ -9,27 +9,27 @@ use Bolao\Http\Controllers\Controller;
 
 class ParticipanteController extends Controller
 {
-    public function get($id = null)
+    public function get($participanteId = null)
     {
-        if($id){
-            return response()->json(Participante::with('user')->findOrFail($id));
+        if($participanteId){
+            return response()->json(Participante::with('user')->findOrFail($participanteId));
         } else {
             return response()->json(Participante::with('user')->get());
         }
     }
 
-    public function get_bolao($id = null)
+    public function getBolao($bolaoId = null)
     {
-        return response()->json(Participante::with('user')->where('bolao_id', $id)->get());
+        return response()->json(Participante::with('user')->where('bolao_id', $bolaoId)->get());
     }
 
-    public function updated_data()
+    public function updatedData()
     {
         $saved = false;
         $users = User::all();
 
         foreach ($users as $user) {
-            $dados = $this->get_dados($user->id);
+            $dados = $this->getDados($user->id);
 
             if(count($dados) > 0) {
                 $saved = Participante::where(['user_id' => $user->id])->update([
@@ -47,7 +47,7 @@ class ParticipanteController extends Controller
         }
     }
 
-    public function get_dados($userId, $rodada = null)
+    public function getDados($userId, $rodada = null)
     {
         if($rodada){
             $palpites = Palpite::with(['jogo' => function ($query) use ($rodada) {

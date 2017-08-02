@@ -125,8 +125,8 @@
             },
 
             getPalpites(userId, campeonatoId, rodada) {
-                this.dataLoading = true;
-                this.$http.get('/api/palpite/get_palpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
+                this.saveLoading = true;
+                this.$http.get('/api/palpite/getPalpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
                     response.data.forEach(function (jogo) {
                         jogo.palpite = {
                             casa: null,

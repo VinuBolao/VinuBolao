@@ -1,5 +1,7 @@
 ## Aplicação
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/51ff3b4bd55b4d06b0cb240b62839b88)](https://www.codacy.com/app/GustavoSantosLima/VinuBolao?utm_source=github.com&utm_medium=referral&utm_content=VinuBolao/VinuBolao&utm_campaign=badger)
+
 Esta aplicação foi desenvolvida em com:
 
 **Framework Laravel 5.4** para **BackEnd** 

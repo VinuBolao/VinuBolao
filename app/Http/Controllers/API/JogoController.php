@@ -20,9 +20,9 @@ class JogoController extends Controller
     public function getCampeonato($campeonatoId, $rodada = null)
     {
         if ($rodada) {
-            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $campeonatoId, 'rodada' => $rodada])->get();
+            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $campeonatoId, 'rodada' => $rodada])->orderBy('inicio')->get();
         } else {
-            $jogos = Jogo::with('timecasa')->where(['campeonato_id' => $campeonatoId])->get();
+            $jogos = Jogo::with('timecasa')->where(['campeonato_id' => $campeonatoId])->orderBy('inicio')->get();
         }
 
         return response()->json($jogos, 200);

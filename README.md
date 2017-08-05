@@ -23,18 +23,18 @@ _Lembrando que essas são as versões utilizadas no momento de criação do proj
       cd VinuBolao
     ```
 
-2. Instale as dependencias do composer.
-
-    ```
-      composer update
-    ```
-
-3. Copie e cole o arquivo `.env.example` na raiz do projeto com o nome `.env` ou renomeie.
+2. Copie e cole o arquivo `.env.example` na raiz do projeto com o nome `.env` ou renomeie.
 
     ```
       cp .env.examplo .env
     ```
     
+3. Instale as dependencias do composer.
+
+    ```
+      composer update
+    ```
+
 4. Execute o comando abaixo para criar sua application key.
 
     ```
@@ -50,6 +50,13 @@ _Lembrando que essas são as versões utilizadas no momento de criação do proj
       DB_DATABASE=nomedodatabase
       DB_USERNAME=usuariododatabase
       DB_PASSWORD=senhadodatabase
+    ```
+
+4. Altere o salvamento de **_cache_** e **_session_** de **_file_** para **_database_** no arquivo `.env` como no exemplo abaixo:
+
+    ```
+      CACHE_DRIVER=database
+      SESSION_DRIVER=database
     ```
 
 4. Execute o comando abaixo para criar as tabelas no seu Banco de Dados e popular as tabelas.

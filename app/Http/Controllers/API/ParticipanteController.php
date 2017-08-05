@@ -25,14 +25,13 @@ class ParticipanteController extends Controller
 
     public function updatedData()
     {
-        $saved = false;
         $users = User::all();
 
         foreach ($users as $user) {
             $dados = $this->getDados($user->id);
 
             if(count($dados) > 0) {
-                $saved = Participante::where(['user_id' => $user->id])->update([
+                Participante::where(['user_id' => $user->id])->update([
                     'placarvencedor' => $dados['placarvencedor'],
                     'pontosganhos' => $dados['pontosganhos'],
                     'placarexato' => $dados['placarexato']
@@ -40,11 +39,7 @@ class ParticipanteController extends Controller
             }
         }
 
-        if($saved){
-            return response()->json(['success' => true], 200);
-        } else {
-            return response()->json(['success' => false], 400);
-        }
+        return response()->json(['success' => true], 200);
     }
 
     public function getDados($userId, $rodada = null)

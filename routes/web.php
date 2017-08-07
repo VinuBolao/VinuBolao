@@ -11,26 +11,26 @@
 |
 */
 
-Route::get('/michael', function () {
-    return 'teste1';
-});
-
 Route::get('/', function () {
     return redirect('/bolao');
 });
 
 Auth::routes();
 
+Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], function() {
+    Route::resource('user', 'UserController');
+});
+
 Route::group(['middleware' => 'auth'], function() {
     Route::get('classificacao', 'BolaoController@classificacao')->name('classificacao');
+    Route::get('regulamento', 'BolaoController@regulamento')->name('regulamento');
     Route::resource('bolao', 'BolaoController');
 
     Route::resource('participante', 'ParticipanteController');
 
     Route::get('participante', 'ParticipanteController@index')->name('participante.index');
-    Route::resource('jogo', 'JogoController');
 
-    Route::resource('palpite', 'PalpiteController');
+    Route::get('jogo', 'JogoController@index')->name('jogo.index');
 
-    Route::get('regulamento', 'BolaoController@regulamento')->name('regulamento');
+    Route::get('palpite', 'PalpiteController@index')->name('palpite.index');
 });

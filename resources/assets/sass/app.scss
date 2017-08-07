@@ -4,10 +4,16 @@
 
 // Variables
 @import "variables";
-@import "flaticon";
-
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//icons
+@import "flaticon";
+//Admin
+@import "admin";
+
+.navbar-brand {
+  color: $write!important;
+}
 
 .box{
   background: #fff;

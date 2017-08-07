@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolao;
+namespace Bolao\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class Participante extends Model
 
     public function user()
     {
-        return $this->belongsTo('Bolao\User', 'user_id', 'id');
+        return $this->belongsTo('Bolao\Models\User', 'user_id', 'id');
     }
 
     public function bolao()
     {
-        return $this->belongsTo('Bolao\Bolao', 'bolao_id', 'id');
+        return $this->belongsTo('Bolao\Models\Bolao', 'bolao_id', 'id');
     }
 }

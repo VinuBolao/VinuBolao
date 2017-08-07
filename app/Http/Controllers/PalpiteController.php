@@ -2,7 +2,7 @@
 
 namespace Bolao\Http\Controllers;
 
-use Bolao\Participante;
+use Bolao\Models\Participante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

@@ -1,6 +1,6 @@
 <?php
 
-use Bolao\User;
+use Bolao\Models\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder

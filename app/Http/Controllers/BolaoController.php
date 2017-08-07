@@ -2,9 +2,9 @@
 
 namespace Bolao\Http\Controllers;
 
-use Bolao\Bolao;
-use Bolao\Campeonato;
-use Bolao\Participante;
+use Bolao\Models\Bolao;
+use Bolao\Models\Campeonato;
+use Bolao\Models\Participante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,17 +58,6 @@ class BolaoController extends Controller
         $participante->save();
 
         return redirect()->action('BolaoController@index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($bolaoId)
-    {
-        //
     }
 
     /**

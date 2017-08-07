@@ -1,6 +1,6 @@
 <?php
 
-use Bolao\Campeonato;
+use Bolao\Models\Campeonato;
 use Illuminate\Database\Seeder;
 
 class CampeonatosTableSeeder extends Seeder

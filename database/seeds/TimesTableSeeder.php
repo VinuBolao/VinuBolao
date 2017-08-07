@@ -1,6 +1,6 @@
 <?php
 
-use Bolao\Time;
+use Bolao\Models\Time;
 use Illuminate\Database\Seeder;
 
 class TimesTableSeeder extends Seeder

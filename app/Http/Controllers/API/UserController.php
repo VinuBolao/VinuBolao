@@ -2,7 +2,7 @@
 
 namespace Bolao\Http\Controllers\API;
 
-use Bolao\User;
+use Bolao\Models\User;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
 

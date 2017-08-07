@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolao;
+namespace Bolao\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class Palpite extends Model
 
     public function user()
     {
-        return $this->belongsTo('Bolao\User');
+        return $this->belongsTo('Bolao\Models\User');
     }
 
     public function jogo()
     {
-        return $this->belongsTo('Bolao\Jogo');
+        return $this->belongsTo('Bolao\Models\Jogo');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolao;
+namespace Bolao\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class Jogo extends Model
 
     public function timecasa()
     {
-        return $this->belongsTo('Bolao\Time', 'timecasa_id', 'id');
+        return $this->belongsTo('Bolao\Models\Time', 'timecasa_id', 'id');
     }
 
     public function timefora()
     {
-        return $this->belongsTo('Bolao\Time', 'timefora_id', 'id');
+        return $this->belongsTo('Bolao\Models\Time', 'timefora_id', 'id');
     }
 }

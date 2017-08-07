@@ -2,9 +2,9 @@
 
 namespace Bolao\Http\Controllers;
 
-use Bolao\Bolao;
-use Bolao\Participante;
-use Bolao\User;
+use Bolao\Models\Bolao;
+use Bolao\Models\Participante;
+use Bolao\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

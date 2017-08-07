@@ -2,8 +2,8 @@
 
 namespace Bolao\Http\Controllers\API;
 
-use Bolao\Jogo;
-use Bolao\Palpite;
+use Bolao\Models\Jogo;
+use Bolao\Models\Palpite;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;

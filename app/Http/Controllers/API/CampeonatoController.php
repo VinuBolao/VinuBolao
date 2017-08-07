@@ -2,7 +2,7 @@
 
 namespace Bolao\Http\Controllers\API;
 
-use Bolao\Campeonato;
+use Bolao\Models\Campeonato;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
 

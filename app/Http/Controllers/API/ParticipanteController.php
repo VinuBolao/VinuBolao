@@ -2,9 +2,9 @@
 
 namespace Bolao\Http\Controllers\API;
 
-use Bolao\User;
-use Bolao\Palpite;
-use Bolao\Participante;
+use Bolao\Models\User;
+use Bolao\Models\Palpite;
+use Bolao\Models\Participante;
 use Bolao\Http\Controllers\Controller;
 
 class ParticipanteController extends Controller

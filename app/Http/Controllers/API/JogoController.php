@@ -2,7 +2,7 @@
 
 namespace Bolao\Http\Controllers\API;
 
-use Bolao\Jogo;
+use Bolao\Models\Jogo;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
 

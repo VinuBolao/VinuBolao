@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolao;
+namespace Bolao\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

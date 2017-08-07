@@ -2,7 +2,7 @@
 
 namespace Bolao\Http\Controllers\Auth;
 
-use Bolao\User;
+use Bolao\Models\User;
 use Bolao\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;

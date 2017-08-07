@@ -29,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand"  href="{{ route('bolao.index') }}" style="color: #fff">
+                    <a class="navbar-brand"  href="{{ route('bolao.index') }}">
                         <i class="flaticon-ball-5"></i> VinuBolão
                     </a>
                 </div>
@@ -52,6 +52,11 @@
                         <li @if(Request::segment(1) == 'regulamento') class="active" @endif>
                             <a href="{{ route('regulamento') }}">Regulamento</a>
                         </li>
+                        @if (Auth::user()->master)
+                        <li>
+                            <a href="{{ route('admin.user.index') }}">Dashboard</a>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -23,7 +23,7 @@ class BolaoController extends Controller
 
     public function regulamento()
     {
-        return view('regulamento');
+        return view('bolao.regulamento');
     }
 
     public function classificacao()

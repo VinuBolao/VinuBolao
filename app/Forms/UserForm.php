@@ -19,19 +19,19 @@ class UserForm extends Form
             ])
             ->add('name', 'text', [
                 'label' => 'Nome',
-                'rules' => 'required|max:255',
+                'rules' => 'required|string|max:255',
             ])
             ->add('username', 'text', [
                 'label' => 'Usuário',
-                'rules' => "required|max:255|unique:users,username,{$id}",
+                'rules' => "required|string|max:255|unique:users,username,{$id}",
             ])
             ->add('email', 'email', [
                 'label' => 'E-mail',
-                'rules' => "required|max:255|unique:users,email,{$id}",
+                'rules' => "required|string|email|max:255|unique:users,email,{$id}",
             ])
             ->add('password', 'password', [
                 'label' => 'Senha',
-                'rules' => "required|min:6",
+                'rules' => "required|string|min:6",
             ]);
     }
 }

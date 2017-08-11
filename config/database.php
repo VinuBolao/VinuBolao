@@ -43,11 +43,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', (getenv("APP_DEV")) ? '127.0.0.1' : $url["host"]),
+            'host' => env('DB_HOST', (getenv("APP_ENV") != 'production') ? '127.0.0.1' : $url["host"]),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', (getenv("APP_DEV")) ? 'forge' : substr($url["path"], 1)),
-            'username' => env('DB_USERNAME', (getenv("APP_DEV")) ? 'forge' : $url["user"]),
-            'password' => env('DB_PASSWORD', (getenv("APP_DEV")) ? '' : $url["pass"]),
+            'database' => env('DB_DATABASE', (getenv("APP_ENV") != 'production') ? 'forge' : substr($url["path"], 1)),
+            'username' => env('DB_USERNAME', (getenv("APP_ENV") != 'production') ? 'forge' : $url["user"]),
+            'password' => env('DB_PASSWORD', (getenv("APP_ENV") != 'production') ? '' : $url["pass"]),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

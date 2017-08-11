@@ -6,5 +6,5 @@
         <p>Aqui estão os jogos filtrados por campeonato e rodada, preencha os resultados.</p>
     </div>
 
-    <jogo users="{{ $participante }}"></jogo>
+    <jogo users="{{ $participante->user or null }}"></jogo>
 @endcomponent

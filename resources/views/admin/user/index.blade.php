@@ -37,7 +37,7 @@
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-primary" title="Editar">
+                                    <a href="{{ route('admin.user.show', $user->id) }}" class="btn btn-primary" title="Visualizar">
                                         <i class="glyphicon glyphicon-eye-open"></i>
                                     </a>
                                     <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary" title="Editar">

@@ -46,45 +46,55 @@
                     <div v-if="saveLoading" style="margin-bottom: 5px;">
                         <i class="glyphicon glyphicon-refresh"></i> Loading...
                     </div>
-                    <table class="table table-hover">
-                        <tr class="tr-head">
-                            <th class="text-center">Status</th>
-                            <th colspan="3" class="text-center">Jogos</th>
-                            <th class="hidden-xs">Horário | Estádio</th>
-                            <th class="text-center">Editar</th>
-                        </tr>
-                        <tr v-for="(jogo, key) in jogos">
-                            <td class="text-center">
+
+                    <div class="col-sm-12">
+                        <div class="row table-head">
+                            <div class="col-xs-2 col-sm-1 table-td text-center"><strong>Status</strong></div>
+                            <div class="col-xs-8 col-sm-7 table-td">
+                                <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4"><strong>Jogos</strong></div>
+                            </div>
+                            <div class="col-sm-3 table-td hidden-xs"><strong>Horário | Estádio</strong></div>
+                            <div class="col-xs-2 col-sm-1 table-td text-center"><strong>Editar</strong></div>
+                        </div>
+                        <div class="row table-body" v-for="(jogo, key) in jogos">
+                            <div class="col-xs-2 col-sm-1 table-td text-center">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></span>
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>
-                            </td>
-                            <td class="text-right">
-                                <span class="hidden-sm hidden-xs">{{ jogo.timecasa.nome }}</span>
-                                <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
-                            </td>
-                            <td class="td-jogo">
-                                <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
-                                <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
-                                x
-                                <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
-                                <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
-                            </td>
-                            <td class="text-left">
-                                <span class="hidden-sm hidden-xs">{{ jogo.timefora.nome }}</span>
-                                <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
-                            </td>
-                            <td class="hidden-xs">
+                            </div>
+                            <div class="col-xs-8 col-sm-7 table-td text-center">
+                                <div class="col-xs-3 col-sm-4 text-right">
+                                    <strong>
+                                        <span class="hidden-sm hidden-xs">{{ jogo.timecasa.nome }}</span>
+                                        <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
+                                    </strong>
+                                </div>
+                                <div class="col-xs-9 col-sm-4 td-jogo">
+                                    <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
+                                    <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
+                                    x
+                                    <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
+                                    <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
+                                </div>
+                                <div class="col-xs-3 col-sm-4 text-left">
+                                    <strong>
+                                        <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
+                                        <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 table-td hidden-xs">
                                 {{ jogo.inicio|moment('HH:mm DD/MM/YY') }} | {{ jogo.timecasa.estadio }}
-                            </td>
-                            <td class="text-center">
+                            </div>
+                            <div class="col-xs-2 col-sm-1 table-td text-center">
                                 <div v-show="!saveLoading">
                                     <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="updatedPlacar(jogo, jogo.id)">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -97,7 +107,7 @@
             return {
                 dataLoading: false,
                 saveLoading: false,
-                user: (this.users) ? JSON.parse(this.users) : null,
+                user: JSON.parse(this.users),
                 jogos: [],
                 rodada: null,
                 campeonato: {},
@@ -151,7 +161,7 @@
                     jogo.placar_casa = (id >= 0) ? null : jogo.placar_real_casa;
                     jogo.placar_fora = (id >= 0) ? null : jogo.placar_real_fora;
 
-                    jogo.userId = this.user.user_id;
+                    jogo.userId = this.user.id;
 
                     this.$http.post('/api/jogo/update', jogo).then((response) => {
                         this.getJogosCampeontato(this.campeonato.id, this.rodada);

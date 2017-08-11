@@ -6,5 +6,5 @@
         <p>Insira seus palpites para a rodada vigente, lembrando que os palpites devem ser inseridos com pelo menos <strong>15 minutos</strong> de antecedência ao início da rodada.</p>
     </div>
 
-    <palpites users="{{ $participante }}"></palpites>
+    <palpites users="{{ $participante->user or null }}"></palpites>
 @endcomponent

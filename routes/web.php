@@ -17,11 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], function() {
-    Route::resource('user', 'UserController');
+Route::namespace('Admin\\')->group(function (){
+    Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function (){
+        Route::resource('user', 'UserController');
+    });
 });
 
-Route::group(['middleware' => 'auth'], function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('classificacao', 'BolaoController@classificacao')->name('classificacao');
     Route::get('regulamento', 'BolaoController@regulamento')->name('regulamento');
     Route::resource('bolao', 'BolaoController');

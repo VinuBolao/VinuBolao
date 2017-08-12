@@ -1,6 +1,16 @@
 <?php
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+if(getenv("DATABASE_URL")){
+    $databaseUrl = parse_url(getenv("DATABASE_URL"));
+    $databaseUrl["path"] = substr($databaseUrl["path"], 1);
+} else {
+    $databaseUrl = [
+        'host' => env('DB_HOST', '127.0.0.1'),
+        'path' => env('DB_DATABASE', 'forge'),
+        'user' => env('DB_USERNAME', 'forge'),
+        'pass' => env('DB_PASSWORD', '')
+    ];
+}
 
 return [
 
@@ -43,11 +53,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', (getenv("APP_ENV") != 'production') ? '127.0.0.1' : $url["host"]),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', (getenv("APP_ENV") != 'production') ? 'forge' : substr($url["path"], 1)),
-            'username' => env('DB_USERNAME', (getenv("APP_ENV") != 'production') ? 'forge' : $url["user"]),
-            'password' => env('DB_PASSWORD', (getenv("APP_ENV") != 'production') ? '' : $url["pass"]),
+            'host' => $databaseUrl["host"],
+            'port' => '3306',
+            'database' => $databaseUrl["path"],
+            'username' => $databaseUrl["user"],
+            'password' => $databaseUrl["pass"],
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

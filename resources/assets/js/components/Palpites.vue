@@ -7,16 +7,12 @@
         </div>
         <div v-else="">
             <div class="col-sm-12 box">
-                <div class="btn-group" role="group">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getPalpites(user.id, campeonato.id, rodada);">
-                                <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
-                            </select>
-                        </div>
-                    </form>
+                <div class="btn-group xs-12" role="group">
+                    <select id="infoCampeonato" class="form-control" v-model="campeonato.id">
+                        <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
+                    </select>
                 </div>
-                <div class="btn-group" role="group">
+                <div class="btn-group btn-rodada" role="group">
                     <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user.id, campeonato.id, rodada - 1);">
                         <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                     </button>
@@ -51,14 +47,14 @@
                                 <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4"><strong>Palpites</strong></div>
                             </div>
                             <div class="col-sm-3 table-td hidden-xs"><strong>Horário</strong></div>
-                            <div class="col-xs-2 col-sm-1 table-td text-center"><strong>Editar</strong></div>
+                            <div class="col-xs-2 col-sm-1 table-td"><strong>Editar</strong></div>
                         </div>
                         <div class="row table-body" v-for="(jogo, key) in jogos">
-                            <div class="col-xs-2 col-sm-1 table-td text-center">
+                            <div class="col-xs-2 col-sm-1 table-td">
                                 <i class="glyphicon glyphicon-remove" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></i>
                                 <i class="glyphicon glyphicon-ok" v-else></i>
                             </div>
-                            <div class="col-xs-8 col-sm-7 table-td text-center">
+                            <div class="col-xs-8 col-sm-7 table-td">
                                 <div class="col-xs-3 col-sm-4 text-right">
                                     <strong>
                                         <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
@@ -66,11 +62,12 @@
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-4 td-jogo">
-                                    <input class="input-placar" type="number" :disabled="saveLoading" min="0" v-if="jogo.placar_casa === null" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
+                                    <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_casa === null" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
                                     <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
                                     x
-                                    <input class="input-placar" type="number" :disabled="saveLoading" min="0" v-if="jogo.placar_fora === null" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
+                                    <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_fora === null" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
                                     <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
+                                    <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null">Esgotado!</strong>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 text-left">
                                     <strong>
@@ -82,8 +79,8 @@
                             <div class="col-sm-3 table-td hidden-xs">
                                 {{ jogo.inicio|moment('HH:mm DD/MM/YYYY') }}
                             </div>
-                            <div class="col-xs-2 col-sm-1 table-td text-center">
-                                <div v-show="!saveLoading">
+                            <div class="col-xs-2 col-sm-1 table-td">
+                                <div v-show="(disableInput(jogo) != jogo.id) && !saveLoading">
                                     <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="savePalpite(jogo, true)">
                                         <i class="glyphicon glyphicon-edit" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></i>
                                     </a>
@@ -115,11 +112,6 @@
         props: ['users'],
         mounted() {
             if(this.user) this.getCampeontatos();
-        },
-        filters: {
-            startJogo(item) {
-                return moment().diff(moment(item), 'minutes');
-            }
         },
         methods: {
             getCampeontatos(id) {
@@ -174,64 +166,21 @@
 
                     this.$http.post('/api/palpite/save', jogo).then((response) => {
                         this.getPalpites(this.user.id, this.campeonato.id, this.rodada);
+
+                        if(!response.data.success){
+                            console.log('O jogo já comecou!');
+                        }
                     }).catch((error) => {
                         console.error('!Save Palpite', error);
                     });
+                }
+            },
+
+            disableInput(jogo) {
+                if(moment() > moment(jogo.inicio)) {
+                    return jogo.id;
                 }
             }
         }
     }
 </script>
-
-<style>
-    .table-td {
-        padding: 8px;
-        line-height: 1.6;
-        vertical-align: top;
-        border-top: 1px solid #ddd;
-    }
-    .input-placar {
-        width: 35px;
-    }
-    .td-jogo {
-        width: 85px;
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .placar-casa, .placar-fora {
-        font-size: 20px;
-    }
-    .placar-casa {
-        padding-right: 11px;
-    }
-    .placar-fora {
-        padding-left: 10px;
-    }
-    .glyphicon.glyphicon-remove {
-        color: #d9534f;
-    }
-    .glyphicon.glyphicon-ok {
-        color: #398439;
-    }
-    .dropdown-rodada-ol{
-        left: -39px;
-        min-width: 170px;
-        height: 150px;
-        overflow-y: auto;
-    }
-    .dropdown-rodada-li{
-        display: inline-table;
-        border: 1px solid #cccecf;
-        width: 30%;
-        margin-left: 4px;
-        margin-bottom: 5px;
-        padding: 0;
-        font-size: 14px;
-        border-radius: 2px;
-    }
-    .dropdown-rodada-a {
-        padding: 5px !important;
-        text-align: center;
-        cursor: pointer;
-    }
-</style>

@@ -5,7 +5,9 @@
         @if (Auth::user()->master)
             <div class="row">
                 <div class="col-sm-3">
-                    <a href="{{ route('bolao.create') }}" class="btn btn-primary btn-block" role="button">Novo</a>
+                    <a href="{{ route('bolao.create') }}" class="btn btn-primary btn-block" role="button">
+                        <i class="glyphicon glyphicon-plus"></i> Novo
+                    </a>
                 </div>
             </div>
         @endif
@@ -40,7 +42,7 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th colspan="2" class="title-show">Informações do <strong>{{ $bolao->nome }}</strong></th>
+                            <th colspan="2" class="title-show"><strong>{{ $bolao->nome }}</strong></th>
                         </tr>
                         </thead>
                         <tbody>

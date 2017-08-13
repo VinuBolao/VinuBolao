@@ -4,6 +4,7 @@ namespace Bolao\Http\Controllers\API;
 
 use Bolao\Models\Jogo;
 use Bolao\Models\Palpite;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,10 @@ class PalpiteController extends Controller
 
     public function save(Request $request)
     {
+        if(Carbon::now('America/Sao_Paulo') > $request->inicio){
+            return response()->json(['success' => false], 200);
+        }
+
         if(isset($request->palpite_id)){
             $palpite = Palpite::find($request->palpite_id);
         } else {
@@ -58,7 +63,7 @@ class PalpiteController extends Controller
         $palpite->user_id = $request->userId;
         $palpite->palpite_casa = $request->placar_casa;
         $palpite->palpite_fora = $request->placar_fora;
-        $palpite->horario = "2017-06-18 00:00:00";
+        $palpite->horario = Carbon::now();
         if($palpite->save()){
             return response()->json(['success' => true], 200);
         } else {

@@ -8,7 +8,7 @@
                 <p>Confira como participar do VINUBOLÃO, quais os critérios que usamos para pontuação e outras informações importantes.</p>
             </div>
             <div class="col-sm-3 hidden-xs text-center">
-                <i class="icon-page flaticon-dark"></i>
+                <i class="icon-page flaticon-checklist"></i>
             </div>
         </div>
     </div>

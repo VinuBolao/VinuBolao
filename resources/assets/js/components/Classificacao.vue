@@ -26,17 +26,16 @@
                     <div class="col-xs-1 col-sm-1 table-td">{{ participante.placarvencedor }}</div>
                     <div class="col-sm-1 table-td hidden-xs"><span class="glyphicon glyphicon-stop icon-blue" aria-hidden="true"></span></div>
                 </div>
-                <div class="row">
-                    <hr>
-                    <h4><strong>Legenda</strong></h4>
-                    <p>
-                        <strong>PG</strong> - Pontos Ganhos,
-                        <strong>PE</strong> - Placar Exato,
-                        <strong>PV</strong> - Placar Vencedor,
-                        <strong>V</strong> - Variação de posição
-                    </p>
-                </div>
             </div>
+        </div>
+        <div class="col-sm-12 box" v-if="!dataLoading">
+            <h4><strong>Legenda</strong></h4>
+            <p>
+                <strong>PG</strong> - Pontos Ganhos,
+                <strong>PE</strong> - Placar Exato,
+                <strong>PV</strong> - Placar Vencedor,
+                <strong>V</strong> - Variação de posição
+            </p>
         </div>
     </div>
 </template>
@@ -86,12 +85,3 @@
         }
     }
 </script>
-
-<style>
-    .table-td {
-        padding: 8px;
-        line-height: 1.6;
-        vertical-align: top;
-        border-top: 1px solid #ddd;
-    }
-</style>

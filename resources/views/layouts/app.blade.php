@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bolao">
     <div id="app">
         @if (Auth::check())
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li>
+                        <li @if(Request::segment(1) == 'bolao') class="active" @endif>
                             <a href="{{ route('bolao.index') }}">Home</a>
                         </li>
                         <li @if(Request::segment(1) == 'classificacao') class="active" @endif>

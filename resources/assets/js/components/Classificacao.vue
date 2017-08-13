@@ -88,13 +88,6 @@
 </script>
 
 <style>
-    .table-head {
-        background-color: #666;
-        color: #fff;
-    }
-    .table-body:hover {
-        background-color: #dfe7ea;
-    }
     .table-td {
         padding: 8px;
         line-height: 1.6;

@@ -15,20 +15,54 @@
   color: $write!important;
 }
 
-.box{
-  background: #fff;
-  padding: 15px;
-  margin-bottom: 15px;
-}
+.bolao {
+  .navbar-inverse .navbar-nav > li > a {
+    border-right: 1px solid #222;
+    border-left: 1px solid #222;
+  }
 
-.container .text-muted {
-  margin: 20px 0;
-}
+  .navbar-inverse .navbar-nav > .active > a,
+  .navbar-inverse .navbar-nav > li > a:hover {
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
+  }
 
-.glyphicon-refresh {
-  animation: spinIt 1.5s infinite linear;
-}
-@keyframes spinIt {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(359deg); }
+  .box{
+    background: $write;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .container .text-muted {
+    margin: 20px 0;
+  }
+
+  .table-head {
+    background-color: $text-color;
+    color: $write;
+  }
+
+  .table-body:hover {
+    background-color: $table-bg-hover;
+  }
+
+  .title-show {
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: 500;
+  }
+
+  .icon-page {
+    font-size: 6em;
+    line-height: 0;
+    color: $text-color;
+  }
+
+  .glyphicon-refresh {
+    animation: spinIt 1.5s infinite linear;
+  }
+  @keyframes spinIt {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+  }
 }

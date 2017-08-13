@@ -21,6 +21,10 @@ Route::namespace('Admin\\')->group(function (){
     Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function (){
         Route::resource('user', 'UserController');
     });
+
+    Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function (){
+        Route::resource('campeonato', 'CampeonatoController');
+    });
 });
 
 Route::middleware(['auth'])->group(function () {

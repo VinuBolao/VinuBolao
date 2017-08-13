@@ -3,60 +3,76 @@
 
     <div class="col-sm-12 box">
         @if (Auth::user()->master)
-        <a href="{{ route('bolao.create') }}" class="btn btn-primary" role="button">Novo</a>
-        @endif
-        <h2>Lista</h2>
-        <p>Veja a lista de bolões que você participa!</p>
-    </div>
-
-    <div class="col-sm-12 box">
-        @if(count($boloes) > 0)
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th class="hidden-sm hidden-xs">Administrador</th>
-                    <th>Nome</th>
-                    <th>Campeonato</th>
-                    <th>Data Inicial</th>
-                    <th class="hidden-sm hidden-xs">Descrição</th>
-                    <th colspan="2"></th>
-                </tr>
-                </thead>
-                @foreach($boloes as $bolao)
-                    <tbody>
-                    <tr>
-                        <td class="hidden-sm hidden-xs">{{ $bolao->user->name }}</td>
-                        <td>{{ $bolao->nome }}</td>
-                        <td>{{ $bolao->campeonato->nome }} - Série {{ $bolao->campeonato->serie }}</td>
-                        <td>{{ $bolao->inicio }}</td>
-                        <td class="hidden-sm hidden-xs">{{ $bolao->descricao }}</td>
-                        @if (Auth::user()->master)
-                        <td>
-                            <a href="{{ route('participante.index') }}" data-toggle="tooltip" data-placement="top" title="Participantes">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ route('bolao.edit', $bolao->id) }}" data-toggle="tooltip" data-placement="top" title="Editar">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </a>
-                        </td>
-                        @endif
-                        {{--<td>--}}
-                            {{--<form action="{{ route('bolao.destroy', $bolao->id) }}" method="post">--}}
-                                {{--{!! csrf_field() !!}--}}
-                                {{--<input type="hidden" name="_method" value="DELETE">--}}
-                                {{--<input type="submit" value="remover" class="btn btn-xs btn-danger">--}}
-                            {{--</form>--}}
-                        {{--</td>--}}
-                    </tr>
-                    </tbody>
-                @endforeach
-            </table>
-        @else
-            <div class="alert alert-danger">
-                <p class="text-center">Não existe dados para listar!</p>
+            <div class="row">
+                <div class="col-sm-3">
+                    <a href="{{ route('bolao.create') }}" class="btn btn-primary btn-block" role="button">Novo</a>
+                </div>
             </div>
         @endif
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
+                <h2>Lista</h2>
+                <p>Veja a lista de bolões que você participa!</p>
+            </div>
+            <div class="col-sm-3 hidden-xs text-center">
+                <i class="icon-page flaticon-football-player-setting-ball"></i>
+            </div>
+        </div>
     </div>
+
+        @if(count($boloes) > 0)
+            @foreach($boloes as $bolao)
+                <div class="col-sm-12 box">
+                    <div class="row">
+                        <div class="col-sm-3" style="margin-bottom: 15px">
+                            <a href="{{ route('participante.index') }}" class="btn btn-primary btn-block" title="Participantes">
+                                <i class="glyphicon glyphicon-user"></i> Participantes
+                            </a>
+                        </div>
+
+                        <div class="col-sm-3" style="margin-bottom: 15px">
+                            <a href="{{ route('bolao.edit', $bolao->id) }}" class="btn btn-primary btn-block">
+                                <i class="glyphicon glyphicon-pencil"></i> Editar
+                            </a>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th colspan="2" class="title-show">Informações do <strong>{{ $bolao->nome }}</strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">Nome</th>
+                            <td>{{ $bolao->nome }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Administrador</th>
+                            <td>{{ $bolao->user->name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Campeonato</th>
+                            <td>{{ $bolao->campeonato->nome }} - {{ $bolao->campeonato->temporada }} - Série {{ $bolao->campeonato->serie }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Data Inicial</th>
+                            <td>{{ $bolao->inicio }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Descrição</th>
+                            <td>{{ $bolao->descricao }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            @endforeach
+        @else
+            <div class="col-sm-12 box">
+                <div class="alert alert-danger">
+                    <p class="text-center">Não existe dados para listar!</p>
+                </div>
+            </div>
+        @endif
 @endcomponent

@@ -1,6 +1,6 @@
 @component('layouts.admin')
     @slot('pageTitle') Criando @endslot
-    @slot('pageSub') Usuário @endslot
+    @slot('pageSub') Campeonato @endslot
 
     <div class="row">
         <div class="col-sm-12">

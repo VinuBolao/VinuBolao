@@ -62,7 +62,7 @@
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>
                             </div>
                             <div class="col-xs-8 col-sm-7 table-td text-center">
-                                <div class="col-xs-3 col-sm-4 text-right">
+                                <div class="col-xs-3 col-sm-4 time-name text-right">
                                     <strong>
                                         <span class="hidden-sm hidden-xs">{{ jogo.timecasa.nome }}</span>
                                         <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
@@ -75,7 +75,7 @@
                                     <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
                                     <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
                                 </div>
-                                <div class="col-xs-3 col-sm-4 text-left">
+                                <div class="col-xs-3 col-sm-4 time-name text-left">
                                     <strong>
                                         <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
                                         <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
@@ -176,9 +176,9 @@
 </script>
 
 <style>
-    .tr-head {
-        background-color: #666;
-        color: #fff;
+    .time-name {
+        padding-top: 4px;
+        font-size: 1.1em;
     }
     .input-placar {
         width: 35px;

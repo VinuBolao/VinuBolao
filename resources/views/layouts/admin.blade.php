@@ -47,15 +47,28 @@
                         <a href="#"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
                     </li>
                     <li @if(Request::segment(2) == 'user') class="active" @endif>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#user">
                             <i class="glyphicon glyphicon-list"></i> Usuários <i class="caret pull-right" style="margin-top: 10px"></i>
                         </a>
-                        <ul id="demo" @if(Request::segment(2) != 'user') class="collapse" @endif>
+                        <ul id="user" @if(Request::segment(2) != 'user') class="collapse" @endif>
                             <li @if(Request::url() == route('admin.user.index')) class="active" @endif>
                                 <a href="{{ route('admin.user.index') }}">Listar</a>
                             </li>
                             <li @if(Request::url() == route('admin.user.create')) class="active" @endif>
                                 <a href="{{ route('admin.user.create') }}">Novo</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li @if(Request::segment(2) == 'campeonato') class="active" @endif>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#campeonato">
+                            <i class="glyphicon glyphicon-list"></i> Campeonatos <i class="caret pull-right" style="margin-top: 10px"></i>
+                        </a>
+                        <ul id="campeonato" @if(Request::segment(2) != 'campeonato') class="collapse" @endif>
+                            <li @if(Request::url() == route('admin.campeonato.index')) class="active" @endif>
+                                <a href="{{ route('admin.campeonato.index') }}">Listar</a>
+                            </li>
+                            <li @if(Request::url() == route('admin.campeonato.create')) class="active" @endif>
+                                <a href="{{ route('admin.campeonato.create') }}">Novo</a>
                             </li>
                         </ul>
                     </li>

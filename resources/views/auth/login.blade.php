@@ -54,8 +54,8 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-2">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-4 col-md-offset-2">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     Entrar
                                 </button>
 

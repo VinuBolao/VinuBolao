@@ -2,6 +2,10 @@
 // Body
 $body-bg: #ededed;
 
+//Colors
+$write: #fff;
+$black: #000;
+
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
 $list-group-border: $laravel-border-color;
@@ -27,7 +31,7 @@ $text-color: #636b6f;
 $navbar-default-bg: #fff;
 
 // Buttons
-$btn-default-color: $text-color;
+$btn-primary-bg: $text-color;
 
 // Inputs
 $input-border: lighten($text-color, 40%);
@@ -37,6 +41,5 @@ $input-color-placeholder: lighten($text-color, 30%);
 // Panels
 $panel-default-heading-bg: #fff;
 
-//Colors
-$write: #fff;
-$black: #000;
+// Table
+$table-bg-hover: #e1e9ec;

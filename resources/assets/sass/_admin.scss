@@ -57,13 +57,14 @@ body.admin{
     color: #999;
   }
 
+  .navbar-inverse .navbar-nav > .active > a,
   .top-nav>li>a:hover,
   .top-nav>li>a:focus,
   .top-nav>.open>a,
   .top-nav>.open>a:hover,
   .top-nav>.open>a:focus {
     color: #fff;
-    background-color: #000;
+    background-color: #636b6f;
   }
 
   .top-nav>.open>.dropdown-menu {
@@ -132,7 +133,7 @@ body.admin{
     .side-nav li a:hover,
     .side-nav li a:focus {
       outline: none;
-      background-color: #000 !important;
+      background-color: #636b6f !important;
     }
   }
 

@@ -47,9 +47,10 @@
                     <div class="col-sm-12">
                         <div class="row table-head">
                             <div class="col-xs-2 col-sm-1 table-td text-center"><strong>Status</strong></div>
-                            <div class="col-xs-8 col-sm-10 table-td">
+                            <div class="col-xs-8 col-sm-7 table-td">
                                 <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4"><strong>Palpites</strong></div>
                             </div>
+                            <div class="col-sm-3 table-td hidden-xs"><strong>Horário</strong></div>
                             <div class="col-xs-2 col-sm-1 table-td text-center"><strong>Editar</strong></div>
                         </div>
                         <div class="row table-body" v-for="(jogo, key) in jogos">
@@ -57,7 +58,7 @@
                                 <i class="glyphicon glyphicon-remove" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></i>
                                 <i class="glyphicon glyphicon-ok" v-else></i>
                             </div>
-                            <div class="col-xs-8 col-sm-10 table-td text-center">
+                            <div class="col-xs-8 col-sm-7 table-td text-center">
                                 <div class="col-xs-3 col-sm-4 text-right">
                                     <strong>
                                         <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
@@ -77,6 +78,9 @@
                                         <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                                     </strong>
                                 </div>
+                            </div>
+                            <div class="col-sm-3 table-td hidden-xs">
+                                {{ jogo.inicio|moment('HH:mm DD/MM/YYYY') }}
                             </div>
                             <div class="col-xs-2 col-sm-1 table-td text-center">
                                 <div v-show="!saveLoading">
@@ -180,13 +184,6 @@
 </script>
 
 <style>
-    .table-head {
-        background-color: #666;
-        color: #fff;
-    }
-    .table-body:hover {
-        background-color: #dfe7ea;
-    }
     .table-td {
         padding: 8px;
         line-height: 1.6;

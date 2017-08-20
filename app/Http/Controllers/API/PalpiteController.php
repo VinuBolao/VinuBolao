@@ -24,7 +24,7 @@ class PalpiteController extends Controller
     {
         if($rodada){
             $palpites = Palpite::with('jogo', 'user')->where(['user_id' => $userId])->get();
-            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $campeonatoId, 'rodada' => $rodada])->get();
+            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $campeonatoId, 'rodada' => $rodada])->orderBy('inicio')->get();
 
             foreach ($jogos as $jogo) {
                 $jogo->placar_casa = null;
@@ -42,7 +42,7 @@ class PalpiteController extends Controller
             return response()->json($jogos);
         } else {
             return response()->json(
-                Palpite::with('jogo', 'user')->where(['user_id' => $userId, 'campeonato_id' => $campeonatoId])->get()
+                Palpite::with('jogo', 'user')->where(['user_id' => $userId, 'campeonato_id' => $campeonatoId])->orderBy('inicio')->get()
             );
         }
     }

@@ -6,8 +6,8 @@
             <div class="col-sm-9 col-xs-12">
                 <h2>Palpites</h2>
                 <p>
-                    Insira seus palpites para a rodada vigente, lembrando que os palpites devem ser inseridos com pelo menos
-                    <strong>15 minutos</strong> de antecedência ao início da rodada.
+                    Lista de jogos para você preencher os seus palpites,
+                    lembre-se de preencher seu palpite antes do inicio de cada jogo.
                 </p>
             </div>
             <div class="col-sm-3 hidden-xs text-center">

@@ -17350,13 +17350,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            dataLoading: false,
             user: this.users ? JSON.parse(this.users) : null,
+            dataLoading: false,
             participantes: [],
+            rodada: 0,
             order: {
                 keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
                 sort: ['desc', 'desc', 'desc']
@@ -17366,8 +17370,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['users'],
     mounted: function mounted() {
-        this.dataLoading = true;
-        this.updatedData();
+        this.updatedData(this.rodada);
     },
 
     computed: {
@@ -17385,10 +17388,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.error('!Get Campeonatos', error);
             });
         },
-        updatedData: function updatedData() {
+        updatedData: function updatedData(rodada) {
             var _this2 = this;
 
-            this.$http.get('/api/participante/updatedData').then(function (response) {
+            this.dataLoading = true;
+            this.rodada = rodada;
+            this.$http.get('/api/participante/updatedData/' + rodada).then(function (response) {
                 _this2.getParticipantes();
                 _this2.dataLoading = false;
             }).catch(function (error) {
@@ -17499,29 +17504,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            user: JSON.parse(this.users),
+            currentBolao: JSON.parse(this.bolao),
             dataLoading: false,
             saveLoading: false,
-            user: JSON.parse(this.users),
-            jogos: [],
-            rodada: null,
             campeonato: {},
-            campeonatos: []
+            rodada: null,
+            jogos: []
         };
     },
 
-    props: ['users'],
+    props: ['users', 'bolao'],
     mounted: function mounted() {
-        if (this.user) this.getCampeontatos();
+        if (this.user) this.getCampeontatos(this.currentBolao.campeonato_id);
     },
 
     methods: {
@@ -17529,17 +17528,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.dataLoading = true;
-            var param = id ? '/' + id : '';
-            this.$http.get('/api/campeonato/get' + param).then(function (response) {
-                if (id) {
-                    _this.campeonato = response.data;
-                } else {
-                    _this.campeonatos = response.data;
-                    _this.campeonato = _this.campeonatos[0];
-                    _this.rodada = _this.campeonato.rodada;
+            this.$http.get('/api/campeonato/get/' + id).then(function (response) {
+                _this.campeonato = response.data;
+                _this.rodada = _this.campeonato.rodada;
 
-                    _this.getJogosCampeontato(_this.campeonato.id, _this.rodada);
-                }
+                _this.getJogosCampeontato(_this.campeonato.id, _this.rodada);
             }).catch(function (error) {
                 console.error('!Get Campeonatos', error);
             });
@@ -17682,29 +17675,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            user: JSON.parse(this.users),
+            bolao: JSON.parse(this.currentbolao),
             dataLoading: false,
             saveLoading: false,
-            user: JSON.parse(this.users),
-            jogos: [],
-            rodada: 1,
+            campeonato: {},
             palpites: [],
-            campeonatos: [],
-            campeonato: {}
+            jogos: [],
+            rodada: 1
         };
     },
 
-    props: ['users'],
+    props: ['users', 'currentbolao'],
     mounted: function mounted() {
-        if (this.user) this.getCampeontatos();
+        if (this.user) this.getCampeontatos(this.bolao.campeonato_id);
     },
 
     methods: {
@@ -17712,17 +17700,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.dataLoading = true;
-            var param = id ? '/' + id : '';
-            this.$http.get('/api/campeonato/get' + param).then(function (response) {
-                if (id) {
-                    _this.campeonato = response.data;
-                } else {
-                    _this.campeonatos = response.data;
-                    _this.campeonato = _this.campeonatos[0];
-                    _this.rodada = _this.campeonato.rodada;
+            this.$http.get('/api/campeonato/get/' + id).then(function (response) {
+                _this.campeonato = response.data;
+                _this.rodada = _this.campeonato.rodada;
 
-                    _this.getPalpites(_this.user.id, _this.campeonato.id, _this.rodada);
-                }
+                _this.getPalpites(_this.user.id, _this.campeonato.id, _this.rodada);
 
                 //Remove Loading
                 _this.dataLoading = false;
@@ -48194,39 +48176,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0)]) : _c('div', [_c('div', {
     staticClass: "col-sm-12 box"
   }, [_c('div', {
-    staticClass: "btn-group xs-12",
-    attrs: {
-      "role": "group"
-    }
-  }, [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.campeonato.id),
-      expression: "campeonato.id"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "infoCampeonato"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.campeonato.id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, _vm._l((_vm.campeonatos), function(campeonato) {
-    return _c('option', {
-      domProps: {
-        "value": campeonato.id
-      }
-    }, [_vm._v(_vm._s(campeonato.nome_completo))])
-  }))]), _vm._v(" "), _c('div', {
     staticClass: "btn-group btn-rodada",
     attrs: {
       "role": "group"
@@ -48447,41 +48396,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0)]) : _c('div', [_c('div', {
     staticClass: "col-sm-12 box"
   }, [_c('div', {
-    staticClass: "btn-group xs-12",
-    attrs: {
-      "role": "group"
-    }
-  }, [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.campeonato.id),
-      expression: "campeonato.id"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "infoCampeonato"
-    },
-    on: {
-      "change": [function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.campeonato.id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }, function($event) {
-        _vm.getJogosCampeontato(_vm.campeonato.id, _vm.rodada);
-      }]
-    }
-  }, _vm._l((_vm.campeonatos), function(campeonato) {
-    return _c('option', {
-      domProps: {
-        "value": campeonato.id
-      }
-    }, [_vm._v(_vm._s(campeonato.nome_completo))])
-  }))]), _vm._v(" "), _c('div', {
     staticClass: "btn-group btn-rodada",
     attrs: {
       "role": "group"
@@ -48711,60 +48625,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "role": "group"
     }
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "btn-group"
-  }, [_vm._m(1), _vm._v(" "), _c('ol', {
-    staticClass: "dropdown-menu dropdown-rodada-ol"
-  }, _vm._l((38), function(n) {
-    return _c('li', {
-      staticClass: "dropdown-rodada-li"
-    }, [_c('a', {
-      staticClass: "dropdown-rodada-a"
-    }, [_vm._v(_vm._s(n) + "ª")])])
-  }))]), _vm._v(" "), _vm._m(2)])]), _vm._v(" "), (_vm.dataLoading) ? _c('div', {
-    staticClass: "col-sm-12 box"
-  }, [_c('i', {
-    staticClass: "glyphicon glyphicon-refresh"
-  }), _vm._v(" Loading...\n    ")]) : _vm._e(), _vm._v(" "), (!_vm.dataLoading) ? _c('div', {
-    staticClass: "col-sm-12 box"
-  }, [(!_vm.user && _vm.participantes.length == 0) ? _c('div', {
-    staticClass: "col-sm-12 box"
-  }, [_vm._m(3)]) : _c('div', {
-    staticClass: "col-sm-12 box"
-  }, [_vm._m(4), _vm._v(" "), _vm._l((_vm.participantesFiltered), function(participante, key) {
-    return _c('div', {
-      staticClass: "row table-body"
-    }, [_c('div', {
-      staticClass: "col-xs-2 col-sm-1 table-td"
-    }, [_vm._v(_vm._s(key + 1) + "º")]), _vm._v(" "), _c('div', {
-      staticClass: "col-xs-5 col-sm-7 table-td",
-      staticStyle: {
-        "text-align": "left"
-      }
-    }, [_c('b', [_vm._v(_vm._s(participante.user.name))])]), _vm._v(" "), _c('div', {
-      staticClass: "col-xs-2 col-sm-1 table-td"
-    }, [_vm._v(_vm._s(participante.pontosganhos))]), _vm._v(" "), _c('div', {
-      staticClass: "col-xs-2 col-sm-1 table-td"
-    }, [_vm._v(_vm._s(participante.placarexato))]), _vm._v(" "), _c('div', {
-      staticClass: "col-xs-1 col-sm-1 table-td"
-    }, [_vm._v(_vm._s(participante.placarvencedor))]), _vm._v(" "), _vm._m(5, true)])
-  })], 2)]) : _vm._e(), _vm._v(" "), (!_vm.dataLoading) ? _c('div', {
-    staticClass: "col-sm-12 box"
-  }, [_vm._m(6), _vm._v(" "), _vm._m(7)]) : _vm._e()])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
+  }, [_c('button', {
     staticClass: "btn btn-default",
     attrs: {
-      "type": "button"
+      "type": "button",
+      "disabled": _vm.rodada < 1
+    },
+    on: {
+      "click": function($event) {
+        _vm.updatedData(_vm.rodada - 1);
+      }
     }
   }, [_c('span', {
     staticClass: "glyphicon glyphicon-menu-left",
     attrs: {
       "aria-hidden": "true"
     }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "btn-group"
+  }, [_c('button', {
     staticClass: "btn btn-default dropdown-toggle",
     attrs: {
       "type": "button",
@@ -48772,22 +48651,84 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-haspopup": "true",
       "aria-expanded": "false"
     }
-  }, [_vm._v("\n                    1ª Rodada "), _c('span', {
+  }, [(_vm.rodada > 0) ? _c('span', [_vm._v(_vm._s(_vm.rodada) + "ª Rodada "), _c('span', {
     staticClass: "caret"
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
+  })]) : _c('span', [_vm._v("Classificação Geral "), _c('span', {
+    staticClass: "caret"
+  })])]), _vm._v(" "), _c('ol', {
+    staticClass: "dropdown-menu dropdown-rodada-ol"
+  }, [_c('li', {
+    staticClass: "dropdown-rodada-li",
+    staticStyle: {
+      "width": "95%"
+    }
+  }, [_c('a', {
+    staticClass: "dropdown-rodada-a",
+    on: {
+      "click": function($event) {
+        _vm.updatedData(0);
+      }
+    }
+  }, [_vm._v("Geral")])]), _vm._v(" "), _vm._l((_vm.user.bolao.campeonato.qtd_rodadas), function(n) {
+    return _c('li', {
+      staticClass: "dropdown-rodada-li"
+    }, [_c('a', {
+      staticClass: "dropdown-rodada-a",
+      on: {
+        "click": function($event) {
+          _vm.updatedData(n);
+        }
+      }
+    }, [_vm._v(_vm._s(n) + "ª")])])
+  })], 2)]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-default",
     attrs: {
-      "type": "button"
+      "type": "button",
+      "disabled": _vm.rodada >= _vm.user.bolao.campeonato.qtd_rodadas
+    },
+    on: {
+      "click": function($event) {
+        _vm.updatedData(_vm.rodada + 1);
+      }
     }
   }, [_c('span', {
     staticClass: "glyphicon glyphicon-menu-right",
     attrs: {
       "aria-hidden": "true"
     }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  })])])]), _vm._v(" "), (_vm.dataLoading) ? _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_c('i', {
+    staticClass: "glyphicon glyphicon-refresh"
+  }), _vm._v(" Loading...\n    ")]) : _vm._e(), _vm._v(" "), (!_vm.dataLoading) ? _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [(!_vm.user && _vm.participantes.length == 0) ? _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_vm._m(0)]) : _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_vm._m(1), _vm._v(" "), _vm._l((_vm.participantesFiltered), function(participante, key) {
+    return _c('div', {
+      staticClass: "row table-body"
+    }, [_c('div', {
+      staticClass: "col-xs-1 col-sm-1 table-td"
+    }, [_vm._v(_vm._s(key + 1) + "º")]), _vm._v(" "), _c('div', {
+      staticClass: "col-xs-6 col-sm-7 table-td",
+      staticStyle: {
+        "text-align": "left"
+      }
+    }, [_c('b', [_vm._v(_vm._s(participante.user.name))])]), _vm._v(" "), _c('div', {
+      staticClass: "col-xs-1 col-sm-1 table-td"
+    }, [_vm._v(_vm._s(participante.pontosganhos))]), _vm._v(" "), _c('div', {
+      staticClass: "col-xs-1 col-sm-1 table-td"
+    }, [_vm._v(_vm._s(participante.placarexato))]), _vm._v(" "), _c('div', {
+      staticClass: "col-xs-1 col-sm-1 table-td"
+    }, [_vm._v(_vm._s(participante.placarvencedor))]), _vm._v(" "), _c('div', {
+      staticClass: "col-xs-2 col-sm-1 table-td"
+    }, [_vm._v(_vm._s(participante.pontosganhos - _vm.participantesFiltered[0].pontosganhos))])])
+  })], 2)]) : _vm._e(), _vm._v(" "), (!_vm.dataLoading) ? _c('div', {
+    staticClass: "col-sm-12 box"
+  }, [_vm._m(2), _vm._v(" "), _vm._m(3)]) : _vm._e()])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "alert alert-danger"
   }, [_c('p', {
@@ -48797,34 +48738,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "row table-head"
   }, [_c('div', {
-    staticClass: "col-xs-2 col-sm-1 table-td"
-  }, [_c('strong', [_vm._v("Posição")])]), _vm._v(" "), _c('div', {
-    staticClass: "col-xs-5 col-sm-7 table-td",
+    staticClass: "col-xs-1 col-sm-1 table-td"
+  }, [_vm._v("#")]), _vm._v(" "), _c('div', {
+    staticClass: "col-xs-6 col-sm-7 table-td",
     staticStyle: {
       "text-align": "left"
     }
   }, [_c('strong', [_vm._v("Participante")])]), _vm._v(" "), _c('div', {
-    staticClass: "col-xs-2 col-sm-1 table-td"
+    staticClass: "col-xs-1 col-sm-1 table-td"
   }, [_c('strong', [_vm._v("PG")])]), _vm._v(" "), _c('div', {
-    staticClass: "col-xs-2 col-sm-1 table-td"
+    staticClass: "col-xs-1 col-sm-1 table-td"
   }, [_c('strong', [_vm._v("PE")])]), _vm._v(" "), _c('div', {
     staticClass: "col-xs-1 col-sm-1 table-td"
   }, [_c('strong', [_vm._v("PV")])]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-1 table-td hidden-xs"
-  }, [_c('strong', [_vm._v("V")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-sm-1 table-td hidden-xs"
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-stop icon-blue",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  })])
+    staticClass: "col-xs-2 col-sm-1 table-td"
+  }, [_c('strong', [_vm._v("DP")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_c('strong', [_vm._v("Legenda")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('strong', [_vm._v("PG")]), _vm._v(" - Pontos Ganhos,\n            "), _c('strong', [_vm._v("PE")]), _vm._v(" - Placar Exato,\n            "), _c('strong', [_vm._v("PV")]), _vm._v(" - Placar Vencedor,\n            "), _c('strong', [_vm._v("V")]), _vm._v(" - Variação de posição\n        ")])
+  return _c('p', [_c('strong', [_vm._v("PG")]), _vm._v(" - Pontos Ganhos,\n            "), _c('strong', [_vm._v("PE")]), _vm._v(" - Placar Exato,\n            "), _c('strong', [_vm._v("PV")]), _vm._v(" - Placar Vencedor,\n            "), _c('strong', [_vm._v("DP")]), _vm._v(" - Diferença de pontos em relação ao primeiro colocado.\n        ")])
 }]}
 module.exports.render._withStripped = true
 if (false) {

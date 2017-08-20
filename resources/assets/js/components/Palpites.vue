@@ -7,11 +7,6 @@
         </div>
         <div v-else="">
             <div class="col-sm-12 box">
-                <div class="btn-group xs-12" role="group">
-                    <select id="infoCampeonato" class="form-control" v-model="campeonato.id">
-                        <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
-                    </select>
-                </div>
                 <div class="btn-group btn-rodada" role="group">
                     <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user.id, campeonato.id, rodada - 1);">
                         <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
@@ -99,34 +94,28 @@
     export default {
         data() {
             return {
+                user: JSON.parse(this.users),
+                bolao: JSON.parse(this.currentbolao),
                 dataLoading: false,
                 saveLoading: false,
-                user: JSON.parse(this.users),
-                jogos: [],
-                rodada: 1,
+                campeonato: {},
                 palpites: [],
-                campeonatos: [],
-                campeonato: {}
+                jogos: [],
+                rodada: 1
             }
         },
-        props: ['users'],
+        props: ['users', 'currentbolao'],
         mounted() {
-            if(this.user) this.getCampeontatos();
+            if(this.user) this.getCampeontatos(this.bolao.campeonato_id);
         },
         methods: {
             getCampeontatos(id) {
                 this.dataLoading = true;
-                const param = (id) ? '/' + id : '';
-                this.$http.get('/api/campeonato/get' + param).then((response) => {
-                    if(id){
-                        this.campeonato = response.data;
-                    } else {
-                        this.campeonatos = response.data;
-                        this.campeonato = this.campeonatos[0];
-                        this.rodada = this.campeonato.rodada;
+                this.$http.get('/api/campeonato/get/' + id).then((response) => {
+                    this.campeonato = response.data;
+                    this.rodada = this.campeonato.rodada;
 
-                        this.getPalpites(this.user.id, this.campeonato.id, this.rodada);
-                    }
+                    this.getPalpites(this.user.id, this.campeonato.id, this.rodada);
 
                     //Remove Loading
                     this.dataLoading = false;

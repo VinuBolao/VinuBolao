@@ -23,12 +23,12 @@ class ParticipanteController extends Controller
         return response()->json(Participante::with('user')->where('bolao_id', $bolaoId)->get());
     }
 
-    public function updatedData()
+    public function updatedData($rodada = null)
     {
         $users = User::all();
 
         foreach ($users as $user) {
-            $dados = $this->getDados($user->id);
+            $dados = $this->getDados($user->id, $rodada);
 
             if(count($dados) > 0) {
                 Participante::where(['user_id' => $user->id])->update([

@@ -15,7 +15,7 @@ class PalpiteController extends Controller
      */
     public function index()
     {
-        $participante = Participante::with('user')->where('user_id', Auth::id())->first();
+        $participante = Participante::with('user', 'bolao')->where('user_id', Auth::id())->first();
         return view('palpite.index', compact('participante'));
     }
 

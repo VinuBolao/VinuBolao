@@ -25,10 +25,10 @@ Route::namespace('API\\')->group(function (){
     });
 
     Route::group(['prefix' => 'participante'], function (){
-        Route::get('updatedData', 'ParticipanteController@updatedData');
-        Route::get('getDados/{id}/{rodada?}', 'ParticipanteController@getDados');
+        Route::get('updatedData/{rodada?}', 'ParticipanteController@updatedData')->where('id', '[0-9]+');
         Route::get('getBolao/{id}', 'ParticipanteController@getBolao')->where('id', '[0-9]+');
         Route::get('get/{id?}', 'ParticipanteController@get')->where('id', '[0-9]+');
+        Route::get('getDados/{id}/{rodada?}', 'ParticipanteController@getDados');
     });
 
     Route::group(['prefix' => 'campeonato'], function (){

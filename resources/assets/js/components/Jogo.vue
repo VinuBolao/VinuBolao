@@ -7,12 +7,6 @@
         </div>
         <div v-else="">
             <div class="col-sm-12 box">
-                <div class="btn-group xs-12" role="group">
-                    <select id="infoCampeonato" class="form-control" v-model="campeonato.id" @change="getJogosCampeontato(campeonato.id, rodada);">
-                        <option v-for="campeonato in campeonatos" :value="campeonato.id">{{ campeonato.nome_completo }}</option>
-                    </select>
-                </div>
-
                 <div class="btn-group btn-rodada" role="group">
                     <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getJogosCampeontato(campeonato.id, rodada - 1);">
                         <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
@@ -101,33 +95,27 @@
     export default {
         data() {
             return {
+                user: JSON.parse(this.users),
+                currentBolao: JSON.parse(this.bolao),
                 dataLoading: false,
                 saveLoading: false,
-                user: JSON.parse(this.users),
-                jogos: [],
-                rodada: null,
                 campeonato: {},
-                campeonatos: []
+                rodada: null,
+                jogos: []
             }
         },
-        props: ['users'],
+        props: ['users', 'bolao'],
         mounted() {
-            if(this.user) this.getCampeontatos();
+            if(this.user) this.getCampeontatos(this.currentBolao.campeonato_id);
         },
         methods: {
             getCampeontatos(id) {
                 this.dataLoading = true;
-                let param = (id) ? '/' + id : '';
-                this.$http.get('/api/campeonato/get' + param).then((response) => {
-                    if(id){
-                        this.campeonato = response.data;
-                    } else {
-                        this.campeonatos = response.data;
-                        this.campeonato = this.campeonatos[0];
-                        this.rodada = this.campeonato.rodada;
+                this.$http.get('/api/campeonato/get/' + id).then((response) => {
+                    this.campeonato = response.data;
+                    this.rodada = this.campeonato.rodada;
 
-                        this.getJogosCampeontato(this.campeonato.id, this.rodada);
-                    }
+                    this.getJogosCampeontato(this.campeonato.id, this.rodada);
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);
                 });

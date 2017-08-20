@@ -19,4 +19,9 @@ class Jogo extends Model
     {
         return $this->belongsTo('Bolao\Models\Time', 'timefora_id', 'id');
     }
+
+    public function campeonato()
+    {
+        return $this->belongsTo('Bolao\Models\Campeonato', 'campeonato_id', 'id');
+    }
 }

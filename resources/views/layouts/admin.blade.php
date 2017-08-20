@@ -57,19 +57,6 @@
                     <li>
                         <a href="#"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
                     </li>
-                    <li @if(Request::segment(2) == 'user') class="active" @endif>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#user">
-                            <i class="glyphicon glyphicon-list"></i> Usuários <i class="caret pull-right" style="margin-top: 10px"></i>
-                        </a>
-                        <ul id="user" @if(Request::segment(2) != 'user') class="collapse" @endif>
-                            <li @if(Request::url() == route('admin.user.index')) class="active" @endif>
-                                <a href="{{ route('admin.user.index') }}">Listar</a>
-                            </li>
-                            <li @if(Request::url() == route('admin.user.create')) class="active" @endif>
-                                <a href="{{ route('admin.user.create') }}">Novo</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li @if(Request::segment(2) == 'campeonato') class="active" @endif>
                         <a href="javascript:;" data-toggle="collapse" data-target="#campeonato">
                             <i class="glyphicon glyphicon-list"></i> Campeonatos <i class="caret pull-right" style="margin-top: 10px"></i>
@@ -83,6 +70,46 @@
                             </li>
                         </ul>
                     </li>
+                    <li @if(Request::segment(2) == 'jogo') class="active" @endif>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#jogo">
+                            <i class="glyphicon glyphicon-list"></i> Jogos <i class="caret pull-right" style="margin-top: 10px"></i>
+                        </a>
+                        <ul id="jogo" @if(Request::segment(2) != 'jogo') class="collapse" @endif>
+                            <li @if(Request::url() == route('admin.jogo.index')) class="active" @endif>
+                                <a href="{{ route('admin.jogo.index') }}">Listar</a>
+                            </li>
+                            <li @if(Request::url() == route('admin.jogo.create')) class="active" @endif>
+                                <a href="{{ route('admin.jogo.create') }}">Novo</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li @if(Request::segment(2) == 'time') class="active" @endif>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#time">
+                            <i class="glyphicon glyphicon-list"></i> Times <i class="caret pull-right" style="margin-top: 10px"></i>
+                        </a>
+                        <ul id="time" @if(Request::segment(2) != 'time') class="collapse" @endif>
+                            <li @if(Request::url() == route('admin.time.index')) class="active" @endif>
+                                <a href="{{ route('admin.time.index') }}">Listar</a>
+                            </li>
+                            <li @if(Request::url() == route('admin.time.create')) class="active" @endif>
+                                <a href="{{ route('admin.time.create') }}">Novo</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li @if(Request::segment(2) == 'user') class="active" @endif>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#user">
+                            <i class="glyphicon glyphicon-list"></i> Usuários <i class="caret pull-right" style="margin-top: 10px"></i>
+                        </a>
+                        <ul id="user" @if(Request::segment(2) != 'user') class="collapse" @endif>
+                            <li @if(Request::url() == route('admin.user.index')) class="active" @endif>
+                                <a href="{{ route('admin.user.index') }}">Listar</a>
+                            </li>
+                            <li @if(Request::url() == route('admin.user.create')) class="active" @endif>
+                                <a href="{{ route('admin.user.create') }}">Novo</a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </nav>

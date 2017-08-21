@@ -91,6 +91,7 @@
             getParticipantes() {
                 this.$http.get('/api/participante/get').then((response) => {
                     this.participantes = response.data;
+                    this.dataLoading = false;
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);
                 });
@@ -101,7 +102,6 @@
                 this.rodada = rodada;
                 this.$http.get('/api/participante/updatedData/' + rodada).then((response) => {
                     this.getParticipantes();
-                    this.dataLoading = false;
                 }).catch((error) => {
                     this.getParticipantes();
                     this.dataLoading = false;

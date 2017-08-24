@@ -42,7 +42,7 @@
                     <div class="col-xs-1 col-sm-1 table-td"><strong>PV</strong></div>
                     <div class="col-xs-2 col-sm-1 table-td"><strong>DP</strong></div>
                 </div>
-                <div class="row table-body" v-for="(participante, key) in participantesFiltered">
+                <div class="row table-body" :class="{ 'bg-yellow': rodada > 0 }" v-for="(participante, key) in participantesFiltered">
                     <div class="col-xs-1 col-sm-1 table-td">{{ key + 1 }}º</div>
                     <div class="col-xs-6 col-sm-7 table-td" style="text-align: left;"><b>{{ participante.user.name }}</b></div>
                     <div class="col-xs-1 col-sm-1 table-td">{{ participante.pontosganhos }}</div>

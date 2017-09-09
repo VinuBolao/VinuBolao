@@ -44,7 +44,12 @@
 
   .table-body {
     border-bottom: 1px solid #ddd;
-    &:hover {
+
+    &.bg-yellow {
+      background-color: $yellow;
+    }
+
+    &:hover, &.bg-yellow:hover {
       background-color: $table-bg-hover;
     }
   }

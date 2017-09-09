@@ -8,7 +8,7 @@
                 <p>Veja sua posição em relação aos outros participantes!</p>
             </div>
             <div class="col-sm-3 hidden-xs text-center">
-                <i class="icon-page flaticon-ranking-factor"></i>
+                <i class="icon-page flaticon-sports"></i>
             </div>
         </div>
     </div>

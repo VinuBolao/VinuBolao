@@ -42,8 +42,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('participante', 'ParticipanteController');
 
-    Route::get('participante', 'ParticipanteController@index')->name('participante.index');
-
     Route::get('jogo', 'JogoController@index')->name('jogo.index');
 
     Route::get('palpite', 'PalpiteController@index')->name('palpite.index');

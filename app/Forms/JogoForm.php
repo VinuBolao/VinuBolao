@@ -48,10 +48,10 @@ class JogoForm extends Form
             ])
             ->add('placar_casa', 'number', [
                 'label' => 'Placar Casa',
-                'attr' => ['placeholder' => 'Ex: 1', 'min' => 1, 'max' => 20],
+                'attr' => ['placeholder' => 'Ex: 1', 'min' => 0, 'max' => 20],
             ])->add('placar_fora', 'number', [
                 'label' => 'Placar Fora',
-                'attr' => ['placeholder' => 'Ex: 1', 'min' => 1, 'max' => 20],
+                'attr' => ['placeholder' => 'Ex: 1', 'min' => 0, 'max' => 20],
             ])
             ->add('timefora_id', 'select', [
                 'label' => 'Visitante',

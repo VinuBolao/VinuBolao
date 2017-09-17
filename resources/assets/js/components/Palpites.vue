@@ -26,6 +26,15 @@
                     </button>
                 </div>
             </div>
+            <div class="col-sm-12 box">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <select class="form-control" v-model="participanteId" @change="getPalpites(participanteId, campeonato.id, rodada);">
+                            <option v-for="participante in participantes" :value="participante.user.id">{{ participante.user.name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-12 box" v-if="dataLoading">
                 <i class="glyphicon glyphicon-refresh"></i> Loading...
             </div>
@@ -57,12 +66,12 @@
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-4 td-jogo">
-                                    <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_casa === null" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
+                                    <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_casa === null && user.id === participanteId" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
                                     <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
                                     x
-                                    <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_fora === null" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
+                                    <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_fora === null && user.id === participanteId" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
                                     <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
-                                    <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null">Esgotado!</strong>
+                                    <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">Esgotado!</strong>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 text-left">
                                     <strong>
@@ -98,6 +107,8 @@
                 bolao: JSON.parse(this.currentbolao),
                 dataLoading: false,
                 saveLoading: false,
+                participanteId: null,
+                participantes: [],
                 campeonato: {},
                 palpites: [],
                 jogos: [],
@@ -107,6 +118,7 @@
         props: ['users', 'currentbolao'],
         mounted() {
             if(this.user) this.getCampeontatos(this.bolao.campeonato_id);
+            this.getParticipantes();
         },
         methods: {
             getCampeontatos(id) {
@@ -114,6 +126,7 @@
                 this.$http.get('/api/campeonato/get/' + id).then((response) => {
                     this.campeonato = response.data;
                     this.rodada = this.campeonato.rodada;
+                    this.participante = this.user;
 
                     this.getPalpites(this.user.id, this.campeonato.id, this.rodada);
 
@@ -121,6 +134,18 @@
                     this.dataLoading = false;
                 }).catch((error) => {
                     console.error('!Get Campeonatos', error);
+                });
+            },
+
+            getParticipantes() {
+                this.dataLoading = true;
+                this.$http.get('/api/participante/get').then((response) => {
+                    this.participantes = response.data;
+
+                    //Remove Loading
+                    this.dataLoading = false;
+                }).catch((error) => {
+                    console.error('!Get Usuarios', error);
                 });
             },
 
@@ -136,6 +161,7 @@
 
                     this.jogos = response.data;
                     this.rodada = rodada;
+                    this.participanteId = userId;
 
                     //Remove Loading
                     this.dataLoading = false;

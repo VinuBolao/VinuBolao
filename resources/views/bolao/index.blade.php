@@ -25,6 +25,7 @@
     @if(count($boloes) > 0)
         @foreach($boloes as $bolao)
             <div class="col-sm-12 box">
+                @if (Auth::user()->master)
                 <div class="row">
                     <div class="col-sm-3" style="margin-bottom: 15px">
                         <a href="{{ route('participante.index') }}" class="btn btn-primary btn-block" title="Participantes">
@@ -38,6 +39,7 @@
                         </a>
                     </div>
                 </div>
+                @endif
 
                 <table class="table table-bordered">
                     <thead>

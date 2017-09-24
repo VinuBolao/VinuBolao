@@ -6,7 +6,7 @@
         <p>Veja a lista dos outros participantes!</p>
     </div>
 
-    @if(!$participantes->isEmpty())
+    @if(!$boloes->isEmpty())
         <div class="col-sm-12 box">
             <div class="row">
                 <div class="col-sm-4">
@@ -23,6 +23,7 @@
 
     <div class="col-sm-12 box">
         @if(!$participantes->isEmpty())
+            @if(!$boloes->isEmpty())
             <form id="formParticipante" action="{{ route('participante.store') }}" method="post" class="form-horizontal" style="margin-bottom: 15px">
                 <div class="row">
                     <div class="col-sm-9">
@@ -40,6 +41,7 @@
                     </div>
                 </div>
             </form>
+            @endif
             <table class="table table-bordered">
                 <thead>
                 <tr>

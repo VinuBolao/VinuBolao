@@ -18,7 +18,8 @@ class ParticipanteController extends Controller
     public function index()
     {
         $boloes = Bolao::where(['user_id' => Auth::user()->id])->get();
-        $participantes = Participante::where(['bolao_id' => $boloes[0]->id])->get();
+        $participante = Participante::where(['user_id' => Auth::user()->id])->first();
+        $participantes = Participante::where(['bolao_id' => $participante->bolao_id])->get();
         $users = User::all();
         return view('participante.index', [
             'participantes' => $participantes,

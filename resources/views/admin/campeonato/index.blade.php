@@ -13,6 +13,8 @@
     <div class="row">
         <div class="col-sm-12">
             @if(count($campeonatos) > 0)
+                {{ $campeonatos->links() }}
+
                 <table class="table table-hover">
                     <thead>
                         <tr>

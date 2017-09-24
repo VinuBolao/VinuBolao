@@ -51,7 +51,7 @@
                                 <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4"><strong>Palpites</strong></div>
                             </div>
                             <div class="col-sm-3 table-td hidden-xs"><strong>Horário</strong></div>
-                            <div class="col-xs-2 col-sm-1 table-td"><strong>Editar</strong></div>
+                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.id === participanteId"><strong>Editar</strong></div>
                         </div>
                         <div class="row table-body" v-for="(jogo, key) in jogos">
                             <div class="col-xs-2 col-sm-1 table-td">
@@ -83,9 +83,9 @@
                             <div class="col-sm-3 table-td hidden-xs">
                                 {{ jogo.inicio|moment('HH:mm DD/MM/YYYY') }}
                             </div>
-                            <div class="col-xs-2 col-sm-1 table-td">
+                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.id === participanteId">
                                 <div v-show="(disableInput(jogo) != jogo.id) && !saveLoading">
-                                    <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="savePalpite(jogo, true)">
+                                    <a href="" v-if="(jogo.placar_casa !== null || jogo.placar_fora !== null)" @click.prevent="savePalpite(jogo, true)">
                                         <i class="glyphicon glyphicon-edit" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></i>
                                     </a>
                                 </div>
@@ -126,7 +126,6 @@
                 this.$http.get('/api/campeonato/get/' + id).then((response) => {
                     this.campeonato = response.data;
                     this.rodada = this.campeonato.rodada;
-                    this.participante = this.user;
 
                     this.getPalpites(this.user.id, this.campeonato.id, this.rodada);
 
@@ -151,24 +150,26 @@
 
             getPalpites(userId, campeonatoId, rodada) {
                 this.saveLoading = true;
-                this.$http.get('/api/palpite/getPalpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
-                    response.data.forEach(function (jogo) {
-                        jogo.palpite = {
-                            casa: null,
-                            fora: null
-                        }
+                if(userId > 0 && campeonatoId > 0){
+                    this.$http.get('/api/palpite/getPalpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
+                        response.data.forEach(function (jogo) {
+                            jogo.palpite = {
+                                casa: null,
+                                fora: null
+                            }
+                        });
+
+                        this.jogos = response.data;
+                        this.rodada = rodada;
+                        this.participanteId = userId;
+
+                        //Remove Loading
+                        this.dataLoading = false;
+                        this.saveLoading = false;
+                    }).catch((error) => {
+                        console.error('!Get JogosCampeonato', error);
                     });
-
-                    this.jogos = response.data;
-                    this.rodada = rodada;
-                    this.participanteId = userId;
-
-                    //Remove Loading
-                    this.dataLoading = false;
-                    this.saveLoading = false;
-                }).catch((error) => {
-                    console.error('!Get JogosCampeonato', error);
-                });
+                }
             },
 
             savePalpite(jogo, edit) {

@@ -13,6 +13,8 @@
     <div class="row">
         <div class="col-sm-12">
             @if(count($jogos) > 0)
+                {{ $jogos->links() }}
+
                 <table class="table table-hover">
                     <thead>
                         <tr>

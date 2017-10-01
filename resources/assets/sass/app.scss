@@ -34,8 +34,9 @@ html, body.bolao {
 
     .box{
       background: $write;
-      padding: 15px;
       margin-bottom: 15px;
+      padding: 15px;
+      box-shadow: 0 0 15px #ccc;
     }
 
     .container .text-muted {
@@ -103,16 +104,15 @@ html, body.bolao {
 
     .footer {
       position: relative;
-      background-color: $navBarColor;
-      margin-top: 7px;
+      background-color: $body-bg;
+      padding: 0 15px 15px;
       color: #9d9d9d;
-      padding: 15px;
       width: 100%;
       bottom: 0;
       left: 0;
 
       a {
-        color: $write;
+        color: $text-color;
         text-decoration: none;
       }
     }

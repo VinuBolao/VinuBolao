@@ -113,6 +113,14 @@
                 {{ $slot }}
             </div>
         </div>
+
+        @if (Auth::check())
+        <div class="footer">
+            <footer class="text-center">
+                <span>VinuBolão &copy; 2017 - Criado por <a href="https://www.linkedin.com/in/gustavosantoslima" target="_blank">Gustavo Santos</a></span>
+            </footer>
+        </div>
+        @endif
     </div>
 
     <!-- Scripts -->

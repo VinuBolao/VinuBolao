@@ -15,146 +15,168 @@
   color: $write!important;
 }
 
-.bolao {
-  .navbar-inverse .navbar-nav > li > a {
-    border-right: 1px solid #222;
-    border-left: 1px solid #222;
-  }
+html, body.bolao {
 
-  .navbar-inverse .navbar-nav > .active > a,
-  .navbar-inverse .navbar-nav > li > a:hover {
-    border-right: 1px solid #fff;
-    border-left: 1px solid #fff;
-  }
+  #app {
+    height: auto !important;
+    min-height: 100%;
 
-  .box{
-    background: $write;
-    padding: 15px;
-    margin-bottom: 15px;
-  }
-
-  .container .text-muted {
-    margin: 20px 0;
-  }
-
-  .table-head {
-    background-color: $text-color;
-    color: $write;
-  }
-
-  .table-body {
-    border-bottom: 1px solid #ddd;
-
-    &.bg-yellow {
-      background-color: $yellow;
+    .navbar-inverse .navbar-nav > li > a {
+      border-right: 1px solid $navBarColor;
+      border-left: 1px solid $navBarColor;
     }
 
-    &:hover, &.bg-yellow:hover {
-      background-color: $table-bg-hover;
+    .navbar-inverse .navbar-nav > .active > a,
+    .navbar-inverse .navbar-nav > li > a:hover {
+      border-right: 1px solid #fff;
+      border-left: 1px solid #fff;
     }
-  }
 
-  .placar-casa {
-    position: absolute;
-    left: 15px;
-    font-size: 1.5em;
-    height: 39px;
-    bottom: -10px;
-  }
-
-  .placar-fora {
-    position: absolute;
-    right: 15px;
-    font-size: 1.5em;
-    height: 39px;
-    bottom: -10px;
-  }
-
-  .table-td {
-    padding: 10px;
-    text-align: center;
-  }
-
-  .title-show {
-    text-align: center;
-    font-size: 1.7em;
-    font-weight: 500;
-  }
-
-  .icon-page {
-    font-size: 6em;
-    line-height: 0;
-    color: $text-color;
-  }
-
-  .input-placar {
-    width: 35px;
-  }
-
-  .td-jogo {
-    width: 90px;
-    padding: 0;
-  }
-
-  .glyphicon.glyphicon-remove {
-    color: #d9534f;
-  }
-
-  .glyphicon.glyphicon-ok {
-    color: #398439;
-  }
-
-  .dropdown-rodada-ol{
-    left: -39px;
-    min-width: 170px;
-    height: 150px;
-    overflow-y: auto;
-  }
-
-  .dropdown-rodada-li{
-    display: inline-table;
-    border: 1px solid #cccecf;
-    width: 30%;
-    margin-left: 4px;
-    margin-bottom: 5px;
-    padding: 0;
-    font-size: 14px;
-    border-radius: 2px;
-  }
-
-  .dropdown-rodada-a {
-    padding: 5px !important;
-    text-align: center;
-    cursor: pointer
-  }
-
-  .glyphicon-refresh {
-    animation: spinIt 1.5s infinite linear;
-  }
-
-  @keyframes spinIt {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(359deg); }
-  }
-
-  @media (max-width: 767px) {
-    .btn-group.xs-12 {
-      width: 100%;
+    .box{
+      background: $write;
+      padding: 15px;
       margin-bottom: 15px;
     }
 
-    .btn-group.btn-rodada {
-      width: 100%;
+    .container .text-muted {
+      margin: 20px 0;
+    }
 
-      > .btn-default {
-        width: 15%;
+    .table-head {
+      background-color: $text-color;
+      color: $write;
+    }
+
+    .table-body {
+      border-bottom: 1px solid #ddd;
+
+      &.bg-yellow {
+        background-color: $yellow;
       }
 
-      > .btn-group {
-        width: 70%;
+      &:hover, &.bg-yellow:hover {
+        background-color: $table-bg-hover;
+      }
+    }
+
+    .placar-casa {
+      position: absolute;
+      left: 15px;
+      font-size: 1.5em;
+      height: 39px;
+      bottom: -10px;
+    }
+
+    .placar-fora {
+      position: absolute;
+      right: 15px;
+      font-size: 1.5em;
+      height: 39px;
+      bottom: -10px;
+    }
+
+    .table-td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .title-show {
+      text-align: center;
+      font-size: 1.7em;
+      font-weight: 500;
+    }
+
+    .icon-page {
+      font-size: 6em;
+      line-height: 0;
+      color: $text-color;
+    }
+
+    .input-placar {
+      width: 35px;
+    }
+
+    .td-jogo {
+      width: 90px;
+      padding: 0;
+    }
+
+    .footer {
+      position: relative;
+      background-color: $navBarColor;
+      margin-top: 7px;
+      color: #9d9d9d;
+      padding: 15px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+
+      a {
+        color: $write;
+        text-decoration: none;
+      }
+    }
+
+    .glyphicon.glyphicon-remove {
+      color: #d9534f;
+    }
+
+    .glyphicon.glyphicon-ok {
+      color: #398439;
+    }
+
+    .dropdown-rodada-ol{
+      left: -39px;
+      min-width: 170px;
+      height: 150px;
+      overflow-y: auto;
+    }
+
+    .dropdown-rodada-li{
+      display: inline-table;
+      border: 1px solid #cccecf;
+      width: 30%;
+      margin-left: 4px;
+      margin-bottom: 5px;
+      padding: 0;
+      font-size: 14px;
+      border-radius: 2px;
+    }
+
+    .dropdown-rodada-a {
+      padding: 5px !important;
+      text-align: center;
+      cursor: pointer
+    }
+
+    .glyphicon-refresh {
+      animation: spinIt 1.5s infinite linear;
+    }
+
+    @keyframes spinIt {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(359deg); }
+    }
+
+    @media (max-width: 767px) {
+      .btn-group.xs-12 {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      .btn-group.btn-rodada {
+        width: 100%;
 
         > .btn-default {
-          width: 100%;
+          width: 15%;
+        }
+
+        > .btn-group {
+          width: 70%;
+
+          > .btn-default {
+            width: 100%;
+          }
         }
       }
     }

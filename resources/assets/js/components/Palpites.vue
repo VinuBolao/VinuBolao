@@ -81,7 +81,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-3 table-td hidden-xs">
-                                {{ jogo.inicio|moment('HH:mm DD/MM/YYYY') }}
+                                <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>
+                                {{ jogo.inicio|moment('DD/MM/YY') }}
+                                | <strong>{{ jogo.timecasa.estadio }}</strong>
                             </div>
                             <div class="col-xs-2 col-sm-1 table-td" v-if="user.id === participanteId">
                                 <div v-show="(disableInput(jogo) != jogo.id) && !saveLoading">

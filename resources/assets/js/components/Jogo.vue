@@ -39,12 +39,20 @@
 
                     <div class="col-sm-12">
                         <div class="row table-head">
-                            <div class="col-xs-2 col-sm-1 table-td"><strong>Status</strong></div>
-                            <div class="col-xs-8 col-sm-7 table-td">
-                                <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4"><strong>Jogos</strong></div>
+                            <div class="col-xs-2 col-sm-1 table-td">
+                                <strong>Status</strong>
                             </div>
-                            <div class="col-sm-3 table-td hidden-xs"><strong>Horário | Estádio</strong></div>
-                            <div class="col-xs-2 col-sm-1 table-td"><strong>Editar</strong></div>
+                            <div class="col-xs-8 col-sm-7 table-td">
+                                <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4">
+                                    <strong>Jogos</strong>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 table-td hidden-xs">
+                                <strong>Horário | Estádio</strong>
+                            </div>
+                            <div class="col-xs-2 col-sm-1 table-td">
+                                <strong>Editar</strong>
+                            </div>
                         </div>
                         <div class="row table-body" v-for="(jogo, key) in jogos">
                             <div class="col-xs-2 col-sm-1 table-td">
@@ -73,9 +81,11 @@
                                 </div>
                             </div>
                             <div class="col-sm-3 table-td hidden-xs">
-                                {{ jogo.inicio|moment('HH:mm DD/MM/YY') }} | {{ jogo.timecasa.estadio }}
+                                <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>
+                                {{ jogo.inicio|moment('DD/MM/YY') }}
+                                | <strong>{{ jogo.timecasa.estadio }}</strong>
                             </div>
-                            <div class="col-xs-2 col-sm-1 table-td">
+                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.master">
                                 <div v-show="user.master && !saveLoading">
                                     <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="updatedPlacar(jogo, jogo.id)">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

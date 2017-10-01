@@ -10,7 +10,7 @@
                 <div class="text-center">
                     <i class="flaticon-footbal-pin" style="font-size: 6em; color: #333333"></i>
                 </div>
-                <div class="panel-heading text-center" style="font-size: 2em; padding: 0 10px 15px">VinuBolão</div>
+                <div class="panel-heading text-center" style="font-size: 2em; padding: 0 10px 15px">VinúBolão</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}

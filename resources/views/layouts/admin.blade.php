@@ -19,7 +19,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>VinuBolão | Admin</title>
+    <title>VinúBolão | Admin</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ route('bolao.index') }}">
-                    <i class="flaticon-ball-5"></i> VinuBolão
+                    <i class="flaticon-ball-5"></i> VinúBolão
                 </a>
             </div>
             <ul class="nav navbar-right top-nav">

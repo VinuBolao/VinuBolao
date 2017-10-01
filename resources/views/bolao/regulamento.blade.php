@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-9 col-xs-12">
                 <h2>Regulamento </h2>
-                <p>Confira como participar do VINUBOLÃO, quais os critérios que usamos para pontuação e outras informações importantes.</p>
+                <p>Confira como participar do VINÚBOLÃO, quais os critérios que usamos para pontuação e outras informações importantes.</p>
             </div>
             <div class="col-sm-3 hidden-xs text-center">
                 <i class="icon-page flaticon-checklist"></i>

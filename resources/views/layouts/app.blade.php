@@ -19,7 +19,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>VinuBolão | {{ $title or 'Título' }}</title>
+    <title>VinúBolão | {{ $title or 'Título' }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -51,7 +51,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand"  href="{{ route('bolao.index') }}">
-                        <i class="flaticon-ball-5"></i> VinuBolão
+                        <i class="flaticon-ball-5"></i> VinúBolão
                     </a>
                 </div>
 
@@ -116,7 +116,7 @@
 
         <div class="footer">
             <footer class="text-center">
-                <span>VinuBolão &copy; 2017 - Criado por <a href="https://www.linkedin.com/in/gustavosantoslima" target="_blank">Gustavo Santos</a></span>
+                <span>VinúBolão &copy; 2017 - Criado por <a href="https://www.linkedin.com/in/gustavosantoslima" target="_blank">Gustavo Lima</a></span>
             </footer>
         </div>
     </div>

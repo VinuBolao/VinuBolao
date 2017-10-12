@@ -37,6 +37,10 @@ html, body.bolao {
       box-shadow: 0 0 15px #ccc;
     }
 
+    .container .row .panel{
+      margin-bottom: 5px;
+    }
+
     .container .text-muted {
       margin: 20px 0;
     }
@@ -109,9 +113,13 @@ html, body.bolao {
       bottom: 0;
       left: 0;
 
-      a {
-        color: $text-color;
-        text-decoration: none;
+      span{
+        font-size: 11px;
+
+        a {
+          color: $text-color;
+          text-decoration: none;
+        }
       }
     }
 

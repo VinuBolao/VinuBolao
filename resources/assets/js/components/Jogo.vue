@@ -50,7 +50,7 @@
                             <div class="col-sm-3 table-td hidden-xs">
                                 <strong>Horário | Estádio</strong>
                             </div>
-                            <div class="col-xs-2 col-sm-1 table-td">
+                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.master">
                                 <strong>Editar</strong>
                             </div>
                         </div>

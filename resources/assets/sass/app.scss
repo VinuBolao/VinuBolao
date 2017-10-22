@@ -62,25 +62,44 @@ html, body.bolao {
       }
     }
 
-    .placar-casa {
-      position: absolute;
-      left: 15px;
+    .placar-palpite {
+      margin: {
+        top: 0;
+        right: 10px;
+        bottom: 0;
+        left: 10px;
+      }
       font-size: 1.5em;
-      height: 39px;
-      bottom: -10px;
-    }
-
-    .placar-fora {
-      position: absolute;
-      right: 15px;
-      font-size: 1.5em;
-      height: 39px;
-      bottom: -10px;
     }
 
     .table-td {
       padding: 10px;
       text-align: center;
+    }
+
+    .td-mandante,
+    .td-visitante,
+    .td-icons {
+      margin: {
+        top: 5px;
+        bottom: 5px;
+      };
+    }
+
+    .td-mandante {
+      text-align: right;
+    }
+
+    .td-visitante {
+      text-align: left;
+
+    }
+
+    .td-divisor {
+      padding: {
+        left: 0;
+        right: 0;
+      };
     }
 
     .title-show {
@@ -96,12 +115,8 @@ html, body.bolao {
     }
 
     .input-placar {
-      width: 35px;
-    }
-
-    .td-jogo {
-      width: 90px;
-      padding: 0;
+      width: 30px;
+      border: 1px solid #ccc;
     }
 
     .footer {
@@ -132,8 +147,7 @@ html, body.bolao {
     }
 
     .dropdown-rodada-ol{
-      left: -39px;
-      min-width: 170px;
+      min-width: 203px;
       height: 150px;
       overflow-y: auto;
     }
@@ -142,8 +156,12 @@ html, body.bolao {
       display: inline-table;
       border: 1px solid #cccecf;
       width: 30%;
-      margin-left: 4px;
-      margin-bottom: 5px;
+      margin: {
+        top: 0;
+        bottom: 5px;
+        right: 1.7%;
+        left: 1.7%;
+      };
       padding: 0;
       font-size: 14px;
       border-radius: 2px;

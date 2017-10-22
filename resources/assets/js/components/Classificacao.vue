@@ -37,16 +37,16 @@
                 <div class="row table-head">
                     <div class="col-xs-1 col-sm-1 table-td">#</div>
                     <div class="col-xs-5 col-sm-7 table-td" style="text-align: left;"><strong>Participante</strong></div>
-                    <div class="col-xs-1 col-sm-1 table-td"><strong>PG</strong></div>
-                    <div class="col-xs-2 col-sm-1 table-td"><strong>PE</strong></div>
+                    <div class="col-xs-2 col-sm-1 table-td"><strong>PG</strong></div>
+                    <div class="col-xs-1 col-sm-1 table-td"><strong>PE</strong></div>
                     <div class="col-xs-1 col-sm-1 table-td"><strong>PV</strong></div>
                     <div class="col-xs-2 col-sm-1 table-td"><strong>DP</strong></div>
                 </div>
                 <div class="row table-body" :class="{ 'bg-yellow': rodada > 0 }" v-for="(participante, key) in participantesFiltered">
                     <div class="col-xs-1 col-sm-1 table-td">{{ key + 1 }}º</div>
                     <div class="col-xs-5 col-sm-7 table-td" style="text-align: left;"><b>{{ participante.user.name }}</b></div>
-                    <div class="col-xs-1 col-sm-1 table-td"><strong>{{ participante.pontosganhos }}</strong></div>
-                    <div class="col-xs-2 col-sm-1 table-td">{{ participante.placarexato }}</div>
+                    <div class="col-xs-2 col-sm-1 table-td"><strong>{{ participante.pontosganhos }}</strong></div>
+                    <div class="col-xs-1 col-sm-1 table-td">{{ participante.placarexato }}</div>
                     <div class="col-xs-1 col-sm-1 table-td">{{ participante.placarvencedor }}</div>
                     <div class="col-xs-2 col-sm-1 table-td">{{ participante.pontosganhos - participantesFiltered[0].pontosganhos }}</div>
                 </div>

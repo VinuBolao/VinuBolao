@@ -46,51 +46,61 @@
 
                     <div class="col-sm-12">
                         <div class="row table-head">
-                            <div class="col-xs-2 col-sm-1 table-td text-center"><strong>Status</strong></div>
-                            <div class="col-xs-8 col-sm-7 table-td">
-                                <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4"><strong>Palpites</strong></div>
+                            <div class="col-xs-1 col-sm-1 table-td text-center">
+                                <strong>Status</strong>
                             </div>
-                            <div class="col-sm-3 table-td hidden-xs"><strong>Horário</strong></div>
-                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.id === participanteId"><strong>Editar</strong></div>
+                            <div class="col-xs-9 col-sm-6 col-md-5 table-td td-divisor">
+                                <strong>Palpites</strong>
+                            </div>
+                            <div class="hidden-xs col-sm-4 col-md-5 table-td">
+                                <strong>Horário</strong>
+                            </div>
+                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.id === participanteId">
+                                <strong>Editar</strong>
+                            </div>
                         </div>
                         <div class="row table-body" v-for="(jogo, key) in jogos">
-                            <div class="col-xs-2 col-sm-1 table-td">
+                            <div class="col-xs-1 col-sm-1 table-td td-icons">
                                 <i class="glyphicon glyphicon-remove" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></i>
                                 <i class="glyphicon glyphicon-ok" v-else></i>
                             </div>
-                            <div class="col-xs-8 col-sm-7 table-td">
-                                <div class="col-xs-3 col-sm-4 text-right">
-                                    <strong>
-                                        <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
-                                        <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
-                                    </strong>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 td-jogo">
-                                    <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_casa === null && user.id === participanteId" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
-                                    <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
-                                    x
-                                    <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_fora === null && user.id === participanteId" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
-                                    <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
-                                    <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">Esgotado!</strong>
-                                </div>
-                                <div class="col-xs-3 col-sm-4 text-left">
-                                    <strong>
-                                        <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
-                                        <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
-                                    </strong>
-                                </div>
+                            <div class="col-xs-3 col-sm-2 table-td td-mandante">
+                                <strong>
+                                    <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
+                                    <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
+                                </strong>
                             </div>
-                            <div class="col-sm-3 table-td hidden-xs">
+                            <div class="col-xs-4 col-sm-2 col-md-1 table-td td-divisor">
+                                <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_casa === null && user.id === participanteId" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
+                                <span class="placar-palpite" v-else>
+                                    <strong>{{ jogo.placar_casa }}</strong>
+                                </span>
+                                x
+                                <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_fora === null && user.id === participanteId" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
+                                <span class="placar-palpite" v-else>
+                                    <strong>{{ jogo.placar_fora }}</strong>
+                                </span>
+                            </div>
+                            <div class="col-xs-3 col-sm-2 table-td td-visitante">
+                                <strong>
+                                    <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
+                                    <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
+                                </strong>
+                            </div>
+                            <div class="hidden-xs col-sm-4 col-md-5 table-td">
                                 <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>
                                 {{ jogo.inicio|moment('DD/MM/YY') }}
                                 | <strong>{{ jogo.timecasa.estadio }}</strong>
                             </div>
-                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.id === participanteId">
+                            <div class="col-xs-1 col-sm-1 table-td td-icons" v-if="user.id === participanteId">
                                 <div v-show="(disableInput(jogo) != jogo.id) && !saveLoading">
                                     <a href="" v-if="(jogo.placar_casa !== null || jogo.placar_fora !== null)" @click.prevent="savePalpite(jogo, true)">
                                         <i class="glyphicon glyphicon-edit" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></i>
                                     </a>
                                 </div>
+                            </div>
+                            <div class="col-xs-10 col-sm-8 text-center">
+                                <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">Esgotado!</strong>
                             </div>
                         </div>
                     </div>

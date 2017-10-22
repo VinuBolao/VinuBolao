@@ -39,15 +39,13 @@
 
                     <div class="col-sm-12">
                         <div class="row table-head">
-                            <div class="col-xs-2 col-sm-1 table-td">
+                            <div class="col-xs-1 col-sm-1 table-td text-center">
                                 <strong>Status</strong>
                             </div>
-                            <div class="col-xs-8 col-sm-7 table-td">
-                                <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4">
-                                    <strong>Jogos</strong>
-                                </div>
+                            <div class="col-xs-9 col-sm-6 col-md-5 table-td td-divisor">
+                                <strong>Jogos</strong>
                             </div>
-                            <div class="col-sm-3 table-td hidden-xs">
+                            <div class="hidden-xs col-sm-4 col-md-5 table-td">
                                 <strong>Horário | Estádio</strong>
                             </div>
                             <div class="col-xs-2 col-sm-1 table-td" v-if="user.master">
@@ -55,37 +53,39 @@
                             </div>
                         </div>
                         <div class="row table-body" v-for="(jogo, key) in jogos">
-                            <div class="col-xs-2 col-sm-1 table-td">
+                            <div class="col-xs-1 col-sm-1 table-td td-icons">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></span>
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>
                             </div>
-                            <div class="col-xs-8 col-sm-7 table-td">
-                                <div class="col-xs-3 col-sm-4 text-right">
-                                    <strong>
-                                        <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
-                                        <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
-                                    </strong>
-                                </div>
-                                <div class="col-xs-9 col-sm-4 td-jogo">
-                                    <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="user.master && jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
-                                    <strong class="placar-casa" v-else>{{ jogo.placar_casa }}</strong>
-                                    x
-                                    <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="user.master && jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
-                                    <strong class="placar-fora" v-else>{{ jogo.placar_fora }}</strong>
-                                </div>
-                                <div class="col-xs-3 col-sm-4 text-left">
-                                    <strong>
-                                        <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
-                                        <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
-                                    </strong>
-                                </div>
+                            <div class="col-xs-3 col-sm-2 table-td td-mandante">
+                                <strong>
+                                    <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
+                                    <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
+                                </strong>
                             </div>
-                            <div class="col-sm-3 table-td hidden-xs">
+                            <div class="col-xs-4 col-sm-2 col-md-1 table-td td-divisor">
+                                <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="user.master && jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
+                                <span class="placar-palpite" v-else>
+                                    <strong>{{ jogo.placar_casa }}</strong>
+                                </span>
+                                x
+                                <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="user.master && jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
+                                <span class="placar-palpite" v-else>
+                                    <strong>{{ jogo.placar_fora }}</strong>
+                                </span>
+                            </div>
+                            <div class="col-xs-3 col-sm-2 table-td td-visitante">
+                                <strong>
+                                    <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
+                                    <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
+                                </strong>
+                            </div>
+                            <div class="hidden-xs col-sm-4 col-md-5 table-td">
                                 <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>
                                 {{ jogo.inicio|moment('DD/MM/YY') }}
                                 | <strong>{{ jogo.timecasa.estadio }}</strong>
                             </div>
-                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.master">
+                            <div class="col-xs-1 col-sm-1 table-td td-icons" v-if="user.master">
                                 <div v-show="user.master && !saveLoading">
                                     <a href="" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null" @click.prevent="updatedPlacar(jogo, jogo.id)">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

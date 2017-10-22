@@ -14,7 +14,7 @@
     </div>
 
     <div class="col-sm-12 box">
-        <h3>CLASSIFICAÇÃO</h3>
+        <h4>CLASSIFICAÇÃO</h4>
         <p>
             <strong>Como funciona:</strong>
         </p>
@@ -25,7 +25,7 @@
             <li>Clicando em uma rodada especifica o cálculo é feito apenas para aquela rodada.</li>
         </ul>
 
-        <hr><h3>JOGO</h3>
+        <hr><h4>JOGO</h4>
         <p>
             <strong>Como funciona:</strong>
         </p>
@@ -34,7 +34,7 @@
             <li>O resultado de cada jogo pode ser alterado a qualquer momento.</li>
         </ul>
 
-        <hr><h3>PALPITE</h3>
+        <hr><h4>PALPITE</h4>
         <p>
             <strong>Como funciona:</strong>
         </p>
@@ -45,7 +45,7 @@
             <li>Cada participante pode adicionar ou alterar somente os seus próprios palpites.</li>
         </ul>
 
-        <hr><h3>PONTUAÇÃO</h3>
+        <hr><h4>PONTUAÇÃO</h4>
         <h5><strong>Apostando que a partida terá um vencedor</strong></h5>
         <ul>
             <li>Acertando o Placar Exato = 10 pontos.</li>
@@ -57,8 +57,8 @@
             <li>Acertando o Placar Exato = 10 pontos.</li>
             <li>Qualquer outro empate NÃO EXATO = 7 pontos.</li>
         </ul>
-        
-        <hr><h3>CRITÉRIO DE DESEMPATE</h3>
+
+        <hr><h4>CRITÉRIO DE DESEMPATE</h4>
         <p>
             <strong>
                 Se ao final do campeonato dois ou mais participantes estiverem com a mesma quantidade de pontos,

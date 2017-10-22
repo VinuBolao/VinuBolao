@@ -99,7 +99,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-xs-10 col-sm-8 text-center">
+                            <div class="col-xs-12 col-sm-8 col-md-7 text-center">
                                 <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">Esgotado!</strong>
                             </div>
                         </div>

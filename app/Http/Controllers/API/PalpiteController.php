@@ -7,10 +7,12 @@ use Bolao\Models\Palpite;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Bolao\Traits\Calculator;
 
 class PalpiteController extends Controller
 {
+    use Calculator;
+
     public function get($palpiteId = null)
     {
         if($palpiteId){
@@ -23,22 +25,7 @@ class PalpiteController extends Controller
     public function getPalpites($userId, $campeonatoId, $rodada = null)
     {
         if($rodada){
-            $palpites = Palpite::with('jogo', 'user')->where(['user_id' => $userId])->get();
-            $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $campeonatoId, 'rodada' => $rodada])->orderBy('inicio')->get();
-
-            foreach ($jogos as $jogo) {
-                $jogo->placar_casa = null;
-                $jogo->placar_fora = null;
-
-                foreach ($palpites as $palpite) {
-                    if($jogo->id === $palpite->jogo_id){
-                        $jogo->palpite_id = $palpite->id;
-                        $jogo->placar_casa = $palpite->palpite_casa;
-                        $jogo->placar_fora = $palpite->palpite_fora;
-                    }
-                }
-            }
-
+            $jogos = $this->mountJson($userId, $campeonatoId, $rodada);
             return response()->json($jogos);
         } else {
             return response()->json(
@@ -69,5 +56,31 @@ class PalpiteController extends Controller
         } else {
             return response()->json(['success' => false], 400);
         }
+    }
+
+    private function mountJson($userId, $campeonatoId, $rodada)
+    {
+        $palpites = Palpite::with('jogo', 'user')->where(['user_id' => $userId])->get();
+        $jogos = Jogo::with('timecasa', 'timefora')->where(['campeonato_id' => $campeonatoId, 'rodada' => $rodada])->orderBy('inicio')->get();
+
+        foreach ($jogos as $jogo) {
+            $placarMandante = $jogo->placar_casa;
+            $placarVisitante = $jogo->placar_fora;
+
+            //Removendo
+            $jogo->placar_casa = null;
+            $jogo->placar_fora = null;
+
+            foreach ($palpites as $palpite) {
+                if($jogo->id === $palpite->jogo_id){
+                    $jogo->palpite_id = $palpite->id;
+                    $jogo->placar_casa = $palpite->palpite_casa;
+                    $jogo->placar_fora = $palpite->palpite_fora;
+                    $jogo->palpite_status = $this->calcularPontos($placarMandante, $placarVisitante, $palpite->palpite_casa, $palpite->palpite_fora)->pontosganhos;
+                }
+            }
+        }
+
+        return $jogos;
     }
 }

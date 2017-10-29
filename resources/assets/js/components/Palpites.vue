@@ -1,3 +1,24 @@
+<style>
+    .bg-placarexato {
+        background-color: #dff0d8;
+    }
+
+    .bg-placarvencedor {
+        background-color: #fcf8e3;
+    }
+
+    .span-legenda {
+        position: absolute;
+        border: 1px solid #ccc;
+        width: 20px;
+        height: 20px;
+    }
+
+    .p-legenda {
+        margin-left: 25px;
+    }
+</style>
+
 <template>
     <div>
         <div class="col-sm-12 box" v-if="!user && jogos.length == 0">
@@ -59,7 +80,7 @@
                                 <strong>Editar</strong>
                             </div>
                         </div>
-                        <div class="row table-body" v-for="(jogo, key) in jogos">
+                        <div class="row table-body" :class="{ 'bg-placarexato': jogo.palpite_status == 10, 'bg-placarvencedor': jogo.palpite_status == 7 }" v-for="(jogo, key) in jogos">
                             <div class="col-xs-1 col-sm-1 table-td td-icons">
                                 <i class="glyphicon glyphicon-remove" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></i>
                                 <i class="glyphicon glyphicon-ok" v-else></i>
@@ -105,6 +126,14 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="col-sm-12 box">
+                    <h4><strong>Legenda</strong></h4>
+                    <span class="span-legenda bg-placarexato">&nbsp;</span>
+                    <p class="p-legenda"> - Placar Exato (10 pontos),</p>
+                    <span class="span-legenda bg-placarvencedor">&nbsp;</span>
+                    <p class="p-legenda"> - Placar Vencedor (7 pontos).</p>
                 </div>
             </div>
         </div>

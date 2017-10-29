@@ -6,9 +6,12 @@ use Bolao\Models\User;
 use Bolao\Models\Palpite;
 use Bolao\Models\Participante;
 use Bolao\Http\Controllers\Controller;
+use Bolao\Traits\Calculator;
 
 class ParticipanteController extends Controller
 {
+    use Calculator;
+
     public function get($participanteId = null)
     {
         if($participanteId){
@@ -57,25 +60,12 @@ class ParticipanteController extends Controller
         if(count($palpites) > 0){
             foreach ($palpites as $palpite) {
                 if(isset($palpite->jogo->placar_casa) && isset($palpite->jogo->placar_fora)){
+                    //Calculando
+                    $result = $this->calcularPontos($palpite->jogo->placar_casa, $palpite->jogo->placar_fora, $palpite->palpite_casa, $palpite->palpite_fora);
 
-                    switch ($palpite){
-                        case ($palpite->palpite_casa === null && $palpite->palpite_fora === null):
-                            $dados['placarexato'] = $dados['placarexato'] + 0;
-                            $dados['pontosganhos'] = $dados['pontosganhos'] + 0;
-                            $dados['placarvencedor'] = $dados['placarvencedor'] + 0;
-                            break;
-                        case ($palpite->jogo->placar_casa === $palpite->palpite_casa && $palpite->jogo->placar_fora === $palpite->palpite_fora):
-                            $dados['pontosganhos'] = $dados['pontosganhos'] + 10;
-                            $dados['placarexato'] = $dados['placarexato'] + 1;
-                            break;
-                        case ($palpite->jogo->placar_casa === $palpite->jogo->placar_fora && $palpite->palpite_casa === $palpite->palpite_fora):
-                        case ($palpite->jogo->placar_casa > $palpite->jogo->placar_fora && $palpite->palpite_casa > $palpite->palpite_fora):
-                        case ($palpite->jogo->placar_casa < $palpite->jogo->placar_fora && $palpite->palpite_casa < $palpite->palpite_fora):
-                            $dados['pontosganhos'] = $dados['pontosganhos'] + 7;
-                            $dados['placarvencedor'] = $dados['placarvencedor'] + 1;
-                            break;
-                    }
-
+                    $dados['pontosganhos'] += $result->pontosganhos;
+                    $dados['placarexato'] += $result->placarexato;
+                    $dados['placarvencedor'] += $result->placarvencedor;
                 }
             }
         }

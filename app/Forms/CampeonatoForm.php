@@ -58,10 +58,12 @@ class CampeonatoForm extends Form
             ->add('inicio', 'date', [
                 'label' => '',
                 'rules' => 'required',
+                'attr' => ['style' => "width: 25rem"]
             ])
             ->add('termino', 'date', [
                 'label' => '',
                 'rules' => 'required',
+                'attr' => ['style' => "width: 25rem"]
             ]);
     }
 }

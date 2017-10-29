@@ -49,7 +49,8 @@ class JogoForm extends Form
             ->add('placar_casa', 'number', [
                 'label' => 'Placar Casa',
                 'attr' => ['placeholder' => 'Ex: 1', 'min' => 0, 'max' => 20],
-            ])->add('placar_fora', 'number', [
+            ])
+            ->add('placar_fora', 'number', [
                 'label' => 'Placar Fora',
                 'attr' => ['placeholder' => 'Ex: 1', 'min' => 0, 'max' => 20],
             ])
@@ -63,6 +64,7 @@ class JogoForm extends Form
             ->add('inicio', 'datetime-local', [
                 'label' => 'Início',
                 'rules' => 'required',
+                'attr' => ['style' => "width: 25rem"]
             ]);
     }
 }

@@ -80,7 +80,7 @@
                                 <strong>Editar</strong>
                             </div>
                         </div>
-                        <div class="row table-body" :class="{ 'bg-placarexato': jogo.palpite_status == 10, 'bg-placarvencedor': jogo.palpite_status == 7 }" v-for="(jogo, key) in jogos">
+                        <div class="row table-body" :class="{ 'bg-placarexato': jogo.palpite_status === 10, 'bg-placarvencedor': jogo.palpite_status === 7 }" v-for="(jogo, key) in jogos">
                             <div class="col-xs-1 col-sm-1 table-td td-icons">
                                 <i class="glyphicon glyphicon-remove" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></i>
                                 <i class="glyphicon glyphicon-ok" v-else></i>

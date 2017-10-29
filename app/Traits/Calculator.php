@@ -14,16 +14,20 @@ trait Calculator
     {
         $dados = (object)['pontosganhos' => 0, 'placarexato' => 0, 'placarvencedor' => 0];
 
-        if($placar1 === $palpite1 && $placar2 === $palpite2){
-            $dados->pontosganhos = 10;
-            $dados->placarexato++;
-            return $dados;
-        } elseif (($placar1 === $placar2 && $palpite1 === $palpite2) || ($placar1 > $placar2 && $palpite1 > $palpite2) || ($placar1 < $placar2 && $palpite1 < $palpite2)) {
-            $dados->pontosganhos = 7;
-            $dados->placarvencedor++;
+        if($placar1 === null || $placar2 === null || $palpite1 === null || $palpite2) {
             return $dados;
         } else {
-            return $dados;
+            if($placar1 === $palpite1 && $placar2 === $palpite2) {
+                $dados->pontosganhos = 10;
+                $dados->placarexato++;
+                return $dados;
+            } elseif (($placar1 === $placar2 && $palpite1 === $palpite2) || ($placar1 > $placar2 && $palpite1 > $palpite2) || ($placar1 < $placar2 && $palpite1 < $palpite2)) {
+                $dados->pontosganhos = 7;
+                $dados->placarvencedor++;
+                return $dados;
+            } else {
+                return $dados;
+            }
         }
     }
 }

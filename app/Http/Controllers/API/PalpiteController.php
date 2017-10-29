@@ -76,10 +76,10 @@ class PalpiteController extends Controller
                     $jogo->palpite_id = $palpite->id;
                     $jogo->placar_casa = $palpite->palpite_casa;
                     $jogo->placar_fora = $palpite->palpite_fora;
-                }
 
-                if(isset($placarMandante) && isset($placarVisitante)) {
-                    $jogo->palpite_status = $this->calcularPontos($placarMandante, $placarVisitante, $palpite->palpite_casa, $palpite->palpite_fora)->pontosganhos;
+                    if(isset($placarMandante) && isset($placarVisitante)) {
+                        $jogo->palpite_status = $this->calcularPontos($placarMandante, $placarVisitante, $palpite->palpite_casa, $palpite->palpite_fora)->pontosganhos;
+                    }
                 }
             }
         }

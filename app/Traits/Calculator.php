@@ -15,6 +15,10 @@ trait Calculator
         $dados = (object)['pontosganhos' => 0, 'placarexato' => 0, 'placarvencedor' => 0];
 
         if($placar1 === $palpite1 && $placar2 === $palpite2){
+            $dados->p1 = $placar1;
+            $dados->p2 = $placar2;
+            $dados->p3 = $palpite1;
+            $dados->p4 = $palpite2;
             $dados->pontosganhos = 10;
             $dados->placarexato++;
             return $dados;

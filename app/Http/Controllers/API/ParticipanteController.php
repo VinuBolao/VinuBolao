@@ -60,7 +60,7 @@ class ParticipanteController extends Controller
         if(count($palpites) > 0){
             foreach ($palpites as $palpite) {
                 if(isset($palpite->jogo->placar_casa) && isset($palpite->jogo->placar_fora)){
-                    //Calculando
+                    //Calculando Pontos
                     $result = $this->calcularPontos($palpite->jogo->placar_casa, $palpite->jogo->placar_fora, $palpite->palpite_casa, $palpite->palpite_fora);
 
                     $dados['pontosganhos'] += $result->pontosganhos;

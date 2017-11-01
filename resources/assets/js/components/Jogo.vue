@@ -15,11 +15,13 @@
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ rodada }}ª Rodada <span class="caret"></span>
                         </button>
-                        <ol class="dropdown-menu dropdown-rodada-ol">
-                            <li class="dropdown-rodada-li" v-for="n in 38">
-                                <a @click="getJogosCampeontato(campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
-                            </li>
-                        </ol>
+                        <div class="dropdown-menu dropdown-rodada">
+                            <div class="flex-container">
+                                <div class="flex-items" v-for="n in campeonato.qtd_rodadas">
+                                    <a @click="getJogosCampeontato(campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
                         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>

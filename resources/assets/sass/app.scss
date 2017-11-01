@@ -150,26 +150,51 @@ html, body.bolao {
       color: #398439;
     }
 
-    .dropdown-rodada-ol{
-      min-width: 203px;
-      height: 150px;
+    .dropdown-rodada {
+      min-width: 205px;
+      height: 155px;
       overflow-y: auto;
+      margin: 0;
       padding: 5px;
-    }
 
-    .dropdown-rodada-li{
-      display: inline-table;
-      border: 1px solid #cccecf;
-      width: 33.3%;
-      padding: 0;
-      font-size: 14px;
-      border-radius: 2px;
-    }
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
 
-    .dropdown-rodada-a {
-      padding: 5px !important;
-      text-align: center;
-      cursor: pointer
+        .flex-items {
+          width: 32%;
+          margin: 1%;
+          padding: 8px 5px;
+          cursor: pointer;
+          text-align: center;
+          border: 1px solid #cccecf;
+          border-radius: 2px;
+
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+
+          &:nth-child(3n+1) {
+            margin-left: 0;
+          }
+
+          &:hover {
+            background-color: #e1e9ec;
+          }
+
+          a {
+            text-decoration: none;
+            color: $text-color;
+          }
+        }
+
+        .geral {
+          width: 100%;
+          margin-right: 0;
+          margin-left: 0;
+          order: -1;
+        }
+      }
     }
 
     .glyphicon-refresh {

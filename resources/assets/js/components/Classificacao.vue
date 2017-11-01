@@ -10,14 +10,16 @@
                         <span v-if="rodada > 0">{{ rodada }}ª Rodada <span class="caret"></span></span>
                         <span v-else="">Classificação Geral <span class="caret"></span></span>
                     </button>
-                    <ol class="dropdown-menu dropdown-rodada-ol">
-                        <li class="dropdown-rodada-li" style="width: 95%">
-                            <a class="dropdown-rodada-a" @click="updatedData(0);">Geral</a>
-                        </li>
-                        <li class="dropdown-rodada-li" v-for="n in user.bolao.campeonato.qtd_rodadas">
-                            <a class="dropdown-rodada-a" @click="updatedData(n);">{{ n }}ª</a>
-                        </li>
-                    </ol>
+                    <div class="dropdown-menu dropdown-rodada">
+                        <div class="flex-container">
+                            <div class="flex-items" v-for="n in user.bolao.campeonato.qtd_rodadas">
+                                <a class="dropdown-rodada-a" @click="updatedData(n);">{{ n }}ª</a>
+                            </div>
+                            <div class="flex-items geral">
+                                <a class="dropdown-rodada-a" @click="updatedData(0);">Geral</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <button type="button" class="btn btn-default" :disabled="rodada >= user.bolao.campeonato.qtd_rodadas" @click="updatedData(rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>

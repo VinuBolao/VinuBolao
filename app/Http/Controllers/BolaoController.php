@@ -17,7 +17,7 @@ class BolaoController extends Controller
      */
     public function index()
     {
-        $boloes = Bolao::all();
+        $boloes = Bolao::all()->sortByDesc('id');
         return view('bolao.index', compact('boloes'));
     }
 

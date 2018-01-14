@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('regulamento', 'BolaoController@regulamento')->name('regulamento');
     Route::resource('bolao', 'BolaoController');
 
-    Route::resource('participante', 'ParticipanteController');
+    Route::get('participante', 'ParticipanteController@index')->name('participante');
 
     Route::get('jogo', 'JogoController@index')->name('jogo.index');
 

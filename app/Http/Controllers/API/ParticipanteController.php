@@ -7,6 +7,7 @@ use Bolao\Models\Palpite;
 use Bolao\Models\Participante;
 use Bolao\Http\Controllers\Controller;
 use Bolao\Traits\Calculator;
+use Illuminate\Http\Request;
 
 class ParticipanteController extends Controller
 {
@@ -71,5 +72,28 @@ class ParticipanteController extends Controller
         }
 
         return $dados;
+    }
+
+    public function create(Request $request) {
+        $user = User::findOrFail($request->userId);
+
+        $participante = new Participante;
+        $participante->user_id = $request->userId;
+        $participante->bolao_id = $request->bolaoId;
+        if($participante->save()) {
+            return response()->json(['success' => true], 200);
+        } else {
+            return response()->json(['success' => false], 400);
+        }
+    }
+
+    public function destroy($participanteId) {
+        $participante = Participante::findOrFail($participanteId);
+
+        if($participante->delete()) {
+            return response()->json(['success' => true], 200);
+        } else {
+            return response()->json(['success' => false], 400);
+        }
     }
 }

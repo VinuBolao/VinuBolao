@@ -21,6 +21,7 @@ window.Vue.use(require('vue-moment'));
 Vue.component('jogo', require('./components/Jogo.vue'));
 Vue.component('palpites', require('./components/Palpites.vue'));
 Vue.component('classificacao', require('./components/Classificacao.vue'));
+Vue.component('participante', require('./components/Participante.vue'));
 
 const app = new Vue({
     el: '#app',

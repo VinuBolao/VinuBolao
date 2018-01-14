@@ -29,10 +29,16 @@ Route::namespace('API\\')->group(function (){
         Route::get('getBolao/{id}', 'ParticipanteController@getBolao')->where('id', '[0-9]+');
         Route::get('get/{id?}', 'ParticipanteController@get')->where('id', '[0-9]+');
         Route::get('getDados/{id}/{rodada?}', 'ParticipanteController@getDados');
+        Route::post('create', 'ParticipanteController@create');
+        Route::post('delete/{id}', 'ParticipanteController@destroy');
     });
 
     Route::group(['prefix' => 'campeonato'], function (){
         Route::get('get/{id?}', 'CampeonatoController@get')->where('id', '[0-9]+');
+    });
+
+    Route::group(['prefix' => 'user'], function (){
+        Route::get('get/{id?}', 'UserController@get')->where('id', '[0-9]+');
     });
 
     Route::group(['prefix' => 'palpite'], function (){

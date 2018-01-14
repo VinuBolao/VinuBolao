@@ -28,7 +28,7 @@
                 @if (Auth::user()->master)
                 <div class="row">
                     <div class="col-sm-3" style="margin-bottom: 15px">
-                        <a href="{{ route('participante.index') }}" class="btn btn-primary btn-block" title="Participantes">
+                        <a href="{{ route('participante') }}" class="btn btn-primary btn-block" title="Participantes">
                             <i class="glyphicon glyphicon-user"></i> Participantes
                         </a>
                     </div>

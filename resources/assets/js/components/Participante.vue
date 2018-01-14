@@ -68,7 +68,7 @@
             return {
                 boloes: JSON.parse(this.data),
                 participantes: [],
-                bolaoId: 2,
+                bolaoId: 0,
                 users: [],
                 userId: 0
             }

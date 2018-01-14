@@ -16,5 +16,5 @@
         </div>
     </div>
 
-    <palpites users="{{ $participante->user or null }}" currentbolao="{{ $participante->bolao }}"></palpites>
+    <palpites users="{{ $participante->user or null }}" data_bolao="{{ $bolao }}"></palpites>
 @endcomponent

@@ -17,6 +17,8 @@ class CreateJogosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('campeonato_id');
             $table->foreign('campeonato_id')->references('id')->on('campeonatos');
+            $table->unsignedInteger('bolao_id');
+            $table->foreign('bolao_id')->references('id')->on('boloes');
             $table->integer('rodada');
             $table->dateTime('inicio');
             $table->unsignedInteger('timecasa_id');

@@ -3,6 +3,7 @@
 namespace Bolao\Http\Controllers\Admin;
 
 use Bolao\Forms\JogoForm;
+use Bolao\Models\Campeonato;
 use Bolao\Models\Jogo;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
@@ -14,14 +15,32 @@ class JogoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jogos = Jogo::with('timecasa', 'timefora', 'campeonato')
-            ->orderBy('rodada')
-            ->orderBy('inicio')
-            ->paginate(10);
+        $campeonatos = Campeonato::all();
 
-        return view('admin.jogo.index', compact('jogos'));
+        if($request->campeonatoId > 0 && $request->rodada > 0) {
+            $jogos = Jogo::with('timecasa', 'timefora', 'campeonato')
+                ->where('campeonato_id', $request->campeonatoId)
+                ->where('rodada', $request->rodada)
+                ->orderBy('rodada')
+                ->orderBy('inicio')
+                ->paginate(10);
+        } elseif($request->campeonatoId > 0 || $request->rodada > 0) {
+            $jogos = Jogo::with('timecasa', 'timefora', 'campeonato')
+                ->where('campeonato_id', $request->campeonatoId)
+                ->orWhere('rodada', $request->rodada)
+                ->orderBy('rodada')
+                ->orderBy('inicio')
+                ->paginate(10);
+        } else {
+            $jogos = Jogo::with('timecasa', 'timefora', 'campeonato')
+                ->orderBy('rodada')
+                ->orderBy('inicio')
+                ->paginate(10);
+        }
+
+        return view('admin.jogo.index', compact('jogos', 'campeonatos'));
     }
 
     /**

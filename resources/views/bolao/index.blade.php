@@ -68,6 +68,10 @@
                         <th scope="row">Descrição</th>
                         <td>{{ $bolao->descricao }}</td>
                     </tr>
+                    <tr>
+                        <th scope="row">Ativo</th>
+                        <td>{{ $bolao->ativo ? 'SIM' : 'NÃO' }}</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

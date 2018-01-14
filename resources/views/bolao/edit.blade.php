@@ -13,6 +13,17 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-sm-6">
+                        <label for="infoCampeonato">Ativo:</label>
+                        <select class="form-control" name="ativo" id="infoAtivo" required>
+                            <option value="0" {{ !$bolao->ativo ? 'selected' : '' }}>NÃO</option>
+                            <option value="1" {{ $bolao->ativo ? 'selected' : '' }}>SIM</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-6">
                         <label for="infoUser">Usuário:</label>
                         <select class="form-control" name="user" id="infoUser">
                             <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>

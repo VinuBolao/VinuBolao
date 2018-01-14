@@ -2,8 +2,8 @@
 
 namespace Bolao\Http\Controllers;
 
+use Bolao\Models\Bolao;
 use Bolao\Models\Participante;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class JogoController extends Controller
@@ -15,8 +15,10 @@ class JogoController extends Controller
      */
     public function index()
     {
+        $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
         $participante = Participante::with('user', 'bolao')->where('user_id', Auth::id())->first();
-        return view('jogo.index', compact('participante'));
+
+        return view('jogo.index', compact('participante', 'bolao'));
     }
 
 }

@@ -18212,6 +18212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             user: this.users ? JSON.parse(this.users) : null,
             dataLoading: false,
             participantes: [],
+            bolaoId: this.bolao_id,
             rodada: 0,
             order: {
                 keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
@@ -18220,7 +18221,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    props: ['users'],
+    props: ['users', 'bolao_id'],
     mounted: function mounted() {
         this.updatedData(this.rodada);
     },
@@ -18231,10 +18232,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        getParticipantes: function getParticipantes() {
+        getParticipantes: function getParticipantes(bolaoId) {
             var _this = this;
 
-            this.$http.get('/api/participante/get').then(function (response) {
+            this.$http.get('/api/participante/getBolao/' + bolaoId).then(function (response) {
                 _this.participantes = response.data;
                 _this.dataLoading = false;
             }).catch(function (error) {
@@ -18247,9 +18248,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.dataLoading = true;
             this.rodada = rodada;
             this.$http.get('/api/participante/updatedData/' + rodada).then(function (response) {
-                _this2.getParticipantes();
+                _this2.getParticipantes(_this2.bolaoId);
             }).catch(function (error) {
-                _this2.getParticipantes();
+                _this2.getParticipantes(_this2.bolaoId);
                 _this2.dataLoading = false;
                 console.error('!Get Updated Data', error);
             });
@@ -18373,7 +18374,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             user: JSON.parse(this.users),
-            currentBolao: JSON.parse(this.bolao),
+            bolao: JSON.parse(this.data_bolao),
             dataLoading: false,
             saveLoading: false,
             campeonato: {},
@@ -18382,9 +18383,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    props: ['users', 'bolao'],
+    props: ['users', 'data_bolao'],
     mounted: function mounted() {
-        if (this.user) this.getCampeontatos(this.currentBolao.campeonato_id);
+        if (this.user) this.getCampeontatos(this.bolao.campeonato_id);
     },
 
     methods: {
@@ -18596,7 +18597,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             user: JSON.parse(this.users),
-            bolao: JSON.parse(this.currentbolao),
+            bolao: JSON.parse(this.data_bolao),
             dataLoading: false,
             saveLoading: false,
             participanteId: null,
@@ -18608,7 +18609,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    props: ['users', 'currentbolao'],
+    props: ['users', 'data_bolao'],
     mounted: function mounted() {
         if (this.user) this.getCampeontatos(this.bolao.campeonato_id);
         this.getParticipantes();
@@ -18774,7 +18775,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             boloes: JSON.parse(this.data),
             participantes: [],
-            bolaoId: 2,
+            bolaoId: 0,
             users: [],
             userId: 0
         };

@@ -73,6 +73,7 @@
                 user: (this.users) ? JSON.parse(this.users) : null,
                 dataLoading: false,
                 participantes: [],
+                bolaoId: this.bolao_id,
                 rodada: 0,
                 order: {
                     keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
@@ -80,7 +81,7 @@
                 }
             }
         },
-        props: ['users'],
+        props: ['users', 'bolao_id'],
         mounted() {
             this.updatedData(this.rodada);
         },
@@ -90,8 +91,8 @@
             }
         },
         methods: {
-            getParticipantes() {
-                this.$http.get('/api/participante/get').then((response) => {
+            getParticipantes(bolaoId) {
+                this.$http.get('/api/participante/getBolao/' + bolaoId).then((response) => {
                     this.participantes = response.data;
                     this.dataLoading = false;
                 }).catch((error) => {
@@ -103,9 +104,9 @@
                 this.dataLoading = true;
                 this.rodada = rodada;
                 this.$http.get('/api/participante/updatedData/' + rodada).then((response) => {
-                    this.getParticipantes();
+                    this.getParticipantes(this.bolaoId);
                 }).catch((error) => {
-                    this.getParticipantes();
+                    this.getParticipantes(this.bolaoId);
                     this.dataLoading = false;
                     console.error('!Get Updated Data', error);
                 });

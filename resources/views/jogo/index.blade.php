@@ -13,5 +13,5 @@
         </div>
     </div>
 
-    <jogo users="{{ $participante->user or null }}" bolao="{{ $participante->bolao }}"></jogo>
+    <jogo users="{{ $participante->user or null }}" data_bolao="{{ $bolao }}"></jogo>
 @endcomponent

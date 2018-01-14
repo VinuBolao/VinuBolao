@@ -108,7 +108,7 @@
         data() {
             return {
                 user: JSON.parse(this.users),
-                currentBolao: JSON.parse(this.bolao),
+                bolao: JSON.parse(this.data_bolao),
                 dataLoading: false,
                 saveLoading: false,
                 campeonato: {},
@@ -116,9 +116,9 @@
                 jogos: []
             }
         },
-        props: ['users', 'bolao'],
+        props: ['users', 'data_bolao'],
         mounted() {
-            if(this.user) this.getCampeontatos(this.currentBolao.campeonato_id);
+            if(this.user) this.getCampeontatos(this.bolao.campeonato_id);
         },
         methods: {
             getCampeontatos(id) {

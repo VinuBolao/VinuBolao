@@ -37,7 +37,11 @@ Route::namespace('Admin\\')->group(function (){
 
 Route::middleware(['auth'])->group(function () {
     Route::get('classificacao', 'BolaoController@classificacao')->name('classificacao');
-    Route::get('regulamento', 'BolaoController@regulamento')->name('regulamento');
+
+    Route::get('regulamento', function (){
+        return view('bolao.regulamento');
+    })->name('regulamento');
+
     Route::resource('bolao', 'BolaoController');
 
     Route::get('participante', 'ParticipanteController@index')->name('participante');

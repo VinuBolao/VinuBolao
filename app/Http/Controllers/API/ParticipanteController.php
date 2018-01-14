@@ -3,6 +3,7 @@
 namespace Bolao\Http\Controllers\API;
 
 use Bolao\Models\User;
+use Bolao\Models\Bolao;
 use Bolao\Models\Palpite;
 use Bolao\Models\Participante;
 use Bolao\Http\Controllers\Controller;
@@ -35,7 +36,8 @@ class ParticipanteController extends Controller
             $dados = $this->getDados($user->id, $rodada);
 
             if(count($dados) > 0) {
-                Participante::where(['user_id' => $user->id])->update([
+                $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
+                Participante::where(['user_id' => $user->id, 'bolao_id' => $bolao->id])->update([
                     'placarvencedor' => $dados['placarvencedor'],
                     'pontosganhos' => $dados['pontosganhos'],
                     'placarexato' => $dados['placarexato']
@@ -48,12 +50,19 @@ class ParticipanteController extends Controller
 
     public function getDados($userId, $rodada = null)
     {
+        $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
+
         if($rodada){
-            $palpites = Palpite::with(['jogo' => function ($query) use ($rodada) {
-                $query->where('rodada', '=', $rodada);
-            }])->where(['user_id' => $userId])->get();
+            $palpites = Palpite::join('jogos', 'palpites.jogo_id', 'jogos.id')
+                ->where('jogos.bolao_id', $bolao->id)
+                ->where('jogos.rodada', $rodada)
+                ->where('palpites.user_id', $userId)
+                ->get();
         } else {
-            $palpites = Palpite::with('jogo')->where(['user_id' => $userId])->get();
+            $palpites = Palpite::join('jogos', 'palpites.jogo_id', 'jogos.id')
+                ->where('jogos.bolao_id', $bolao->id)
+                ->where('palpites.user_id', $userId)
+                ->get();
         }
 
         $dados = ['pontosganhos' => 0, 'placarexato' => 0, 'placarvencedor' => 0];

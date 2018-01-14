@@ -3,6 +3,31 @@
     @slot('pageSub') Jogos @endslot
 
     <div class="row">
+        <form action="{{ route('admin.jogo.index') }}" method="get">
+            <div class="col-sm-3">
+                <label for="infoRodada">Rodada:</label>
+                <input id="infoRodada" name="rodada" value="{{ request('rodada') }}" type="number" class="form-control" placeholder="Digite a rodada...">
+            </div>
+            <div class="col-sm-4">
+                <label for="infoCampeonato">Campeonato:</label>
+                <select class="form-control" name="campeonatoId" id="infoCampeonato">
+                    <option value="0">Selecione um campeonato...</option>
+                    @foreach($campeonatos as $campeonato)
+                        <option value="{{ $campeonato->id }}" {{ ($campeonato->id == request('campeonatoId')) ? 'selected' : '' }}>{{ $campeonato->nome_completo }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-sm-5">
+                <button type="submit" class="btn btn-primary btn-block btn-admin btn-admin-filter" title="Filtrar">
+                    <i class="glyphicon glyphicon-search"></i> Filtrar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="row">
         <div class="col-sm-12">
             <a href="{{ route('admin.jogo.create') }}" class="btn btn-primary btn-admin" title="Novo">
                 <i class="glyphicon glyphicon-plus"></i> Novo
@@ -19,6 +44,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Bolão</th>
                             <th>Campeonato</th>
                             <th>Rodada</th>
                             <th colspan="5">Jogo</th>
@@ -30,6 +56,7 @@
                         @foreach($jogos as $key => $jogo)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                <td>{{ $jogo->bolao->nome }}</td>
                                 <td>{{ $jogo->campeonato->nome }}</td>
                                 <td>{{ $jogo->rodada }}ª</td>
                                 <td>{{ $jogo->timecasa->nome }}</td>

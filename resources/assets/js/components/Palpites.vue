@@ -147,7 +147,7 @@
         data() {
             return {
                 user: JSON.parse(this.users),
-                bolao: JSON.parse(this.currentbolao),
+                bolao: JSON.parse(this.data_bolao),
                 dataLoading: false,
                 saveLoading: false,
                 participanteId: null,
@@ -158,7 +158,7 @@
                 rodada: 1
             }
         },
-        props: ['users', 'currentbolao'],
+        props: ['users', 'data_bolao'],
         mounted() {
             if(this.user) this.getCampeontatos(this.bolao.campeonato_id);
             this.getParticipantes();

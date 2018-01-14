@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jogo extends Model
 {
-    protected $fillable = ['campeonato_id', 'rodada', 'inicio', 'timecasa_id', 'placar_casa', 'placar_fora', 'timefora_id'];
+    protected $fillable = ['bolao_id', 'campeonato_id', 'rodada', 'inicio', 'timecasa_id', 'placar_casa', 'placar_fora', 'timefora_id'];
 
     protected $guarded = ['id'];
 
@@ -23,5 +23,10 @@ class Jogo extends Model
     public function campeonato()
     {
         return $this->belongsTo('Bolao\Models\Campeonato', 'campeonato_id', 'id');
+    }
+
+    public function bolao()
+    {
+        return $this->belongsTo('Bolao\Models\Bolao', 'bolao_id', 'id');
     }
 }

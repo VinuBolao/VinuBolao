@@ -3,6 +3,7 @@
 namespace Bolao\Forms;
 
 use Bolao\Models\Time;
+use Bolao\Models\Bolao;
 use Bolao\Models\Campeonato;
 use Kris\LaravelFormBuilder\Form;
 
@@ -11,12 +12,19 @@ class JogoForm extends Form
     public function buildForm()
     {
         $times = [];
+        $boloes = [];
         $campeonatos = [];
         $dataTime = Time::all();
+        $dataBolao = Bolao::all();
         $dataCampeonato = Campeonato::all();
+        $bolaoId = $this->getData('bolao_id');
         $mandanteId = $this->getData('timecasa_id');
         $visitanteId = $this->getData('timefora_id');
         $campeonatoId = $this->getData('campeonato_id');
+
+        foreach ($dataBolao as $bolao) {
+            $boloes[$bolao->id] = $bolao->nome;
+        }
 
         foreach ($dataCampeonato as $campeonato) {
             $campeonatos[$campeonato->id] = $campeonato->nome;
@@ -27,6 +35,13 @@ class JogoForm extends Form
         }
 
         $this
+            ->add('bolao_id', 'select', [
+                'label' => 'Bolão',
+                'choices' => $boloes,
+                'selected' => $bolaoId,
+                'empty_value' => 'Selecione o bolão',
+                'rules' => 'required',
+            ])
             ->add('campeonato_id', 'select', [
                 'label' => 'Campeonato',
                 'choices' => $campeonatos,

@@ -21,17 +21,13 @@ class BolaoController extends Controller
         return view('bolao.index', compact('boloes'));
     }
 
-    public function regulamento()
-    {
-        return view('bolao.regulamento');
-    }
-
     public function classificacao()
     {
+        $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
         $participantes = Participante::with(['bolao' => function ($query) {
             $query->with('campeonato');
         }])->where('user_id', Auth::id())->first();
-        return view('classificacao.index', compact('participantes'));
+        return view('classificacao.index', compact('participantes', 'bolao'));
     }
 
     /**
@@ -83,14 +79,15 @@ class BolaoController extends Controller
      */
     public function update(Request $request, $bolaoId)
     {
-        $page = Bolao::findOrFail($bolaoId);
+        $bolao = Bolao::findOrFail($bolaoId);
 
-        $page->user_id       = $request->user;
-        $page->campeonato_id = $request->campeonato;
-        $page->nome          = $request->name;
-        $page->inicio        = $request->datainicio;
-        $page->descricao     = $request->description;
-        $page->save();
+        $bolao->user_id       = $request->user;
+        $bolao->campeonato_id = $request->campeonato;
+        $bolao->nome          = $request->name;
+        $bolao->inicio        = $request->datainicio;
+        $bolao->descricao     = $request->description;
+        $bolao->ativo         = $request->ativo;
+        $bolao->save();
 
         return response()->redirectToRoute('bolao.index');
     }

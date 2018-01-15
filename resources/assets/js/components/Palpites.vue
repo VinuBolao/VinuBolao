@@ -161,7 +161,7 @@
         props: ['users', 'data_bolao'],
         mounted() {
             if(this.user) this.getCampeontatos(this.bolao.campeonato_id);
-            this.getParticipantes();
+            this.getParticipantes(this.bolao.id);
         },
         methods: {
             getCampeontatos(id) {
@@ -179,9 +179,9 @@
                 });
             },
 
-            getParticipantes() {
+            getParticipantes(bolaoId) {
                 this.dataLoading = true;
-                this.$http.get('/api/participante/get').then((response) => {
+                this.$http.get('/api/participante/getBolao/' + bolaoId).then((response) => {
                     this.participantes = response.data;
 
                     //Remove Loading

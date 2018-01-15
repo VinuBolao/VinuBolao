@@ -31,7 +31,7 @@ class JogoForm extends Form
         }
 
         foreach ($dataTime as $time) {
-            $times[$time->id] = $time->nome;
+            $times[$time->id] = (preg_match('/\b-\b/i', $time->nome)) ? 'Atlético - ' . $time->estado : $time->nome . ' - ' . $time->estado;
         }
 
         $this

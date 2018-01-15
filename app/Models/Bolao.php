@@ -8,7 +8,7 @@ class Bolao extends Model
 {
     protected $table = 'boloes';
 
-    protected $fillable = ['nome', 'inicio', 'descricao', 'campeonato_id', 'user_id'];
+    protected $fillable = ['nome', 'inicio', 'descricao', 'campeonato_id', 'user_id', 'ativo'];
 
     protected $guarded = ['id'];
 

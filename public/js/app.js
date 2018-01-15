@@ -18612,7 +18612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['users', 'data_bolao'],
     mounted: function mounted() {
         if (this.user) this.getCampeontatos(this.bolao.campeonato_id);
-        this.getParticipantes();
+        this.getParticipantes(this.bolao.id);
     },
 
     methods: {
@@ -18632,11 +18632,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.error('!Get Campeonatos', error);
             });
         },
-        getParticipantes: function getParticipantes() {
+        getParticipantes: function getParticipantes(bolaoId) {
             var _this2 = this;
 
             this.dataLoading = true;
-            this.$http.get('/api/participante/get').then(function (response) {
+            this.$http.get('/api/participante/getBolao/' + bolaoId).then(function (response) {
                 _this2.participantes = response.data;
 
                 //Remove Loading

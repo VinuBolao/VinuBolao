@@ -164,8 +164,7 @@ html, body.bolao {
         .flex-items {
           width: 32%;
           margin: 1%;
-          padding: 8px 5px;
-          cursor: pointer;
+          padding: 8px 0;
           text-align: center;
           border: 1px solid #cccecf;
           border-radius: 2px;
@@ -185,6 +184,8 @@ html, body.bolao {
           a {
             text-decoration: none;
             color: $text-color;
+            padding: 10px 20px;
+            cursor: pointer;
           }
         }
 

@@ -17,6 +17,19 @@
     .p-legenda {
         margin-left: 25px;
     }
+
+    .text-inicio-mobile {
+        text-align: center;
+        padding: 0;
+        height: 15px;
+    }
+
+    .text-inicio-mobile > strong {
+        text-transform: uppercase;
+        font-family: sans-serif;
+        font-weight: 600;
+        font-size: 11px;
+    }
 </style>
 
 <template>
@@ -27,6 +40,15 @@
             </div>
         </div>
         <div v-else="">
+            <div class="col-sm-12 box">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <select class="form-control" v-model="participanteId" @change="getPalpites(participanteId, campeonato.id, rodada);">
+                            <option v-for="participante in participantes" :value="participante.user.id">{{ participante.user.name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-12 box">
                 <div class="btn-group btn-rodada" role="group">
                     <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user.id, campeonato.id, rodada - 1);">
@@ -47,15 +69,6 @@
                     <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getPalpites(user.id, campeonato.id, rodada + 1);">
                         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                     </button>
-                </div>
-            </div>
-            <div class="col-sm-12 box">
-                <div class="row">
-                    <div class="col-md-3 col-sm-4 col-xs-12">
-                        <select class="form-control" v-model="participanteId" @change="getPalpites(participanteId, campeonato.id, rodada);">
-                            <option v-for="participante in participantes" :value="participante.user.id">{{ participante.user.name }}</option>
-                        </select>
-                    </div>
                 </div>
             </div>
             <div class="col-sm-12 box" v-if="dataLoading">
@@ -83,6 +96,9 @@
                             </div>
                         </div>
                         <div class="row table-body" :class="{ 'bg-placarexato': jogo.palpite_status === 10, 'bg-placarvencedor': jogo.palpite_status === 7 }" v-for="(jogo, key) in jogos">
+                            <div class="col-xs-12 visible-xs text-inicio-mobile">
+                                <strong>{{ jogo.inicio|moment('ddd DD/MM/YY HH:mm') }}</strong>
+                            </div>
                             <div class="col-xs-1 col-sm-1 table-td td-icons">
                                 <i class="glyphicon glyphicon-remove" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></i>
                                 <i class="glyphicon glyphicon-ok" v-else></i>

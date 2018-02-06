@@ -1,3 +1,18 @@
+<style>
+    .text-inicio-mobile {
+        text-align: center;
+        padding: 0;
+        height: 15px;
+    }
+
+    .text-inicio-mobile > strong {
+        text-transform: uppercase;
+        font-family: sans-serif;
+        font-weight: 600;
+        font-size: 11px;
+    }
+</style>
+
 <template>
     <div>
         <div class="col-sm-12 box" v-if="!user && jogos.length == 0">
@@ -55,6 +70,9 @@
                             </div>
                         </div>
                         <div class="row table-body" v-for="(jogo, key) in jogos">
+                            <div class="col-xs-12 visible-xs text-inicio-mobile">
+                                <strong>{{ jogo.inicio|moment('ddd DD/MM/YY HH:mm') }}</strong>
+                            </div>
                             <div class="col-xs-1 col-sm-1 table-td td-icons">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></span>
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true" v-else></span>

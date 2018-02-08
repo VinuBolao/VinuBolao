@@ -53,6 +53,18 @@ html, body.bolao {
     .table-body {
       border-bottom: 1px solid #ddd;
 
+      .escudo-time-casa, .escudo-time-fora {
+        width: 30px;
+      }
+
+      .escudo-time-casa {
+        margin-left: 5px;
+      }
+
+      .escudo-time-fora {
+        margin-right: 5px;
+      }
+
       &.bg-yellow {
         background-color: $yellow;
       }
@@ -77,8 +89,6 @@ html, body.bolao {
       text-align: center;
     }
 
-    .td-mandante,
-    .td-visitante,
     .td-icons {
       margin: {
         top: 5px;

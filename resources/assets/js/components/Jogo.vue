@@ -81,6 +81,7 @@
                                 <strong>
                                     <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
                                     <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
+                                    <img :src="'/img/' + jogo.timecasa.sigla + '_' + jogo.timecasa.estado + '.png'" class="escudo-time-casa">
                                 </strong>
                             </div>
                             <div class="col-xs-4 col-sm-2 col-md-1 table-td td-divisor">
@@ -96,6 +97,7 @@
                             </div>
                             <div class="col-xs-3 col-sm-2 table-td td-visitante">
                                 <strong>
+                                    <img :src="'/img/' + jogo.timefora.sigla + '_' + jogo.timefora.estado + '.png'" class="escudo-time-fora">
                                     <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
                                     <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                                 </strong>

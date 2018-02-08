@@ -79,18 +79,20 @@
                             </div>
                             <div class="col-xs-3 col-sm-2 table-td td-mandante">
                                 <strong>
-                                    <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
-                                    <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
+                                    <span class="hidden-xs hidden-sm">{{ jogo.timecasa.nome }}</span>
+                                    <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
                                     <img :src="'/img/' + jogo.timecasa.sigla + '_' + jogo.timecasa.estado + '.png'" class="escudo-time-casa">
                                 </strong>
                             </div>
                             <div class="col-xs-4 col-sm-2 col-md-1 table-td td-divisor">
-                                <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="user.master && jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo);">
+                                <input class="input-placar" type="number" min="0" :disabled="saveLoading"
+                                       v-if="user.master && jogo.placar_casa === null" v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo)">
                                 <span class="placar-palpite" v-else>
                                     <strong>{{ jogo.placar_casa }}</strong>
                                 </span>
                                 x
-                                <input class="input-placar" type="number" min="0" :disabled="saveLoading" v-if="user.master && jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo);">
+                                <input class="input-placar" type="number" min="0" :disabled="saveLoading"
+                                       v-if="user.master && jogo.placar_fora === null" v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo)">
                                 <span class="placar-palpite" v-else>
                                     <strong>{{ jogo.placar_fora }}</strong>
                                 </span>
@@ -98,8 +100,8 @@
                             <div class="col-xs-3 col-sm-2 table-td td-visitante">
                                 <strong>
                                     <img :src="'/img/' + jogo.timefora.sigla + '_' + jogo.timefora.estado + '.png'" class="escudo-time-fora">
-                                    <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
-                                    <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
+                                    <span class="hidden-xs hidden-sm">{{ jogo.timefora.nome }}</span>
+                                    <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                                 </strong>
                             </div>
                             <div class="hidden-xs col-sm-4 col-md-5 table-td">

@@ -105,8 +105,8 @@
                             </div>
                             <div class="col-xs-3 col-sm-2 table-td td-mandante">
                                 <strong>
-                                    <span class="hidden-xs">{{ jogo.timecasa.nome }}</span>
-                                    <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
+                                    <span class="hidden-xs hidden-sm">{{ jogo.timecasa.nome }}</span>
+                                    <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
                                     <img :src="'/img/' + jogo.timecasa.sigla + '_' + jogo.timecasa.estado + '.png'" class="escudo-time-fora">
                                 </strong>
                             </div>
@@ -120,12 +120,13 @@
                                 <span class="placar-palpite" v-else>
                                     <strong>{{ jogo.placar_fora }}</strong>
                                 </span>
+                                <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">Esgotado!</strong>
                             </div>
                             <div class="col-xs-3 col-sm-2 table-td td-visitante">
                                 <strong>
                                     <img :src="'/img/' + jogo.timefora.sigla + '_' + jogo.timefora.estado + '.png'" class="escudo-time-fora">
-                                    <span class="hidden-xs">{{ jogo.timefora.nome }}</span>
-                                    <span class="hidden-sm hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
+                                    <span class="hidden-xs hidden-sm">{{ jogo.timefora.nome }}</span>
+                                    <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                                 </strong>
                             </div>
                             <div class="hidden-xs col-sm-4 col-md-5 table-td">
@@ -139,9 +140,6 @@
                                         <i class="glyphicon glyphicon-edit" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></i>
                                     </a>
                                 </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-8 col-md-7 text-center">
-                                <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">Esgotado!</strong>
                             </div>
                         </div>
                     </div>

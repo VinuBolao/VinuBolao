@@ -65,6 +65,31 @@ html, body.bolao {
         margin-right: 5px;
       }
 
+      @media #{$bp-width-small} {
+        .escudo-time-casa, .escudo-time-fora {
+          width: 25px;
+        }
+      }
+
+      @media #{$bp-width-xsmall} {
+        .escudo-time-casa, .escudo-time-fora {
+          width: 22px;
+        }
+
+        .escudo-time-casa {
+          margin-left: 0;
+        }
+
+        .escudo-time-fora {
+          margin-right: 0;
+        }
+
+        .td-mandante > strong > span.hidden-md.hidden-lg,
+        .td-visitante > strong > span.hidden-md.hidden-lg {
+          font-size: 12px;
+        }
+      }
+
       &.bg-yellow {
         background-color: $yellow;
       }

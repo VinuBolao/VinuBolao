@@ -23,11 +23,9 @@ class BolaoController extends Controller
 
     public function classificacao()
     {
-        $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
-        $participantes = Participante::with(['bolao' => function ($query) {
-            $query->with('campeonato');
-        }])->where('user_id', Auth::id())->first();
-        return view('classificacao.index', compact('participantes', 'bolao'));
+        $bolao = Bolao::with('campeonato')->where('ativo', 1)->orderByDesc('id')->first();
+        $participante = Participante::where(['user_id' => Auth::id(), 'bolao_id' => $bolao->id])->first();
+        return view('classificacao.index', compact('participante', 'bolao'));
     }
 
     /**

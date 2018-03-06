@@ -13,5 +13,5 @@
         </div>
     </div>
 
-    <classificacao users="{{ $participantes }}" bolao_id="{{ $bolao->id or 0 }}"></classificacao>
+    <classificacao data_user="{{ $participante }}" data_bolao="{{ $bolao or null }}"></classificacao>
 @endcomponent

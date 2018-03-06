@@ -2,7 +2,7 @@
     <div>
         <div class="col-sm-12 box">
             <div class="btn-group btn-rodada" role="group">
-                <button type="button" class="btn btn-default" :disabled="rodada < 1" @click="updatedData(rodada - 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada < 1" @click="updatedData(rodada - 1)">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </button>
                 <div class="btn-group">
@@ -12,16 +12,16 @@
                     </button>
                     <div class="dropdown-menu dropdown-rodada">
                         <div class="flex-container">
-                            <div class="flex-items" v-for="n in user.bolao.campeonato.qtd_rodadas">
-                                <a class="dropdown-rodada-a" @click="updatedData(n);">{{ n }}ª</a>
+                            <div class="flex-items" v-for="n in bolao.campeonato.qtd_rodadas">
+                                <a class="dropdown-rodada-a" @click="updatedData(n)">{{ n }}ª</a>
                             </div>
                             <div class="flex-items geral">
-                                <a class="dropdown-rodada-a" @click="updatedData(0);">Geral</a>
+                                <a class="dropdown-rodada-a" @click="updatedData(0)">Geral</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-default" :disabled="rodada >= user.bolao.campeonato.qtd_rodadas" @click="updatedData(rodada + 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada >= bolao.campeonato.qtd_rodadas" @click="updatedData(rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>
@@ -70,10 +70,10 @@
     export default {
         data() {
             return {
-                user: (this.users) ? JSON.parse(this.users) : null,
+                user: (this.data_user) ? JSON.parse(this.data_user) : null,
                 dataLoading: false,
                 participantes: [],
-                bolaoId: this.bolao_id,
+                bolao: (this.data_bolao) ? JSON.parse(this.data_bolao) : null,
                 rodada: 0,
                 order: {
                     keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
@@ -81,7 +81,7 @@
                 }
             }
         },
-        props: ['users', 'bolao_id'],
+        props: ['data_user', 'data_bolao'],
         mounted() {
             this.updatedData(this.rodada);
         },
@@ -104,9 +104,9 @@
                 this.dataLoading = true;
                 this.rodada = rodada;
                 this.$http.get('/api/participante/updatedData/' + rodada).then((response) => {
-                    this.getParticipantes(this.bolaoId);
+                    this.getParticipantes(this.bolao.id);
                 }).catch((error) => {
-                    this.getParticipantes(this.bolaoId);
+                    this.getParticipantes(this.bolao.id);
                     this.dataLoading = false;
                     console.error('!Get Updated Data', error);
                 });

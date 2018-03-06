@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodada" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
+                    <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodadas" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
                         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                     </button>
                 </div>

@@ -2,7 +2,7 @@
     <div>
         <div class="col-sm-12 box">
             <div class="btn-group btn-rodada" role="group">
-                <button type="button" class="btn btn-default" :disabled="rodada < 1" @click="updatedData(rodada - 1)">
+                <button type="button" class="btn btn-default" :disabled="rodada < 1" @click="getRanking(rodada - 1)">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </button>
                 <div class="btn-group">
@@ -13,15 +13,15 @@
                     <div class="dropdown-menu dropdown-rodada">
                         <div class="flex-container">
                             <div class="flex-items" v-for="n in bolao.campeonato.qtd_rodadas">
-                                <a class="dropdown-rodada-a" @click="updatedData(n)">{{ n }}ª</a>
+                                <a class="dropdown-rodada-a" @click="getRanking(n)">{{ n }}ª</a>
                             </div>
                             <div class="flex-items geral">
-                                <a class="dropdown-rodada-a" @click="updatedData(0)">Geral</a>
+                                <a class="dropdown-rodada-a" @click="getRanking(0)">Geral</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-default" :disabled="rodada >= bolao.campeonato.qtd_rodadas" @click="updatedData(rodada + 1);">
+                <button type="button" class="btn btn-default" :disabled="rodada >= bolao.campeonato.qtd_rodadas" @click="getRanking(rodada + 1);">
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </button>
             </div>
@@ -44,13 +44,13 @@
                     <div class="col-xs-1 col-sm-1 table-td"><strong>PV</strong></div>
                     <div class="col-xs-2 col-sm-1 table-td"><strong>DP</strong></div>
                 </div>
-                <div class="row table-body" :class="{ 'bg-yellow': rodada > 0 }" v-for="(participante, key) in participantesFiltered">
+                <div class="row table-body" :class="{ 'bg-yellow': rodada > 0 }" v-for="(participante, key) in participantes">
                     <div class="col-xs-1 col-sm-1 table-td">{{ key + 1 }}º</div>
-                    <div class="col-xs-5 col-sm-7 table-td" style="text-align: left;"><b>{{ participante.user.name }}</b></div>
+                    <div class="col-xs-5 col-sm-7 table-td" style="text-align: left;"><b>{{ participante.name }}</b></div>
                     <div class="col-xs-2 col-sm-1 table-td"><strong>{{ participante.pontosganhos }}</strong></div>
                     <div class="col-xs-1 col-sm-1 table-td">{{ participante.placarexato }}</div>
                     <div class="col-xs-1 col-sm-1 table-td">{{ participante.placarvencedor }}</div>
-                    <div class="col-xs-2 col-sm-1 table-td">{{ participante.pontosganhos - participantesFiltered[0].pontosganhos }}</div>
+                    <div class="col-xs-2 col-sm-1 table-td">{{ participante.pontosganhos - participantes[0].pontosganhos }}</div>
                 </div>
             </div>
         </div>
@@ -74,39 +74,21 @@
                 dataLoading: false,
                 participantes: [],
                 bolao: (this.data_bolao) ? JSON.parse(this.data_bolao) : null,
-                rodada: 0,
-                order: {
-                    keys: ['pontosganhos', 'placarexato', 'placarvencedor'],
-                    sort: ['desc', 'desc', 'desc']
-                }
+                rodada: 0
             }
         },
         props: ['data_user', 'data_bolao'],
         mounted() {
-            this.updatedData(this.rodada);
-        },
-        computed: {
-            participantesFiltered(){
-                return _.orderBy(this.participantes, this.order.keys, this.order.sort);
-            }
+            this.getRanking(this.rodada);
         },
         methods: {
-            getParticipantes(bolaoId) {
-                this.$http.get('/api/participante/getBolao/' + bolaoId).then((response) => {
+            getRanking(rodada) {
+                this.dataLoading = true;
+                this.rodada = rodada;
+                this.$http.get('/api/participante/getRanking/' + rodada).then((response) => {
                     this.participantes = response.data;
                     this.dataLoading = false;
                 }).catch((error) => {
-                    console.error('!Get Campeonatos', error);
-                });
-            },
-
-            updatedData(rodada) {
-                this.dataLoading = true;
-                this.rodada = rodada;
-                this.$http.get('/api/participante/updatedData/' + rodada).then((response) => {
-                    this.getParticipantes(this.bolao.id);
-                }).catch((error) => {
-                    this.getParticipantes(this.bolao.id);
                     this.dataLoading = false;
                     console.error('!Get Updated Data', error);
                 });

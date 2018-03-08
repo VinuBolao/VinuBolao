@@ -9,6 +9,7 @@ use Bolao\Models\Participante;
 use Bolao\Http\Controllers\Controller;
 use Bolao\Traits\Calculator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ParticipanteController extends Controller
 {
@@ -28,59 +29,40 @@ class ParticipanteController extends Controller
         return response()->json(Participante::with('user')->where('bolao_id', $bolaoId)->get());
     }
 
-    public function updatedData($rodada = null)
+    public function getRanking($rodada = null)
     {
-        $users = User::all();
+        $bolao = Bolao::with('campeonato')->where('ativo', 1)->orderByDesc('id')->first();
+        $ranking = DB::table('palpites AS p')
+            ->join('jogos AS j', 'j.id', '=', 'p.jogo_id')
+            ->join('users AS u', 'u.id', '=', 'p.user_id')
+            ->select(DB::raw('u.name,
+            SUM(CASE
+                WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 1
+                WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN 0
+                WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN 0
+                WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN 0
+                ELSE 0
+	        END) AS placarexato,
+	        SUM(CASE
+                WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 0
+                WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN 1
+                WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN 1
+                WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN 1
+                ELSE 0
+	        END) AS placarvencedor,
+	        SUM(CASE
+                WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 10
+                WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN 7
+                WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN 7
+                WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN 7
+                ELSE 0
+	        END) AS pontosganhos'))
+            ->whereRaw(($rodada) ? "j.bolao_id = $bolao->id AND j.rodada = $rodada" : "j.bolao_id = $bolao->id")
+            ->orderBy('pontosganhos', 'desc')
+            ->groupBy('u.name')
+            ->get();
 
-        foreach ($users as $user) {
-            $dados = $this->getDados($user->id, $rodada);
-
-            if(count($dados) > 0) {
-                $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
-                Participante::where(['user_id' => $user->id, 'bolao_id' => $bolao->id])->update([
-                    'placarvencedor' => $dados['placarvencedor'],
-                    'pontosganhos' => $dados['pontosganhos'],
-                    'placarexato' => $dados['placarexato']
-                ]);
-            }
-        }
-
-        return response()->json(['success' => true], 200);
-    }
-
-    public function getDados($userId, $rodada = null)
-    {
-        $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
-
-        if($rodada){
-            $palpites = Palpite::join('jogos', 'palpites.jogo_id', 'jogos.id')
-                ->where('jogos.bolao_id', $bolao->id)
-                ->where('jogos.rodada', $rodada)
-                ->where('palpites.user_id', $userId)
-                ->get();
-        } else {
-            $palpites = Palpite::join('jogos', 'palpites.jogo_id', 'jogos.id')
-                ->where('jogos.bolao_id', $bolao->id)
-                ->where('palpites.user_id', $userId)
-                ->get();
-        }
-
-        $dados = ['pontosganhos' => 0, 'placarexato' => 0, 'placarvencedor' => 0];
-
-        if(count($palpites) > 0){
-            foreach ($palpites as $palpite) {
-                if(isset($palpite->jogo->placar_casa) && isset($palpite->jogo->placar_fora)){
-                    //Calculando Pontos
-                    $result = $this->calcularPontos($palpite->jogo->placar_casa, $palpite->jogo->placar_fora, $palpite->palpite_casa, $palpite->palpite_fora);
-
-                    $dados['pontosganhos'] += $result->pontosganhos;
-                    $dados['placarexato'] += $result->placarexato;
-                    $dados['placarvencedor'] += $result->placarvencedor;
-                }
-            }
-        }
-
-        return $dados;
+        return response()->json($ranking, 200);
     }
 
     public function create(Request $request) {

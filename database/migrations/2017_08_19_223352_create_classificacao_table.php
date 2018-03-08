@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClassificacaosTable extends Migration
+class CreateClassificacaoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateClassificacaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('classificacaos', function (Blueprint $table) {
+        Schema::create('classificacao', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -34,6 +34,6 @@ class CreateClassificacaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classificacaos');
+        Schema::dropIfExists('classificacao');
     }
 }

@@ -26,6 +26,7 @@ Route::namespace('API\\')->group(function (){
 
     Route::group(['prefix' => 'participante'], function (){
         Route::get('getRanking/{rodada?}', 'ParticipanteController@getRanking')->where('id', '[0-9]+');
+        Route::get('getBolao/{id}', 'ParticipanteController@getBolao')->where('id', '[0-9]+');
         Route::get('get/{id?}', 'ParticipanteController@get')->where('id', '[0-9]+');
         Route::get('getDados/{id}/{rodada?}', 'ParticipanteController@getDados');
         Route::post('create', 'ParticipanteController@create');

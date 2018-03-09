@@ -12,7 +12,7 @@ class JogoForm extends Form
     public function buildForm()
     {
         $times = [];
-        $boloes = [];
+        $bolaos = [];
         $campeonatos = [];
         $dataTime = Time::all();
         $dataBolao = Bolao::all();
@@ -23,7 +23,7 @@ class JogoForm extends Form
         $campeonatoId = $this->getData('campeonato_id');
 
         foreach ($dataBolao as $bolao) {
-            $boloes[$bolao->id] = $bolao->nome;
+            $bolaos[$bolao->id] = $bolao->nome;
         }
 
         foreach ($dataCampeonato as $campeonato) {
@@ -37,7 +37,7 @@ class JogoForm extends Form
         $this
             ->add('bolao_id', 'select', [
                 'label' => 'Bolão',
-                'choices' => $boloes,
+                'choices' => $bolaos,
                 'selected' => $bolaoId,
                 'empty_value' => 'Selecione o bolão',
                 'rules' => 'required',

@@ -18,7 +18,7 @@ class CreateJogosTable extends Migration
             $table->unsignedInteger('campeonato_id');
             $table->foreign('campeonato_id')->references('id')->on('campeonatos');
             $table->unsignedInteger('bolao_id');
-            $table->foreign('bolao_id')->references('id')->on('boloes');
+            $table->foreign('bolao_id')->references('id')->on('bolaos');
             $table->integer('rodada');
             $table->dateTime('inicio');
             $table->unsignedInteger('timecasa_id');
@@ -38,6 +38,6 @@ class CreateJogosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jogo');
+        Schema::dropIfExists('jogos');
     }
 }

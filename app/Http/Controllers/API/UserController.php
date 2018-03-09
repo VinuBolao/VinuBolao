@@ -2,11 +2,12 @@
 
 namespace Bolao\Http\Controllers\API;
 
-use Bolao\Http\Controllers\Controller;
 use Bolao\Models\User;
+use Bolao\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+
     public function get($userId = null)
     {
         if($userId){

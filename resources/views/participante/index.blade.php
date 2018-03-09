@@ -6,5 +6,5 @@
         <p>Veja a lista dos outros participantes!</p>
     </div>
 
-    <participante data="{{ $boloes }}"></participante>
+    <participante data="{{ $bolaos }}"></participante>
 @endcomponent

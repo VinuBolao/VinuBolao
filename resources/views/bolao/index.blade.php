@@ -22,8 +22,8 @@
         </div>
     </div>
 
-    @if(count($boloes) > 0)
-        @foreach($boloes as $bolao)
+    @if(count($bolaos) > 0)
+        @foreach($bolaos as $bolao)
             <div class="col-sm-12 box">
                 @if (Auth::user()->master)
                 <div class="row">

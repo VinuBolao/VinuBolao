@@ -30,7 +30,6 @@ class CampeonatoController extends Controller
             'url' => route('admin.campeonato.store'),
             'method' => 'POST'
         ]);
-
         return view('admin.campeonato.add', compact('form'));
     }
 
@@ -42,14 +41,11 @@ class CampeonatoController extends Controller
     public function store()
     {
         $form = \FormBuilder::create(CampeonatoForm::class);
-
         if(!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
         $campeonato = $form->getFieldValues();
         Campeonato::create($campeonato);
-
         return redirect()->route('admin.campeonato.index');
     }
 
@@ -77,7 +73,6 @@ class CampeonatoController extends Controller
             'method' => 'PUT',
             'model' => $campeonato
         ]);
-
         return view('admin.campeonato.edit', compact('form'));
     }
 
@@ -90,14 +85,11 @@ class CampeonatoController extends Controller
     public function update(Campeonato $campeonato)
     {
         $form = \FormBuilder::create(CampeonatoForm::class);
-
         if(!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
         $data = $form->getFieldValues();
         $campeonato->update($data);
-
         return redirect()->route('admin.campeonato.index');
     }
 

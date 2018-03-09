@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Bolao\Models\User::class,
+            'model' => Bolao\Models\User::class,
         ],
 
         // 'users' => [

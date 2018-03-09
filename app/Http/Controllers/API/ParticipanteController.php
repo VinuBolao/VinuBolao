@@ -4,17 +4,13 @@ namespace Bolao\Http\Controllers\API;
 
 use Bolao\Models\User;
 use Bolao\Models\Bolao;
-use Bolao\Models\Palpite;
 use Bolao\Models\Participante;
 use Bolao\Http\Controllers\Controller;
-use Bolao\Traits\Calculator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ParticipanteController extends Controller
 {
-    use Calculator;
-
     public function get($participanteId = null)
     {
         if($participanteId){
@@ -61,13 +57,11 @@ class ParticipanteController extends Controller
             ->orderBy('pontosganhos', 'desc')
             ->groupBy('u.name')
             ->get();
-
         return response()->json($ranking, 200);
     }
 
     public function create(Request $request) {
         $user = User::findOrFail($request->userId);
-
         $participante = new Participante;
         $participante->user_id = $request->userId;
         $participante->bolao_id = $request->bolaoId;
@@ -80,7 +74,6 @@ class ParticipanteController extends Controller
 
     public function destroy($participanteId) {
         $participante = Participante::findOrFail($participanteId);
-
         if($participante->delete()) {
             return response()->json(['success' => true], 200);
         } else {

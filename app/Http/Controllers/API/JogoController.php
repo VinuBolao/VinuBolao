@@ -24,7 +24,6 @@ class JogoController extends Controller
         } else {
             $jogos = Jogo::with('timecasa')->where(['campeonato_id' => $campeonatoId])->orderBy('inicio')->get();
         }
-
         return response()->json($jogos, 200);
     }
 

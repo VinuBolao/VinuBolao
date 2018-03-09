@@ -17,8 +17,6 @@ class PalpiteController extends Controller
     {
         $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
         $participante = Participante::with('user', 'bolao')->where('user_id', Auth::id())->first();
-
         return view('palpite.index', compact('participante', 'bolao'));
     }
-
 }

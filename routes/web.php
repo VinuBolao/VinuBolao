@@ -15,6 +15,11 @@ Route::get('/', function () {
     return redirect('/bolao');
 });
 
+Route::get('/laravelversion', function () {
+    $laravel = app();
+    return "Laravel Framework " . $laravel::VERSION;
+});
+
 Auth::routes();
 
 Route::namespace('Admin\\')->group(function (){
@@ -38,9 +43,7 @@ Route::namespace('Admin\\')->group(function (){
 Route::middleware(['auth'])->group(function () {
     Route::get('classificacao', 'BolaoController@classificacao')->name('classificacao');
 
-    Route::get('regulamento', function (){
-        return view('bolao.regulamento');
-    })->name('regulamento');
+    Route::view('/regulamento', 'bolao.regulamento')->name('regulamento');
 
     Route::resource('bolao', 'BolaoController');
 

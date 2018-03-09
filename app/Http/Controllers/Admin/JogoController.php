@@ -18,7 +18,6 @@ class JogoController extends Controller
     public function index(Request $request)
     {
         $campeonatos = Campeonato::all();
-
         if($request->campeonatoId > 0 && $request->rodada > 0) {
             $jogos = Jogo::with('timecasa', 'timefora', 'campeonato')
                 ->where('campeonato_id', $request->campeonatoId)
@@ -39,7 +38,6 @@ class JogoController extends Controller
                 ->orderBy('inicio')
                 ->paginate(10);
         }
-
         return view('admin.jogo.index', compact('jogos', 'campeonatos'));
     }
 
@@ -54,7 +52,6 @@ class JogoController extends Controller
             'url' => route('admin.jogo.store'),
             'method' => 'POST'
         ]);
-
         return view('admin.jogo.add', compact('form'));
     }
 
@@ -67,14 +64,11 @@ class JogoController extends Controller
     public function store(Request $request)
     {
         $form = \FormBuilder::create(JogoForm::class);
-
         if(!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
         $jogo = $form->getFieldValues();
         Jogo::create($jogo);
-
         return redirect()->route('admin.jogo.index');
     }
 
@@ -102,7 +96,6 @@ class JogoController extends Controller
             'method' => 'PUT',
             'model' => $jogo
         ]);
-
         return view('admin.jogo.edit', compact('form'));
     }
 
@@ -118,14 +111,11 @@ class JogoController extends Controller
         $form = \FormBuilder::create(JogoForm::class, [
             'data' => ['campeonato_id' => $jogo->campeonato_id, 'timecasa_id' => $jogo->timecasa_id, 'timefora_id' => $jogo->timefora_id]
         ]);
-
         if(!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
         $data = $form->getFieldValues();
         $jogo->update($data);
-
         return redirect()->route('admin.jogo.index');
     }
 

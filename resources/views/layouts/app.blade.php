@@ -25,7 +25,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
@@ -35,8 +35,8 @@
     </script>
 </head>
 <body class="bolao">
-    <div id="app">
-        @if (Auth::check())
+<div id="app">
+    @if (Auth::check())
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -74,9 +74,9 @@
                             <a href="{{ route('regulamento') }}">Regulamento</a>
                         </li>
                         @if (Auth::user()->master)
-                        <li>
-                            <a href="{{ route('admin.user.index') }}">Dashboard</a>
-                        </li>
+                            <li>
+                                <a href="{{ route('admin.user.index') }}">Dashboard</a>
+                            </li>
                         @endif
                     </ul>
 
@@ -106,22 +106,22 @@
                 </div>
             </div>
         </nav>
-        @endif
+    @endif
 
-        <div class="container">
-            <div class="row">
-                {{ $slot }}
-            </div>
-        </div>
-
-        <div class="footer">
-            <footer class="text-center">
-                <span>VinúBolão &copy; 2017 - Criado por <a href="https://www.linkedin.com/in/gustavosantoslima" target="_blank">Gustavo Lima</a></span>
-            </footer>
+    <div class="container">
+        <div class="row">
+            {{ $slot }}
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <div class="footer">
+        <footer class="text-center">
+            <span>VinúBolão &copy; 2017 - Criado por <a href="https://www.linkedin.com/in/gustavosantoslima" target="_blank">Gustavo Lima</a></span>
+        </footer>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

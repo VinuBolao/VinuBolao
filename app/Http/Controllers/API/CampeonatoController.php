@@ -3,7 +3,6 @@
 namespace Bolao\Http\Controllers\API;
 
 use Bolao\Models\Campeonato;
-use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
 
 class CampeonatoController extends Controller

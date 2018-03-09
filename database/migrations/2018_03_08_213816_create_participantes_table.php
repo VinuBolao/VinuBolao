@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBolaosTable extends Migration
+class CreateParticipantesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateBolaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('boloes', function (Blueprint $table) {
+        Schema::create('participantes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedInteger('campeonato_id');
-            $table->foreign('campeonato_id')->references('id')->on('campeonatos');
-            $table->string('nome', 50);
-            $table->text('descricao')->nullable();
-            $table->boolean('ativo')->default(0);
-            $table->date('inicio');
+            $table->unsignedInteger('bolao_id');
+            $table->foreign('bolao_id')->references('id')->on('bolaos');
+            $table->integer('pontosganhos')->nullable()->default(0);
+            $table->integer('placarexato')->nullable()->default(0);
+            $table->integer('placarvencedor')->nullable()->default(0);
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ class CreateBolaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boloes');
+        Schema::dropIfExists('participantes');
     }
 }

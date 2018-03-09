@@ -31,7 +31,6 @@ class TimeController extends Controller
             'url' => route('admin.time.store'),
             'method' => 'POST'
         ]);
-
         return view('admin.time.add', compact('form'));
     }
 
@@ -44,14 +43,11 @@ class TimeController extends Controller
     public function store(Request $request)
     {
         $form = \FormBuilder::create(TimeForm::class);
-
         if(!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
         $time = $form->getFieldValues();
         Time::create($time);
-
         return redirect()->route('admin.time.index');
     }
 
@@ -79,7 +75,6 @@ class TimeController extends Controller
             'method' => 'PUT',
             'model' => $time
         ]);
-
         return view('admin.time.edit', compact('form'));
     }
 
@@ -93,14 +88,11 @@ class TimeController extends Controller
     public function update(Request $request, Time $time)
     {
         $form = \FormBuilder::create(TimeForm::class);
-
         if(!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
         $data = $form->getFieldValues();
         $time->update($data);
-
         return redirect()->route('admin.time.index');
     }
 

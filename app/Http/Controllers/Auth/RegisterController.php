@@ -4,7 +4,6 @@ namespace Bolao\Http\Controllers\Auth;
 
 use Bolao\Models\User;
 use Bolao\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -50,7 +49,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create()
+    protected function create(array $data)
     {
         return redirect('/');
     }

@@ -40,6 +40,5 @@ class TimeForm extends Form
                 'default_value' => 'Brasil',
                 'rules' => 'required|string|max:255',
             ]);
-
     }
 }

@@ -31,7 +31,6 @@ class UserController extends Controller
             'url' => route('admin.user.store'),
             'method' => 'POST'
         ]);
-
         return view('admin.user.add', compact('form'));
     }
 
@@ -44,15 +43,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $form = \FormBuilder::create(UserForm::class);
-
         if(!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
         $user = $form->getFieldValues();
         $user['password'] = bcrypt($user['password']);
         User::create($user);
-
         return redirect()->route('admin.user.index');
     }
 
@@ -80,7 +76,6 @@ class UserController extends Controller
             'method' => 'PUT',
             'model' => $user
         ]);
-
         return view('admin.user.edit', compact('form'));
     }
 
@@ -95,21 +90,16 @@ class UserController extends Controller
         $form = \FormBuilder::create(UserForm::class, [
             'data' => ['id' => $user->id, 'master' => $user->master]
         ]);
-
         if(!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
         $data = $form->getFieldValues();
-
         if($user->password === $data['password']){
             unset($data['password']);
         } else {
             $data['password'] = bcrypt($data['password']);
         }
-
         $user->update($data);
-
         return redirect()->route('admin.user.index');
     }
 

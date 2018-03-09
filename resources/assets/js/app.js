@@ -24,8 +24,5 @@ Vue.component('classificacao', require('./components/Classificacao.vue'));
 Vue.component('participante', require('./components/Participante.vue'));
 
 const app = new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello World!!!'
-    }
+    el: '#app'
 });

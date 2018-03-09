@@ -11,7 +11,7 @@
                 <div class="col-sm-4">
                     <select class="form-control" v-model="bolaoId" @change="getParticipantesByBolao(bolaoId);">
                         <option value="0">Selecione o bolão...</option>
-                        <option v-for="bolao in boloes" :value="bolao.id">{{ bolao.nome }}</option>
+                        <option v-for="bolao in bolaos" :value="bolao.id">{{ bolao.nome }}</option>
                     </select>
                 </div>
             </div>
@@ -66,7 +66,7 @@
     export default {
         data() {
             return {
-                boloes: JSON.parse(this.data),
+                bolaos: JSON.parse(this.data),
                 participantes: [],
                 bolaoId: 0,
                 users: [],

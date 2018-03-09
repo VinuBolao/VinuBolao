@@ -4,7 +4,7 @@ namespace Bolao\Forms;
 
 use Kris\LaravelFormBuilder\Form;
 
-class CampeonatoFrom extends Form
+class CampeonatoForm extends Form
 {
     public function buildForm()
     {

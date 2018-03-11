@@ -54,7 +54,8 @@ class ParticipanteController extends Controller
                 ELSE 0
 	        END) AS pontosganhos'))
             ->whereRaw(($rodada) ? "j.bolao_id = $bolao->id AND j.rodada = $rodada" : "j.bolao_id = $bolao->id")
-            ->orderBy('pontosganhos', 'desc')
+            ->orderBy('pontosganhos', 'DESC')
+            ->orderBy('u.name', 'ASC')
             ->groupBy('u.name')
             ->get();
         return response()->json($ranking, 200);

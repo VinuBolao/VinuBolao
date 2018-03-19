@@ -27,11 +27,11 @@ class ParticipanteController extends Controller
 
     public function getRanking($rodada = null)
     {
-        $bolao = Bolao::with('campeonato')->where('ativo', 1)->orderByDesc('id')->first();
-        $ranking = DB::table('palpites AS p')
-            ->join('jogos AS j', 'j.id', '=', 'p.jogo_id')
-            ->join('users AS u', 'u.id', '=', 'p.user_id')
-            ->select(DB::raw('u.name,
+        $placar_exato = 10;
+        $placar_vencedor = 7;
+        $rodada_dobro = 8;
+
+        $sql = 'u.name,
             SUM(CASE
                 WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 1
                 WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN 0
@@ -48,29 +48,36 @@ class ParticipanteController extends Controller
 	        END) AS placarvencedor,
 	        SUM(
             CASE 
-                WHEN (j.rodada > 12) THEN 
+                WHEN (j.bolao_id = 12 AND j.rodada >= ' . $rodada_dobro . ') THEN 
                     CASE
-                        WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 20
-                        WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN 14
-                        WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN 14
-                        WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN 14
+                        WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN ' . ($placar_exato * 2) . ' 
+                        WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN ' . ($placar_vencedor * 2) . ' 
+                        WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN ' . ($placar_vencedor * 2) . ' 
+                        WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN ' . ($placar_vencedor * 2) . ' 
                         ELSE 0
                     END
                 ELSE
                     CASE
-                        WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 10
-                        WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN 7
-                        WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN 7
-                        WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN 7
+                        WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN ' . $placar_exato . ' 
+                        WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN ' . $placar_vencedor . ' 
+                        WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN ' . $placar_vencedor . ' 
+                        WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN ' . $placar_vencedor . ' 
                         ELSE 0
                     END
                 END
-            ) AS pontosganhos'))
+            ) AS pontosganhos';
+
+        $bolao = Bolao::with('campeonato')->where('ativo', 1)->orderByDesc('id')->first();
+        $ranking = DB::table('palpites AS p')
+            ->join('jogos AS j', 'j.id', '=', 'p.jogo_id')
+            ->join('users AS u', 'u.id', '=', 'p.user_id')
+            ->select(DB::raw($sql))
             ->whereRaw(($rodada) ? "j.bolao_id = $bolao->id AND j.rodada = $rodada" : "j.bolao_id = $bolao->id")
             ->orderBy('pontosganhos', 'DESC')
             ->orderBy('u.name', 'ASC')
             ->groupBy('u.name')
             ->get();
+
         return response()->json($ranking, 200);
     }
 

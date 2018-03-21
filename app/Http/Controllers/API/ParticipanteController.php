@@ -29,7 +29,7 @@ class ParticipanteController extends Controller
     {
         $placar_exato = 10;
         $placar_vencedor = 7;
-        $rodada_dobro = 8;
+        $rodada_dobro = 13;
 
         $sql = 'u.name,
             SUM(CASE

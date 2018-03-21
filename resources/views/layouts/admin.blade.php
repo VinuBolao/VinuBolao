@@ -21,7 +21,7 @@
 
         <title>VinúBolão | Admin</title>
         <!-- Styles -->
-        <link href="{{ asset('css/app.css', true) }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body class="admin">
         <div id="app" class="wrapper">
@@ -128,6 +128,6 @@
                 </div>
             </div>
         </div>
-        <script src="{{ asset('js/app.js', true) }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

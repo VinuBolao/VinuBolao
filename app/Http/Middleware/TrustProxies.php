@@ -12,11 +12,7 @@ class TrustProxies extends Middleware
      *
      * @var array
      */
-    protected $proxies = [
-        'https://vinubolao.com.br.herokudns.com',
-        'https://www.vinubolao.com.br.herokudns.com',
-        'https://vinubolao-staging.herokuapp.com',
-    ];
+    protected $proxies;
 
     /**
      * The current proxy header mappings.

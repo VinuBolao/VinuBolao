@@ -11,7 +11,7 @@
 |
 */
 
-Route::redirect('/', '/bolao');
+Route::redirect('/', '/bolao')->secure();
 
 Auth::routes();
 

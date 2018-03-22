@@ -15,11 +15,6 @@ Route::get('/', function () {
     return redirect()->secure('/bolao');
 });
 
-Route::get('/laravelversion', function () {
-    $laravel = app();
-    return "Laravel Framework " . $laravel::VERSION;
-});
-
 Auth::routes();
 
 Route::namespace('Admin\\')->group(function (){

@@ -20,6 +20,8 @@ Route::get('/laravelversion', function () {
     return "Laravel Framework " . $laravel::VERSION;
 });
 
+$this->get('login', ['uses' => 'Auth\LoginController@showLoginForm', 'https' => true])->name('login');
+$this->post('login', ['uses' => 'Auth\LoginController@login', 'https' => true]);
 Auth::routes();
 
 Route::namespace('Admin\\')->group(function (){

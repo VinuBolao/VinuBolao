@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    if (env('APP_ENV') === 'production') {
-        return redirect()->secure('/classificacao');
-    } else {
-        return redirect('/classificacao');
-    }
-});
+Route::redirect('/', '/bolao');
 
 Auth::routes();
 

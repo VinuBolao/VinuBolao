@@ -11,14 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/bolao');
-});
-
-Route::get('/laravelversion', function () {
-    $laravel = app();
-    return "Laravel Framework " . $laravel::VERSION;
-});
+Route::redirect('/', '/bolao')->secure();
 
 Auth::routes();
 

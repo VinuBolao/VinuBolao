@@ -66,7 +66,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Descrição</th>
-                        <td>{{ $bolao->descricao }}</td>
+                        <td>{!! $bolao->descricao !!}</td>
                     </tr>
                     <tr>
                         <th scope="row">Ativo</th>

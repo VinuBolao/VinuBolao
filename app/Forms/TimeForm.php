@@ -30,7 +30,7 @@ class TimeForm extends Form
                 'rules' => 'required|string|max:255',
             ])
             ->add('estado', 'text', [
-                'label' => 'Estado',
+                'label' => 'Estado/Código',
                 'attr' => ['placeholder' => 'Ex: SP'],
                 'rules' => 'required|string|max:2',
             ])

@@ -76,7 +76,8 @@ class ParticipanteController extends Controller
             ->orderBy('pontosganhos', 'DESC')
             ->orderBy('placarexato', 'DESC')
             ->orderBy('placarvencedor', 'DESC')
-            ->groupBy('u.name', 'ASC')
+            ->orderBy('name', 'ASC')
+            ->groupBy('u.name')
             ->get();
 
         return response()->json($ranking, 200);

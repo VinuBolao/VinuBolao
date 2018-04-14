@@ -61,7 +61,9 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label for="infoDescription">Descrição:</label>
-                        <input type="text" class="form-control" name="description" id="infoDescription" value="{{ $bolao->descricao }}">
+                        <textarea class="form-control" name="description" id="infoDescription" placeholder="Digite uma descrição..." required>
+                            {{ $bolao->descricao }}
+                        </textarea>
                     </div>
                 </div>
             </div>

@@ -74,9 +74,9 @@ class ParticipanteController extends Controller
             ->select(DB::raw($sql))
             ->whereRaw(($rodada) ? "j.bolao_id = $bolao->id AND j.rodada = $rodada" : "j.bolao_id = $bolao->id")
             ->orderBy('pontosganhos', 'DESC')
-            ->orderBy('placarexato', 'ASC')
-            ->orderBy('placarvencedor', 'ASC')
-            ->groupBy('u.name')
+            ->orderBy('placarexato', 'DESC')
+            ->orderBy('placarvencedor', 'DESC')
+            ->groupBy('u.name', 'ASC')
             ->get();
 
         return response()->json($ranking, 200);

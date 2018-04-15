@@ -27,7 +27,7 @@ class ParticipanteController extends Controller
 
     public function getRanking($rodada = null)
     {
-        $placar_exato = 10;
+        $placar_exato = 12;
         $placar_vencedor = 7;
         $rodada_dobro = 13;
 

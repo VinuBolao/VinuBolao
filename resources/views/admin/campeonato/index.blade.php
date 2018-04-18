@@ -31,7 +31,7 @@
                         @foreach($campeonatos as $key => $campeonato)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $campeonato->nome }} - {{ $campeonato->temporada }} - Série {{ $campeonato->serie }}</td>
+                                <td>{{ $campeonato->nome }}</td>
                                 <td>{{ $campeonato->nome_completo }}</td>
                                 <td>{{ $campeonato->rodada }}ª</td>
                                 <td>{{ \Carbon\Carbon::parse($campeonato->inicio)->format('d/m/Y') }}</td>

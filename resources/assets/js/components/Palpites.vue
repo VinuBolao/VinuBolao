@@ -149,7 +149,7 @@
                 <div class="col-sm-12 box">
                     <h4><strong>Legenda</strong></h4>
                     <span class="span-legenda bg-placarexato">&nbsp;</span>
-                    <p class="p-legenda"> - Placar Exato (10 pontos),</p>
+                    <p class="p-legenda"> - Placar Exato ({{ bolao.id === 22 ? '12' : '10' }} pontos),</p>
                     <span class="span-legenda bg-placarvencedor">&nbsp;</span>
                     <p class="p-legenda"> - Placar Vencedor (7 pontos).</p>
                 </div>

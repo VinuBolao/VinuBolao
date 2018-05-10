@@ -11,8 +11,7 @@
 |
 */
 
-//Route::redirect('/', '/bolao')->secure();
-Route::get('/', 'BolaoController@index')->name('bolao.index');
+Route::redirect('/', '/bolao')->secure();
 
 Auth::routes();
 

@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    if (env('APP_ENV') === 'production') {
-        header('Location: https://vinubolao.com.br/bolao');
-    } else {
-        return redirect()->secure('/bolao');
-    }
-});
+Route::redirect('/', '/palpite')->secure();
 
 Auth::routes();
 

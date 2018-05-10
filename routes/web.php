@@ -11,7 +11,13 @@
 |
 */
 
-Route::redirect('/', '/bolao')->secure();
+Route::get('user/{id}', function ($id) {
+    if (env('APP_ENV') === 'production') {
+        header('Location: https://vinubolao.com.br/bolao');
+    } else {
+        return redirect()->secure('/bolao');
+    }
+});
 
 Auth::routes();
 

@@ -18,7 +18,11 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect()->secure('/bolao');
+            if (env('APP_ENV') === 'production') {
+                header('Location: https://vinubolao.com.br/bolao');
+            } else {
+                return redirect()->secure('/bolao');
+            }
         }
 
         return $next($request);

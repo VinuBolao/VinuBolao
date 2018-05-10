@@ -11,7 +11,7 @@
 |
 */
 
-Route::redirect('/', '/palpite')->secure();
+Route::redirect('/', '/bolao')->secure();
 
 Auth::routes();
 

@@ -129,7 +129,7 @@
     export default {
         data() {
             return {
-                user: JSON.parse(this.users),
+                user: this.users ? JSON.parse(this.users) : null,
                 bolao: JSON.parse(this.data_bolao),
                 dataLoading: false,
                 saveLoading: false,

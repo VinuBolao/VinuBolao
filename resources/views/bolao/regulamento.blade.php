@@ -48,13 +48,13 @@
         <hr><h4>PONTUAÇÃO</h4>
         <h5><strong>Apostando que a partida terá um vencedor</strong></h5>
         <ul>
-            <li>Acertando o Placar Exato = 12 pontos.</li>
+            <li>Acertando o Placar Exato = 10 pontos.</li>
             <li>Acertando o Time Vencedor = 7 pontos.</li>
         </ul>
 
         <h5><strong>Apostando que a partida terminará empatada</strong></h5>
         <ul>
-            <li>Acertando o Placar Exato = 12 pontos.</li>
+            <li>Acertando o Placar Exato = 10 pontos.</li>
             <li>Qualquer outro empate NÃO EXATO = 7 pontos.</li>
         </ul>
 

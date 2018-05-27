@@ -7,6 +7,7 @@ use Bolao\Models\Campeonato;
 use Bolao\Models\Jogo;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
+use Illuminate\Support\Facades\URL;
 
 class JogoController extends Controller
 {
@@ -24,19 +25,22 @@ class JogoController extends Controller
                 ->where('rodada', $request->rodada)
                 ->orderBy('rodada')
                 ->orderBy('inicio')
-                ->paginate(10);
+                ->paginate(10)
+                ->appends(request()->query());
         } elseif($request->campeonatoId > 0 || $request->rodada > 0) {
             $jogos = Jogo::with('timecasa', 'timefora', 'campeonato')
                 ->where('campeonato_id', $request->campeonatoId)
                 ->orWhere('rodada', $request->rodada)
                 ->orderBy('rodada')
                 ->orderBy('inicio')
-                ->paginate(10);
+                ->paginate(10)
+                ->appends(request()->query());
         } else {
             $jogos = Jogo::with('timecasa', 'timefora', 'campeonato')
                 ->orderBy('rodada')
                 ->orderBy('inicio')
-                ->paginate(10);
+                ->paginate(10)
+                ->appends(request()->query());
         }
         return view('admin.jogo.index', compact('jogos', 'campeonatos'));
     }
@@ -94,9 +98,10 @@ class JogoController extends Controller
     public function edit(Jogo $jogo)
     {
         $form = \FormBuilder::create(JogoForm::class, [
-            'url' => route('admin.jogo.update', ['jogo' => $jogo->id]),
+            'url' => route('admin.jogo.update', ['jogo' => URL::previous()]),
             'method' => 'PUT',
-            'model' => $jogo
+            'model' => $jogo,
+            'previous' => URL::previous()
         ]);
         return view('admin.jogo.edit', compact('form'));
     }
@@ -110,6 +115,8 @@ class JogoController extends Controller
      */
     public function update(Request $request, Jogo $jogo)
     {
+        echo "<pre>" . print_r($jogo, true) . "</pre>";
+        die('FILE ' . __FILE__ . ' LINE ' . __LINE__);
         $form = \FormBuilder::create(JogoForm::class, [
             'data' => ['campeonato_id' => $jogo->campeonato_id, 'timecasa_id' => $jogo->timecasa_id, 'timefora_id' => $jogo->timefora_id]
         ]);

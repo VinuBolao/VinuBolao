@@ -15,7 +15,7 @@ class CampeonatoController extends Controller
      */
     public function index()
     {
-        $campeonatos = Campeonato::orderBy('nome')->paginate(15);
+        $campeonatos = Campeonato::orderBy('nome')->paginate(15)->appends(request()->query());
         return view('admin.campeonato.index', compact('campeonatos'));
     }
 

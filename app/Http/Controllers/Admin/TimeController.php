@@ -16,7 +16,7 @@ class TimeController extends Controller
      */
     public function index()
     {
-        $times = Time::orderBy('nome')->paginate(20);
+        $times = Time::orderBy('nome')->paginate(20)->appends(request()->query());
         return view('admin.time.index', compact('times'));
     }
 

@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm-12">
             @if(count($users) > 0)
-                {{ $users->links() }}
+                {{ $users->appends(request()->query())->links() }}
 
                 <table class="table table-hover">
                     <thead>
@@ -51,7 +51,7 @@
                     </tbody>
                 </table>
 
-                {{ $users->links() }}
+                {{ $users->appends(request()->query())->links() }}
             @endif
         </div>
     </div>

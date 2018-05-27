@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-sm-12">
             @if(count($jogos) > 0)
-                {{ $jogos->links() }}
+                {{ $jogos->appends(request()->query())->links() }}
 
                 <table class="table table-hover">
                     <thead>
@@ -78,7 +78,7 @@
                     </tbody>
                 </table>
 
-                {{ $jogos->links() }}
+                {{ $jogos->appends(request()->query())->links() }}
             @endif
         </div>
     </div>

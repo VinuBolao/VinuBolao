@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm-12">
             @if(count($campeonatos) > 0)
-                {{ $campeonatos->links() }}
+                {{ $campeonatos->appends(request()->query())->links() }}
 
                 <table class="table table-hover">
                     <thead>
@@ -49,7 +49,7 @@
                     </tbody>
                 </table>
 
-                {{ $campeonatos->links() }}
+                {{ $campeonatos->appends(request()->query())->links() }}
             @endif
         </div>
     </div>

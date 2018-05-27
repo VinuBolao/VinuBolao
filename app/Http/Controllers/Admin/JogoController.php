@@ -68,6 +68,8 @@ class JogoController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
         $jogo = $form->getFieldValues();
+        $jogo['inicio'] = $jogo['inicio'] . " " . $jogo['horario'];
+        unset($jogo['horario']);
         Jogo::create($jogo);
         return redirect()->route('admin.jogo.index');
     }
@@ -115,6 +117,8 @@ class JogoController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
         $data = $form->getFieldValues();
+        $data['inicio'] = $data['inicio'] . " " . $data['horario'];
+        unset($data['horario']);
         $jogo->update($data);
         return redirect()->route('admin.jogo.index');
     }

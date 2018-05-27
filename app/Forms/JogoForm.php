@@ -76,8 +76,13 @@ class JogoForm extends Form
                 'empty_value' => 'Selecione o visitante',
                 'rules' => 'required',
             ])
-            ->add('inicio', 'datetime-local', [
-                'label' => 'Início',
+            ->add('inicio', 'date', [
+                'label' => 'Data',
+                'rules' => 'required',
+                'attr' => ['style' => "width: 25rem"]
+            ])
+            ->add('horario', 'time', [
+                'label' => 'Horário',
                 'rules' => 'required',
                 'attr' => ['style' => "width: 25rem"]
             ]);

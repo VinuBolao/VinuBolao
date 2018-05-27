@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Início</th>
-                        <td>{{ $jogo->inicio }}</td>
+                        <td>{{ \Carbon\Carbon::parse($jogo->inicio)->format('H:i - d/m/Y') }}</td>
                     </tr>
                 </tbody>
             </table>

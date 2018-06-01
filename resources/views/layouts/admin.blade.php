@@ -55,7 +55,7 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
+                            <a href="{{ route('bolao.index') }}"><i class="glyphicon glyphicon-home"></i> Voltar Site</a>
                         </li>
                         <li @if(Request::segment(2) == 'campeonato') class="active" @endif>
                             <a href="javascript:;" data-toggle="collapse" data-target="#campeonato">

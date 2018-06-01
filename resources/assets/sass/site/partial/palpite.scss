@@ -1,0 +1,135 @@
+#palpites {
+  .table-head, .table-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+
+    .td {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 0;
+      min-width: 5%;
+
+      &:nth-child(2) {
+        flex-grow: 2;
+      }
+
+      &:nth-child(3) {
+        flex-grow: 1;
+        min-width: 35vw;
+        max-width: 35vw;
+      }
+    }
+  }
+
+  .table-head {
+    color: $write;
+    font-weight: bold;
+    background-color: $text-color;
+  }
+
+  .table-body {
+    border-bottom: 1px solid #ddd;
+
+    &:hover {
+      background-color: $table-bg-hover !important;
+    }
+
+    .td {
+      .mandante, .visitante {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-width: 20vw;
+        max-width: 20vw;
+
+        .escudo-time {
+          width: 35px;
+          height: 35px;
+        }
+
+        > span {
+          font-weight: bold;
+        }
+      }
+
+      .mandante {
+        display: flex;
+        justify-content: flex-end;
+
+        > span {
+          padding-right: 5px;
+        }
+      }
+
+      .visitante {
+        > span {
+          padding-left: 5px;
+        }
+      }
+
+      .placar {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 90px;
+        max-width: 90px;
+
+        .horario {
+          font-size: 11px;
+          font-weight: 600;
+          padding-bottom: 2px;
+          font-family: sans-serif;
+          text-transform: uppercase;
+        }
+
+        .numbers {
+          > input {
+            width: 30px;
+            border: 1px solid #ccc;
+          }
+
+          > span {
+            padding: 0 5px;
+            font-size: 22px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .glyphicon-ok {
+        color: green;
+      }
+
+      .glyphicon-remove {
+        color: red;
+      }
+    }
+
+    &.bg-placarexato {
+      background-color: $bg-exato;
+    }
+
+    &.bg-placarvencedor {
+      background-color: $bg-vencedor;
+    }
+  }
+
+  .exato, .vencedor {
+    font-size: 20px;
+    border: 1px solid #ccc;
+  }
+
+  .exato {
+    color: $bg-exato;
+    background-color: $bg-exato;
+  }
+
+  .vencedor {
+    color: $bg-vencedor;
+    background-color: $bg-vencedor;
+  }
+}

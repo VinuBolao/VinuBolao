@@ -98,10 +98,9 @@ class JogoController extends Controller
     public function edit(Jogo $jogo)
     {
         $form = \FormBuilder::create(JogoForm::class, [
-            'url' => route('admin.jogo.update', ['jogo' => URL::previous()]),
+            'url' => route('admin.jogo.update', ['jogo' => $jogo->id]),
             'method' => 'PUT',
-            'model' => $jogo,
-            'previous' => URL::previous()
+            'model' => $jogo
         ]);
         return view('admin.jogo.edit', compact('form'));
     }
@@ -115,8 +114,6 @@ class JogoController extends Controller
      */
     public function update(Request $request, Jogo $jogo)
     {
-        echo "<pre>" . print_r($jogo, true) . "</pre>";
-        die('FILE ' . __FILE__ . ' LINE ' . __LINE__);
         $form = \FormBuilder::create(JogoForm::class, [
             'data' => ['campeonato_id' => $jogo->campeonato_id, 'timecasa_id' => $jogo->timecasa_id, 'timefora_id' => $jogo->timefora_id]
         ]);

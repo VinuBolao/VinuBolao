@@ -1,5 +1,5 @@
 <template v-html="rawHtml">
-    <div>
+    <div id="classificacao">
         <div class="col-sm-12 box">
             <div class="btn-group btn-rodada" role="group">
                 <button type="button" class="btn btn-default" :disabled="rodada < 1" @click="getRanking(rodada - 1)">
@@ -35,22 +35,22 @@
                     <p class="text-center">Não existe dados para listar!</p>
                 </div>
             </div>
-            <div class="col-sm-12" v-else="">
+            <div class="col-sm-12 table-custom" v-else="">
                 <div class="row table-head">
-                    <div class="col-xs-1 col-sm-1 table-td">#</div>
-                    <div class="col-xs-5 col-sm-7 table-td" style="text-align: left;"><strong>Participante</strong></div>
-                    <div class="col-xs-2 col-sm-1 table-td"><strong>PG</strong></div>
-                    <div class="col-xs-1 col-sm-1 table-td"><strong>PE</strong></div>
-                    <div class="col-xs-1 col-sm-1 table-td"><strong>PV</strong></div>
-                    <div class="col-xs-2 col-sm-1 table-td"><strong>DP</strong></div>
+                    <div class="td">#</div>
+                    <div class="td">Participante</div>
+                    <div class="td">PG</div>
+                    <div class="td">PE</div>
+                    <div class="td">PV</div>
+                    <div class="td">DP</div>
                 </div>
-                <div class="row table-body" :class="{ 'bg-yellow': rodada > 0 }" v-for="(participante, key) in participantes">
-                    <div class="col-xs-1 col-sm-1 table-td">{{ key + 1 }}º</div>
-                    <div class="col-xs-5 col-sm-7 table-td" style="text-align: left;"><b>{{ participante.name }}</b></div>
-                    <div class="col-xs-2 col-sm-1 table-td"><strong>{{ participante.pontosganhos }}</strong></div>
-                    <div class="col-xs-1 col-sm-1 table-td">{{ participante.placarexato }}</div>
-                    <div class="col-xs-1 col-sm-1 table-td">{{ participante.placarvencedor }}</div>
-                    <div class="col-xs-2 col-sm-1 table-td">{{ participante.pontosganhos - participantes[0].pontosganhos }}</div>
+                <div class="row table-body" :class="{ 'bg-colors': rodada === 0 }" v-for="(participante, key) in participantes">
+                    <div class="td">{{ key + 1 }}º</div>
+                    <div class="td">{{ participante.name }}</div>
+                    <div class="td">{{ participante.pontosganhos }}</div>
+                    <div class="td">{{ participante.placarexato }}</div>
+                    <div class="td">{{ participante.placarvencedor }}</div>
+                    <div class="td">{{ participante.pontosganhos - participantes[0].pontosganhos }}</div>
                 </div>
             </div>
         </div>
@@ -61,6 +61,10 @@
                 <strong>PE</strong> - Placar Exato,
                 <strong>PV</strong> - Placar Vencedor,
                 <strong>DP</strong> - Diferença de pontos em relação ao primeiro colocado.
+            </p>
+            <p>
+                <i class="glyphicon glyphicon-stop campeoes"></i> - Campeões,
+                <i class="glyphicon glyphicon-stop lanternas"></i> - Lanternas.
             </p>
         </div>
     </div>

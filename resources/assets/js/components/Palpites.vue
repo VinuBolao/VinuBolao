@@ -1,39 +1,5 @@
-<style>
-    .bg-placarexato {
-        background-color: #dff0d8;
-    }
-
-    .bg-placarvencedor {
-        background-color: #fcf8e3;
-    }
-
-    .span-legenda {
-        position: absolute;
-        border: 1px solid #ccc;
-        width: 20px;
-        height: 20px;
-    }
-
-    .p-legenda {
-        margin-left: 25px;
-    }
-
-    .text-inicio-mobile {
-        text-align: center;
-        padding: 0;
-        height: 15px;
-    }
-
-    .text-inicio-mobile > strong {
-        text-transform: uppercase;
-        font-family: sans-serif;
-        font-weight: 600;
-        font-size: 11px;
-    }
-</style>
-
 <template>
-    <div>
+    <div id="palpites">
         <div class="col-sm-12 box" v-if="!user && jogos.length == 0">
             <div class="alert alert-danger">
                 <p class="text-center">Não existe dados para listar!</p>
@@ -71,70 +37,70 @@
                     </button>
                 </div>
             </div>
-            <div class="col-sm-12 box" v-if="dataLoading">
+            <div class="col-sm-12 box text-center" v-if="dataLoading">
                 <i class="glyphicon glyphicon-refresh"></i> Loading...
             </div>
             <div v-if="!dataLoading">
                 <div class="col-sm-12 box">
-                    <div v-if="saveLoading" style="margin-bottom: 5px;">
+                    <div v-if="saveLoading" class="text-center loading">
                         <i class="glyphicon glyphicon-refresh"></i> Loading...
                     </div>
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 table-custom">
                         <div class="row table-head">
-                            <div class="col-xs-1 col-sm-1 table-td text-center">
-                                <strong>Status</strong>
-                            </div>
-                            <div class="col-xs-9 col-sm-6 col-md-5 table-td td-divisor">
-                                <strong>Palpites</strong>
-                            </div>
-                            <div class="hidden-xs col-sm-4 col-md-5 table-td">
-                                <strong>Horário</strong>
-                            </div>
-                            <div class="col-xs-2 col-sm-1 table-td" v-if="user.id === participanteId">
-                                <strong>Editar</strong>
-                            </div>
+                            <div class="td">Status</div>
+                            <div class="td">Palpites</div>
+                            <div class="hidden-xs td">Horário</div>
+                            <div class="td" v-if="user.id === participanteId">Editar</div>
                         </div>
-                        <div class="row table-body" :class="{ 'bg-placarexato': jogo.palpite_status === 10, 'bg-placarvencedor': jogo.palpite_status === 7 }" v-for="(jogo, key) in jogos">
-                            <div class="col-xs-12 visible-xs text-inicio-mobile">
-                                <strong>{{ jogo.inicio|moment('ddd DD/MM/YY HH:mm') }}</strong>
-                            </div>
-                            <div class="col-xs-1 col-sm-1 table-td td-icons">
+                        <div class="row table-body" v-for="(jogo, key) in jogos"
+                             :class="{ 'bg-placarexato': jogo.palpite_status === 10, 'bg-placarvencedor': jogo.palpite_status === 7 }">
+
+                            <div class="td">
                                 <i class="glyphicon glyphicon-remove" v-if="jogo.placar_casa === null && jogo.placar_fora === null"></i>
                                 <i class="glyphicon glyphicon-ok" v-else></i>
                             </div>
-                            <div class="col-xs-3 col-sm-2 table-td td-mandante">
-                                <strong>
+                            <div class="td">
+                                <div class="mandante">
                                     <span class="hidden-xs hidden-sm">{{ jogo.timecasa.nome }}</span>
                                     <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
-                                    <img :src="'/img/' + jogo.timecasa.sigla + '_' + jogo.timecasa.estado + '.png'" class="escudo-time-fora">
-                                </strong>
-                            </div>
-                            <div class="col-xs-4 col-sm-2 col-md-1 table-td td-divisor">
-                                <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_casa === null && user.id === participanteId" v-model="jogo.palpite.casa" @blur="savePalpite(jogo);">
-                                <span class="placar-palpite" v-else>
-                                    <strong>{{ jogo.placar_casa }}</strong>
-                                </span>
-                                x
-                                <input class="input-placar" type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0" v-if="jogo.placar_fora === null && user.id === participanteId" v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
-                                <span class="placar-palpite" v-else>
-                                    <strong>{{ jogo.placar_fora }}</strong>
-                                </span>
-                                <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">Esgotado!</strong>
-                            </div>
-                            <div class="col-xs-3 col-sm-2 table-td td-visitante">
-                                <strong>
-                                    <img :src="'/img/' + jogo.timefora.sigla + '_' + jogo.timefora.estado + '.png'" class="escudo-time-fora">
+                                    <img :src="`/img/${jogo.timecasa.sigla}_${jogo.timecasa.estado}.png`" class="escudo-time">
+                                </div>
+
+                                <div class="placar">
+                                    <div class="visible-xs horario">{{ jogo.inicio|moment('ddd DD/MM HH:mm') }}</div>
+
+                                    <div class="numbers">
+                                        <input type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0"
+                                               v-if="jogo.placar_casa === null && user.id === participanteId"
+                                               v-model="jogo.palpite.casa" @blur="savePalpite(jogo)">
+
+                                        <span v-else>{{ jogo.placar_casa }}</span>
+                                        x
+                                        <input type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0"
+                                               v-if="jogo.placar_fora === null && user.id === participanteId"
+                                               v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
+
+                                        <span v-else>{{ jogo.placar_fora }}</span>
+                                    </div>
+
+                                    <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">
+                                        Esgotado!
+                                    </strong>
+                                </div>
+
+                                <div class="visitante">
+                                    <img :src="`/img/${jogo.timefora.sigla}_${jogo.timefora.estado}.png`" class="escudo-time">
                                     <span class="hidden-xs hidden-sm">{{ jogo.timefora.nome }}</span>
                                     <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
-                                </strong>
+                                </div>
                             </div>
-                            <div class="hidden-xs col-sm-4 col-md-5 table-td">
-                                <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>
-                                {{ jogo.inicio|moment('DD/MM/YY') }}
-                                | <strong>{{ jogo.timecasa.estadio }}</strong>
+                            <div class="hidden-xs td">
+                                <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>&nbsp;
+                                {{ jogo.inicio|moment('DD/MM/YY') }}&nbsp;|&nbsp;
+                                <strong> {{ jogo.timecasa.estadio }}</strong>
                             </div>
-                            <div class="col-xs-1 col-sm-1 table-td td-icons" v-if="user.id === participanteId">
+                            <div class="td" v-if="user.id === participanteId">
                                 <div v-show="(disableInput(jogo) != jogo.id) && !saveLoading">
                                     <a href="" v-if="(jogo.placar_casa !== null || jogo.placar_fora !== null)" @click.prevent="savePalpite(jogo, true)">
                                         <i class="glyphicon glyphicon-edit" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></i>
@@ -148,10 +114,10 @@
 
                 <div class="col-sm-12 box">
                     <h4><strong>Legenda</strong></h4>
-                    <span class="span-legenda bg-placarexato">&nbsp;</span>
-                    <p class="p-legenda"> - Placar Exato ({{ bolao.id === 22 ? '12' : '10' }} pontos),</p>
-                    <span class="span-legenda bg-placarvencedor">&nbsp;</span>
-                    <p class="p-legenda"> - Placar Vencedor (7 pontos).</p>
+                    <p>
+                        <i class="glyphicon glyphicon-stop exato"></i> - Placar Exato ({{ bolao.id === 22 ? '12' : '10' }} pontos),
+                        <i class="glyphicon glyphicon-stop vencedor"></i> - Placar Vencedor (7 pontos).
+                    </p>
                 </div>
             </div>
         </div>

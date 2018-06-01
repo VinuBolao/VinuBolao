@@ -1,0 +1,122 @@
+@import "partial/classificacao";
+@import "partial/palpite";
+@import "partial/jogo";
+
+html, body.bolao {
+
+  .navbar-brand {
+    color: $write!important;
+  }
+
+  #app {
+    .navbar-inverse .navbar-nav > li > a {
+      border-right: 1px solid $navBarColor;
+      border-left: 1px solid $navBarColor;
+    }
+
+    .navbar-inverse .navbar-nav > .active > a,
+    .navbar-inverse .navbar-nav > li > a:hover {
+      border-right: 1px solid #fff;
+      border-left: 1px solid #fff;
+    }
+
+    .box{
+      background: $write;
+      margin-bottom: 15px;
+      padding: 15px;
+      box-shadow: 0 0 15px #ccc;
+    }
+
+    .icon-page {
+      font-size: 6em;
+      line-height: 0;
+      color: $text-color;
+    }
+
+    .footer {
+      position: relative;
+      background-color: $body-bg;
+      padding: 0 15px 15px;
+      color: #9d9d9d;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+
+      span{
+        font-size: 11px;
+
+        a {
+          color: $text-color;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .dropdown-rodada {
+      min-width: 205px;
+      height: 155px;
+      overflow-y: auto;
+      margin: 0;
+      padding: 5px;
+
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .flex-items {
+          width: 32%;
+          margin: 1%;
+          padding: 8px 0;
+          text-align: center;
+          border: 1px solid #cccecf;
+          border-radius: 2px;
+
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+
+          &:nth-child(3n+1) {
+            margin-left: 0;
+          }
+
+          &:hover {
+            background-color: #e1e9ec;
+          }
+
+          a {
+            text-decoration: none;
+            color: $text-color;
+            position: relative;
+            padding: 10px 40%;
+            cursor: pointer;
+          }
+        }
+
+        .geral {
+          width: 100%;
+          margin-right: 0;
+          margin-left: 0;
+          order: -1;
+
+          a {
+            position: relative;
+            padding: 10px 41%;
+          }
+        }
+      }
+    }
+
+    .loading {
+      padding-bottom: 10px;
+
+      .glyphicon-refresh {
+        animation: spinIt 1.5s infinite linear;
+      }
+    }
+
+    @keyframes spinIt {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(359deg); }
+    }
+  }
+}

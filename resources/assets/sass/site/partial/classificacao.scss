@@ -41,7 +41,7 @@
         background-color: $champions;
 
         &:hover {
-          color: $text-color;
+          opacity: 0.8;
         }
       }
 
@@ -50,7 +50,7 @@
         background-color: $lanterns;
 
         &:hover {
-          color: $text-color;
+          opacity: 0.8;
         }
       }
 

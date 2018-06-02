@@ -1,4 +1,4 @@
-<template>
+<template v-html="rawHtml">
     <div id="palpites">
         <div class="col-sm-12 box" v-if="!user && jogos.length == 0">
             <div class="alert alert-danger">
@@ -116,6 +116,8 @@
                     <h4><strong>Legenda</strong></h4>
                     <p>
                         <i class="glyphicon glyphicon-stop exato"></i> - Placar Exato ({{ bolao.id === 22 ? '12' : '10' }} pontos),
+                    </p>
+                    <p>
                         <i class="glyphicon glyphicon-stop vencedor"></i> - Placar Vencedor (7 pontos).
                     </p>
                 </div>

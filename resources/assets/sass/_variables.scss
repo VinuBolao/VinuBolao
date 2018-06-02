@@ -1,4 +1,3 @@
-
 // Body
 $body-bg: #ededed;
 
@@ -48,7 +47,7 @@ $input-color-placeholder: lighten($text-color, 30%);
 $panel-default-heading-bg: #fff;
 
 // Table
-$table-bg-hover: #e1e9ec;
+$table-bg-hover: rgba(0, 0, 0, 0.1);
 
 // Midia Queries
 $bp-width-small : "(min-width: 365px) and (max-width: 400px)";

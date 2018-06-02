@@ -111,10 +111,20 @@
 
     &.bg-placarexato {
       background-color: $bg-exato;
+
+      &:hover {
+        opacity: 0.8;
+        background-color: $bg-exato !important;
+      }
     }
 
     &.bg-placarvencedor {
       background-color: $bg-vencedor;
+
+      &:hover {
+        opacity: 0.8;
+        background-color: $bg-vencedor !important;
+      }
     }
   }
 

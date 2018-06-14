@@ -27,7 +27,12 @@ class ParticipanteController extends Controller
 
     public function getRanking($rodada = null)
     {
-        $placar_exato = 12;
+        $bolao = Bolao::with('campeonato')
+            ->where('ativo', 1)
+            ->orderByDesc('id')
+            ->first();
+
+        $placar_exato = $bolao->id === 22 ? 12 : 10;
         $placar_vencedor = 7;
         $rodada_dobro = 13;
 
@@ -67,7 +72,6 @@ class ParticipanteController extends Controller
                 END
             ) AS pontosganhos';
 
-        $bolao = Bolao::with('campeonato')->where('ativo', 1)->orderByDesc('id')->first();
         $ranking = DB::table('palpites AS p')
             ->join('jogos AS j', 'j.id', '=', 'p.jogo_id')
             ->join('users AS u', 'u.id', '=', 'p.user_id')

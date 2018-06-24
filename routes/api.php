@@ -44,6 +44,7 @@ Route::namespace('API\\')->group(function (){
     Route::group(['prefix' => 'palpite'], function (){
         Route::get('get/{id?}', 'PalpiteController@get')->where('id', '[0-9]+');
         Route::get('getPalpites/{userId}/{campeonatoId}/{rodada?}', 'PalpiteController@getPalpites');
+        Route::get('compararPalpites/{jogoId}/{campeonatoId}/{rodada}', 'PalpiteController@getCompararPalpites');
         Route::post('save', 'PalpiteController@save');
     });
 });

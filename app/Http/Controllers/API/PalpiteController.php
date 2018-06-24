@@ -29,9 +29,23 @@ class PalpiteController extends Controller
             return response()->json($jogos);
         } else {
             return response()->json(
-                Palpite::with('jogo', 'user')->where(['user_id' => $userId, 'campeonato_id' => $campeonatoId])->orderBy('inicio')->get()
+                Palpite::with('jogo', 'user')
+                    ->where(['user_id' => $userId, 'campeonato_id' => $campeonatoId])
+                    ->orderBy('inicio')
+                    ->get()
             );
         }
+    }
+
+    public function getCompararPalpites($jogoId, $campeonatoId, $rodada)
+    {
+        return response()->json(
+            Palpite::with('user')
+                ->where(['jogo_id' => $jogoId])
+                ->orderBy('palpite_casa')
+                ->orderBy('palpite_fora')
+                ->get()
+        );
     }
 
     public function save(Request $request)

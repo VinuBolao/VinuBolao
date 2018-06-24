@@ -98,7 +98,10 @@
                             <div class="hidden-xs td">
                                 <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>&nbsp;
                                 {{ jogo.inicio|moment('DD/MM/YY') }}&nbsp;|&nbsp;
-                                <strong> {{ jogo.timecasa.estadio }}</strong>
+                                <a href="" data-toggle="modal" data-target=".bs-example-modal-lg"
+                                   @click.prevent="compararPalpites(jogo, campeonato.id, rodada)">
+                                    Comparar Palpites
+                                </a>
                             </div>
                             <div class="td" v-if="user.id === participanteId">
                                 <div v-show="(disableInput(jogo) != jogo.id) && !saveLoading">
@@ -123,6 +126,33 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center">
+                            <strong>{{ titleComparacao }}</strong>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr v-for="(item, key) in comparacao">
+                                    <td>{{ key + 1 }}</td>
+                                    <td>{{ item.user.name }}</td>
+                                    <td>{{ item.palpite_casa }} x {{ item.palpite_fora }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -135,7 +165,9 @@
                 dataLoading: false,
                 saveLoading: false,
                 participanteId: null,
+                titleComparacao: '',
                 participantes: [],
+                comparacao: [],
                 campeonato: {},
                 palpites: [],
                 jogos: [],
@@ -150,7 +182,7 @@
         methods: {
             getCampeontatos(id) {
                 this.dataLoading = true;
-                this.$http.get('/api/campeonato/get/' + id).then((response) => {
+                this.$http.get(`/api/campeonato/get/${id}`).then((response) => {
                     this.campeonato = response.data;
                     this.rodada = this.campeonato.rodada;
 
@@ -165,7 +197,7 @@
 
             getParticipantes(bolaoId) {
                 this.dataLoading = true;
-                this.$http.get('/api/participante/getBolao/' + bolaoId).then((response) => {
+                this.$http.get(`/api/participante/getBolao/${bolaoId}`).then((response) => {
                     this.participantes = response.data;
 
                     //Remove Loading
@@ -178,7 +210,7 @@
             getPalpites(userId, campeonatoId, rodada) {
                 this.saveLoading = true;
                 if(userId > 0 && campeonatoId > 0){
-                    this.$http.get('/api/palpite/getPalpites/' + userId + '/' + campeonatoId + '/' + rodada).then((response) => {
+                    this.$http.get(`/api/palpite/getPalpites/${userId}/${campeonatoId}/${rodada}`).then((response) => {
                         response.data.forEach(function (jogo) {
                             jogo.palpite = {
                                 casa: null,
@@ -195,6 +227,17 @@
                         this.saveLoading = false;
                     }).catch((error) => {
                         console.error('!Get JogosCampeonato', error);
+                    });
+                }
+            },
+
+            compararPalpites(jogo, campeonatoId, rodada) {
+                if(jogo.id > 0 && campeonatoId > 0 && rodada > 0) {
+                    this.$http.get(`/api/palpite/compararPalpites/${jogo.id}/${campeonatoId}/${rodada}`).then((response) => {
+                        this.comparacao = response.data;
+                        this.titleComparacao = `${jogo.timecasa.nome} x ${jogo.timefora.nome}`;
+                    }).catch((error) => {
+                        console.error('!Get compararPalpites', error);
                     });
                 }
             },

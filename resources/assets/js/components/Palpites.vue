@@ -141,7 +141,7 @@
                             <tbody>
                                 <tr v-for="(item, key) in comparacao">
                                     <td>{{ key + 1 }}</td>
-                                    <td>{{ item.user.name }}</td>
+                                    <td>{{ item.name }}</td>
                                     <td>{{ item.palpite_casa }} x {{ item.palpite_fora }}</td>
                                 </tr>
                             </tbody>

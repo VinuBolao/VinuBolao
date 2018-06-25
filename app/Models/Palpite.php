@@ -12,7 +12,7 @@ class Palpite extends Model
 
     public function user()
     {
-        return $this->belongsTo('Bolao\Models\User');
+        return $this->belongsTo('Bolao\Models\User')->orderBy('name');
     }
 
     public function jogo()

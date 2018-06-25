@@ -99,7 +99,7 @@
                                 <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>&nbsp;
                                 {{ jogo.inicio|moment('DD/MM/YY') }}&nbsp;|&nbsp;
                                 <a href="" data-toggle="modal" data-target=".bs-example-modal-lg"
-                                   @click.prevent="compararPalpites(jogo, campeonato.id, rodada)">
+                                   @click.prevent="compararPalpites(jogo)">
                                     Comparar Palpites
                                 </a>
                             </div>
@@ -231,9 +231,9 @@
                 }
             },
 
-            compararPalpites(jogo, campeonatoId, rodada) {
-                if(jogo.id > 0 && campeonatoId > 0 && rodada > 0) {
-                    this.$http.get(`/api/palpite/compararPalpites/${jogo.id}/${campeonatoId}/${rodada}`).then((response) => {
+            compararPalpites(jogo) {
+                if(jogo.id > 0) {
+                    this.$http.get(`/api/palpite/compararPalpites/${jogo.id}`).then((response) => {
                         this.comparacao = response.data;
                         this.titleComparacao = `${jogo.timecasa.nome} x ${jogo.timefora.nome}`;
                     }).catch((error) => {

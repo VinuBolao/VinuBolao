@@ -73,13 +73,13 @@
                                     <div class="numbers">
                                         <input type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0"
                                                v-if="jogo.placar_casa === null && user.id === participanteId"
-                                               v-model="jogo.palpite.casa" @blur="savePalpite(jogo)">
+                                               v-model="jogo.palpite.casa">
 
                                         <span v-else>{{ jogo.placar_casa }}</span>
                                         x
                                         <input type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0"
                                                v-if="jogo.placar_fora === null && user.id === participanteId"
-                                               v-model="jogo.palpite.fora" @blur="savePalpite(jogo);">
+                                               v-model="jogo.palpite.fora" @blur="savePalpite(jogo)">
 
                                         <span v-else>{{ jogo.placar_fora }}</span>
                                     </div>

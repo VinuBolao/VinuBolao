@@ -55,7 +55,7 @@
                             </a>
                         </div>
 
-                        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                        <div class="collapse navbar-collapse text-center" id="app-navbar-collapse">
                             <!-- Left Side Of Navbar -->
                             <ul class="nav navbar-nav">
                                 <li @if(Request::segment(1) == 'bolao') class="active" @endif>
@@ -88,7 +88,7 @@
                                         </a>
 
                                         <ul class="dropdown-menu" role="menu">
-                                            <li>
+                                            <li class="text-center">
                                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                     {{ csrf_field() }}

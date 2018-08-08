@@ -104,4 +104,36 @@ class CampeonatoController extends Controller
         $campeonato->delete();
         return redirect()->route('admin.campeonato.index');
     }
+
+    public function teste()
+    {
+        $html = file_get_contents("https://globoesporte.globo.com/servico/backstage/esportes_campeonato/esporte/futebol/modalidade/futebol_de_campo/categoria/profissional/campeonato/campeonato-brasileiro/edicao/campeonato-brasileiro-2018/fases/fase-unica-seriea-2018/rodada/19/jogos.html");
+        $doc = new \DOMDocument();
+        @$doc->loadHTML($html);
+
+        $divs = $doc->getElementsByTagName("div");
+        $spans = $doc->getElementsByTagName("span");
+
+        $infos = [];
+        $mandantes = [];
+        $visitantes = [];
+
+        foreach ($divs as $key => $item) {
+            if (strtolower($item->getAttribute("class")) == "placar-jogo-informacoes") {
+                $infos[] = $item->nodeValue;
+            }
+        }
+
+        foreach ($spans as $key => $item) {
+            if (strtolower($item->getAttribute("class")) == "placar-jogo-equipes-item placar-jogo-equipes-mandante") {
+                $mandantes[] = $item->nodeValue;
+            }
+
+            if (strtolower($item->getAttribute("class")) == "placar-jogo-equipes-item placar-jogo-equipes-visitante") {
+                $visitantes[] = $item->nodeValue;
+            }
+        }
+
+        return [$infos, $mandantes, $visitantes];
+    }
 }

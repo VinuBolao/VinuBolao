@@ -48,14 +48,14 @@
         <hr><h4>PONTUAÇÃO</h4>
         <h5><strong>Apostando que a partida terá um vencedor</strong></h5>
         <ul>
-            <li>Acertando o Placar Exato = 10 pontos.</li>
-            <li>Acertando o Time Vencedor = 7 pontos.</li>
+            <li>Acertando o Placar Exato = {{ $bolao->placar_exato or 0 }} pontos.</li>
+            <li>Acertando o Time Vencedor = {{ $bolao->placar_vencedor or 0 }} pontos.</li>
         </ul>
 
         <h5><strong>Apostando que a partida terminará empatada</strong></h5>
         <ul>
-            <li>Acertando o Placar Exato = 10 pontos.</li>
-            <li>Qualquer outro empate NÃO EXATO = 7 pontos.</li>
+            <li>Acertando o Placar Exato = {{ $bolao->placar_exato or 0 }} pontos.</li>
+            <li>Qualquer outro empate NÃO EXATO = {{ $bolao->placar_vencedor or 0 }} pontos.</li>
         </ul>
 
         <hr><h4>CRITÉRIO DE DESEMPATE</h4>

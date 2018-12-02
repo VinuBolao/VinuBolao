@@ -27,15 +27,6 @@ class ParticipanteController extends Controller
 
     public function getRanking($rodada = null)
     {
-        $bolao = Bolao::with('campeonato')
-            ->where('ativo', 1)
-            ->orderByDesc('id')
-            ->first();
-
-        $placar_exato = $bolao->id === 22 ? 12 : 10;
-        $placar_vencedor = 7;
-        $rodada_dobro = 13;
-
         $sql = 'u.name,
             SUM(CASE
                 WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 1
@@ -43,30 +34,30 @@ class ParticipanteController extends Controller
                 WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN 0
                 WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN 0
                 ELSE 0
-	        END) AS placarexato,
-	        SUM(CASE
+            END) AS placarexato,
+            SUM(CASE
                 WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 0
                 WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN 1
                 WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN 1
                 WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN 1
                 ELSE 0
-	        END) AS placarvencedor,
-	        SUM(
+            END) AS placarvencedor,
+            SUM(
             CASE 
-                WHEN (j.bolao_id = 12 AND j.rodada >= ' . $rodada_dobro . ') THEN 
+                WHEN (j.rodada >= b.rodada_dobro) THEN 
                     CASE
-                        WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN ' . ($placar_exato * 2) . ' 
-                        WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN ' . ($placar_vencedor * 2) . ' 
-                        WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN ' . ($placar_vencedor * 2) . ' 
-                        WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN ' . ($placar_vencedor * 2) . ' 
+                        WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN b.placar_exato * 2 
+                        WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN b.placar_vencedor * 2 
+                        WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN b.placar_vencedor * 2 
+                        WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN b.placar_vencedor * 2 
                         ELSE 0
                     END
                 ELSE
                     CASE
-                        WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN ' . $placar_exato . ' 
-                        WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN ' . $placar_vencedor . ' 
-                        WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN ' . $placar_vencedor . ' 
-                        WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN ' . $placar_vencedor . ' 
+                        WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN b.placar_exato 
+                        WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN b.placar_vencedor 
+                        WHEN (j.placar_casa - j.placar_fora > 0) AND (p.palpite_casa - p.palpite_fora > 0) THEN b.placar_vencedor 
+                        WHEN (j.placar_casa - j.placar_fora < 0) AND (p.palpite_casa - p.palpite_fora < 0) THEN b.placar_vencedor 
                         ELSE 0
                     END
                 END
@@ -75,8 +66,9 @@ class ParticipanteController extends Controller
         $ranking = DB::table('palpites AS p')
             ->join('jogos AS j', 'j.id', '=', 'p.jogo_id')
             ->join('users AS u', 'u.id', '=', 'p.user_id')
+            ->join('bolaos AS b', 'b.id', '=', 'j.bolao_id')
             ->select(DB::raw($sql))
-            ->whereRaw(($rodada) ? "j.bolao_id = $bolao->id AND j.rodada = $rodada" : "j.bolao_id = $bolao->id")
+            ->whereRaw(($rodada) ? "b.ativo = 1 AND j.rodada = $rodada" : "b.ativo = 1")
             ->orderBy('pontosganhos', 'DESC')
             ->orderBy('placarexato', 'DESC')
             ->orderBy('placarvencedor', 'DESC')

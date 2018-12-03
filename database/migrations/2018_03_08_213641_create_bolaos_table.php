@@ -21,6 +21,9 @@ class CreateBolaosTable extends Migration
             $table->foreign('campeonato_id')->references('id')->on('campeonatos');
             $table->string('nome', 50);
             $table->text('descricao')->nullable();
+            $table->integer('placar_exato')->nullable();
+            $table->integer('placar_vencedor')->nullable();
+            $table->integer('rodada_dobro')->nullable();
             $table->boolean('ativo')->default(0);
             $table->date('inicio');
             $table->timestamps();

@@ -118,10 +118,10 @@
                 <div class="col-sm-12 box">
                     <h4><strong>Legenda</strong></h4>
                     <p>
-                        <i class="glyphicon glyphicon-stop exato"></i> - Placar Exato ({{ bolao.id === 22 ? '12' : '10' }} pontos),
+                        <i class="glyphicon glyphicon-stop exato"></i> - Placar Exato ({{ bolao.placar_exato }} pontos),
                     </p>
                     <p>
-                        <i class="glyphicon glyphicon-stop vencedor"></i> - Placar Vencedor (7 pontos).
+                        <i class="glyphicon glyphicon-stop vencedor"></i> - Placar Vencedor ({{ bolao.placar_vencedor }} pontos).
                     </p>
                 </div>
             </div>

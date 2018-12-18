@@ -62,13 +62,13 @@
                                     <div class="visible-xs horario">{{ jogo.inicio|moment('ddd DD/MM HH:mm') }}</div>
 
                                     <div class="numbers">
-                                        <input type="number" min="0" :disabled="saveLoading"
+                                        <input type="number" min="0" :disabled="saveLoading || disableInput(jogo) === jogo.id"
                                                v-if="user.master && jogo.placar_casa === null"
                                                v-model="jogo.placar_real_casa" @blur="updatedPlacar(jogo)">
 
                                         <span v-else>{{ jogo.placar_casa }}</span>
                                         x
-                                        <input type="number" min="0" :disabled="saveLoading"
+                                        <input type="number" min="0" :disabled="saveLoading || disableInput(jogo) === jogo.id"
                                                v-if="user.master && jogo.placar_fora === null"
                                                v-model="jogo.placar_real_fora" @blur="updatedPlacar(jogo)">
 
@@ -165,6 +165,12 @@
                         this.getJogosCampeontato(this.campeonato.id, this.rodada);
                         console.error('!Get Update Jogo', error);
                     });
+                }
+            },
+
+            disableInput(jogo) {
+                if(moment() < moment(jogo.inicio)) {
+                    return jogo.id;
                 }
             }
         }

@@ -87,6 +87,9 @@
         }
 
         .numbers {
+          display: flex;
+          align-items: center;
+          
           > input {
             width: 30px;
             border: 1px solid #ccc;

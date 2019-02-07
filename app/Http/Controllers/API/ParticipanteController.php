@@ -27,6 +27,8 @@ class ParticipanteController extends Controller
 
     public function getRanking($rodada = null)
     {
+        $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
+
         $sql = 'u.name,
             SUM(CASE
                 WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 1
@@ -68,7 +70,7 @@ class ParticipanteController extends Controller
             ->join('users AS u', 'u.id', '=', 'p.user_id')
             ->join('bolaos AS b', 'b.id', '=', 'j.bolao_id')
             ->select(DB::raw($sql))
-            ->whereRaw(($rodada) ? "b.ativo = 1 AND j.rodada = $rodada" : "b.ativo = 1")
+            ->whereRaw(($rodada) ? "j.campeonato_id = $bolao->campeonato_id AND j.rodada = $rodada" : "j.campeonato_id = $bolao->campeonato_id")
             ->orderBy('pontosganhos', 'DESC')
             ->orderBy('placarexato', 'DESC')
             ->orderBy('placarvencedor', 'DESC')

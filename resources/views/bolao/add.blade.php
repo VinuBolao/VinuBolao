@@ -53,8 +53,16 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-sm-3">
-                        <label for="infoData">Nome:</label>
+                        <label for="infoData">Data Inicial:</label>
                         <input type="date" class="form-control" name="inicio" id="infoData" required>
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="infoData">PE:</label>
+                        <input type="number" class="form-control" name="placar_exato" id="infoPlacarExato">
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="infoData">PV:</label>
+                        <input type="number" class="form-control" name="placar_vencedor" id="infoPlacarVencedor" >
                     </div>
                 </div>
             </div>

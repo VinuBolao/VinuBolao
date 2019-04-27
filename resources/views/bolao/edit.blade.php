@@ -55,6 +55,14 @@
                         <label for="infoData">Data Inicial:</label>
                         <input type="date" class="form-control" name="datainicio" id="infoData" value="{{ $bolao->inicio }}">
                     </div>
+                    <div class="col-sm-1">
+                        <label for="infoData">PE:</label>
+                        <input type="number" class="form-control" name="placar_exato" id="infoPlacarExato" value="{{ $bolao->placar_exato }}">
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="infoData">PV:</label>
+                        <input type="number" class="form-control" name="placar_vencedor" id="infoPlacarVencedor" value="{{ $bolao->placar_vencedor }}">
+                    </div>
                 </div>
             </div>
             <div class="row">

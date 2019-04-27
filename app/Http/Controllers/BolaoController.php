@@ -96,6 +96,8 @@ class BolaoController extends Controller
         $bolao->nome          = $request->name;
         $bolao->inicio        = $request->datainicio;
         $bolao->descricao     = $request->description;
+        $bolao->placar_exato     = $request->placar_exato;
+        $bolao->placar_vencedor     = $request->placar_vencedor;
         $bolao->ativo         = $request->ativo;
         $bolao->save();
 

@@ -1,0 +1,72 @@
+@import './../variables';
+@import './../mixins';
+
+#classificacao {
+    @include box-rodada;
+
+    .table-custom {
+        .table-head, .table-body {
+            padding: 5px 0;
+            font-weight: 400;
+            justify-content: space-between;
+
+            .td {
+                width: 7%;
+                font-weight: 400;
+                text-align: center;
+
+                &:nth-child(2) {
+                    width: 65%;
+                    font-weight: 600;
+                    text-align: start;
+                }
+
+                &:nth-child(3) {
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .table-head {
+            color: #fff;
+            background-color: #636b6f;
+
+            .td {
+                font-weight: 600;
+            }
+        }
+
+        .table-body {
+            border-bottom: 1px solid #ddd;
+
+            &.color:nth-child(-n+4) {
+                color: $white;
+                background: $winner;
+            }
+
+            &.color:nth-last-child(-n+2) {
+                color: $white;
+                background: $loser;
+            }
+        }
+    }
+
+    .box-legend {
+        display: flex;
+        align-items: center;
+
+        .legend {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+
+            &.winner {
+                background: $winner;
+            }
+
+            &.loser {
+                background: $loser;
+            }
+        }
+    }
+}

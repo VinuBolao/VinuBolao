@@ -1,0 +1,21 @@
+@mixin box-rodada {
+    .pagination {
+        &.rodada {
+            margin-bottom: 0;
+        }
+
+        .page-item {
+            &.disabled {
+                cursor: no-drop;
+            }
+
+            .page-link {
+                color: $body-text;
+
+                &:disabled {
+                    color: $body-text-disable;
+                }
+            }
+        }
+    }
+}

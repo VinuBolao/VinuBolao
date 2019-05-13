@@ -1,0 +1,47 @@
+body {
+    color: #636b6f;
+
+    #loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0 10px;
+        font-weight: 500;
+    }
+
+    .box {
+        padding: 15px;
+        background: $white;
+        margin-bottom: 15px;
+        box-shadow: $box-shadow;
+    
+        .title-box {
+            font-weight: 300;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+    }
+    
+    .panel {
+        width: 550px;
+        border-radius: 4px;
+        margin-bottom: 22px;
+        background-color: #fff;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    
+        &.panel-default {
+            .panel-heading {
+                color: #333;
+                background-color: #fff;
+                border-color: #d4d3d3;
+            }
+        }
+    }
+    
+    #login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

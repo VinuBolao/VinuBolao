@@ -1,0 +1,90 @@
+@import './../variables';
+@import './../mixins';
+
+#jogo {
+    @include box-rodada;
+
+    .table-custom {
+        .table-head, .table-body {
+            padding: 8px 0;
+            justify-content: space-between;
+
+            .td {
+                flex-grow: 1;
+                font-weight: 400;
+                text-align: center;
+
+                &:nth-child(1) {
+                    width: 10%;
+                }
+
+                &:nth-child(2) {
+                    width: 40%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &:nth-child(3) {
+                    width: 35%;
+                }
+
+                &:nth-child(4) {
+                    width: 15%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .table-head {
+            color: #fff;
+            background-color: $body-text;
+
+            .td {
+                font-weight: 600;
+            }
+        }
+
+        .table-body {
+            border-bottom: 1px solid #ddd;
+
+            .td {
+                .box-time {
+                    width: 40%;
+                    display: flex;
+                    align-items: center;
+
+                    &.casa {
+                        justify-content: flex-end;
+                    }
+
+                    .escudo {
+                        width: $size-escudo;
+                        height: $size-escudo;
+                        margin: 0 5px;
+                    }
+                }
+
+                .numbers {
+                    width: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    .placar {
+                        padding: 0 5px;
+                        font-size: 22px;
+                        font-weight: 700;
+                    }
+
+                    .input-placar {
+                        width: 30px;
+                        margin: 0 2.5px;
+                    }
+                }
+            }
+        }
+    }
+}

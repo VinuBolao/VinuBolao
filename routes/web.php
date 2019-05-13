@@ -34,5 +34,5 @@ Route::namespace('Admin\\')->group(function (){
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::view('/{path?}/{segment?}/{id?}', 'layouts.app');
+    Route::view('/{path?}', 'layouts.app');
 });

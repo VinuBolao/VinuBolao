@@ -9,7 +9,8 @@ class Bolao extends Component {
         super(props);
 
         this.state = {
-            boloes: []
+            boloes: [],
+            loading: true
         }
     }
 
@@ -19,11 +20,11 @@ class Bolao extends Component {
 
     async getBolao() {
         const { data } = await axios.get(`/api/bolao/get`);
-        this.setState({ boloes: data });
+        this.setState({ boloes: data, loading: false });
     }
     
     render () {
-        const { boloes } = this.state;
+        const { boloes, loading } = this.state;
 
         return (
             <div id="bolao" className="container">
@@ -33,17 +34,26 @@ class Bolao extends Component {
                     <p>Veja a lista de bolões que você participa!</p>
                 </div>
 
+                {loading && <div className="box">
+                    <div id="loading">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                        Carregando...
+                    </div>
+                </div>}
+
                 {boloes.map((bolao, key) => 
                     <div key={key} className="box">
                         <div className="row">
                             <div className="col-sm-3">
-                                <Link to="/participante" className="btn btn-secondary btn-block">
+                                <Link to="/participante" className="btn btn-secondary btn-block mb-3">
                                     Participantes
                                 </Link>
                             </div>
 
                             <div className="col-sm-3">
-                                <Link to={`/bolao/editar/${bolao.id}`} className="btn btn-secondary btn-block">
+                                <Link to={`/bolao/editar/${bolao.id}`} className="btn btn-secondary btn-block mb-3">
                                     Editar
                                 </Link>
                             </div>

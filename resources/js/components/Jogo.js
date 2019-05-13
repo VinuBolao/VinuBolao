@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 import axios from 'axios';
 
 import './../../sass/components/Jogo.scss';
@@ -116,23 +117,31 @@ class Jogo extends Component {
                 </div>
 
                 <div className="col-sm-12 box">
-                    {loading && <div id="loading">
+                    {loading ? <div id="loading">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
                         Carregando...
-                    </div>}
-
+                    </div> :
                     <div className="col-sm-12 table-custom">
                         <div className="row table-head">
                             <div className="td">#</div>
                             <div className="td">Jogos</div>
-                            <div className="td">Horário</div>
+                            <div className="td d-none d-md-block">Horário</div>
                             <div className="td">Editar</div>
                         </div>
                         {jogos.map((jogo, key) => (
                             <div key={key} className={`row table-body`}>
-                                <div className="td">#</div>
+                                <div className="td icon-status">
+                                    {jogo.placar_fora === null && jogo.placar_fora === null
+                                        ? <FaTimes className="error" />
+                                        : <FaCheck className="success" />
+                                    }
+                                </div>
                                 <div className="td">
                                     <div className="box-time casa">
-                                        <div className="nome">{jogo.timecasa.nome}</div>
+                                        <div className="nome d-none d-md-block">{jogo.timecasa.nome}</div>
+                                        <div className="nome d-sm-none">{jogo.timecasa.sigla}</div>
                                         <img src={`/img/${jogo.timecasa.sigla}_${jogo.timecasa.estado}.png`} className="escudo" />
                                     </div>
                                     <div className="numbers">
@@ -160,18 +169,19 @@ class Jogo extends Component {
                                     </div>
                                     <div className="box-time fora">
                                         <img src={`/img/${jogo.timefora.sigla}_${jogo.timefora.estado}.png`} className="escudo" />
-                                        <div className="nome">{jogo.timefora.nome}</div>
+                                        <div className="nome d-sm-none">{jogo.timefora.sigla}</div>
+                                        <div className="nome d-none d-md-block">{jogo.timefora.nome}</div>
                                     </div>
                                 </div>
-                                <div className="td">{jogo.inicio}</div>
+                                <div className="td d-none d-md-block">{jogo.inicio}</div>
                                 <div className="td">
-                                    <button className="btn btn-secondary btn-sm" onClick={() => this.clearPlacar(jogo.id)}>
-                                        Editar
-                                    </button>
+                                    <a href="" className="btn btn-link btn-edit" onClick={() => this.clearPlacar(jogo.id)}>
+                                        <FaEdit />
+                                    </a>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div>}
                 </div>
             </div>
         )

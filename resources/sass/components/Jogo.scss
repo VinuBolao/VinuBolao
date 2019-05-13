@@ -51,6 +51,18 @@
             border-bottom: 1px solid #ddd;
 
             .td {
+                &.icon-status {
+                    font-size: 1.25rem;
+
+                    .success {
+                        color: $winner;
+                    }
+
+                    .error {
+                        color: $loser;
+                    }
+                }
+
                 .box-time {
                     width: 40%;
                     display: flex;
@@ -83,6 +95,11 @@
                         width: 30px;
                         margin: 0 2.5px;
                     }
+                }
+
+                .btn-edit {
+                    padding: 0;
+                    font-size: 1.25rem;
                 }
             }
         }

@@ -9,7 +9,7 @@ class Classificacao extends Component {
         this.state = {
             rodada: 0,
             rodadas: 0,
-            bgColor: true,
+            loading: true,
             participantes: [],
             bolao: { 
                 campeonato: {
@@ -26,17 +26,17 @@ class Classificacao extends Component {
 
     async getBolao() {
         const { data } = await axios.get(`/api/bolao/getActive`);
-        this.setState({ bolao: data, rodadas: data.campeonato.qtd_rodadas });
+        this.setState({ bolao: data, rodadas: data.campeonato.qtd_rodadas, loading: false });
     }
 
     async getClassificacao(rodada) {
         let params = rodada > 0 ? `getRanking/${rodada}` : 'getRanking';
         const { data } = await axios.get(`/api/participante/${params}`);
-        this.setState({ participantes: data, rodada });
+        this.setState({ participantes: data, rodada, loading: false });
     }
 
     render () {
-        const { bolao, rodada, rodadas, participantes } = this.state;
+        const { bolao, loading, rodada, rodadas, participantes } = this.state;
 
         return (
             <div id="classificacao" className="container">
@@ -71,6 +71,12 @@ class Classificacao extends Component {
                 </div>
 
                 <div className="col-sm-12 box">
+                    {loading ? <div id="loading">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                        Carregando...
+                    </div> :
                     <div className="col-sm-12 table-custom">
                         <div className="row table-head">
                             <div className="td">#</div>
@@ -90,7 +96,7 @@ class Classificacao extends Component {
                                 <div className="td">{ participante.pontosganhos - participantes[0].pontosganhos }</div>
                             </div>
                         ))}
-                    </div>
+                    </div>}
                 </div>
 
                 <div className="col-sm-12 box">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 import axios from 'axios';
+import Moment from "react-moment";
+import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 
 import './../../sass/components/Jogo.scss';
 
@@ -117,12 +118,13 @@ class Jogo extends Component {
                 </div>
 
                 <div className="col-sm-12 box">
-                    {loading ? <div id="loading">
+                    {loading && <div id="loading" className="loading-jogo">
                         <div className="spinner-border" role="status">
                             <span className="sr-only">Loading...</span>
                         </div>
                         Carregando...
-                    </div> :
+                    </div>}
+
                     <div className="col-sm-12 table-custom">
                         <div className="row table-head">
                             <div className="td">#</div>
@@ -173,15 +175,23 @@ class Jogo extends Component {
                                         <div className="nome d-none d-md-block">{jogo.timefora.nome}</div>
                                     </div>
                                 </div>
-                                <div className="td d-none d-md-block">{jogo.inicio}</div>
+                                <div className="td d-none d-md-block">
+                                    <strong>
+                                        <Moment format="ddd">{jogo.inicio}</Moment>{' '}
+                                    </strong>
+                                    <Moment format="DD/MM/YYYY">{jogo.inicio}</Moment>
+                                    <strong>
+                                        {' '}<Moment format="HH:mm">{jogo.inicio}</Moment>
+                                    </strong>
+                                </div>
                                 <div className="td">
-                                    <a href="" className="btn btn-link btn-edit" onClick={() => this.clearPlacar(jogo.id)}>
+                                    <a className="btn btn-link btn-edit" onClick={() => this.clearPlacar(jogo.id)}>
                                         <FaEdit />
                                     </a>
                                 </div>
                             </div>
                         ))}
-                    </div>}
+                    </div>
                 </div>
             </div>
         )

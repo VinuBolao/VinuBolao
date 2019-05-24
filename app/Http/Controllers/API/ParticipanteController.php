@@ -11,23 +11,34 @@ use Illuminate\Support\Facades\DB;
 
 class ParticipanteController extends Controller
 {
+    private $user;
+    private $bolao;
+    private $participante;
+
+    public function __construct(User $user, Bolao $bolao, Participante $participante)
+    {
+        $this->user = $user;
+        $this->bolao = $bolao;
+        $this->participante = $participante;
+    }
+
     public function get($participanteId = null)
     {
         if($participanteId){
-            return response()->json(Participante::with('user')->findOrFail($participanteId));
+            return response()->json($this->participante->with('user')->findOrFail($participanteId));
         } else {
-            return response()->json(Participante::with('user')->get());
+            return response()->json($this->participante->with('user')->get());
         }
     }
 
     public function getBolao($bolaoId = null)
     {
-        return response()->json(Participante::with('user')->where('bolao_id', $bolaoId)->get());
+        return response()->json($this->participante->with('user')->where('bolao_id', $bolaoId)->get());
     }
 
     public function getRanking($rodada = null)
     {
-        $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
+        $bolao = $this->bolao->where('ativo', 1)->orderByDesc('id')->first();
 
         $sql = 'u.name,
             SUM(CASE
@@ -82,10 +93,11 @@ class ParticipanteController extends Controller
     }
 
     public function create(Request $request) {
-        $user = User::findOrFail($request->userId);
+        $user = $this->user->findOrFail($request->userId);
         $participante = new Participante;
         $participante->user_id = $request->userId;
         $participante->bolao_id = $request->bolaoId;
+
         if($participante->save()) {
             return response()->json(['success' => true], 200);
         } else {
@@ -94,7 +106,8 @@ class ParticipanteController extends Controller
     }
 
     public function destroy($participanteId) {
-        $participante = Participante::findOrFail($participanteId);
+        $participante = $this->participante->findOrFail($participanteId);
+
         if($participante->delete()) {
             return response()->json(['success' => true], 200);
         } else {

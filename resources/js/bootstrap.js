@@ -1,3 +1,5 @@
+import Moment from 'react-moment/dist/index';
+
 window._ = require('lodash');
 
 /**
@@ -39,6 +41,8 @@ if (token) {
     );
 }
 
+Moment.globalLocale = 'pt-br';
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -57,5 +61,4 @@ if (token) {
 // });
 
 window.segment = number => window.location.pathname.split('/')[number];
-window.route = param =>
-    `${window.location.protocol}//${window.location.host}/${param}`;
+window.route = param => `${window.location.protocol}//${window.location.host}/${param}`;

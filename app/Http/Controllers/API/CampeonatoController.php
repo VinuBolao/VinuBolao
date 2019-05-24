@@ -7,12 +7,18 @@ use Bolao\Http\Controllers\Controller;
 
 class CampeonatoController extends Controller
 {
+    private $campeonato;
+
+    public function __construct(Campeonato $campeonato)
+    {
+        $this->campeonato = $campeonato;
+    }
     public function get($campeonatoId = null)
     {
         if($campeonatoId){
-            return response()->json(Campeonato::findOrFail($campeonatoId));
+            return response()->json($this->campeonato->findOrFail($campeonatoId));
         } else {
-            return response()->json(Campeonato::all());
+            return response()->json($this->campeonato->all());
         }
     }
 }

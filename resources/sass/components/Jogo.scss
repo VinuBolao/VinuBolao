@@ -4,18 +4,21 @@
 #jogo {
     @include box-rodada;
 
+    .loading-jogo {
+        padding-bottom: 12.5px;
+    }
+
     .table-custom {
         .table-head, .table-body {
             padding: 8px 0;
             justify-content: space-between;
 
             .td {
-                flex-grow: 1;
                 font-weight: 400;
                 text-align: center;
 
                 &:nth-child(1) {
-                    width: 10%;
+                    padding: 0 1rem;
                 }
 
                 &:nth-child(2) {
@@ -30,8 +33,8 @@
                 }
 
                 &:nth-child(4) {
-                    width: 15%;
                     display: flex;
+                    padding: 0 1rem;
                     align-items: center;
                     justify-content: center;
                 }
@@ -73,7 +76,7 @@
                     }
 
                     .escudo {
-                        width: $size-escudo;
+                        min-width: $size-escudo;
                         height: $size-escudo;
                         margin: 0 5px;
                     }
@@ -99,6 +102,7 @@
 
                 .btn-edit {
                     padding: 0;
+                    color: $blue;
                     font-size: 1.25rem;
                 }
             }

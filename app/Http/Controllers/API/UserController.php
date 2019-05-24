@@ -7,13 +7,19 @@ use Bolao\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    private $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     public function get($userId = null)
     {
         if($userId){
-            return response()->json(User::findOrFail($userId));
+            return response()->json($this->user->findOrFail($userId));
         } else {
-            return response()->json(User::all());
+            return response()->json($this->user->all());
         }
     }
 }

@@ -96,6 +96,7 @@ class PalpiteController extends Controller
             $placarVisitante = $jogo->placar_fora;
             $jogo->placar_casa = null;
             $jogo->placar_fora = null;
+            $jogo->palpite = ["casa" => null, "fora" => null];
             $jogo->palpite_status = null;
 
             foreach ($palpites as $palpite) {

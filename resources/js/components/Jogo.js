@@ -11,7 +11,7 @@ class Jogo extends Component {
 
         this.state = {
             jogos: [],
-            rodada: 0,
+            rodada: 1,
             rodadas: 0,
             loading: true,
             campeonatoId: 0,
@@ -27,6 +27,7 @@ class Jogo extends Component {
     
     async getBolao() {
         const { data } = await axios.get(`/api/bolao/getActive`);
+
         this.setState({ 
             bolao: data, 
             loading: false, 
@@ -34,6 +35,7 @@ class Jogo extends Component {
             campeonatoId: data.campeonato_id, 
             rodadas: data.campeonato.qtd_rodadas 
         });
+
         this.getJogos(data.campeonato.id, data.campeonato.rodada);
     }
 
@@ -46,6 +48,7 @@ class Jogo extends Component {
     clearPlacar(id) {
         this.setState({ loading: true });
         const state = Object.assign({}, this.state);
+
         state.jogos.forEach(jogo => {
             if (jogo.id === id) {
                 jogo.placar_casa = null;
@@ -56,12 +59,14 @@ class Jogo extends Component {
                 }
             }
         });
+
         this.setState(state);
     }
 
     setPlacar(e, jogo) {
         this.setState({ loading: true });
         const state = Object.assign({}, this.state);
+
         state.jogos.forEach(item => {
             if (item.id === jogo.id) {
                 item[e.target.name] = e.target.value;
@@ -71,6 +76,7 @@ class Jogo extends Component {
                 }
             }
         });
+
         this.setState(state);
     }
 
@@ -97,8 +103,8 @@ class Jogo extends Component {
 
                 <div className="box">
                     <ul className="pagination rodada">
-                        <li className={`page-item ${rodada == 0 ? 'disabled' : ''}`}>
-                            <button className="page-link" disabled={rodada == 0}
+                        <li className={`page-item ${rodada == 1 ? 'disabled' : ''}`}>
+                            <button className="page-link" disabled={rodada == 1}
                                 onClick={() => this.getJogos(campeonatoId, rodada - 1)}>
                                 Anterior
                             </button>

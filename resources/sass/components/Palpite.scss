@@ -1,0 +1,119 @@
+@import './../variables';
+@import './../mixins';
+
+#palpite {
+    @include box-rodada;
+
+    .loading-jogo {
+        padding-bottom: 12.5px;
+    }
+
+    .table-custom {
+        .table-head, .table-body {
+            padding: 8px 0;
+            justify-content: space-between;
+
+            .td {
+                font-weight: 400;
+                text-align: center;
+
+                &:nth-child(1) {
+                    padding: 0 1rem;
+                }
+
+                &:nth-child(2) {
+                    width: 40%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &:nth-child(3) {
+                    width: 35%;
+                }
+
+                &:nth-child(4) {
+                    display: flex;
+                    padding: 0 1rem;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .table-head {
+            color: #fff;
+            background-color: $body-text;
+
+            .td {
+                font-weight: 600;
+            }
+        }
+
+        .table-body {
+            border-bottom: 1px solid #ddd;
+
+            &.exato {
+                background-color: #dff0d8;
+            }
+
+            &.vencedor {
+                background-color: #fcf8e3;
+            }
+
+            .td {
+                &.icon-status {
+                    font-size: 1.25rem;
+
+                    .success {
+                        color: $winner;
+                    }
+
+                    .error {
+                        color: $loser;
+                    }
+                }
+
+                .box-time {
+                    width: 40%;
+                    display: flex;
+                    align-items: center;
+
+                    &.casa {
+                        justify-content: flex-end;
+                    }
+
+                    .escudo {
+                        min-width: $size-escudo;
+                        height: $size-escudo;
+                        margin: 0 5px;
+                    }
+                }
+
+                .numbers {
+                    width: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    .placar {
+                        padding: 0 5px;
+                        font-size: 22px;
+                        font-weight: 700;
+                    }
+
+                    .input-placar {
+                        width: 30px;
+                        margin: 0 2.5px;
+                    }
+                }
+
+                .btn-edit {
+                    padding: 0;
+                    color: $blue;
+                    font-size: 1.25rem;
+                }
+            }
+        }
+    }
+}

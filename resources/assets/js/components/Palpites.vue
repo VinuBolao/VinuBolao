@@ -9,7 +9,7 @@
             <div class="col-sm-12 box">
                 <div class="row">
                     <div class="col-md-3 col-sm-4 col-xs-12">
-                        <select class="form-control" v-model="participanteId" @change="getPalpites(participanteId, campeonato.id, rodada);">
+                    <select class="form-control" v-model="participanteId" @change="getPalpites(participanteId, campeonato.id, rodada)">
                             <option v-for="participante in participantes" :value="participante.user.id">{{ participante.user.name }}</option>
                         </select>
                     </div>
@@ -17,7 +17,7 @@
             </div>
             <div class="col-sm-12 box">
                 <div class="btn-group btn-rodada" role="group">
-                    <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user.id, campeonato.id, rodada - 1);">
+                    <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getPalpites(user.id, campeonato.id, rodada - 1)">
                         <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                     </button>
                     <div class="btn-group">
@@ -27,12 +27,12 @@
                         <div class="dropdown-menu dropdown-rodada">
                             <div class="flex-container">
                                 <div class="flex-items" v-for="n in campeonato.qtd_rodadas">
-                                    <a @click="getPalpites(user.id, campeonato.id, n);" class="dropdown-rodada-a">{{ n }}ª</a>
+                                    <a @click="getPalpites(user.id, campeonato.id, n)" class="dropdown-rodada-a">{{ n }}ª</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodadas" @click="getPalpites(user.id, campeonato.id, rodada + 1);">
+                    <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodadas" @click="getPalpites(user.id, campeonato.id, rodada + 1)">
                         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                     </button>
                 </div>
@@ -71,20 +71,20 @@
                                     <div class="visible-xs horario">{{ jogo.inicio|moment('ddd DD/MM HH:mm') }}</div>
 
                                     <div class="numbers">
-                                        <input type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0"
+                                        <input type="number" :disabled="checkTime(jogo) == jogo.id || saveLoading" min="0"
                                                v-if="jogo.placar_casa === null && user.id === participanteId"
                                                v-model="jogo.palpite.casa">
 
-                                        <span v-else>{{ jogo.placar_casa }}</span>
+                                        <span v-else>{{ (!checkTime(jogo) && user.id !== participanteId) ? "x" : jogo.placar_casa }}</span>
                                         x
-                                        <input type="number" :disabled="disableInput(jogo) == jogo.id || saveLoading" min="0"
+                                        <input type="number" :disabled="checkTime(jogo) == jogo.id || saveLoading" min="0"
                                                v-if="jogo.placar_fora === null && user.id === participanteId"
                                                v-model="jogo.palpite.fora" @blur="savePalpite(jogo)">
 
-                                        <span v-else>{{ jogo.placar_fora }}</span>
+                                        <span v-else>{{ (!checkTime(jogo) && user.id !== participanteId) ? "x" : jogo.placar_fora }}</span>
                                     </div>
 
-                                    <strong class="text-danger" v-if="disableInput(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">
+                                    <strong class="text-danger" v-if="checkTime(jogo) == jogo.id && jogo.placar_casa === null && user.id === participanteId">
                                         Esgotado!
                                     </strong>
                                 </div>
@@ -97,14 +97,14 @@
                             </div>
                             <div class="hidden-xs td">
                                 <strong>{{ jogo.inicio|moment('HH:mm') }}</strong>&nbsp;
-                                {{ jogo.inicio|moment('DD/MM/YY') }}&nbsp;|&nbsp;
-                                <a href="" data-toggle="modal" data-target=".bs-example-modal-lg"
-                                   @click.prevent="compararPalpites(jogo)">
+                                {{ jogo.inicio|moment('DD/MM/YY') }}
+                                <span v-if="checkTime(jogo)">&nbsp;|&nbsp;</span>
+                                <a href="" v-if="checkTime(jogo)" data-toggle="modal" data-target=".bs-example-modal-lg" @click.prevent="compararPalpites(jogo)">
                                     Comparar Palpites
                                 </a>
                             </div>
                             <div class="td" v-if="user.id === participanteId">
-                                <div v-show="(disableInput(jogo) != jogo.id) && !saveLoading">
+                                <div v-show="(checkTime(jogo) != jogo.id) && !saveLoading">
                                     <a href="" v-if="(jogo.placar_casa !== null || jogo.placar_fora !== null)" @click.prevent="savePalpite(jogo, true)">
                                         <i class="glyphicon glyphicon-edit" v-if="jogo.placar_casa !== null || jogo.placar_fora !== null"></i>
                                     </a>
@@ -262,7 +262,7 @@
                 }
             },
 
-            disableInput(jogo) {
+            checkTime(jogo) {
                 if(moment() > moment(jogo.inicio)) {
                     return jogo.id;
                 }

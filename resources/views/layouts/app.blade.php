@@ -111,7 +111,7 @@
 
             <div class="footer">
                 <footer class="text-center">
-                    <span>VinúBolão &copy; 2017-2018 - Criado por <a href="https://www.linkedin.com/in/gustavosantoslima" target="_blank">Gustavo Lima</a></span>
+                    <span>VinúBolão &copy; 2017-2020 - Criado por <a href="https://www.linkedin.com/in/gustavosantoslima" target="_blank">Gustavo Lima</a></span>
                 </footer>
             </div>
         </div>

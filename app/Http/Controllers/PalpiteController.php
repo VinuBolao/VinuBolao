@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PalpiteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();

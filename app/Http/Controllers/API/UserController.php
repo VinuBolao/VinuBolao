@@ -7,7 +7,6 @@ use Bolao\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-
     public function get($userId = null)
     {
         if($userId){

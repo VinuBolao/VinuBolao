@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\URL;
 
 class JogoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $campeonatos = Campeonato::all();
@@ -45,11 +40,6 @@ class JogoController extends Controller
         return view('admin.jogo.index', compact('jogos', 'campeonatos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $form = \FormBuilder::create(JogoForm::class, [
@@ -59,12 +49,6 @@ class JogoController extends Controller
         return view('admin.jogo.add', compact('form'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $form = \FormBuilder::create(JogoForm::class);
@@ -78,23 +62,11 @@ class JogoController extends Controller
         return redirect()->route('admin.jogo.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Bolao\Models\Jogo  $jogo
-     * @return \Illuminate\Http\Response
-     */
     public function show(Jogo $jogo)
     {
         return view('admin.jogo.show', compact('jogo'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Bolao\Models\Jogo  $jogo
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Jogo $jogo)
     {
         $form = \FormBuilder::create(JogoForm::class, [
@@ -105,13 +77,6 @@ class JogoController extends Controller
         return view('admin.jogo.edit', compact('form'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Bolao\Models\Jogo  $jogo
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Jogo $jogo)
     {
         $form = \FormBuilder::create(JogoForm::class, [
@@ -127,12 +92,6 @@ class JogoController extends Controller
         return redirect()->route('admin.jogo.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Bolao\Models\Jogo  $jogo
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Jogo $jogo)
     {
         $jogo->delete();

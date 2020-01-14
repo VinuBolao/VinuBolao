@@ -64,6 +64,10 @@
                         <label for="infoData">PV:</label>
                         <input type="number" class="form-control" name="placar_vencedor" id="infoPlacarVencedor" >
                     </div>
+                    <div class="col-sm-1">
+                        <label for="infoRodadaDobro">RDP:</label>
+                        <input type="number" class="form-control" name="rodada_dobro" id="infoRodadaDobro">
+                    </div>
                 </div>
             </div>
             <div class="row">

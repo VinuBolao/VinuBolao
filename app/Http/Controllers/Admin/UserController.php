@@ -9,22 +9,12 @@ use Bolao\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $users = User::orderBy('master', 'desc')->orderBy('name')->paginate(15)->appends(request()->query());
         return view('admin.user.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $form = \FormBuilder::create(UserForm::class, [
@@ -34,12 +24,6 @@ class UserController extends Controller
         return view('admin.user.add', compact('form'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return $form
-     */
     public function store(Request $request)
     {
         $form = \FormBuilder::create(UserForm::class);
@@ -52,23 +36,11 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Bolao\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
         return view('admin.user.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Bolao\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
         $form = \FormBuilder::create(UserForm::class, [
@@ -79,12 +51,6 @@ class UserController extends Controller
         return view('admin.user.edit', compact('form'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Bolao\Models\User $user
-     * @return $form
-     */
     public function update(User $user)
     {
         $form = \FormBuilder::create(UserForm::class, [

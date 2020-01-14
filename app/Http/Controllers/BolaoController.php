@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class BolaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $bolaos = Bolao::all()->sortByDesc('id');
@@ -40,22 +35,11 @@ class BolaoController extends Controller
         return view('bolao.regulamento')->with('bolao', Bolao::where('ativo', 1)->first());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create()
     {
         return view('bolao.add')->with('campeonatos', Campeonato::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $bolaoId = Bolao::create($request->all())->id;
@@ -68,48 +52,30 @@ class BolaoController extends Controller
         return redirect()->action('BolaoController@index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function edit($bolaoId)
     {
         $bolao = Bolao::findOrFail($bolaoId);
         return view('bolao.edit', ['bolao' => $bolao]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $bolaoId)
     {
         $bolao = Bolao::findOrFail($bolaoId);
 
-        $bolao->user_id       = $request->user;
+        $bolao->user_id = $request->user;
         $bolao->campeonato_id = $request->campeonato;
-        $bolao->nome          = $request->name;
-        $bolao->inicio        = $request->datainicio;
-        $bolao->descricao     = $request->description;
-        $bolao->placar_exato     = $request->placar_exato;
-        $bolao->placar_vencedor     = $request->placar_vencedor;
-        $bolao->ativo         = $request->ativo;
+        $bolao->nome = $request->name;
+        $bolao->inicio = $request->datainicio;
+        $bolao->descricao = $request->description;
+        $bolao->placar_exato = $request->placar_exato;
+        $bolao->placar_vencedor = $request->placar_vencedor;
+        $bolao->rodada_dobro = $request->rodada_dobro;
+        $bolao->ativo = $request->ativo;
         $bolao->save();
 
         return response()->redirectToRoute('bolao.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($bolaoId)
     {
         $page = Bolao::findOrFail($bolaoId);

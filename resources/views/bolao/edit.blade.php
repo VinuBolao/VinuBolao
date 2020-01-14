@@ -63,6 +63,10 @@
                         <label for="infoData">PV:</label>
                         <input type="number" class="form-control" name="placar_vencedor" id="infoPlacarVencedor" value="{{ $bolao->placar_vencedor }}">
                     </div>
+                    <div class="col-sm-1">
+                        <label for="infoRodadaDobro">DPR:</label>
+                        <input type="number" class="form-control" name="rodada_dobro" id="infoRodadaDobro" value="{{ $bolao->rodada_dobro }}">
+                    </div>
                 </div>
             </div>
             <div class="row">

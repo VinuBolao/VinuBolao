@@ -30,6 +30,7 @@ Route::namespace('Admin\\')->group(function () {
 	
 	Route::group(['middleware' => ['auth', 'can:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
 		Route::resource('jogo', 'JogoController');
+		Route::get('/sincronizar/{info?}', 'JogoController@getJogosGE')->name('sincronizar');
 	});
 });
 

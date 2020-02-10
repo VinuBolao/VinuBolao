@@ -81,6 +81,9 @@
                                 <li @if(Request::url() == route('admin.jogo.create')) class="active" @endif>
                                     <a href="{{ route('admin.jogo.create') }}">Novo</a>
                                 </li>
+                                <li @if(Request::url() == route('admin.sincronizar')) class="active" @endif>
+                                    <a href="{{ route('admin.sincronizar') }}">buscarGE</a>
+                                </li>
                             </ul>
                         </li>
                         <li @if(Request::segment(2) == 'time') class="active" @endif>

@@ -15,6 +15,7 @@
                 </button>
             </div>
         </form>
+        <span>https://api.globoesporte.globo.com/tabela/4b20b911-f174-4958-9be8-4033dc74f970/fase/primeira-fase-paulista-2020/rodada/1/jogos</span>
     </div>
 
     <hr>

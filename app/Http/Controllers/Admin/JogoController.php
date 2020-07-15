@@ -5,10 +5,8 @@ namespace Bolao\Http\Controllers\Admin;
 use Bolao\Forms\JogoForm;
 use Bolao\Models\Campeonato;
 use Bolao\Models\Jogo;
-use Bolao\Models\Time;
 use Illuminate\Http\Request;
 use Bolao\Http\Controllers\Controller;
-use Illuminate\Support\Facades\URL;
 
 class JogoController extends Controller
 {
@@ -98,42 +96,9 @@ class JogoController extends Controller
         $jogo->delete();
         return redirect()->route('admin.jogo.index');
     }
-	
-    public function getJogosGE(Request $request)
-	{
-		$jogos = [];
-		$outros = [];
-		
-		if (isset($request->info)) {
-			$data = file_get_contents($request->info, false);
-			$data = json_decode($data);
-			
-			foreach ($data as $item) {
-				$casa = $item->equipes->mandante->nome_popular;
-				$fora = $item->equipes->visitante->nome_popular;
-				$horario = str_replace('T',' ', $item->data_realizacao);
-				
-				$mandante = Time::where('nome', 'like', '%' . $casa . '%')->first();
-				$visitante = Time::where('nome', 'like', '%' . $fora . '%')->first();
-				
-				if ($mandante && $visitante) {
-					$jogos[] = [
-						"horario" => $horario,
-						"mandante" => [
-							'id' => $mandante->id,
-							'nome' => $mandante->nome
-						],
-						"visitante" => [
-							'id' => $visitante->id,
-							'nome' => $visitante->nome
-						],
-					];
-				} else {
-					$outros[] = $mandante ? $fora : $casa;
-				}
-			}
-		}
-		
-		return view('admin.jogo.sincronizar', compact('jogos', 'outros'));
-	}
+
+    public function sincronizar()
+    {
+        return view('admin.jogo.sincronizar');
+    }
 }

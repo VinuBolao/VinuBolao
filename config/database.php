@@ -1,6 +1,6 @@
 <?php
 
-if(getenv("DATABASE_URL")){
+if (getenv("DATABASE_URL")) {
     $databaseUrl = parse_url(getenv("DATABASE_URL"));
     $databaseUrl["path"] = substr($databaseUrl["path"], 1);
 } else {
@@ -54,7 +54,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'host' => $databaseUrl["host"],
-            'port' => '3306',
+            'port' => env('DB_PORT', '3306'),
             'database' => $databaseUrl["path"],
             'username' => $databaseUrl["user"],
             'password' => $databaseUrl["pass"],

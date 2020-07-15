@@ -22,6 +22,8 @@ Route::namespace('API\\')->group(function (){
         Route::get('get/{id?}', 'JogoController@get')->where('id', '[0-9]+');
         Route::get('getCampeonato/{id}/{rodada?}', 'JogoController@getCampeonato')->where('id', '[0-9]+');
         Route::post('update', 'JogoController@update');
+        Route::post('getJogosGE', 'JogoController@getJogosGE');
+        Route::post('save', 'JogoController@save');
     });
 
     Route::group(['prefix' => 'participante'], function (){

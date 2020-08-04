@@ -37,6 +37,7 @@ Route::namespace('API\\')->group(function (){
 
     Route::group(['prefix' => 'campeonato'], function (){
         Route::get('get/{id?}', 'CampeonatoController@get')->where('id', '[0-9]+');
+        Route::get('rodadaAtual/{campeonatoId}/{rodada}', 'CampeonatoController@rodadaAtual');
     });
 
     Route::group(['prefix' => 'user'], function (){

@@ -2,18 +2,21 @@
 
 namespace Bolao\Http\Controllers\API;
 
+use Bolao\Mail\Lembrete;
+use Bolao\Models\Jogo;
 use Bolao\Models\User;
 use Bolao\Models\Bolao;
 use Bolao\Models\Participante;
 use Bolao\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ParticipanteController extends Controller
 {
     public function get($participanteId = null)
     {
-        if($participanteId){
+        if ($participanteId) {
             return response()->json(Participante::with('user')->findOrFail($participanteId));
         } else {
             return response()->json(Participante::with('user')->get());
@@ -100,5 +103,17 @@ class ParticipanteController extends Controller
         } else {
             return response()->json(['success' => false], 400);
         }
+    }
+
+    public function sendRemember($bolaoId)
+    {
+        $participantes = Participante::with('user')->where('bolao_id', $bolaoId)->get();
+        $jogos = Jogo::with('timecasa', 'timefora')->where(['inicio' => "2020-03-20"])->get();
+
+        foreach ($participantes as $participante) {
+            //Mail::to($participante->user->email)->send(new Lembrete(["jogos" => $jogos]));
+        }
+
+        return response()->json(['success' => true]);
     }
 }

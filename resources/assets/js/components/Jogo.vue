@@ -6,9 +6,9 @@
             </div>
         </div>
         <div v-else="">
-            <div class="col-sm-12 box">
+            <div class="col-sm-12 box" style="display: flex;justify-content: space-between;align-items: center;">
                 <div class="btn-group btn-rodada" role="group">
-                    <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getJogosCampeontato(campeonato.id, rodada - 1);">
+                    <button type="button" class="btn btn-default" :disabled="rodada < 2" @click="getJogosCampeontato(campeonato.id, rodada - 1)">
                         <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                     </button>
                     <div class="btn-group">
@@ -23,10 +23,14 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodadas" @click="getJogosCampeontato(campeonato.id, rodada + 1);">
+                    <button type="button" class="btn btn-default" :disabled="rodada >= campeonato.qtd_rodadas" @click="getJogosCampeontato(campeonato.id, rodada + 1)">
                         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                     </button>
                 </div>
+
+                <button type="button" class="btn btn-primary" v-if="user.id === 2" @click="rodadaAtual()">
+                    Rodada Atual?
+                </button>
             </div>
 
             <div class="col-sm-12 box text-center" v-if="dataLoading">
@@ -166,6 +170,14 @@
                         console.error('!Get Update Jogo', error);
                     });
                 }
+            },
+
+            rodadaAtual() {
+                this.$http.get('/api/campeonato/rodadaAtual/' + this.campeonato.id + '/' + this.rodada).then((res) => {
+                    console.log(res);
+                }).catch((error) => {
+                    console.error('!Set Rodada Atual', error);
+                });
             },
 
             disableInput(jogo) {

@@ -28,7 +28,7 @@
                     </button>
                 </div>
 
-                <button type="button" class="btn btn-primary" v-if="user.id === 2" @click="rodadaAtual()">
+                <button type="button" class="btn btn-primary" v-if="user.id === 2 && campeonato.rodada !== rodada" @click="rodadaAtual()">
                     Rodada Atual?
                 </button>
             </div>
@@ -174,7 +174,9 @@
 
             rodadaAtual() {
                 this.$http.get('/api/campeonato/rodadaAtual/' + this.campeonato.id + '/' + this.rodada).then((res) => {
-                    console.log(res);
+                    if (res.data.success) {
+                        this.campeonato.rodada = this.rodada;
+                    }
                 }).catch((error) => {
                     console.error('!Set Rodada Atual', error);
                 });

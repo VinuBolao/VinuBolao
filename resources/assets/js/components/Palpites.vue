@@ -64,7 +64,7 @@
                                 <div class="mandante">
                                     <span class="hidden-xs hidden-sm">{{ jogo.timecasa.nome }}</span>
                                     <span class="hidden-md hidden-lg">{{ jogo.timecasa.sigla }}</span>
-                                    <img :src="`/img/${jogo.timecasa.sigla}_${jogo.timecasa.estado}.png`" class="escudo-time">
+                                    <img :src="`https://raw.githubusercontent.com/VinuBolao/Images${jogo.timecasa.escudo}`" class="escudo-time">
                                 </div>
 
                                 <div class="placar">
@@ -90,7 +90,7 @@
                                 </div>
 
                                 <div class="visitante">
-                                    <img :src="`/img/${jogo.timefora.sigla}_${jogo.timefora.estado}.png`" class="escudo-time">
+                                    <img :src="`https://raw.githubusercontent.com/VinuBolao/Images${jogo.timefora.escudo}`" class="escudo-time">
                                     <span class="hidden-xs hidden-sm">{{ jogo.timefora.nome }}</span>
                                     <span class="hidden-md hidden-lg">{{ jogo.timefora.sigla }}</span>
                                 </div>

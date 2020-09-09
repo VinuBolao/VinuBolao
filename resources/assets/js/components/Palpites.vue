@@ -143,6 +143,7 @@
                                     <td>{{ key + 1 }}</td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.palpite_casa }} x {{ item.palpite_fora }}</td>
+                                    <td>{{ item.updated_at }}</td>
                                 </tr>
                             </tbody>
                         </table>

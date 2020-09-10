@@ -43,7 +43,7 @@ class PalpiteController extends Controller
             Palpite::join('users', 'users.id', '=', 'palpites.user_id')
                 ->select('users.name', 'palpites.palpite_casa', 'palpites.palpite_fora', 'palpites.updated_at')
                 ->where(['palpites.jogo_id' => $jogoId])
-                ->orderBy('users.name')
+                ->orderBy('palpites.updated_at')
                 ->get()
         );
     }

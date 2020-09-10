@@ -221,7 +221,7 @@
                   <td>{{ key + 1 }}</td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.palpite_casa }} x {{ item.palpite_fora }}</td>
-                  <td>{{ item.updated_at|moment('HH:mm DD/MM/YY') }}</td>
+                  <td>{{ item.updated_at|moment("subtract", "3 hours")|moment('HH:mm DD/MM/YY') }}</td>
                 </tr>
               </tbody>
             </table>

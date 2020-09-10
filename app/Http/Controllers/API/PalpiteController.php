@@ -41,7 +41,7 @@ class PalpiteController extends Controller
     {
         return response()->json(
             Palpite::join('users', 'users.id', '=', 'palpites.user_id')
-                ->select('users.name', 'palpites.palpite_casa', 'palpites.palpite_fora')
+                ->select('users.name', 'palpites.palpite_casa', 'palpites.palpite_fora', 'palpites.updated_at')
                 ->where(['palpites.jogo_id' => $jogoId])
                 ->orderBy('users.name')
                 ->get()

@@ -72,11 +72,11 @@
     <div class="row">
       <div class="col-sm-2" v-if="jogos.length > 0">
         <label for="infoBolao">BolaoID:</label>
-        <input id="infoBolao" name="bolao" v-model="bolao" class="form-control" />
-      </div>
-      <div class="col-sm-2" v-if="jogos.length > 0">
-        <label for="infoCampeonato">CampeonatoID:</label>
-        <input id="infoCampeonato" name="campeonato" v-model="campeonato" class="form-control" />
+        <select id="infoBolao" class="form-control" v-model="bolaoId" @change="setCampeonato(bolaoId)">
+          <option :key="key" v-for="(bolao, key) in boloes" :value="bolao.id">
+            {{ bolao.nome }}
+          </option>
+        </select>
       </div>
       <div class="col-sm-2" v-if="jogos.length > 0">
         <label for="infoRodada">Rodada:</label>
@@ -102,12 +102,13 @@ export default {
   data() {
     return {
       url: "",
-      bolao: "",
       rodada: "",
-      campeonato: "",
+      bolaoId: "",
+      campeonatoId: "",
       message: "",
       jogos: [],
       outros: [],
+      boloes: [],
     };
   },
   props: [],
@@ -120,12 +121,25 @@ export default {
           if (response.data) {
             this.message = "";
             this.jogos = response.data.jogos;
+            this.boloes = response.data.boloes;
             this.outros = response.data.outros;
           }
         })
         .catch((error) => {
           console.error("!Get JogosGE", error);
         });
+    },
+
+    setCampeonato(bolaoId) {
+      let campeonatoId = 0;
+
+      this.boloes.forEach(function (bolao) {
+        if (bolao.id == bolaoId) {
+          campeonatoId = bolao.campeonato_id;
+        }
+      });
+
+      this.campeonatoId = campeonatoId;
     },
 
     saveJogos() {
@@ -136,8 +150,8 @@ export default {
           jogos.push({
             rodada: this.rodada,
             inicio: jogo.horario,
-            bolao_id: this.bolao,
-            campeonato_id: this.campeonato,
+            bolao_id: this.bolaoId,
+            campeonato_id: this.campeonatoId,
             timecasa_id: jogo.mandante.id,
             timefora_id: jogo.visitante.id,
           });
@@ -147,11 +161,11 @@ export default {
           .post("/api/jogo/save", { jogos })
           .then((response) => {
             if (response.data.success) {
-              this.bolao = "";
+              this.bolaoId = "";
               this.jogos = [];
               this.outros = [];
               this.rodada = "";
-              this.campeonato = "";
+              this.campeonatoId = "";
               this.message = "Jogos Salvos Com Sucesso!";
             }
           })

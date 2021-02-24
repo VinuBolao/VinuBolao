@@ -2,6 +2,7 @@
 
 namespace Bolao\Http\Controllers\API;
 
+use Bolao\Models\Bolao;
 use Bolao\Models\Jogo;
 use Bolao\Models\Time;
 use Illuminate\Http\Request;
@@ -62,6 +63,7 @@ class JogoController extends Controller
         $result = [
             'jogos' => [],
             'outros' => [],
+            'boloes' => [],
         ];
 
         if (isset($request->url)) {
@@ -73,6 +75,7 @@ class JogoController extends Controller
                 $fora = $item->equipes->visitante->nome_popular;
                 $horario = str_replace('T',' ', $item->data_realizacao);
 
+                $result['boloes'] = Bolao::all();
                 $mandante = Time::where('nome', 'like', '%' . $casa . '%')->first();
                 $visitante = Time::where('nome', 'like', '%' . $fora . '%')->first();
 

@@ -14,7 +14,7 @@ class JogoForm extends Form
         $times = [];
         $bolaos = [];
         $campeonatos = [];
-        $dataTime = Time::all();
+        $dataTime = Time::orderBy('nome')->get();
         $dataBolao = Bolao::all();
         $dataCampeonato = Campeonato::all();
         $bolaoId = $this->getData('bolao_id');
@@ -31,7 +31,7 @@ class JogoForm extends Form
         }
 
         foreach ($dataTime as $time) {
-            $times[$time->id] = (preg_match('/\b-\b/i', $time->nome)) ? 'Atlético - ' . $time->estado : $time->nome . ' - ' . $time->estado;
+            $times[$time->id] = $time->nome . ' - ' . $time->estado;
         }
 
         $this

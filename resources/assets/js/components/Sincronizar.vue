@@ -26,7 +26,7 @@
       <span
         class="col-md-12"
         style="font-size: 10px; margin-top: 5px;"
-      >Ex: https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-seriea-2020/rodada/1/jogos</span>
+      >Ex: https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-2021/rodada/1/jogos</span>
     </div>
 
     <hr class="row" v-if="jogos.length > 0" />

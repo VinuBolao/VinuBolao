@@ -64585,7 +64585,7 @@ var render = function() {
         },
         [
           _vm._v(
-            "Ex: https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-seriea-2020/rodada/1/jogos"
+            "Ex: https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-2021/rodada/1/jogos"
           )
         ]
       )

@@ -35,6 +35,12 @@
               <div class="flex-items geral">
                 <a class="dropdown-rodada-a" @click="getRanking(0)">Geral</a>
               </div>
+              <div class="flex-items geral" style="width: calc(50% - 2.5px);">
+                <a class="dropdown-rodada-a" @click="getRanking(0, 1)" style="padding: 0;">1º turno</a>
+              </div>
+              <div class="flex-items geral" style="width: calc(50% - 2.5px);margin-left: 5px;">
+                <a class="dropdown-rodada-a" @click="getRanking(0, 2)" style="padding: 0;">2º turno</a>
+              </div>
             </div>
           </div>
         </div>
@@ -115,11 +121,11 @@ export default {
     this.getRanking(this.rodada);
   },
   methods: {
-    getRanking(rodada) {
+    getRanking(rodada, turno = 0) {
       this.dataLoading = true;
       this.rodada = rodada;
       this.$http
-        .get("/api/participante/getRanking/" + rodada)
+        .get("/api/participante/getRanking/" + rodada + "/" + turno)
         .then((response) => {
           this.participantes = response.data;
           this.dataLoading = false;

@@ -66004,6 +66004,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -66025,9 +66031,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getRanking: function getRanking(rodada) {
       var _this = this;
 
+      var turno = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
       this.dataLoading = true;
       this.rodada = rodada;
-      this.$http.get("/api/participante/getRanking/" + rodada).then(function (response) {
+      this.$http.get("/api/participante/getRanking/" + rodada + "/" + turno).then(function (response) {
         _this.participantes = response.data;
         _this.dataLoading = false;
       }).catch(function (error) {
@@ -66135,7 +66143,56 @@ var render = function() {
                       },
                       [_vm._v("Geral")]
                     )
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "flex-items geral",
+                      staticStyle: { width: "calc(50% - 2.5px)" }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-rodada-a",
+                          staticStyle: { padding: "0" },
+                          on: {
+                            click: function($event) {
+                              return _vm.getRanking(0, 1)
+                            }
+                          }
+                        },
+                        [_vm._v("1º turno")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "flex-items geral",
+                      staticStyle: {
+                        width: "calc(50% - 2.5px)",
+                        "margin-left": "5px"
+                      }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-rodada-a",
+                          staticStyle: { padding: "0" },
+                          on: {
+                            click: function($event) {
+                              return _vm.getRanking(0, 2)
+                            }
+                          }
+                        },
+                        [_vm._v("2º turno")]
+                      )
+                    ]
+                  )
                 ],
                 2
               )

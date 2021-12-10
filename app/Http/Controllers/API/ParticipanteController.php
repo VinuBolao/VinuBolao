@@ -28,7 +28,7 @@ class ParticipanteController extends Controller
         return response()->json(Participante::with('user')->where('bolao_id', $bolaoId)->get());
     }
 
-    public function getRanking($rodada = null)
+    public function getRanking($rodada = null, $turno = null)
     {
         $bolao = Bolao::where('ativo', 1)->orderByDesc('id')->first();
 
@@ -67,13 +67,18 @@ class ParticipanteController extends Controller
                     END
                 END
             ) AS pontosganhos';
+        
+        $whereRaw = ($rodada) ? "j.campeonato_id = $bolao->campeonato_id AND j.rodada = $rodada" : "j.campeonato_id = $bolao->campeonato_id";
+
+        if ($turno == 1) $whereRaw = "j.campeonato_id = $bolao->campeonato_id AND j.rodada < 20";
+        if ($turno == 2) $whereRaw = "j.campeonato_id = $bolao->campeonato_id AND j.rodada > 19";
 
         $ranking = DB::table('palpites AS p')
             ->join('jogos AS j', 'j.id', '=', 'p.jogo_id')
             ->join('users AS u', 'u.id', '=', 'p.user_id')
             ->join('bolaos AS b', 'b.id', '=', 'j.bolao_id')
             ->select(DB::raw($sql))
-            ->whereRaw(($rodada) ? "j.campeonato_id = $bolao->campeonato_id AND j.rodada = $rodada" : "j.campeonato_id = $bolao->campeonato_id")
+            ->whereRaw($whereRaw)
             ->orderBy('pontosganhos', 'DESC')
             ->orderBy('placarexato', 'DESC')
             ->orderBy('placarvencedor', 'DESC')

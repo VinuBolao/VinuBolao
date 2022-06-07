@@ -63973,7 +63973,8 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm.user.id === 2 && _vm.campeonato.rodada !== _vm.rodada
+              (_vm.user.id === 2 || _vm.user.id === 82) &&
+              _vm.campeonato.rodada !== _vm.rodada
                 ? _c(
                     "button",
                     {

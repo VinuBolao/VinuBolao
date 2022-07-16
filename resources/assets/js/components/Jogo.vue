@@ -54,7 +54,7 @@
         <button
           type="button"
           class="btn btn-primary"
-          v-if="(user.id === 2 || user.id === 82) && campeonato.rodada !== rodada"
+          v-if="user.master && campeonato.rodada !== rodada"
           @click="rodadaAtual()"
         >Rodada Atual?</button>
       </div>

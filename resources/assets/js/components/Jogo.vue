@@ -56,7 +56,7 @@
           class="btn btn-primary"
           v-if="user.master && campeonato.rodada !== rodada"
           @click="rodadaAtual()"
-        >Rodada Atual?</button>
+        >Rodada atual?</button>
       </div>
 
       <div class="col-sm-12 box text-center" v-if="dataLoading">

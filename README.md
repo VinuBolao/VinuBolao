@@ -1,15 +1,10 @@
 # VinúBolão
 
-[![Code Climate](https://codeclimate.com/github/VinuBolao/VinuBolao/badges/gpa.svg)](https://codeclimate.com/github/VinuBolao/VinuBolao)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/51ff3b4bd55b4d06b0cb240b62839b88)](https://www.codacy.com/app/GustavoSantosLima/VinuBolao?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=VinuBolao/VinuBolao&amp;utm_campaign=Badge_Grade)
-
 ### Pré-requisitos
 
-1. Instale [PHP >= 7.0](http://php.net/downloads.php)
+1. Instale [PHP >= 8.0](http://php.net/downloads.php)
 
-2. Instale o [Composer 1.2](https://getcomposer.org)
-
-3. Instale o [Laravel 5.5](https://laravel.com/docs/5.5#installation)
+2. Instale o [Laravel 9.x]
 
 _Lembrando que essas são as versões utilizadas no momento de criação do projeto._
 
@@ -19,7 +14,7 @@ _Lembrando que essas são as versões utilizadas no momento de criação do proj
 
     ```
       git clone https://github.com/GustavoSantosLima/VinuBolao.git
-      
+
       cd VinuBolao
     ```
 
@@ -28,7 +23,7 @@ _Lembrando que essas são as versões utilizadas no momento de criação do proj
     ```
       cp .env.example .env
     ```
-    
+
 3. Instale as dependencias do composer.
 
     ```
@@ -52,23 +47,14 @@ _Lembrando que essas são as versões utilizadas no momento de criação do proj
       DB_PASSWORD=senhadodatabase
     ```
 
-4. Altere o salvamento de **_cache_** e **_session_** de **_file_** para **_database_** no arquivo `.env` como no exemplo abaixo:
+6. Execute o comando abaixo para criar as tabelas no seu Banco de Dados e popular as tabelas.
 
     ```
-      CACHE_DRIVER=database
-      SESSION_DRIVER=database
+      php artisan migrate
     ```
 
-4. Execute o comando abaixo para criar as tabelas no seu Banco de Dados e popular as tabelas.
-
-    ```
-      php artisan migrate --seed
-    ```
-
-6. Instale as dependencias do [NPM](http://php.net/downloads.php).
+7. Instale as dependencias do [NPM](http://php.net/downloads.php).
 
     ```
       npm install
     ```
-
-    Obs. quando você fizer alguma alteração em arquivos .html, .js ou .css execute o comando `npm run dev` para compilar os Assets para mais informações [Laravel Mix](https://laravel.com/docs/5.4/mix).

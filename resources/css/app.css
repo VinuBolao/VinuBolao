@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos Customizados */
+@layer components {
+    .btn-primary {
+        @apply py-2 px-4 bg-slate-800 text-white font-semibold rounded-lg shadow-md hover:bg-slate-600 focus:outline-none focus:bg-slate-400;
+    }
+
+    .btn-secondary {
+        @apply py-2 px-4 font-semibold rounded-lg shadow-md focus:outline-none focus:bg-slate-200 text-slate-800 border-2 border-slate-800 hover:bg-slate-100 text-center;
+    }
+
+    .vb-custom-input {
+        @apply mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1;
+    }
+
+    .vb-placar-number {
+        @apply w-9 h-8 text-2xl font-bold text-center;
+    }
+
+    .vb-input-jogos {
+        @apply w-9 h-8 p-0 bg-white border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1 text-center disabled:bg-gray-100 disabled:cursor-not-allowed;
+    }
+
+    .vb-escudo-time {
+        @apply w-[40px] h-[40px];
+    }
+
+    .vb-sigla-time {
+        @apply w-9 sm:hidden text-center;
+    }
+
+    .vb-btn-group {
+        @apply flex p-3 sm:p-6 pb-0 sm:pb-0 border-gray-200;
+    }
+
+    .vb-btn-group > button {
+        @apply w-[11rem] h-10 font-semibold shadow-sm focus:outline-none focus:ring-opacity-75 text-slate-800 border-[1px] border-slate-300 hover:bg-slate-50 text-center disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+
+    .vb-btn-group button:first-child {
+        @apply w-[3rem] rounded-l-lg grid place-content-center border-r-0;
+    }
+
+    .vb-btn-group button:last-child {
+        @apply w-[3rem] rounded-r-lg grid place-content-center border-l-0;
+    }
+
+    .vb-btn-group.open > button {
+        @apply rounded-b-none;
+    }
+
+    .vb-dropdown {
+        @apply w-[17rem] min-w-min max-h-44 overflow-auto px-2 grid grid-cols-4 gap-2 mx-3 sm:mx-6 py-2 min-w-max absolute bg-white rounded-b-lg shadow-lg float-left border-x-[1px] border-b-[1px] border-slate-300 z-50;
+    }
+
+    .vb-dropdown > button {
+        @apply w-full h-10 grid place-content-center bg-slate-100 rounded-md;
+    }
+}
+
+.vb-input-jogos[type="number"]::-webkit-inner-spin-button,
+.vb-input-jogos[type="number"]::-webkit-outer-spin-button {
+    height: 2rem;
+}
+
+span[aria-current="page"] > span {
+    @apply font-bold bg-slate-100;
+}
+
+#classificacao {
+    @apply flex flex-row border-b-2 last:border-none py-2 last:rounded-b-lg;
+}
+
+#classificacao.vb-winners {
+    @apply bg-green-900 text-white opacity-90;
+}
+
+#classificacao.vb-losers {
+    @apply bg-red-900 text-white opacity-90;
+}
+
+#box-empty {
+    @apply flex items-center justify-center p-4 m-8 text-lg bg-blue-200 rounded-lg text-blue-600;
+}
+
+.vb-expired {
+    @apply absolute w-[90px] ml-[3px] text-center font-bold text-red-700 bg-white rounded z-50;
+}
+
+@media only screen and (max-width: 400px) {
+    .vb-escudo-time {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media only screen and (max-width: 339px) {
+    .vb-sigla-time {
+        display: none;
+    }
+}

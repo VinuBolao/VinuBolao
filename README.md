@@ -4,7 +4,7 @@
 
 1. Instale [PHP >= 8.0](http://php.net/downloads.php)
 
-2. Instale o [Laravel 9.x]
+2. Instale o [Laravel 9.x](https://laravel.com/docs/9.x/installation)
 
 _Lembrando que essas são as versões utilizadas no momento de criação do projeto._
 

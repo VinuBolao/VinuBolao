@@ -30,8 +30,9 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
         }
     };
 
-    const isExpired = (value) => {
-        return new Date() > new Date(value);
+    const gameStarted = (value) => {
+        const dateNow = new Date().getTime();
+        return dateNow > value * 1000;
     };
 
     const handleSave = (jogo) => {
@@ -119,7 +120,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                                 className="vb-input-jogos"
                                                 onBlur={(e) => handleBlur(e, jogo)}
                                                 onChange={(e) => handleChange(e, jogo)}
-                                                disabled={loading || !isExpired(jogo.inicio)}
+                                                disabled={loading || !gameStarted(jogo.inicio_timestamp)}
                                             ></input>
                                         ) : (
                                             <span className="vb-placar-number">{jogo.placar_casa}</span>
@@ -135,7 +136,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                                 className="vb-input-jogos"
                                                 onBlur={(e) => handleBlur(e, jogo)}
                                                 onChange={(e) => handleChange(e, jogo)}
-                                                disabled={loading || !isExpired(jogo.inicio)}
+                                                disabled={loading || !gameStarted(jogo.inicio_timestamp)}
                                             ></input>
                                         ) : (
                                             <span className="vb-placar-number">{jogo.placar_fora}</span>

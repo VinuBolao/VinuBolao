@@ -77,11 +77,11 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
         }
     };
 
-    const isExpired = ({ inicio, palpite }) => {
+    const isExpired = ({ palpite, inicio_timestamp }) => {
         const isPalpiteCasa = palpite && palpite.palpite_casa !== null;
         const isPalpiteFora = palpite && palpite.palpite_fora !== null;
 
-        if (!isPalpiteCasa && !isPalpiteFora && gameStarted(inicio)) {
+        if (!isPalpiteCasa && !isPalpiteFora && gameStarted(inicio_timestamp)) {
             return true;
         }
 
@@ -96,7 +96,8 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
     };
 
     const gameStarted = (value) => {
-        return new Date() > new Date(value);
+        const dateNow = new Date().getTime();
+        return dateNow > value * 1000;
     };
 
     const isShowEdit = (jogo) => {
@@ -104,7 +105,7 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
             const isPalpiteCasa = jogo.palpite.palpite_casa !== null;
             const isPalpiteFora = jogo.palpite.palpite_fora !== null;
 
-            if (isPalpiteCasa && isPalpiteFora && !gameStarted(jogo.inicio)) {
+            if (isPalpiteCasa && isPalpiteFora && !gameStarted(jogo.inicio_timestamp)) {
                 return true;
             }
         }
@@ -231,7 +232,7 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
                                             ></input>
                                         ) : (
                                             <span className="vb-placar-number">
-                                                {user.id !== +selected && !gameStarted(jogo.inicio)
+                                                {user.id !== +selected && !gameStarted(jogo.inicio_timestamp)
                                                     ? jogo.palpite
                                                         ? "X"
                                                         : ""
@@ -256,7 +257,7 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
                                             ></input>
                                         ) : (
                                             <span className="vb-placar-number">
-                                                {user.id !== +selected && !gameStarted(jogo.inicio)
+                                                {user.id !== +selected && !gameStarted(jogo.inicio_timestamp)
                                                     ? jogo.palpite
                                                         ? "X"
                                                         : ""

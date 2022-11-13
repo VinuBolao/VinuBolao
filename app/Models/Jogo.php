@@ -17,13 +17,20 @@ class Jogo extends Model
 
     protected $guarded = ['id'];
 
-    protected $appends = ['inicio_format'];
+    protected $appends = ['inicio_format', 'inicio_timestamp'];
 
     public $order = "inicio ASC, rodada ASC";
 
     protected $casts = [
         'rodada' => 'integer',
     ];
+
+    protected function inicioTimestamp(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attr) => Carbon::create($attr['inicio'])->timestamp,
+        );
+    }
 
     protected function inicioFormat(): Attribute
     {

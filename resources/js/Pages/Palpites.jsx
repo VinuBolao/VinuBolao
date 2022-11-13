@@ -50,12 +50,10 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
     };
 
     const handleSave = (jogo) => {
-        const dateTimeNow = new Date().toISOString().split(".")[0];
-
         const data = {
             jogo_id: jogo.id,
             user_id: user.id,
-            horario: dateTimeNow.replace("T", " "),
+            inicio_jogo: jogo.inicio,
             palpite_casa: palpite.casa,
             palpite_fora: palpite.fora,
         };

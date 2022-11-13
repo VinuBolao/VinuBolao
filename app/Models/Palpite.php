@@ -25,7 +25,7 @@ class Palpite extends Model
             "user_id" => "required|exists:users,id",
             "palpite_casa" => "nullable|integer",
             "palpite_fora" => "nullable|integer",
-            "horario" => "required",
+            "horario" => "sometimes",
         ];
     }
 

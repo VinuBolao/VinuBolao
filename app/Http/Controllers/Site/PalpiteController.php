@@ -7,6 +7,7 @@ use App\Models\Bolao;
 use App\Models\Jogo;
 use App\Models\Palpite;
 use App\Models\Participante;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -52,13 +53,27 @@ class PalpiteController extends Controller
     {
         $request->validate($this->model->rules());
 
-        $this->model->create($request->all());
+        $now = Carbon::now()->timezone('America/Fortaleza')->format('Y-m-d H:i:s');
+
+        $data = $request->except('inicio_jogo');
+        $data['horario'] = $now;
+
+        if ($request->get('inicio_jogo') > $now) {
+            $this->model->create($data);
+        }
     }
 
     public function update(Request $request, $id)
     {
         $request->validate($this->model->rules());
 
-        $this->model->findOrFail($id)->update($request->all());
+        $now = Carbon::now()->timezone('America/Fortaleza')->format('Y-m-d H:i:s');
+
+        $data = $request->except('inicio_jogo');
+        $data['horario'] = $now;
+
+        if ($request->get('inicio_jogo') > $now) {
+            $this->model->findOrFail($id)->update($data);
+        }
     }
 }

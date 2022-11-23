@@ -133,7 +133,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
     };
 
     const isShowCompare = (jogo) => {
-        if (jogo.palpite) {
+        if (user.id === +selected && jogo.palpite) {
             const isPalpiteCasa = jogo.palpite.palpite_casa !== null;
             const isPalpiteFora = jogo.palpite.palpite_fora !== null;
 
@@ -322,7 +322,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                         {isShowEdit(jogo) && (
                                             <button onClick={() => handleSave(jogo)}>{EditIcon}</button>
                                         )}
-                                        {user.root && isShowCompare(jogo) && (
+                                        {isShowCompare(jogo) && (
                                             <button onClick={() => handleCompare(jogo)}>{ListIcon}</button>
                                         )}
                                     </div>
@@ -348,15 +348,15 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                 )}
             </div>
 
-            {user.root && compare.length > 0 && (
+            {compare.length > 0 && (
                 <div className="absolute grid place-content-center inset-0 w-full h-screen bg-[#000000bf] z-[100]">
-                    <div className="w-[90vw] sm:w-[600px] bg-white shadow-sm rounded-lg text-gray-600">
+                    <div className="w-[90vw] sm:w-[600px] bg-white shadow-md rounded-t-xl rounded-b-lg text-gray-600">
                         <h1 className="flex justify-between font-bold text-xl text-center bg-slate-800 text-white p-4 rounded-t-lg">
-                            <span className="w-14"></span>
+                            <span className=""></span>
                             <span className="flex items-center justify-center">
                                 {`${dataCompare?.timecasa?.nome || ""} vs ${dataCompare?.timefora?.nome || ""}`}
                             </span>
-                            <span className="w-14">
+                            <span className="">
                                 <button
                                     className="p-2 bg-gray-100 rounded-[50%] text-slate-800"
                                     onClick={() => handleCompare(null)}
@@ -366,13 +366,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                             </span>
                         </h1>
 
-                        <ul className="h-[80vh] divide-y overflow-y-auto p-4">
-                            <li className="flex justify-between font-bold py-2">
-                                <div className="w-[10%]">#</div>
-                                <div className="w-[60%]">Nome</div>
-                                <div className="w-[30%] text-center">Palpite</div>
-                            </li>
-
+                        <ul className="h-[80vh] divide-y overflow-y-auto py-2 px-4">
                             {compare.map((item, key) => (
                                 <li key={key} className="flex justify-between py-2">
                                     <div className="w-[10%]">{key + 1}</div>

@@ -350,7 +350,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
 
             {user.root && compare.length > 0 && (
                 <div className="absolute grid place-content-center inset-0 w-full h-screen bg-[#000000bf] z-[100]">
-                    <div className="w-[90vw] h-[80vh] bg-white shadow-sm rounded-lg text-gray-600 p-3 sm:p-6 divide-y">
+                    <div className="w-[90vw] sm:w-[600px] h-[80vh] bg-white shadow-sm rounded-lg text-gray-600 p-3 sm:p-6 divide-y overflow-y-auto">
                         <h1 className="flex justify-between font-bold text-xl text-center pb-4">
                             <span className="w-14"></span>
                             <span className="flex items-center justify-center">

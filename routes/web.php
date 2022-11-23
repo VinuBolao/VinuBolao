@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/login')->secure();
+Route::redirect('/bolao', '/bolaos')->secure();
 
 Route::middleware(['auth', 'verified', 'can:admin'])->prefix('admin')->as('admin.')->group(function () {
     Route::resources(['users' => UserController::class]);
@@ -35,6 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resources(['bolaos' => BolaoController::class]);
     Route::resources(['jogos' => JogosController::class]);
     Route::resources(['palpites' => PalpiteController::class]);
+
     Route::get('/classificacao', [ClassificacaoController::class, 'index'])->name('classificacao');
     Route::view('/regulamento', 'site.regulamento')->name('regulamento');
     Route::get('/bolaos/{id}/participantes', [ParticipanteController::class, 'getByBolao'])->name('participantes');

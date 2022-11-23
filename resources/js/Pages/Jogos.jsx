@@ -26,7 +26,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
     const handleRodada = (value) => {
         if (value > 0) {
             setDropdown(false);
-            Inertia.get(`/jogos?rodada=${value}`);
+            Inertia.get(`/jogos?rodada=${value}`, {}, { preserveScroll: true });
         }
     };
 

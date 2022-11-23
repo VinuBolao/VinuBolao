@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import { EditIcon, ArrowDownIcon, ArrowLeftIcon, CircleXisIcon, ArrowRightIcon, CircleCheckIcon } from "../helpers";
+import {
+    EditIcon,
+    ListIcon,
+    CloseIcon,
+    ArrowDownIcon,
+    ArrowLeftIcon,
+    CircleXisIcon,
+    ArrowRightIcon,
+    CircleCheckIcon,
+} from "../helpers";
 
-const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
+const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected }) => {
     const [loading, setLoading] = useState(false);
     const [dropdown, setDropdown] = useState(false);
+    const [dataCompare, setCompare] = useState(false);
     const [palpite, setPalpite] = useState({ jogo: 0, casa: null, fora: null });
 
     const handleChange = (e, jogo) => {
@@ -25,13 +35,22 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
                 uri += `&rodada=${rodada}`;
             }
 
-            Inertia.get(uri);
+            Inertia.get(uri, {}, { preserveScroll: true });
         }
     };
 
     const handleBlur = (e, jogo) => {
         if (jogo.id === palpite.jogo && palpite.casa !== null && palpite.fora !== null) {
             handleSave(jogo);
+        }
+    };
+
+    const handleCompare = (jogo) => {
+        if (jogo) {
+            setCompare(jogo);
+            Inertia.get(`/palpites?compare=${jogo.id}`, {}, { preserveState: true });
+        } else {
+            Inertia.get(`/palpites`);
         }
     };
 
@@ -45,7 +64,7 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
                 uri += `&participante=${selected}`;
             }
 
-            Inertia.get(uri);
+            Inertia.get(uri, {}, { preserveScroll: true });
         }
     };
 
@@ -113,6 +132,19 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
         return false;
     };
 
+    const isShowCompare = (jogo) => {
+        if (jogo.palpite) {
+            const isPalpiteCasa = jogo.palpite.palpite_casa !== null;
+            const isPalpiteFora = jogo.palpite.palpite_fora !== null;
+
+            if (isPalpiteCasa && isPalpiteFora && gameStarted(jogo.inicio_timestamp)) {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
     const checkPalpite = ({ placar_casa, placar_fora, palpite }) => {
         const isPlacarCasa = placar_casa !== null;
         const isPlacarFora = placar_fora !== null;
@@ -139,169 +171,219 @@ const Palpites = ({ user, bolao, jogos, rodada, participantes, selected }) => {
     };
 
     return (
-        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg text-gray-600">
-            {(jogos.length > 0 || rodada > 0) && (
-                <div className="flex flex-wrap-reverse items-center justify-between">
-                    <div>
-                        <div className={dropdown ? "vb-btn-group open" : "vb-btn-group"}>
-                            <button onClick={() => handleRodada(+rodada - 1)} disabled={+rodada === 1}>
-                                {ArrowLeftIcon}
-                            </button>
-                            <button onClick={() => setDropdown(!dropdown)}>
-                                <span className="flex items-center justify-center">
-                                    {rodada}ª Rodada {ArrowDownIcon}
-                                </span>
-                            </button>
-                            <button onClick={() => handleRodada(+rodada + 1)} disabled={bolao.qtd_rodadas === +rodada}>
-                                {ArrowRightIcon}
-                            </button>
+        <>
+            <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg text-gray-600">
+                {(jogos.length > 0 || rodada > 0) && (
+                    <div className="flex flex-wrap-reverse items-center justify-between">
+                        <div>
+                            <div className={dropdown ? "vb-btn-group open" : "vb-btn-group"}>
+                                <button onClick={() => handleRodada(+rodada - 1)} disabled={+rodada === 1}>
+                                    {ArrowLeftIcon}
+                                </button>
+                                <button onClick={() => setDropdown(!dropdown)}>
+                                    <span className="flex items-center justify-center">
+                                        {rodada}ª Rodada {ArrowDownIcon}
+                                    </span>
+                                </button>
+                                <button
+                                    onClick={() => handleRodada(+rodada + 1)}
+                                    disabled={bolao.qtd_rodadas === +rodada}
+                                >
+                                    {ArrowRightIcon}
+                                </button>
+                            </div>
+
+                            {dropdown && (
+                                <div className="vb-dropdown">
+                                    {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
+                                        <button key={key} onClick={() => handleRodada(item + 1)}>
+                                            {item + 1}ª
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
-                        {dropdown && (
-                            <div className="vb-dropdown">
-                                {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
-                                    <button key={key} onClick={() => handleRodada(item + 1)}>
-                                        {item + 1}ª
-                                    </button>
+                        <div className="w-[18.5rem] p-3 pb-0 sm:px-6 sm:pt-6">
+                            <select
+                                name="users"
+                                onChange={handleSelect}
+                                defaultValue={selected}
+                                className="vb-custom-input"
+                            >
+                                {participantes.map((item, key) => (
+                                    <option key={key} value={item.user_id}>
+                                        {item.name}
+                                    </option>
                                 ))}
-                            </div>
-                        )}
+                            </select>
+                        </div>
                     </div>
+                )}
 
-                    <div className="w-[18.5rem] p-3 pb-0 sm:px-6 sm:pt-6">
-                        <select
-                            name="users"
-                            onChange={handleSelect}
-                            defaultValue={selected}
-                            className="vb-custom-input"
-                        >
-                            {participantes.map((item, key) => (
-                                <option key={key} value={item.user_id}>
-                                    {item.name}
-                                </option>
+                {jogos.length > 0 ? (
+                    <div className="p-3 sm:p-6 border-gray-200">
+                        <div className="flex justify-between flex-row border-b-2 p-2 font-bold bg-slate-800 text-white rounded-t-lg">
+                            <div className="px-2 text-center">Status</div>
+                            <div className="px-2 flex text-center truncate">Palpites</div>
+                            <div className="px-2 text-center">Ações</div>
+                        </div>
+
+                        {jogos.map((jogo, key) => (
+                            <div key={key} className={checkPalpite(jogo)}>
+                                <div className="flex text-sm justify-center pt-2 gap-1">
+                                    <strong className="capitalize">
+                                        {loading ? "Salvando..." : jogo.inicio_format}
+                                    </strong>
+                                </div>
+
+                                <div className="flex items-center justify-between border-b-2 pb-2 gap-2">
+                                    <div className="text-center">
+                                        {jogo.palpite &&
+                                        (jogo.palpite.palpite_casa !== null || jogo.palpite.palpite_fora !== null)
+                                            ? CircleCheckIcon
+                                            : CircleXisIcon}
+                                    </div>
+
+                                    <div className="flex items-center justify-center gap-2">
+                                        <div className="flex items-center gap-2">
+                                            <span className="vb-sigla-time">{jogo.timecasa.sigla}</span>
+                                            <span className="w-24 hidden sm:flex justify-end">
+                                                {jogo.timecasa.nome}
+                                            </span>
+
+                                            <img
+                                                alt={jogo.timecasa.nome}
+                                                className="vb-escudo-time"
+                                                src={jogo.timecasa.escudo_url}
+                                            />
+                                        </div>
+
+                                        <div className="flex items-center gap-2">
+                                            {showInput(jogo, "casa") ? (
+                                                <input
+                                                    min="0"
+                                                    type="number"
+                                                    name="palpite_casa"
+                                                    className="vb-input-jogos"
+                                                    onBlur={(e) => handleBlur(e, jogo)}
+                                                    disabled={loading || isExpired(jogo)}
+                                                    onChange={(e) => handleChange(e, jogo)}
+                                                ></input>
+                                            ) : (
+                                                <span className="vb-placar-number">
+                                                    {user.id !== +selected && !gameStarted(jogo.inicio_timestamp)
+                                                        ? jogo.palpite
+                                                            ? "X"
+                                                            : ""
+                                                        : jogo?.palpite?.palpite_casa}
+                                                </span>
+                                            )}
+
+                                            <span>x</span>
+                                            {user.id === +selected && isExpired(jogo) && (
+                                                <strong className="vb-expired">Esgotado!</strong>
+                                            )}
+
+                                            {showInput(jogo, "fora") ? (
+                                                <input
+                                                    min="0"
+                                                    type="number"
+                                                    name="palpite_fora"
+                                                    className="vb-input-jogos"
+                                                    onBlur={(e) => handleBlur(e, jogo)}
+                                                    disabled={loading || isExpired(jogo)}
+                                                    onChange={(e) => handleChange(e, jogo)}
+                                                ></input>
+                                            ) : (
+                                                <span className="vb-placar-number">
+                                                    {user.id !== +selected && !gameStarted(jogo.inicio_timestamp)
+                                                        ? jogo.palpite
+                                                            ? "X"
+                                                            : ""
+                                                        : jogo?.palpite?.palpite_fora}
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        <div className="flex items-center gap-2">
+                                            <img
+                                                alt={jogo.timefora.nome}
+                                                className="vb-escudo-time"
+                                                src={jogo.timefora.escudo_url}
+                                            />
+
+                                            <span className="w-24 hidden sm:flex">{jogo.timefora.nome}</span>
+                                            <span className="vb-sigla-time">{jogo.timefora.sigla}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-6">
+                                        {isShowEdit(jogo) && (
+                                            <button onClick={() => handleSave(jogo)}>{EditIcon}</button>
+                                        )}
+                                        {user.root && isShowCompare(jogo) && (
+                                            <button onClick={() => handleCompare(jogo)}>{ListIcon}</button>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+                        <div className="pt-9">
+                            <h4 className="font-bold text-lg pb-1">Legenda</h4>
+                            <div className="flex items-center gap-1">
+                                <span className="w-4 h-4 bg-green-100 border-[1px] border-gray-400" />
+                                <p>- Placar Exato ({bolao.placar_exato} pontos)</p>
+                            </div>
+
+                            <div className="flex items-center gap-1">
+                                <span className="w-4 h-4 bg-yellow-50 border-[1px] border-gray-400" />
+                                <p>- Placar Vencedor ({bolao.placar_vencedor} pontos)</p>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div id="box-empty">Não existem dados para listar!</div>
+                )}
+            </div>
+
+            {user.root && compare.length > 0 && (
+                <div className="absolute grid place-content-center inset-0 w-full h-screen bg-[#000000bf] z-[100]">
+                    <div className="w-[90vw] h-[80vh] bg-white shadow-sm rounded-lg text-gray-600 p-3 sm:p-6 divide-y">
+                        <h1 className="flex justify-between font-bold text-xl text-center pb-4">
+                            <span className="w-14"></span>
+                            <span className="flex items-center justify-center">
+                                {`${dataCompare?.timecasa?.sigla || ""} vs ${dataCompare?.timefora?.sigla || ""}`}
+                            </span>
+                            <span className="w-14">
+                                <button className="p-2 bg-gray-100 rounded-[50%]" onClick={() => handleCompare(null)}>
+                                    {CloseIcon}
+                                </button>
+                            </span>
+                        </h1>
+
+                        <ul className="pt-4 divide-y">
+                            <li className="flex justify-between font-bold py-2">
+                                <div className="w-[40%]">Nome</div>
+                                <div className="w-[20%] text-center">Palpite</div>
+                                <div className="w-[40%] text-center">Horário</div>
+                            </li>
+
+                            {compare.map((item, key) => (
+                                <li key={key} className="flex justify-between py-2">
+                                    <div className="w-[40%]">{item.user.name}</div>
+                                    <div className="w-[20%] text-center">
+                                        {item.palpite_casa} x {item.palpite_fora}
+                                    </div>
+                                    <div className="w-[40%] text-center">{item.horario}</div>
+                                </li>
                             ))}
-                        </select>
+                        </ul>
                     </div>
                 </div>
             )}
-
-            {jogos.length > 0 ? (
-                <div className="p-3 sm:p-6 border-gray-200">
-                    <div className="flex justify-between flex-row border-b-2 p-2 font-bold bg-slate-800 text-white rounded-t-lg">
-                        <div className="px-2 text-center">Status</div>
-                        <div className="px-2 flex text-center truncate">Palpites</div>
-                        <div className="px-2 text-center">Ações</div>
-                    </div>
-
-                    {jogos.map((jogo, key) => (
-                        <div key={key} className={checkPalpite(jogo)}>
-                            <div className="flex text-sm justify-center pt-2 gap-1">
-                                <strong className="capitalize">{loading ? "Salvando..." : jogo.inicio_format}</strong>
-                            </div>
-
-                            <div className="flex items-center justify-between border-b-2 pb-2 gap-2">
-                                <div className="text-center">
-                                    {jogo.palpite &&
-                                    (jogo.palpite.palpite_casa !== null || jogo.palpite.palpite_fora !== null)
-                                        ? CircleCheckIcon
-                                        : CircleXisIcon}
-                                </div>
-
-                                <div className="flex items-center justify-center gap-2">
-                                    <div className="flex items-center gap-2">
-                                        <span className="vb-sigla-time">{jogo.timecasa.sigla}</span>
-                                        <span className="w-24 hidden sm:flex justify-end">{jogo.timecasa.nome}</span>
-
-                                        <img
-                                            alt={jogo.timecasa.nome}
-                                            className="vb-escudo-time"
-                                            src={jogo.timecasa.escudo_url}
-                                        />
-                                    </div>
-
-                                    <div className="flex items-center gap-2">
-                                        {showInput(jogo, "casa") ? (
-                                            <input
-                                                min="0"
-                                                type="number"
-                                                name="palpite_casa"
-                                                className="vb-input-jogos"
-                                                onBlur={(e) => handleBlur(e, jogo)}
-                                                disabled={loading || isExpired(jogo)}
-                                                onChange={(e) => handleChange(e, jogo)}
-                                            ></input>
-                                        ) : (
-                                            <span className="vb-placar-number">
-                                                {user.id !== +selected && !gameStarted(jogo.inicio_timestamp)
-                                                    ? jogo.palpite
-                                                        ? "X"
-                                                        : ""
-                                                    : jogo?.palpite?.palpite_casa}
-                                            </span>
-                                        )}
-
-                                        <span>x</span>
-                                        {user.id === +selected && isExpired(jogo) && (
-                                            <strong className="vb-expired">Esgotado!</strong>
-                                        )}
-
-                                        {showInput(jogo, "fora") ? (
-                                            <input
-                                                min="0"
-                                                type="number"
-                                                name="palpite_fora"
-                                                className="vb-input-jogos"
-                                                onBlur={(e) => handleBlur(e, jogo)}
-                                                disabled={loading || isExpired(jogo)}
-                                                onChange={(e) => handleChange(e, jogo)}
-                                            ></input>
-                                        ) : (
-                                            <span className="vb-placar-number">
-                                                {user.id !== +selected && !gameStarted(jogo.inicio_timestamp)
-                                                    ? jogo.palpite
-                                                        ? "X"
-                                                        : ""
-                                                    : jogo?.palpite?.palpite_fora}
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    <div className="flex items-center gap-2">
-                                        <img
-                                            alt={jogo.timefora.nome}
-                                            className="vb-escudo-time"
-                                            src={jogo.timefora.escudo_url}
-                                        />
-
-                                        <span className="w-24 hidden sm:flex">{jogo.timefora.nome}</span>
-                                        <span className="vb-sigla-time">{jogo.timefora.sigla}</span>
-                                    </div>
-                                </div>
-
-                                <div className="w-6">
-                                    {isShowEdit(jogo) && <button onClick={() => handleSave(jogo)}>{EditIcon}</button>}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-
-                    <div className="pt-9">
-                        <h4 className="font-bold text-lg pb-1">Legenda</h4>
-                        <div className="flex items-center gap-1">
-                            <span className="w-4 h-4 bg-green-100 border-[1px] border-gray-400" />
-                            <p>- Placar Exato ({bolao.placar_exato} pontos)</p>
-                        </div>
-
-                        <div className="flex items-center gap-1">
-                            <span className="w-4 h-4 bg-yellow-50 border-[1px] border-gray-400" />
-                            <p>- Placar Vencedor ({bolao.placar_vencedor} pontos)</p>
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                <div id="box-empty">Não existem dados para listar!</div>
-            )}
-        </div>
+        </>
     );
 };
 

@@ -29,6 +29,12 @@ class PalpiteController extends Controller
         if ($userBolao) {
             $participantes = $participante->getByBolao($userBolao->bolao_id);
 
+            if ($request->has('compare')) {
+                $compare = $this->model->with('user')
+                    ->where('jogo_id', $request->get('compare'))
+                    ->get();
+            }
+
             $jogos = Jogo::with(['timecasa', 'timefora', 'palpite' => function($query) use ($userSelected) {
                     $query->where('user_id', $userSelected);
                 }])
@@ -43,6 +49,7 @@ class PalpiteController extends Controller
             'subtitle' => 'Lista de jogos para você preencher os seus palpites, lembre-se de preencher seu palpite antes do inicio de cada jogo.',
             'jogos' => $jogos ?? [],
             'bolao' => $userBolao ?? false,
+            'compare' => $compare ?? [],
             'participantes' => $participantes ?? [],
             'rodada' => $request->get('rodada') ?? $userBolao?->rodada,
             'selected' => $userSelected,

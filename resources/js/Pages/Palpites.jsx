@@ -350,33 +350,36 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
 
             {user.root && compare.length > 0 && (
                 <div className="absolute grid place-content-center inset-0 w-full h-screen bg-[#000000bf] z-[100]">
-                    <div className="w-[90vw] sm:w-[600px] h-[80vh] bg-white shadow-sm rounded-lg text-gray-600 p-3 sm:p-6 divide-y overflow-y-auto">
-                        <h1 className="flex justify-between font-bold text-xl text-center pb-4">
+                    <div className="w-[90vw] sm:w-[600px] bg-white shadow-sm rounded-lg text-gray-600">
+                        <h1 className="flex justify-between font-bold text-xl text-center bg-slate-800 text-white p-4 rounded-t-lg">
                             <span className="w-14"></span>
                             <span className="flex items-center justify-center">
-                                {`${dataCompare?.timecasa?.sigla || ""} vs ${dataCompare?.timefora?.sigla || ""}`}
+                                {`${dataCompare?.timecasa?.nome || ""} vs ${dataCompare?.timefora?.nome || ""}`}
                             </span>
                             <span className="w-14">
-                                <button className="p-2 bg-gray-100 rounded-[50%]" onClick={() => handleCompare(null)}>
+                                <button
+                                    className="p-2 bg-gray-100 rounded-[50%] text-slate-800"
+                                    onClick={() => handleCompare(null)}
+                                >
                                     {CloseIcon}
                                 </button>
                             </span>
                         </h1>
 
-                        <ul className="pt-4 divide-y">
+                        <ul className="h-[80vh] divide-y overflow-y-auto p-4">
                             <li className="flex justify-between font-bold py-2">
-                                <div className="w-[40%]">Nome</div>
-                                <div className="w-[20%] text-center">Palpite</div>
-                                <div className="w-[40%] text-center">Horário</div>
+                                <div className="w-[10%]">#</div>
+                                <div className="w-[60%]">Nome</div>
+                                <div className="w-[30%] text-center">Palpite</div>
                             </li>
 
                             {compare.map((item, key) => (
                                 <li key={key} className="flex justify-between py-2">
-                                    <div className="w-[40%]">{item.user.name}</div>
-                                    <div className="w-[20%] text-center">
+                                    <div className="w-[10%]">{key + 1}</div>
+                                    <div className="w-[60%]">{item.user.name}</div>
+                                    <div className="w-[30%] text-center">
                                         {item.palpite_casa} x {item.palpite_fora}
                                     </div>
-                                    <div className="w-[40%] text-center">{item.horario}</div>
                                 </li>
                             ))}
                         </ul>

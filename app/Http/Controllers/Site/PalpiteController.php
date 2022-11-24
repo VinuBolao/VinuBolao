@@ -66,7 +66,11 @@ class PalpiteController extends Controller
         $data['horario'] = $now;
 
         if ($request->get('inicio_jogo') > $now) {
-            $this->model->create($data);
+            $count = $this->model->where('jogo_id', $data['jogo_id'])->where('user_id', $data['user_id'])->count();
+
+            if ($count === 0) {
+                $this->model->create($data);
+            }
         }
     }
 

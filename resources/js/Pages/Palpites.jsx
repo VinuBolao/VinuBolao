@@ -124,7 +124,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
             const isPalpiteCasa = jogo.palpite.palpite_casa !== null;
             const isPalpiteFora = jogo.palpite.palpite_fora !== null;
 
-            if (isPalpiteCasa && isPalpiteFora && !gameStarted(jogo.inicio_timestamp)) {
+            if ((isPalpiteCasa || isPalpiteFora) && !gameStarted(jogo.inicio_timestamp)) {
                 return true;
             }
         }

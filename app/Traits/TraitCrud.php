@@ -50,6 +50,7 @@ trait TraitCrud
 
         if ($this->model->getTable() === 'users') {
             $data['master'] = $request->has('master');
+            $data['manager'] = $request->has('manager');
         }
 
         if ($request->has('email')) {

@@ -90,6 +90,18 @@ span[aria-current="page"] > span {
     @apply absolute w-[90px] ml-[3px] text-center font-bold text-red-700 bg-white rounded z-50;
 }
 
+.vb-label-permission {
+    @apply md:px-[0.5rem] rounded-xl md:border-2;
+}
+
+.vb-label-permission.admin {
+    @apply md:bg-slate-800 md:text-white md:border-slate-800;
+}
+
+.vb-label-permission.manager {
+    @apply md:bg-blue-500 md:text-white md:border-blue-500;
+}
+
 @media only screen and (max-width: 400px) {
     .vb-escudo-time {
         width: 32px;

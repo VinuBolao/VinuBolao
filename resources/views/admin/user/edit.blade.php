@@ -30,6 +30,21 @@
                             @enderror
                         </label>
 
+                        <label class="block pb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="block text-sm font-medium text-slate-700">
+                                    Permissão para gerenciar:
+                                </span>
+                                <input type="checkbox" name="manager" class="rounded-sm cursor-pointer" {{ $user->manager ? 'checked' : '' }} />
+                            </div>
+
+                            @error('manager')
+                            <p class="mt-2 peer-invalid:visible text-red-500 text-sm">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </label>
+
                         @foreach($fields as $key => $field)
                         <label class="block pb-4">
                             <span class="{{ $field['required'] ? "after:content-['*'] after:ml-0.5 after:text-red-500 " : "" }}block text-sm font-medium text-slate-700">

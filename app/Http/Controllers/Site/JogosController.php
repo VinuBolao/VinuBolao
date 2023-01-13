@@ -41,7 +41,7 @@ class JogosController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (Auth::user()->master) {
+        if (Auth::user()->master || Auth::user()->manager) {
             $jogo = Jogo::findOrFail($id);
             $jogo->placar_casa = $request->placar_casa;
             $jogo->placar_fora = $request->placar_fora;

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('master')->default(0);
-            $table->boolean('root')->default(0);
+            $table->boolean('manager')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -17,6 +17,7 @@ class User extends Authenticatable
         'name',
         'email',
         'master',
+        'manager',
         'username',
         'password',
     ];
@@ -27,12 +28,12 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'root' => 'boolean',
         'master' => 'boolean',
+        'manager' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
 
-    public $order = "master DESC, name ASC, email ASC";
+    public $order = "master DESC, manager DESC, name ASC, email ASC";
 
     protected function password(): Attribute
     {
@@ -48,12 +49,20 @@ class User extends Authenticatable
         );
     }
 
+    protected function manager(): Attribute
+    {
+        return Attribute::make(
+            set: fn ($value) => ($value === 'on') ? true : $value,
+        );
+    }
+
     public function rules()
     {
         return [
             "name" => "required|min:3|max:50",
             "email" => "required|email|unique:users",
             "master" => "required|sometimes",
+            "manager" => "required|sometimes",
             "username" => "required|min:3|max:50|unique:users",
             "password" => "sometimes|required|min:6|confirmed",
         ];

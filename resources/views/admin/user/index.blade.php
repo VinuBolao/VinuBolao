@@ -36,8 +36,8 @@
                             <div class="p-2 w-8">{{ $key + 1 }}</div>
                             <div class="p-2 md:w-20 md:text-center">
                                 <span class="font-bold md:hidden">Permissão:</span>
-                                <span class="md:px-[0.5rem] rounded-xl {{ $user->master ? 'md:bg-slate-800 md:text-white' : 'md:border-2' }}">
-                                    {{ $user->master ? 'admin' : 'normal' }}
+                                <span class="vb-label-permission {{ $user->master ? 'admin' : ($user->manager ? 'manager' : '') }}">
+                                    {{ $user->master ? 'admin' : ($user->manager ? 'editor' : 'normal') }}
                                 </span>
                             </div>
                             <div class="p-2 md:w-40 flex-1 truncate">

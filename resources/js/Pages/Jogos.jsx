@@ -112,7 +112,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                     </div>
 
                                     <div className="flex items-center gap-2">
-                                        {user.master && jogo.placar_casa === null ? (
+                                        {(user.master || user.manager) && jogo.placar_casa === null ? (
                                             <input
                                                 min="0"
                                                 type="number"
@@ -128,7 +128,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
 
                                         <span>x</span>
 
-                                        {user.master && jogo.placar_fora === null ? (
+                                        {(user.master || user.manager) && jogo.placar_fora === null ? (
                                             <input
                                                 min="0"
                                                 type="number"
@@ -156,7 +156,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                 </div>
 
                                 <div className="w-6">
-                                    {user.master && jogo.placar_fora !== null && (
+                                    {(user.master || user.manager) && jogo.placar_fora !== null && (
                                         <button onClick={() => handleSave(jogo)}>{EditIcon}</button>
                                     )}
                                 </div>

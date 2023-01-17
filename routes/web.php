@@ -42,6 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/bolaos/{id}/participantes', [ParticipanteController::class, 'getByBolao'])->name('participantes');
     Route::post('/participantes', [ParticipanteController::class, 'store'])->name('participantes.store');
     Route::delete('/participantes/{id}', [ParticipanteController::class, 'destroy'])->name('participantes.destroy');
+
+    Route::get('/buscarJogos', [JogosController::class, 'search']);
 });
 
 require __DIR__.'/auth.php';

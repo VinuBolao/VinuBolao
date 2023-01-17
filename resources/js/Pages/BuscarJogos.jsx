@@ -24,7 +24,7 @@ const Jogos = ({ bolao }) => {
         const data = jogos.map(jogo => {
             return {
                 rodada: rodada,
-                bolao_id: bolao.id,
+                bolao_id: bolao.bolao_id,
                 inicio: `${jogo.horario}:00`,
                 timecasa_id: jogo.mandante.id,
                 timefora_id: jogo.visitante.id,

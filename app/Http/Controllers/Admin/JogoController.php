@@ -8,6 +8,7 @@ use App\Models\Campeonato;
 use App\Models\Jogo;
 use App\Models\Time;
 use App\Traits\TraitCrud;
+use Illuminate\Http\Request;
 
 class JogoController extends Controller
 {
@@ -33,6 +34,23 @@ class JogoController extends Controller
     public function __construct(Jogo $model)
     {
         $this->model = $model;
+    }
+
+    public function index(Request $request)
+    {
+        $order = property_exists($this->model, 'order') ? $this->model->order : "id";
+
+        $jogos = $this->model->with($this->relationships);
+
+        $campeonatos = Campeonato::orderBy('nome')->get();
+
+        foreach ($request->all() as $key => $item) {
+            if ($key != 'page' && $item) $jogos = $jogos->where($key, $request->get($key));
+        }
+
+        $jogos = $jogos->orderByRaw($order)->paginate(10)->withQueryString();;
+
+        return view("{$this->prefixView}.index", compact('jogos', 'campeonatos'));
     }
 
     public function create()

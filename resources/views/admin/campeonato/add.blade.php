@@ -43,7 +43,7 @@
                         @endforeach
 
                         <div class="flex justify-end gap-4 mt-4">
-                            <a class="btn-secondary" href="{{ route('admin.campeonatos.index') }}">Cancelar</a>
+                            <a class="btn-secondary" href="{{ url()->previous() }}">Cancelar</a>
                             <button type="submit" class="btn-primary">Salvar</button>
                         </div>
                     </form>

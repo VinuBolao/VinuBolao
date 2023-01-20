@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/participantes', [ParticipanteController::class, 'store'])->name('participantes.store');
     Route::delete('/participantes/{id}', [ParticipanteController::class, 'destroy'])->name('participantes.destroy');
 
-    Route::get('/buscarJogos', [JogosController::class, 'search']);
+    Route::get('/buscarJogos', [JogosController::class, 'search'])->name('buscarJogos');
 });
 
 require __DIR__.'/auth.php';

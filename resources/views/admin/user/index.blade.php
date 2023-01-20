@@ -15,6 +15,22 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-3 sm:p-6 bg-white border-b border-gray-200">
+                    <form method="GET" action="{{ route('admin.users.index') }}" class="flex flex-col sm:flex-row gap-4 items-center">
+                        <input
+                            min="0"
+                            name="name"
+                            class="vb-custom-input mt-0"
+                            value="{{ request('name') }}"
+                            placeholder="Pesquise..."
+                        />
+
+                        <button type="submit" class="btn-primary self-end">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 @if(count($users) > 0)
 

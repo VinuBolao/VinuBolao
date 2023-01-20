@@ -5,16 +5,62 @@
                 {{ __('Lista de Jogos') }}
             </h2>
 
-            <a class="btn-primary rounded-3xl p-[0.75rem]" href="{{ route('admin.jogos.create') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-            </a>
+            <div class="flex gap-2">
+                @if(Auth::user()->master)
+                <a class="btn-primary rounded-3xl p-[0.75rem]" href="{{ route('buscarJogos') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </a>
+                @endif
+
+                <a class="btn-primary rounded-3xl p-[0.75rem]" href="{{ route('admin.jogos.create') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                </a>
+            </div>
         </div>
     </x-slot>
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-3 sm:p-6 bg-white border-b border-gray-200">
+                    <form method="GET" action="{{ route('admin.jogos.index') }}" class="flex flex-col sm:flex-row gap-4 items-center">
+                        <label class="w-full">
+                            <span class="block text-sm font-medium text-slate-700">
+                                Rodada:
+                            </span>
+
+                            <input
+                                min="0"
+                                name="rodada"
+                                type="number"
+                                class="vb-custom-input mt-0"
+                                value="{{ request('rodada') }}"
+                                placeholder="Digite uma rodada..."
+                            />
+                        </label>
+
+                        <label class="w-full">
+                            <span class="block text-sm font-medium text-slate-700">
+                                Campeonato:
+                            </span>
+
+                            <select name="campeonato_id" class="vb-custom-input mt-0">
+                                <option value="">Selecione um campeonato...</option>
+                                @foreach($campeonatos as $option)
+                                    <option value="{{ $option->id }}" {{ request('campeonato_id') == $option->id ? "selected" : "" }}>{{ $option->nome }}</option>
+                                @endforeach
+                            </select>
+                        </label>
+
+                        <button type="submit" class="btn-primary self-end">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 @if(count($jogos) > 0)
 

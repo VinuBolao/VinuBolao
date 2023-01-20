@@ -53,7 +53,7 @@
 
                     <div class="grid gap-4 mt-4">
                         <button form="form-delete" class="btn-primary bg-red-700 hover:bg-red-800">Excluir</button>
-                        <a class="btn-secondary col-end-6" href="{{ route('admin.jogos.index') }}">Cancelar</a>
+                        <a class="btn-secondary col-end-6" href="{{ url()->previous() }}">Cancelar</a>
                         <button form="form-edit" type="submit" class="btn-primary col-end-7">Salvar</button>
                     </div>
                 </div>

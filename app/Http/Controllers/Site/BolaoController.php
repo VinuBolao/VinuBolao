@@ -31,7 +31,7 @@ class BolaoController extends Controller
 
     public function index()
     {
-        $bolaos = $this->model->listByUser(Auth::id())->orderByRaw($this->model->order)->paginate(10);
+        $bolaos = $this->model->listByUser(Auth::id())->orderByRaw($this->model->order)->paginate(10)->withQueryString();;
         return view("site.bolao.index", compact('bolaos'));
     }
 

@@ -7,13 +7,19 @@ use Illuminate\Support\Facades\Auth;
 
 trait TraitCrud
 {
-    public function index()
+    public function index(Request $request)
     {
         $table = $this->model->getTable();
 
         $order = property_exists($this->model, 'order') ? $this->model->order : "id";
 
-        ${$table} = $this->model->with($this->relationships)->orderByRaw($order)->paginate(10);
+        ${$table} = $this->model->with($this->relationships);
+
+        foreach ($request->all() as $key => $item) {
+            if ($key != 'page' && $item) ${$table} = ${$table}->where($key, 'like', "%{$request->get($key)}%");
+        }
+
+        ${$table} = ${$table}->orderByRaw($order)->paginate(10)->withQueryString();
 
         return view("{$this->prefixView}.index", compact($table));
     }

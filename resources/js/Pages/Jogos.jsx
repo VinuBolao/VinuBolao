@@ -50,10 +50,20 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
         });
     };
 
+    const handleUpdateRodada = () => {
+        Inertia.visit(`/updateRodada/${bolao.campeonato_id}`, {
+            method: "PUT",
+            data: { rodada },
+            preserveScroll: true,
+            onStart: () => setLoading(true),
+            onFinish: () => setLoading(false),
+        });
+    };
+
     return (
         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg text-gray-600">
             {(jogos.length > 0 || rodada > 0) && (
-                <>
+                <div className="flex items-center justify-between">
                     <div className={dropdown ? "vb-btn-group open" : "vb-btn-group"}>
                         <button onClick={() => handleRodada(+rodada - 1)} disabled={+rodada === 1}>
                             {ArrowLeftIcon}
@@ -77,7 +87,13 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                             ))}
                         </div>
                     )}
-                </>
+
+                    {(user.master || user.manager) && rodada != bolao.rodada && (
+                        <button className="btn-primary m-6 mb-0" onClick={handleUpdateRodada}>
+                            Rodada atual?
+                        </button>
+                    )}
+                </div>
             )}
 
             {jogos.length > 0 ? (

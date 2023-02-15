@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Campeonato;
 use App\Traits\TraitCrud;
@@ -33,5 +34,12 @@ class CampeonatoController extends Controller
     public function __construct(Campeonato $model)
     {
         $this->model = $model;
+    }
+
+    public function updateRodada(Request $request, $id)
+    {
+        $this->model->where("id", $id)->update(["rodada" => $request->get('rodada')]);
+
+        return redirect()->route("jogos.index");
     }
 }

@@ -44,6 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/participantes/{id}', [ParticipanteController::class, 'destroy'])->name('participantes.destroy');
 
     Route::get('/buscarJogos', [JogosController::class, 'search'])->name('buscarJogos');
+    Route::put('/updateRodada/{id}', [CampeonatoController::class, 'updateRodada'])->name('updateRodada');
 });
 
 require __DIR__.'/auth.php';

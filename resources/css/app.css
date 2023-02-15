@@ -33,7 +33,7 @@
     }
 
     .vb-btn-group {
-        @apply flex p-3 sm:p-6 pb-0 sm:pb-0 border-gray-200;
+        @apply flex p-3 sm:p-6 pb-0 sm:pb-0 pr-0 sm:pr-0 border-gray-200;
     }
 
     .vb-btn-group > button {

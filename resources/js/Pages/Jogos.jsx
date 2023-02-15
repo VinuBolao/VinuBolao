@@ -63,35 +63,39 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
     return (
         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg text-gray-600">
             {(jogos.length > 0 || rodada > 0) && (
-                <div className="flex items-center justify-between">
-                    <div className={dropdown ? "vb-btn-group open" : "vb-btn-group"}>
-                        <button onClick={() => handleRodada(+rodada - 1)} disabled={+rodada === 1}>
-                            {ArrowLeftIcon}
-                        </button>
-                        <button onClick={() => setDropdown(!dropdown)}>
-                            <span className="flex items-center justify-center">
-                                {rodada}ª Rodada {ArrowDownIcon}
-                            </span>
-                        </button>
-                        <button onClick={() => handleRodada(+rodada + 1)} disabled={bolao.qtd_rodadas === +rodada}>
-                            {ArrowRightIcon}
-                        </button>
+                <div className="flex flex-wrap justify-between">
+                    <div>
+                        <div className={dropdown ? "vb-btn-group open" : "vb-btn-group"}>
+                            <button onClick={() => handleRodada(+rodada - 1)} disabled={+rodada === 1}>
+                                {ArrowLeftIcon}
+                            </button>
+                            <button onClick={() => setDropdown(!dropdown)}>
+                                <span className="flex items-center justify-center">
+                                    {rodada}ª Rodada {ArrowDownIcon}
+                                </span>
+                            </button>
+                            <button onClick={() => handleRodada(+rodada + 1)} disabled={bolao.qtd_rodadas === +rodada}>
+                                {ArrowRightIcon}
+                            </button>
+                        </div>
+
+                        {dropdown && (
+                            <div className="vb-dropdown">
+                                {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
+                                    <button key={key} onClick={() => handleRodada(item + 1)}>
+                                        {item + 1}ª
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
-                    {dropdown && (
-                        <div className="vb-dropdown">
-                            {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
-                                <button key={key} onClick={() => handleRodada(item + 1)}>
-                                    {item + 1}ª
-                                </button>
-                            ))}
-                        </div>
-                    )}
-
                     {(user.master || user.manager) && rodada != bolao.rodada && (
-                        <button className="btn-primary m-6 mb-0" onClick={handleUpdateRodada}>
-                            Rodada atual?
-                        </button>
+                        <div className="flex p-3 sm:p-6 pb-0 sm:pb-0">
+                            <button className="btn-primary" onClick={handleUpdateRodada}>
+                                Atual?
+                            </button>
+                        </div>
                     )}
                 </div>
             )}

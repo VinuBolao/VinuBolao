@@ -18,7 +18,7 @@ class ClassificacaoController extends Controller
 
         return Inertia::render('Classificacao', [
             'title' => 'Classificação',
-            'subtitle' => 'Veja sua posição em relação aos outros participantes no bolão que você participa!',
+            'subtitle' => "Veja sua posição em relação aos outros participantes no bolão <strong>". ($userBolao->nome ?? '') ."</strong>!",
             'participantes' => $participantes,
             'bolao' => $userBolao ?? false,
             'rodada' => $request->get('rodada'),

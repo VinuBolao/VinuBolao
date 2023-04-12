@@ -47,7 +47,7 @@
                         </h2>
 
                         <p class="pt-2 text-gray-500">
-                            {{ __($page['props']['subtitle'] ?? '') }}
+                            {!! __($page['props']['subtitle'] ?? '') !!}
                         </p>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ class JogosController extends Controller
 
         return Inertia::render('Jogos', [
             'title' => 'Jogos',
-            'subtitle' => 'Lista de jogos filtrados por campeonato e rodada, preencha os resultados.',
+            'subtitle' => "Lista de jogos do bolão <strong>". ($userBolao->nome ?? '') ."</strong> filtrados por campeonato e rodada, preencha os resultados.",
             'jogos' => $jogos ?? [],
             'bolao' => $userBolao ?? false,
             'rodada' => $request->get('rodada') ?? $userBolao?->rodada,

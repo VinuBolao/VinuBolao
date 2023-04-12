@@ -46,7 +46,7 @@ class PalpiteController extends Controller
 
         return Inertia::render('Palpites', [
             'title' => 'Palpites',
-            'subtitle' => 'Lista de jogos para você preencher os seus palpites, lembre-se de preencher seu palpite antes do inicio de cada jogo.',
+            'subtitle' => "Lista de jogos do bolão <strong>". ($userBolao->nome ?? '') ."</strong> para você preencher os seus palpites, lembre-se de preencher seu palpite antes do inicio de cada jogo.",
             'jogos' => $jogos ?? [],
             'bolao' => $userBolao ?? false,
             'compare' => $compare ?? [],

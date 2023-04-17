@@ -75,6 +75,9 @@ class Bolao extends Model
 
     public function listByUser($id)
     {
-        return Participante::join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')->where('participantes.user_id', $id);
+        return Participante::select('bolaos.*', 'users.name as user_name')
+            ->join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
+            ->join('users', 'users.id', '=', 'bolaos.user_id')
+            ->where('participantes.user_id', $id);
     }
 }

@@ -102,6 +102,14 @@ span[aria-current="page"] > span {
     @apply md:bg-blue-500 md:text-white md:border-blue-500;
 }
 
+.tooltip {
+    @apply absolute invisible inline-block px-2 py-1 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700 mt-[-2px];
+}
+
+.has-tooltip:hover .tooltip {
+    @apply md:visible md:z-50;
+}
+
 @media only screen and (max-width: 400px) {
     .vb-escudo-time {
         width: 32px;

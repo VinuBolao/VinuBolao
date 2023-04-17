@@ -8,6 +8,7 @@ use App\Models\Campeonato;
 use App\Models\Participante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class BolaoController extends Controller
 {
@@ -31,8 +32,13 @@ class BolaoController extends Controller
 
     public function index()
     {
-        $bolaos = $this->model->listByUser(Auth::id())->orderByRaw($this->model->order)->paginate(10)->withQueryString();;
-        return view("site.bolao.index", compact('bolaos'));
+        $bolaos = $this->model->listByUser(Auth::id())->orderByRaw($this->model->order)->paginate(50)->withQueryString();
+
+        return Inertia::render('Bolao', [
+            'title' => 'Lista de Bolões',
+            'subtitle' => "Veja a lista de bolões que você participa!",
+            'bolaos' => $bolaos,
+        ]);
     }
 
     public function create()

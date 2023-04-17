@@ -41,14 +41,25 @@
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col">
-                        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                            {{ __($page['props']['title'] ?? '') }}
-                        </h2>
+                    <div class="flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                                {{ __($page['props']['title'] ?? '') }}
+                            </h2>
 
-                        <p class="pt-2 text-gray-500">
-                            {!! __($page['props']['subtitle'] ?? '') !!}
-                        </p>
+                            <p class="pt-2 text-gray-500">
+                                {!! __($page['props']['subtitle'] ?? '') !!}
+                            </p>
+                        </div>
+
+                        @if(Auth::user()->master)
+                            <a class="btn-primary rounded-3xl p-[0.75rem] has-tooltip" href="{{ route('bolaos.create') }}">
+                                <span class="tooltip ml-[-91px]">Adicionar</span>
+                                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </header>

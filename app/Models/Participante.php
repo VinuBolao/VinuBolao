@@ -55,7 +55,7 @@ class Participante extends Model
     {
         $bolao = Bolao::findOrFail($bolaoId);
 
-        $sql = 'u.name,
+        $sql = 'u.id, u.name,
             SUM(CASE
                 WHEN (j.placar_casa = p.palpite_casa) AND (j.placar_fora = p.palpite_fora) THEN 1
                 WHEN (j.placar_casa - j.placar_fora = 0) AND (p.palpite_casa - p.palpite_fora = 0) THEN 0
@@ -106,6 +106,7 @@ class Participante extends Model
             ->orderBy('placarexato', 'DESC')
             ->orderBy('placarvencedor', 'DESC')
             ->orderBy('name', 'ASC')
+            ->groupBy('u.id')
             ->groupBy('u.name')
             ->get();
     }

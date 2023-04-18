@@ -100,4 +100,25 @@ class BolaoController extends Controller
         $this->model->destroy($id);
         return redirect()->route("bolaos.index");
     }
+
+    public function finish(Request $request, Participante $participante)
+    {
+        if ($request->has('id')) {
+            $id = $request->get('id');
+
+            $data = $participante->getRanking($id);
+
+            foreach ($data as $item) {
+                $participante->where(['bolao_id' => $id, 'user_id' => $item->id])->update([
+                    'pontosganhos' => $item->pontosganhos,
+                    'placarexato' => $item->placarexato,
+                    'placarvencedor' => $item->placarvencedor
+                ]);
+            }
+
+            $this->model->where(['id' => $id])->update(['ativo' => 0]);
+        }
+
+        return redirect()->route("bolaos.index");
+    }
 }

@@ -26,6 +26,16 @@ if (document.getElementById("app")) {
                                     secondary: "#16a34a",
                                 },
                             },
+                            error: {
+                                style: {
+                                    color: "#fff",
+                                    background: "#E02424",
+                                },
+                                iconTheme: {
+                                    primary: "#fff",
+                                    secondary: "#E02424",
+                                },
+                            },
                         }}
                     />
                 </>

@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/buscarJogos', [JogosController::class, 'search'])->name('buscarJogos');
     Route::put('/updateRodada/{id}', [CampeonatoController::class, 'updateRodada'])->name('updateRodada');
+    Route::post('/finishBolao', [BolaoController::class, 'finish'])->name('finishBolao');
 });
 
 require __DIR__.'/auth.php';

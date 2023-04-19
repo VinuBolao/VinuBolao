@@ -7,6 +7,7 @@ module.exports = {
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
         "./resources/js/Pages/*.{html,js,jsx}",
+        "./resources/js/Components/*.{html,js,jsx}",
     ],
     theme: {
         extend: {

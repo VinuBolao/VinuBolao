@@ -97,7 +97,14 @@ const Bolao = ({ bolaos, user }) => {
                         </div>
                     ))}
 
-                    {modal && <ModalDelete onConfirm={handleFinish} onClose={() => setModal(false)} />}
+                    {modal && (
+                        <ModalDelete
+                            btnLabel="Finalizar"
+                            onConfirm={handleFinish}
+                            onClose={() => setModal(false)}
+                            message="Tem certeza que deseja finalizar este bolão?"
+                        />
+                    )}
                 </div>
             ) : (
                 <div id="box-empty">Não existem dados para listar!</div>

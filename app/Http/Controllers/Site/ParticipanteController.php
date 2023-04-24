@@ -3,29 +3,35 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bolao;
 use App\Models\Participante;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class ParticipanteController extends Controller
 {
     protected $model;
-
-    protected $relationships = ['user'];
 
     public function __construct(Participante $model)
     {
         $this->model = $model;
     }
 
-    public function getByBolao(User $user, $id)
+    public function getByBolao(Bolao $bolao, User $user, $id)
     {
-        $bolaoId = $id;
         $users = $user->orderBy('name')->get();
-        $participantes = $this->model->where('bolao_id', $id)->get();
+        $userBolao = $bolao->getByUser(Auth::id());
+        $participantes = $this->model->with('user')->where('bolao_id', $id)->get();
 
-        return view("site.bolao.participants", compact('users', 'participantes', 'bolaoId'));
+        return Inertia::render('Participantes', [
+            'title' => 'Teste',
+            'subtitle' => "Lista de teste!",
+            'users' => $users,
+            'bolao' => $userBolao ?? false,
+            'participantes' => $participantes
+        ]);
     }
 
     public function store(Request $request)

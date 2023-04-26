@@ -27,7 +27,7 @@ class ParticipanteController extends Controller
 
         return Inertia::render('Participantes', [
             'title' => 'Participantes',
-            'subtitle' => "Gerencie a lista de participantes bolão <strong>". ($userBolao->nome ?? '') ."</strong>!",
+            'subtitle' => "Gerencie a lista de participantes do <strong>". ($userBolao->nome ?? 'Bolão') ."</strong>!",
             'users' => $users,
             'bolao' => $userBolao ?? false,
             'participantes' => $participantes

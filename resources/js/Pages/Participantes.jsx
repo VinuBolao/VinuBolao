@@ -61,7 +61,7 @@ const Participantes = ({ bolao, user, users, participantes }) => {
                 <div className="p-3 sm:p-6 border-b border-gray-200">
                     <div className="hidden md:flex md:flex-row border-b-2 pb-2 font-bold">
                         <div className="flex items-start justify-end order-last mr-4">Ações</div>
-                        <div className="px-2">N</div>
+                        <div className="px-2">#</div>
                         <div className="px-2 flex-1 truncate">Nome</div>
                         <div className="px-2 flex-1 truncate">Criação</div>
                     </div>

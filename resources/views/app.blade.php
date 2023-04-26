@@ -47,12 +47,14 @@
                                 {{ __($page['props']['title'] ?? '') }}
                             </h2>
 
+                            @if(isset($page['props']['subtitle']))
                             <p class="pt-2 text-gray-500">
                                 {!! __($page['props']['subtitle'] ?? '') !!}
                             </p>
+                            @endif
                         </div>
 
-                        @if(Auth::user()->master)
+                        @if(request()->routeIs('bolaos.index') && Auth::user()->master)
                             <a class="btn-primary rounded-3xl p-[0.75rem] has-tooltip" href="{{ route('bolaos.create') }}">
                                 <span class="tooltip ml-[-91px]">Adicionar</span>
                                 <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

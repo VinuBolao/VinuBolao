@@ -26,8 +26,8 @@ class ParticipanteController extends Controller
         $participantes = $this->model->with('user')->where('bolao_id', $id)->get();
 
         return Inertia::render('Participantes', [
-            'title' => 'Teste',
-            'subtitle' => "Lista de teste!",
+            'title' => 'Gerenciando participantes',
+            'subtitle' => "",
             'users' => $users,
             'bolao' => $userBolao ?? false,
             'participantes' => $participantes

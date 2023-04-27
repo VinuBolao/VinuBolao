@@ -9,6 +9,7 @@ use App\Http\Controllers\Site\ClassificacaoController;
 use App\Http\Controllers\Site\JogosController;
 use App\Http\Controllers\Site\PalpiteController;
 use App\Http\Controllers\Site\ParticipanteController;
+use App\Http\Controllers\Site\RegulamentoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,15 +38,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resources(['jogos' => JogosController::class]);
     Route::resources(['palpites' => PalpiteController::class]);
 
+    Route::get('/regulamento', [RegulamentoController::class, 'index'])->name('regulamento');
     Route::get('/classificacao', [ClassificacaoController::class, 'index'])->name('classificacao');
-    Route::view('/regulamento', 'site.regulamento')->name('regulamento');
     Route::get('/bolaos/{id}/participantes', [ParticipanteController::class, 'getByBolao'])->name('participantes');
-    Route::post('/participantes', [ParticipanteController::class, 'store'])->name('participantes.store');
-    Route::delete('/participantes/{id}', [ParticipanteController::class, 'destroy'])->name('participantes.destroy');
-
     Route::get('/buscarJogos', [JogosController::class, 'search'])->name('buscarJogos');
-    Route::put('/updateRodada/{id}', [CampeonatoController::class, 'updateRodada'])->name('updateRodada');
+
     Route::post('/finishBolao', [BolaoController::class, 'finish'])->name('finishBolao');
+    Route::post('/participantes', [ParticipanteController::class, 'store'])->name('participantes.store');
+
+    Route::put('/updateRodada/{id}', [CampeonatoController::class, 'updateRodada'])->name('updateRodada');
+
+    Route::delete('/participantes/{id}', [ParticipanteController::class, 'destroy'])->name('participantes.destroy');
 });
 
 require __DIR__.'/auth.php';

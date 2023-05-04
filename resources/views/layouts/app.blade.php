@@ -53,7 +53,7 @@
 
             <footer class="pb-8 text-center text-gray-500 text-xs">
                 <span>VinúBolão &copy; 2017-{{ now()->year }} - Criado por
-                    <a href="https://www.linkedin.com/in/gustavosantoslima" target="_blank" class="underline">
+                    <a href="https://www.gslima.dev" target="_blank" class="underline">
                         Gustavo Lima
                     </a>
                 </span>

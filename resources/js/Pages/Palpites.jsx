@@ -248,7 +248,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                     <div className="flex items-center justify-center gap-2">
                                         <div className="flex items-center gap-2">
                                             <span className="vb-sigla-time">{jogo.timecasa.sigla}</span>
-                                            <span className="w-24 hidden sm:flex justify-end">
+                                            <span className="w-24 hidden sm:flex justify-end truncate">
                                                 {jogo.timecasa.nome}
                                             </span>
 
@@ -313,7 +313,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                                 src={jogo.timefora.escudo_url}
                                             />
 
-                                            <span className="w-24 hidden sm:flex">{jogo.timefora.nome}</span>
+                                            <span className="w-24 hidden sm:flex truncate">{jogo.timefora.nome}</span>
                                             <span className="vb-sigla-time">{jogo.timefora.sigla}</span>
                                         </div>
                                     </div>

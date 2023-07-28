@@ -34,16 +34,16 @@
         @vite(['resources/css/app.css', 'resources/js/app.jsx'])
         @inertiaHead
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased dark:bg-slate-900">
+        <div class="min-h-screen bg-gray-100 dark:bg-slate-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            <header class="bg-white shadow">
+            <header class="bg-white dark:bg-slate-800 shadow">
                 <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
-                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                            <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-slate-100">
                                 {{ __($page['props']['title'] ?? '') }}
                             </h2>
 

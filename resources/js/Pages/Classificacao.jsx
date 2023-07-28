@@ -21,7 +21,7 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
     };
 
     return (
-        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg text-gray-600">
+        <div className="bg-white dark:bg-slate-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-600 dark:text-slate-100">
             {(participantes.length > 0 || rodada > 0 || turno > 0) && (
                 <>
                     <div className={dropdown ? "vb-btn-group open" : "vb-btn-group"}>
@@ -64,8 +64,8 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
             )}
 
             {participantes.length > 0 ? (
-                <div className="p-3 sm:p-6 bg-white border-b border-gray-200">
-                    <div className="flex flex-row border-b-2 py-2 font-bold bg-slate-800 text-white rounded-t-lg">
+                <div className="p-3 sm:p-6 border-b border-gray-200 last:border-none">
+                    <div className="flex flex-row border-b-2 py-2 font-bold bg-slate-800 dark:border-slate-500 dark:bg-slate-900 text-white rounded-t-lg">
                         <div className="w-[10%] text-center">#</div>
                         <div className="w-[38%] truncate">Participante</div>
                         <div className="w-[14%] text-center">PG</div>

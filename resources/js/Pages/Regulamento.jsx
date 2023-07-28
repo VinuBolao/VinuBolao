@@ -2,9 +2,9 @@ import React from "react";
 
 const Regulamento = ({ bolao }) => {
     return (
-        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-3 sm:p-6 border-b border-gray-200">
-                <div className="border-b-2 border-gray-100">
+        <div className="bg-white dark:bg-slate-800 dark:text-slate-300 overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="p-3 sm:p-6 border-b border-gray-200 last:border-none">
+                <div className="border-b-2 border-gray-100 dark:border-slate-500">
                     <h4 className="py-2 text-lg">CLASSIFICAÇÃO</h4>
 
                     <p className="font-bold">Como funciona:</p>
@@ -20,7 +20,7 @@ const Regulamento = ({ bolao }) => {
                     </ul>
                 </div>
 
-                <div className="py-6 border-b-2 border-gray-100">
+                <div className="py-6 border-b-2 border-gray-100 dark:border-slate-500">
                     <h4 className="py-2 text-lg">JOGO</h4>
 
                     <p className="font-bold">Como funciona:</p>
@@ -33,7 +33,7 @@ const Regulamento = ({ bolao }) => {
                     </ul>
                 </div>
 
-                <div className="py-6 border-b-2 border-gray-100">
+                <div className="py-6 border-b-2 border-gray-100 dark:border-slate-500">
                     <h4 className="py-2 text-lg">PALPITE</h4>
 
                     <p className="font-bold">Como funciona:</p>
@@ -53,7 +53,7 @@ const Regulamento = ({ bolao }) => {
                     </ul>
                 </div>
 
-                <div className="py-6 border-b-2 border-gray-100">
+                <div className="py-6 border-b-2 border-gray-100 dark:border-slate-500">
                     <h4 className="py-2 text-lg">PONTUAÇÃO</h4>
 
                     <h5 className="font-bold">Apostando que a partida terá um vencedor</h5>

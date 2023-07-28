@@ -161,9 +161,9 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
             const isTied = placar_casa === placar_fora && pCasa === pFora;
 
             if (equalsCasa && equalsFora) {
-                return "flex flex-col gap-1 bg-green-100";
+                return "flex flex-col gap-1 bg-green-100 dark:bg-green-400 dark:text-slate-800";
             } else if (winnerCasa || winnerFora || isTied) {
-                return "flex flex-col gap-1 bg-yellow-50";
+                return "flex flex-col gap-1 bg-yellow-50 dark:bg-yellow-500 dark:text-slate-800";
             }
         } else {
             return "flex flex-col gap-1";
@@ -172,7 +172,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
 
     return (
         <>
-            <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg text-gray-600">
+            <div className="bg-white dark:bg-slate-800 text-gray-600 dark:text-slate-300 overflow-hidden shadow-sm sm:rounded-lg">
                 {(jogos.length > 0 || rodada > 0) && (
                     <div className="flex flex-wrap-reverse items-center justify-between">
                         <div>
@@ -209,7 +209,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                 name="users"
                                 onChange={handleSelect}
                                 defaultValue={selected}
-                                className="vb-custom-input"
+                                className="vb-custom-input dark:bg-slate-800"
                             >
                                 {participantes.map((item, key) => (
                                     <option key={key} value={item.user_id}>
@@ -237,7 +237,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                     </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between border-b-2 pb-2 gap-2">
+                                <div className="flex items-center justify-between border-b-2 pb-2 gap-2 dark:border-slate-500">
                                     <div className="text-center">
                                         {jogo.palpite &&
                                         (jogo.palpite.palpite_casa !== null || jogo.palpite.palpite_fora !== null)

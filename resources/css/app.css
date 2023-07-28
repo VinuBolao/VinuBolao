@@ -5,7 +5,7 @@
 /* Estilos Customizados */
 @layer components {
     .btn-primary {
-        @apply py-2 px-4 bg-slate-800 text-white font-semibold rounded-lg shadow-md hover:bg-slate-600 focus:outline-none focus:bg-slate-400;
+        @apply py-2 px-4 bg-slate-800 dark:bg-slate-300 text-white dark:text-slate-800 font-semibold rounded-lg shadow-md hover:bg-slate-600 focus:outline-none focus:bg-slate-400;
     }
 
     .btn-secondary {
@@ -37,7 +37,7 @@
     }
 
     .vb-btn-group > button {
-        @apply w-[11rem] h-10 font-semibold shadow-sm focus:outline-none focus:ring-opacity-75 text-slate-800 border-[1px] border-slate-300 hover:bg-slate-50 text-center disabled:opacity-50 disabled:cursor-not-allowed;
+        @apply w-[11rem] h-10 font-semibold shadow-sm focus:outline-none focus:ring-opacity-75 text-slate-800 border-[1px] border-slate-300 hover:bg-slate-50 text-center disabled:opacity-50 disabled:cursor-not-allowed dark:text-slate-100 dark:hover:bg-slate-700;
     }
 
     .vb-btn-group button:first-child {
@@ -53,11 +53,11 @@
     }
 
     .vb-dropdown {
-        @apply w-[17rem] min-w-min max-h-44 overflow-auto px-2 grid grid-cols-4 gap-2 mx-3 sm:mx-6 py-2 min-w-max absolute bg-white rounded-b-lg shadow-lg float-left border-x-[1px] border-b-[1px] border-slate-300 z-50;
+        @apply w-[17rem] min-w-min max-h-44 overflow-auto px-2 grid grid-cols-4 gap-2 mx-3 sm:mx-6 py-2 min-w-max absolute bg-white rounded-b-lg shadow-lg float-left border-x-[1px] border-b-[1px] border-slate-300 z-50 dark:bg-slate-800;
     }
 
     .vb-dropdown > button {
-        @apply w-full h-10 grid place-content-center bg-slate-100 rounded-md;
+        @apply w-full h-10 grid place-content-center bg-slate-100 rounded-md dark:bg-slate-700;
     }
 }
 
@@ -71,7 +71,7 @@ span[aria-current="page"] > span {
 }
 
 #classificacao {
-    @apply flex flex-row border-b-2 last:border-none py-2 last:rounded-b-lg;
+    @apply flex flex-row border-b-2 last:border-none py-2 last:rounded-b-lg dark:border-slate-500;
 }
 
 #classificacao.vb-winners {

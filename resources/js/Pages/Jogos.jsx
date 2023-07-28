@@ -61,7 +61,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
     };
 
     return (
-        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg text-gray-600">
+        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg text-gray-600 dark:bg-slate-800 dark:text-slate-300">
             {(jogos.length > 0 || rodada > 0) && (
                 <div className="flex flex-wrap justify-between">
                     <div>
@@ -102,7 +102,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
 
             {jogos.length > 0 ? (
                 <div className="p-3 sm:p-6 border-gray-200">
-                    <div className="flex justify-between flex-row border-b-2 p-2 font-bold bg-slate-800 text-white rounded-t-lg">
+                    <div className="flex justify-between flex-row border-b-2 p-2 font-bold bg-slate-800 dark:bg-slate-900 text-white rounded-t-lg dark:border-slate-500">
                         <div className="px-2 text-center">Status</div>
                         <div className="px-2 flex text-center truncate">Jogos</div>
                         <div className="px-2 text-center">Ações</div>
@@ -114,7 +114,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                 <strong className="capitalize">{loading ? "Salvando..." : jogo.inicio_format}</strong>
                             </div>
 
-                            <div className="flex items-center justify-between border-b-2 pb-2 gap-2">
+                            <div className="flex items-center justify-between border-b-2 pb-2 gap-2 dark:border-slate-500">
                                 <div className="text-center">
                                     {jogo.placar_fora !== null ? CircleCheckIcon : CircleXisIcon}
                                 </div>

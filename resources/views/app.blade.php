@@ -48,7 +48,7 @@
                             </h2>
 
                             @if(isset($page['props']['subtitle']))
-                            <p class="pt-2 text-gray-500">
+                            <p class="pt-2 text-gray-500 dark:text-slate-400">
                                 {!! __($page['props']['subtitle'] ?? '') !!}
                             </p>
                             @endif

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight sm:before:'sm'">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-slate-300 leading-tight sm:before:'sm'">
                 {{ __('Editando o campeonato') }}
             </h2>
         </div>
@@ -10,7 +10,7 @@
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-3 sm:p-6 bg-white border-b border-gray-200">
+                <div class="p-3 sm:p-6 bg-white dark:bg-slate-800 dark:text-slate-300 border-b border-gray-200">
                     <form id="form-edit" method="POST" action="{{ route('admin.campeonatos.update', $campeonato->id) }}">
                         @method('PUT')
                         @csrf

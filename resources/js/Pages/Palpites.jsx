@@ -237,7 +237,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                     </strong>
                                 </div>
 
-                                <div className="flex items-center justify-between border-b-2 pb-2 gap-2 dark:border-slate-500">
+                                <div className="flex px-2 items-center justify-between border-b-2 pb-2 gap-2 dark:border-slate-500">
                                     <div className="text-center">
                                         {jogo.palpite &&
                                         (jogo.palpite.palpite_casa !== null || jogo.palpite.palpite_fora !== null)
@@ -350,8 +350,8 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
 
             {compare.length > 0 && (
                 <div className="absolute grid place-content-center inset-0 w-full h-screen bg-[#000000bf] z-[100]">
-                    <div className="w-[90vw] sm:w-[600px] bg-white shadow-md rounded-t-xl rounded-b-lg text-gray-600">
-                        <h1 className="flex justify-between font-bold text-xl text-center bg-slate-800 text-white p-4 rounded-t-lg">
+                    <div className="w-[90vw] sm:w-[600px] bg-white dark:bg-slate-800 shadow-md rounded-t-xl rounded-b-lg text-gray-600 dark:text-slate-300">
+                        <h1 className="flex justify-between font-bold text-xl text-center bg-slate-800 dark:bg-slate-900 text-white p-4 rounded-t-lg">
                             <span className=""></span>
                             <span className="flex items-center justify-center">
                                 {`${dataCompare?.timecasa?.nome || ""} vs ${dataCompare?.timefora?.nome || ""}`}

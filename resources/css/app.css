@@ -5,7 +5,7 @@
 /* Estilos Customizados */
 @layer components {
     .btn-primary {
-        @apply py-2 px-4 bg-slate-800 dark:bg-slate-300 text-white dark:text-slate-800 font-semibold rounded-lg shadow-md hover:bg-slate-600 focus:outline-none focus:bg-slate-400;
+        @apply py-2 px-4 bg-slate-800 dark:bg-slate-400 text-white dark:text-slate-800 font-semibold rounded-lg shadow-md hover:bg-slate-600 focus:outline-none focus:bg-slate-400;
     }
 
     .btn-secondary {
@@ -21,7 +21,7 @@
     }
 
     .vb-input-jogos {
-        @apply w-9 h-8 p-0 bg-white border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1 text-center disabled:bg-gray-100 disabled:cursor-not-allowed;
+        @apply w-9 h-8 p-0 bg-white dark:bg-slate-800 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1 text-center disabled:bg-gray-100 disabled:cursor-not-allowed;
     }
 
     .vb-escudo-time {

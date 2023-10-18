@@ -223,7 +223,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
 
                 {jogos.length > 0 ? (
                     <div className="p-3 sm:p-6 border-gray-200">
-                        <div className="flex justify-between flex-row border-b-2 p-2 font-bold bg-slate-800 text-white rounded-t-lg">
+                        <div className="flex justify-between flex-row border-b-2 p-2 font-bold bg-slate-800 dark:bg-slate-900 text-white rounded-t-lg dark:border-slate-500">
                             <div className="px-2 text-center">Status</div>
                             <div className="px-2 flex text-center truncate">Palpites</div>
                             <div className="px-2 text-center">Ações</div>

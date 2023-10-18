@@ -39,9 +39,9 @@ const Participantes = ({ bolao, user, users, participantes }) => {
     }
 
     return (
-        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div className="bg-white dark:bg-slate-800 dark:text-slate-100 overflow-hidden shadow-sm sm:rounded-lg">
             {user.master && (
-                <div className="flex items-center justify-between p-3 sm:p-6 border-b border-gray-200 gap-4">
+                <div className="flex items-center justify-between p-3 sm:p-6 border-b border-gray-200 dark:border-slate-500 gap-4">
                     <select name="user_id" className="vb-custom-input italic">
                         <option value="">Selecione um usuário...</option>
                         {users.map((user, key) => (
@@ -58,8 +58,8 @@ const Participantes = ({ bolao, user, users, participantes }) => {
             )}
 
             {participantes.length > 0 ? (
-                <div className="p-3 sm:p-6 border-b border-gray-200">
-                    <div className="hidden md:flex md:flex-row border-b-2 pb-2 font-bold">
+                <div className="p-3 sm:p-6">
+                    <div className="hidden md:flex md:flex-row border-b-2 pb-2 font-bold dark:border-slate-500">
                         <div className="flex items-start justify-end order-last mr-4">Ações</div>
                         <div className="px-2">#</div>
                         <div className="px-2 flex-1 truncate">Nome</div>
@@ -67,11 +67,14 @@ const Participantes = ({ bolao, user, users, participantes }) => {
                     </div>
 
                     {participantes.map((participante, key) => (
-                        <div key={key} className="flex flex-col md:flex-row border-b-2 last:border-none py-2">
+                        <div
+                            key={key}
+                            className="flex flex-col md:flex-row border-b-2 last:border-none py-2 dark:border-slate-500"
+                        >
                             <div className="flex items-start justify-end order-last">
                                 <button
                                     onClick={() => openModal(participante.id)}
-                                    className="btn-primary bg-red-700 hover:bg-red-800 focus:bg-red-800"
+                                    className="btn-primary bg-red-700 hover:bg-red-800 focus:bg-red-800 dark:text-slate-300"
                                 >
                                     Excluir
                                 </button>

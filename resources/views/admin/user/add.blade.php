@@ -16,7 +16,7 @@
 
                         <label class="block pb-4">
                             <div class="flex items-center gap-2">
-                                <span class="block text-sm font-medium text-slate-700">
+                                <span class="block text-sm font-medium text-slate-700 dark:text-slate-100">
                                     Permissão administrador:
                                 </span>
                                 <input type="checkbox" name="master" class="rounded-sm cursor-pointer" placeholder="Digite a permissão" />
@@ -31,7 +31,7 @@
 
                         <label class="block pb-4">
                             <div class="flex items-center gap-2">
-                                <span class="block text-sm font-medium text-slate-700">
+                                <span class="block text-sm font-medium text-slate-700 dark:text-slate-100">
                                     Permissão para gerenciar:
                                 </span>
                                 <input type="checkbox" name="manager" class="rounded-sm cursor-pointer" placeholder="Digite a permissão" />

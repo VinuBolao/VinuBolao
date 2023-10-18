@@ -18,14 +18,14 @@
 
                         <label class="block pb-4" for="ativo">
                             <div class="flex items-center gap-2">
-                                <span class="block text-sm font-medium text-slate-700">Ativar bolão?:</span>
-                                <input id="ativo" type="checkbox" name="ativo" class="rounded-sm cursor-pointer" />
+                                <span class="block text-sm font-medium text-slate-700 dark:text-slate-100">Ativar bolão?:</span>
+                                <input id="ativo" type="checkbox" name="ativo" class="rounded-sm cursor-pointer dark:bg-slate-800" />
                             </div>
                         </label>
 
                         @foreach($fields as $key => $field)
                         <label class="block pb-4">
-                            <span class="{{ $field['required'] ? "after:content-['*'] after:ml-0.5 after:text-red-500 " : "" }}block text-sm font-medium text-slate-700 capitalize">
+                            <span class="{{ $field['required'] ? "after:content-['*'] after:ml-0.5 after:text-red-500 " : "" }}block text-sm font-medium text-slate-700 capitalize dark:text-slate-100">
                                 {{ $field['label'] }}:
                             </span>
 
@@ -52,7 +52,7 @@
                         @endforeach
 
                         <label class="block pb-4">
-                            <span class="block text-sm font-medium text-slate-700 capitalize">
+                            <span class="block text-sm font-medium text-slate-700 dark:text-slate-100 capitalize">
                                 {{ $field['label'] }}:
                             </span>
 

@@ -21,7 +21,7 @@
     }
 
     .vb-input-jogos {
-        @apply w-9 h-8 p-0 bg-white dark:bg-slate-800 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1 text-center disabled:bg-gray-100 disabled:cursor-not-allowed;
+        @apply w-9 h-8 p-0 bg-white dark:bg-slate-800 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1 text-center disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:cursor-not-allowed;
     }
 
     .vb-escudo-time {
@@ -53,7 +53,7 @@
     }
 
     .vb-dropdown {
-        @apply w-[17rem] min-w-min max-h-44 overflow-auto px-2 grid grid-cols-4 gap-2 mx-3 sm:mx-6 py-2 min-w-max absolute bg-white rounded-b-lg shadow-lg float-left border-x-[1px] border-b-[1px] border-slate-300 z-50 dark:bg-slate-800;
+        @apply w-[17rem] min-w-min max-h-52 overflow-auto px-2 grid grid-cols-4 gap-2 mx-3 sm:mx-6 py-2 min-w-max absolute bg-white rounded-b-lg shadow-lg float-left border-x-[1px] border-b-[1px] border-slate-300 z-50 dark:bg-slate-800;
     }
 
     .vb-dropdown > button {
@@ -112,6 +112,18 @@ span[aria-current="page"] > span {
 
 .has-tooltip:hover .tooltip {
     @apply md:visible md:z-50;
+}
+
+.vb-paginate {
+    @apply pt-[1.5rem];
+}
+
+.vb-paginate .bg-white {
+    @apply dark:bg-slate-800;
+}
+
+.vb-paginate .text-gray-700 {
+    @apply dark:text-slate-100;
 }
 
 @media only screen and (max-width: 400px) {

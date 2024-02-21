@@ -64,7 +64,7 @@
                         </div>
                     @endforeach
 
-                    <div class="pt-[1.5rem]">{{ $times->links() }}</div>
+                    <div class="vb-paginate">{{ $times->links() }}</div>
                 </div>
 
                 @else

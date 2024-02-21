@@ -71,7 +71,7 @@
                         </div>
                     @endforeach
 
-                    <div class="pt-[1.5rem]">{{ $users->links() }}</div>
+                    <div class="vb-paginate">{{ $users->links() }}</div>
                 </div>
 
                 @else

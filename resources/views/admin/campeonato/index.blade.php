@@ -64,7 +64,7 @@
                         </div>
                     @endforeach
 
-                    <div class="pt-[1.5rem]">{{ $campeonatos->links() }}</div>
+                    <div class="vb-paginate">{{ $campeonatos->links() }}</div>
                 </div>
 
                 @else

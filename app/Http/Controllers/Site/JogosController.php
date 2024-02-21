@@ -54,7 +54,7 @@ class JogosController extends Controller
     {
         return Inertia::render('BuscarJogos', [
             'title' => 'Buscar Jogos',
-            'subtitle' => 'Em breve!!!',
+            'subtitle' => '',
             'bolao' => $bolao->getByUser(Auth::id()) ?? [],
             'rodada' => $request->all(),
         ]);

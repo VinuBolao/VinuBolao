@@ -1,14 +1,14 @@
-import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
+import React, { useState } from "react";
 import {
-    EditIcon,
-    ListIcon,
-    CloseIcon,
     ArrowDownIcon,
     ArrowLeftIcon,
-    CircleXisIcon,
     ArrowRightIcon,
     CircleCheckIcon,
+    CircleXisIcon,
+    CloseIcon,
+    EditIcon,
+    ListIcon,
 } from "../helpers";
 
 const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected }) => {
@@ -48,9 +48,9 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
     const handleCompare = (jogo) => {
         if (jogo) {
             setCompare(jogo);
-            Inertia.get(`/palpites?compare=${jogo.id}`, {}, { preserveState: true });
+            Inertia.get(`/palpites?rodada=${rodada}&compare=${jogo.id}`, {}, { preserveState: true });
         } else {
-            Inertia.get(`/palpites`);
+            Inertia.get(`/palpites?rodada=${rodada}`);
         }
     };
 

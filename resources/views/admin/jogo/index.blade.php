@@ -109,7 +109,7 @@
                         </div>
                     @endforeach
 
-                    <div class="pt-[1.5rem]">{{ $jogos->links() }}</div>
+                    <div class="vb-paginate">{{ $jogos->links() }}</div>
                 </div>
 
                 @else

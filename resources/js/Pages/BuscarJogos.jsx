@@ -23,7 +23,7 @@ const Jogos = ({ bolao }) => {
 
     const handleSave = () => {
         const data = jogos.map((jogo) => {
-            let date = jogo?.horario.length > 15 ? `${jogo.horario}:00` : `${jogo?.horario.split(" ")[0]} 12:00:00`;
+            let date = jogo?.horario.length > 15 ? `${jogo.horario}:00` : `${bolao.termino} 23:59:00`;
 
             return {
                 rodada: rodada,

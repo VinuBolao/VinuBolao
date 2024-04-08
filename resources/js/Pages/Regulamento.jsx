@@ -29,7 +29,9 @@ const Regulamento = ({ bolao }) => {
                         <li className="list-disc">
                             Somente os administradores do bolão podem adicionar ou alterar os resultados dos jogos.
                         </li>
-                        <li className="list-disc">O resultado de cada jogo pode ser alterado a qualquer momento.</li>
+                        <li className="list-disc">
+                            O resultado de cada jogo pode ser alterado a qualquer momento após o início da partida.
+                        </li>
                     </ul>
                 </div>
 
@@ -45,7 +47,7 @@ const Regulamento = ({ bolao }) => {
                         </li>
                         <li className="list-disc">Após o horário inicial de cada jogo os campos serão bloqueados.</li>
                         <li className="list-disc">
-                            É possível ver os palpites de outros participantes a qualquer momento.
+                            Não é possível ver os palpites dos outros participantes antes do início do jogo.
                         </li>
                         <li className="list-disc">
                             Cada participante pode adicionar ou alterar somente os seus próprios palpites.

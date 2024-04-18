@@ -14,7 +14,7 @@ class ClassificacaoController extends Controller
     public function index(Bolao $bolao, Participante $participante, Request $request)
     {
         $userBolao = $bolao->getByUser(Auth::id());
-        $participantes = $userBolao ? $participante->getRanking($userBolao->bolao_id, $request->get('rodada'), $request->get('turno')) : [];
+        $participantes = $userBolao ? $participante->getRanking($userBolao->campeonato_id, $request->get('rodada'), $request->get('turno')) : [];
 
         return Inertia::render('Classificacao', [
             'title' => 'Classificação',
@@ -23,6 +23,17 @@ class ClassificacaoController extends Controller
             'bolao' => $userBolao ?? false,
             'rodada' => $request->get('rodada'),
             'turno' => $request->get('turno'),
+        ]);
+    }
+
+    public function estatisticas(Participante $participante)
+    {
+        $campeoes = $participante->getRanking(0, 0, 0);
+
+        return Inertia::render('Estatisticas', [
+            'title' => 'Estatísticas',
+            'subtitle' => "Veja algumas estatísticas da história do VinúBolão!",
+            'campeoes' => $campeoes,
         ]);
     }
 }

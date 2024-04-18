@@ -40,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/regulamento', [RegulamentoController::class, 'index'])->name('regulamento');
     Route::get('/classificacao', [ClassificacaoController::class, 'index'])->name('classificacao');
+    Route::get('/estatisticas', [ClassificacaoController::class, 'estatisticas'])->name('estatisticas');
     Route::get('/bolaos/{id}/participantes', [ParticipanteController::class, 'getByBolao'])->name('participantes');
     Route::get('/buscarJogos', [JogosController::class, 'search'])->name('buscarJogos');
 

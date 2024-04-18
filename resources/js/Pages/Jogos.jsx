@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import { EditIcon, ArrowDownIcon, ArrowLeftIcon, CircleXisIcon, ArrowRightIcon, CircleCheckIcon } from "../helpers";
+import React, { useState } from "react";
+import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, CircleCheckIcon, CircleXisIcon, EditIcon } from "../helpers";
 
 const Jogos = ({ bolao, jogos, rodada, user }) => {
     const [loading, setLoading] = useState(false);
@@ -111,7 +111,15 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                     {jogos.map((jogo, key) => (
                         <div key={key} className="flex flex-col gap-1">
                             <div className="flex text-sm justify-center pt-2 gap-1">
-                                <strong className="capitalize">{loading ? "Salvando..." : jogo.inicio_format}</strong>
+                                {loading ? (
+                                    <strong className="capitalize">Salvando...</strong>
+                                ) : (
+                                    <strong className="capitalize">
+                                        {`${bolao.termino} 23:59:00` == jogo.inicio
+                                            ? "DATA INDEFINIDA"
+                                            : jogo.inicio_format}
+                                    </strong>
+                                )}
                             </div>
 
                             <div className="flex items-center justify-between border-b-2 pb-2 gap-2 dark:border-slate-500">

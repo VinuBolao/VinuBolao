@@ -34,7 +34,12 @@ class EstatisticasController extends Controller
             ->get();
 
         foreach ($data as $item) {
-            $item['participacoes'] = $participante->select('bolao_id')->with('bolao')->where('user_id', $item->user_id)->get();
+            $item['participacoes'] = $participante->select('participantes.bolao_id')
+                ->join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
+                ->with('bolao')
+                ->where('bolaos.ativo', 0)
+                ->where('participantes.user_id', $item->user_id)
+                ->get();
         }
 
         return $data;

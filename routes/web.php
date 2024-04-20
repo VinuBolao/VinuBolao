@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\JogoController;
 use App\Http\Controllers\Admin\CampeonatoController;
 use App\Http\Controllers\Site\BolaoController;
 use App\Http\Controllers\Site\ClassificacaoController;
+use App\Http\Controllers\Site\EstatisticasController;
 use App\Http\Controllers\Site\JogosController;
 use App\Http\Controllers\Site\PalpiteController;
 use App\Http\Controllers\Site\ParticipanteController;
@@ -40,7 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/regulamento', [RegulamentoController::class, 'index'])->name('regulamento');
     Route::get('/classificacao', [ClassificacaoController::class, 'index'])->name('classificacao');
-    Route::get('/estatisticas', [ClassificacaoController::class, 'estatisticas'])->name('estatisticas');
+    Route::get('/estatisticas', [EstatisticasController::class, 'getStatistcs'])->name('estatisticas');
     Route::get('/bolaos/{id}/participantes', [ParticipanteController::class, 'getByBolao'])->name('participantes');
     Route::get('/buscarJogos', [JogosController::class, 'search'])->name('buscarJogos');
 

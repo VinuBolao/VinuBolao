@@ -36,6 +36,12 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('estatisticas')" :active="request()->routeIs('estatisticas')">
+                        {{ __('Estatísticas') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('regulamento')" :active="request()->routeIs('regulamento')">
                         {{ __('Regulamento') }}
                     </x-nav-link>
@@ -117,6 +123,10 @@
 
             <x-responsive-nav-link :href="route('palpites.index')" :active="request()->routeIs('palpites.index')">
                 {{ __('Palpites') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('estatisticas')" :active="request()->routeIs('estatisticas')">
+                {{ __('Estatísticas') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('regulamento')" :active="request()->routeIs('regulamento')">

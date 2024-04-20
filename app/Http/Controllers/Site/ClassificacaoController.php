@@ -25,15 +25,4 @@ class ClassificacaoController extends Controller
             'turno' => $request->get('turno'),
         ]);
     }
-
-    public function estatisticas(Participante $participante)
-    {
-        $campeoes = $participante->getRanking(0, 0, 0);
-
-        return Inertia::render('Estatisticas', [
-            'title' => 'Estatísticas',
-            'subtitle' => "Veja algumas estatísticas da história do VinúBolão!",
-            'campeoes' => $campeoes,
-        ]);
-    }
 }

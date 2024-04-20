@@ -21,7 +21,7 @@ class Participante extends Model
     protected function createdFormat(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attr) => Carbon::createFromFormat('Y-m-d H:i:s', $attr['created_at'])->format('d/m/Y'),
+            get: fn ($value, $attr) => isset($attr['created_at']) ? Carbon::createFromFormat('Y-m-d H:i:s', $attr['created_at'])->format('d/m/Y'):  "",
         );
     }
 

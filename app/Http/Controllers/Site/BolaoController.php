@@ -109,11 +109,12 @@ class BolaoController extends Controller
 
             $data = $participante->getRanking($bolao->campeonato_id);
 
-            foreach ($data as $item) {
+            foreach ($data as $key => $item) {
                 $participante->where(['bolao_id' => $id, 'user_id' => $item->id])->update([
                     'pontosganhos' => $item->pontosganhos,
                     'placarexato' => $item->placarexato,
-                    'placarvencedor' => $item->placarvencedor
+                    'placarvencedor' => $item->placarvencedor,
+                    'posicao' => $key + 1,
                 ]);
             }
 

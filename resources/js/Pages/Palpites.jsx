@@ -1,12 +1,12 @@
 import { Inertia } from "@inertiajs/inertia";
 import React, { useState } from "react";
+import ModalPalpites from "../Components/ModalPalpites";
 import {
     ArrowDownIcon,
     ArrowLeftIcon,
     ArrowRightIcon,
     CircleCheckIcon,
     CircleXisIcon,
-    CloseIcon,
     EditIcon,
     ListIcon,
 } from "../helpers";
@@ -348,38 +348,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                 )}
             </div>
 
-            {compare.length > 0 && (
-                <div className="absolute grid place-content-center inset-0 w-full h-screen bg-[#000000bf] z-[100]">
-                    <div className="w-[90vw] sm:w-[600px] bg-white dark:bg-slate-800 shadow-md rounded-t-xl rounded-b-lg text-gray-600 dark:text-slate-300">
-                        <h1 className="flex justify-between font-bold text-xl text-center bg-slate-800 dark:bg-slate-900 text-white p-4 rounded-t-lg">
-                            <span className=""></span>
-                            <span className="flex items-center justify-center">
-                                {`${dataCompare?.timecasa?.nome || ""} vs ${dataCompare?.timefora?.nome || ""}`}
-                            </span>
-                            <span className="">
-                                <button
-                                    className="p-2 bg-gray-100 rounded-[50%] text-slate-800"
-                                    onClick={() => handleCompare(null)}
-                                >
-                                    {CloseIcon}
-                                </button>
-                            </span>
-                        </h1>
-
-                        <ul className="h-[80vh] divide-y overflow-y-auto py-2 px-4">
-                            {compare.map((item, key) => (
-                                <li key={key} className="flex justify-between py-2">
-                                    <div className="w-[10%]">{key + 1}</div>
-                                    <div className="w-[60%]">{item.user.name}</div>
-                                    <div className="w-[30%] text-center">
-                                        {item.palpite_casa} x {item.palpite_fora}
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            )}
+            {compare.length > 0 && <ModalPalpites jogo={dataCompare} list={compare} handleClose={handleCompare} />}
         </>
     );
 };

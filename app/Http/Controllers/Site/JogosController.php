@@ -62,13 +62,26 @@ class JogosController extends Controller
 
     public function save(Request $request)
     {
-        $saved = false;
+        $jogos = $request->get('jogos');
 
         if ($request->has('jogos')) {
-            $saved = Jogo::insert($request->get('jogos'));
+            foreach ($jogos as $jogo) {
+                Jogo::updateOrCreate(
+                    [
+                        "rodada" => $jogo["rodada"],
+                        "bolao_id" => $jogo["bolao_id"],
+                        "timecasa_id" => $jogo["timecasa_id"],
+                        "timefora_id" => $jogo["timefora_id"],
+                        "campeonato_id" => $jogo["campeonato_id"]
+                    ],
+                    [
+                        "inicio" => $jogo["inicio"],
+                    ]
+                )->toSql();
+            }
         }
 
-        return response()->json(['error' => !$saved, 'message' => 'Jogos salvos com sucesso!'], 200);
+        return response()->json(['error' => false, 'message' => 'Jogos salvos com sucesso!'], 200);
     }
 
     public function getJogosGE(Request $request)

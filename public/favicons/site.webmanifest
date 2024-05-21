@@ -29,6 +29,12 @@
           "type": "image/jpeg"
         },
         {
+          "src": "/favicons/screenshots_login.jpeg",
+          "sizes": "824x1600",
+          "type": "image/jpeg",
+          "form_factor": "wide"
+        },
+        {
           "src": "/favicons/screenshots_regulamento.jpeg",
           "sizes": "806x1600",
           "type": "image/jpeg",

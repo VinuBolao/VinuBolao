@@ -233,7 +233,15 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                             <div key={key} className={checkPalpite(jogo)}>
                                 <div className="flex text-sm justify-center pt-2 gap-1">
                                     <strong className="capitalize">
-                                        {loading ? "Salvando..." : jogo.inicio_format}
+                                        {loading ? (
+                                            <strong className="capitalize">Salvando...</strong>
+                                        ) : (
+                                            <strong className="capitalize">
+                                                {`${bolao.termino} 23:59:00` == jogo.inicio
+                                                    ? "DATA INDEFINIDA"
+                                                    : jogo.inicio_format}
+                                            </strong>
+                                        )}
                                     </strong>
                                 </div>
 

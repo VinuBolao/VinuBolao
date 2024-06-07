@@ -1,6 +1,6 @@
 {
   "resources/js/app.jsx": {
-    "file": "assets/app.ccdda4e7.js",
+    "file": "assets/app.5c7ee0f0.js",
     "src": "resources/js/app.jsx",
     "isEntry": true,
     "dynamicImports": [
@@ -15,30 +15,30 @@
     ]
   },
   "resources/js/Pages/Bolao.jsx": {
-    "file": "assets/Bolao.08630d9a.js",
+    "file": "assets/Bolao.26aa003f.js",
     "src": "resources/js/Pages/Bolao.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_ModalDelete.b9ce0d56.js",
-      "_helpers.1e5d47d2.js"
+      "_ModalDelete.e6352987.js",
+      "_helpers.23757c9f.js"
     ]
   },
-  "_ModalDelete.b9ce0d56.js": {
-    "file": "assets/ModalDelete.b9ce0d56.js",
+  "_ModalDelete.e6352987.js": {
+    "file": "assets/ModalDelete.e6352987.js",
     "imports": [
       "resources/js/app.jsx",
-      "_helpers.1e5d47d2.js"
+      "_helpers.23757c9f.js"
     ]
   },
-  "_helpers.1e5d47d2.js": {
-    "file": "assets/helpers.1e5d47d2.js",
+  "_helpers.23757c9f.js": {
+    "file": "assets/helpers.23757c9f.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
   "resources/js/Pages/BuscarJogos.jsx": {
-    "file": "assets/BuscarJogos.c942dadb.js",
+    "file": "assets/BuscarJogos.34fc3098.js",
     "src": "resources/js/Pages/BuscarJogos.jsx",
     "isDynamicEntry": true,
     "imports": [
@@ -46,16 +46,16 @@
     ]
   },
   "resources/js/Pages/Classificacao.jsx": {
-    "file": "assets/Classificacao.54069ba8.js",
+    "file": "assets/Classificacao.aaaaffa3.js",
     "src": "resources/js/Pages/Classificacao.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_helpers.1e5d47d2.js"
+      "_helpers.23757c9f.js"
     ]
   },
   "resources/js/Pages/Estatisticas.jsx": {
-    "file": "assets/Estatisticas.3d68a437.js",
+    "file": "assets/Estatisticas.c4f6feb1.js",
     "src": "resources/js/Pages/Estatisticas.jsx",
     "isDynamicEntry": true,
     "imports": [
@@ -63,35 +63,35 @@
     ]
   },
   "resources/js/Pages/Jogos.jsx": {
-    "file": "assets/Jogos.b53dfb9c.js",
+    "file": "assets/Jogos.4a38845d.js",
     "src": "resources/js/Pages/Jogos.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_helpers.1e5d47d2.js"
+      "_helpers.23757c9f.js"
     ]
   },
   "resources/js/Pages/Palpites.jsx": {
-    "file": "assets/Palpites.cab1dbcf.js",
+    "file": "assets/Palpites.e6bae500.js",
     "src": "resources/js/Pages/Palpites.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_helpers.1e5d47d2.js"
+      "_helpers.23757c9f.js"
     ]
   },
   "resources/js/Pages/Participantes.jsx": {
-    "file": "assets/Participantes.11feb49c.js",
+    "file": "assets/Participantes.efe80e5b.js",
     "src": "resources/js/Pages/Participantes.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_ModalDelete.b9ce0d56.js",
-      "_helpers.1e5d47d2.js"
+      "_ModalDelete.e6352987.js",
+      "_helpers.23757c9f.js"
     ]
   },
   "resources/js/Pages/Regulamento.jsx": {
-    "file": "assets/Regulamento.78aca6da.js",
+    "file": "assets/Regulamento.1f68929f.js",
     "src": "resources/js/Pages/Regulamento.jsx",
     "isDynamicEntry": true,
     "imports": [
@@ -99,7 +99,7 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app.5ba90564.css",
+    "file": "assets/app.da252367.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

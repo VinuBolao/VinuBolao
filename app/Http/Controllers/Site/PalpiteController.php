@@ -42,6 +42,13 @@ class PalpiteController extends Controller
                 ->where('jogos.rodada', $request->get('rodada') ?? $userBolao->rodada)
                 ->orderBy('jogos.inicio')
                 ->get();
+
+            foreach ($jogos as $jogo) {
+                if ($userSelected != Auth::id() && $jogo->palpite && $jogo->inicio_timestamp > Carbon::now()->timestamp) {
+                    $jogo->palpite->palpite_casa = null;
+                    $jogo->palpite->palpite_fora = null;
+                }
+            }
         }
 
         return Inertia::render('Palpites', [

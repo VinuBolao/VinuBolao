@@ -82,19 +82,19 @@ const Bolao = ({ bolaos, user }) => {
                                 </span>
                             </div>
                             <div className="p-2 md:w-40 truncate">
-                                <span className="font-bold md:hidden">Nome:</span>
+                                <span className="font-bold md:hidden mr-1">Nome:</span>
                                 <span>{bolao.nome}</span>
                             </div>
                             <div className="p-2 md:w-40 truncate">
-                                <span className="font-bold md:hidden">Criador:</span>
+                                <span className="font-bold md:hidden mr-1">Criador:</span>
                                 <span>{bolao.user_name}</span>
                             </div>
                             <div className="p-2 md:w-40 truncate">
-                                <span className="font-bold md:hidden">Data inicial:</span>
+                                <span className="font-bold md:hidden mr-1">Data inicial:</span>
                                 <span>{bolao.inicio.split("-").reverse().join("/")}</span>
                             </div>
                             <div className="p-2 md:w-40 flex-1">
-                                <span className="font-bold md:hidden">Descrição:</span>
+                                <span className="font-bold md:hidden mr-1">Descrição:</span>
                                 <span className="font-light" dangerouslySetInnerHTML={{ __html: bolao.descricao }} />
                             </div>
                         </div>

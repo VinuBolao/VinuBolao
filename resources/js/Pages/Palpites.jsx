@@ -341,12 +341,12 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                         <div className="pt-9">
                             <h4 className="font-bold text-lg pb-1">Legenda</h4>
                             <div className="flex items-center gap-1">
-                                <span className="w-4 h-4 bg-green-100 border-[1px] border-gray-400" />
+                                <span className="w-4 h-4 bg-green-100 dark:bg-green-400 border-[1px] border-gray-400" />
                                 <p>- Placar Exato ({bolao.placar_exato} pontos)</p>
                             </div>
 
                             <div className="flex items-center gap-1">
-                                <span className="w-4 h-4 bg-yellow-50 border-[1px] border-gray-400" />
+                                <span className="w-4 h-4 bg-yellow-50 dark:bg-yellow-500 border-[1px] border-gray-400" />
                                 <p>- Placar Vencedor ({bolao.placar_vencedor} pontos)</p>
                             </div>
                         </div>

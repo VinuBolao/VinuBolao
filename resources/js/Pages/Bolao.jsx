@@ -95,7 +95,7 @@ const Bolao = ({ bolaos, user }) => {
                             </div>
                             <div className="p-2 md:w-40 flex-1">
                                 <span className="font-bold md:hidden mr-1">Descrição:</span>
-                                {bolao.ativo === 1 ? (
+                                {(bolao.ativo === 1 || (bolao.ativo === 0 && bolao.campeoes.length === 0)) ? (
                                     <span className="font-light" dangerouslySetInnerHTML={{ __html: bolao.descricao }} />
                                 ) : (
                                     <>

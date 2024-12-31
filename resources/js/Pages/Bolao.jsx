@@ -95,7 +95,16 @@ const Bolao = ({ bolaos, user }) => {
                             </div>
                             <div className="p-2 md:w-40 flex-1">
                                 <span className="font-bold md:hidden mr-1">Descrição:</span>
-                                <span className="font-light" dangerouslySetInnerHTML={{ __html: bolao.descricao }} />
+                                {bolao.ativo === 1 ? (
+                                    <span className="font-light" dangerouslySetInnerHTML={{ __html: bolao.descricao }} />
+                                ) : (
+                                    <>
+                                        Campeões: <br />
+                                        1º Lugar: {bolao?.campeoes[0]?.name || ""}<br />
+                                        2º Lugar: {bolao?.campeoes[1]?.name || ""}<br />
+                                        3º Lugar: {bolao?.campeoes[2]?.name || ""}<br />
+                                    </>
+                                )}
                             </div>
                         </div>
                     ))}

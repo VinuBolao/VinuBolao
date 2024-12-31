@@ -9,8 +9,8 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-3 sm:p-6 bg-white dark:bg-slate-800 dark:text-slate-300 border-b border-gray-200">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-3 sm:p-6 bg-white dark:bg-slate-800 dark:text-slate-300 border-b border-gray-200 last:border-b-0">
                     <form id="form-edit" method="POST" action="{{ route('admin.users.update', $user->id) }}">
                         @method('PUT')
                         @csrf
@@ -82,7 +82,7 @@
                     </form>
 
                     <div class="grid gap-4 mt-4">
-                        <button form="form-delete" class="btn-primary bg-red-700 hover:bg-red-800">Excluir</button>
+                        <button form="form-delete" class="btn-primary bg-red-700 hover:bg-red-800 dark:text-slate-100">Excluir</button>
                         <a class="btn-secondary col-end-6" href="{{ url()->previous() }}">Cancelar</a>
                         <button form="form-edit" type="submit" class="btn-primary col-end-7">Salvar</button>
                     </div>

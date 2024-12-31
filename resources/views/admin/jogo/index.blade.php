@@ -25,8 +25,8 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
-                <div class="p-3 sm:p-6 bg-white dark:bg-slate-800 dark:text-slate-300 border-b border-gray-200">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-3 sm:p-6 bg-white dark:bg-slate-800 dark:text-slate-300 border-b border-gray-200 last:border-b-0">
                     <form method="GET" action="{{ route('admin.jogos.index') }}" class="flex flex-col sm:flex-row gap-4 items-center">
                         <label class="w-full">
                             <span class="block text-sm font-medium text-slate-700">
@@ -64,7 +64,7 @@
             <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm sm:rounded-lg">
                 @if(count($jogos) > 0)
 
-                <div class="p-3 sm:p-6 bg-white dark:bg-slate-800 dark:text-slate-300 border-b border-gray-200">
+                <div class="p-3 sm:p-6 bg-white dark:bg-slate-800 dark:text-slate-300 border-b border-gray-200 last:border-b-0">
                     <div class="hidden md:flex md:flex-row border-b-2 pb-4 font-bold">
                         <div class="flex items-start justify-end order-last mr-4">Ações</div>
                         <div class="px-2 w-8">#</div>

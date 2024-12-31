@@ -41,7 +41,7 @@ const Participantes = ({ bolao, user, users, participantes }) => {
     return (
         <div className="bg-white dark:bg-slate-800 dark:text-slate-100 overflow-hidden shadow-sm sm:rounded-lg">
             {user.master && (
-                <div className="flex items-center justify-between p-3 sm:p-6 border-b border-gray-200 dark:border-slate-500 gap-4">
+                <div className="flex items-center justify-between p-3 sm:p-6 border-b border-gray-200 last:border-b-0 dark:border-slate-500 gap-4">
                     <select name="user_id" className="vb-custom-input italic">
                         <option value="">Selecione um usuário...</option>
                         {users.map((user, key) => (

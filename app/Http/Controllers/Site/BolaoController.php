@@ -30,9 +30,14 @@ class BolaoController extends Controller
         $this->model = $model;
     }
 
-    public function index()
+    public function index(Participante $participante)
     {
         $bolaos = $this->model->listByUser(Auth::id())->orderByRaw($this->model->order)->paginate(50)->withQueryString();
+
+        $bolaos->transform(function ($bolao) use ($participante) {
+            $bolao->campeoes = $participante->getRanking($bolao->campeonato_id, 0, 0);
+            return $bolao;
+        });
 
         return Inertia::render('Bolao', [
             'title' => 'Lista de Bolões',

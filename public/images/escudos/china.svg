@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 892 600" style="enable-background:new 0 0 892 600;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:#DD0000;}
+	.st2{fill:#FFDE00;}
+	.st3{fill:#939598;}
+</style>
+<title>China</title>
+<g>
+	<g>
+		<defs>
+			<path id="SVGID_1_" d="M861.1,6c13.7,0.1,24.8,11.2,24.9,24.9V569c0,13.8-11.1,24.9-24.9,24.9h0H30.9c-13.7,0-24.9-11-24.9-24.7
+				c0,0,0,0,0-0.1V30.9C6.1,17.2,17.2,6.1,30.9,6H861.1"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st0">
+			<rect class="st1" width="892" height="600"/>
+		</g>
+	</g>
+	<path id="s" class="st2" d="M150,60l52.9,162.8L64.4,122.2h171.2L97.1,222.8L150,60z"/>
+	<path class="st2" d="M311.7,32.4l-5,56.8l-29.4-48.9l52.5,22.3l-55.6,12.8L311.7,32.4z"/>
+	<path class="st2" d="M381.5,99.1l-26.7,50.4l-8.1-56.5l39.7,41l-56.2-9.8L381.5,99.1z"/>
+	<path class="st2" d="M388.2,199.7l-44.9,35.2l15.7-54.9l19.6,53.6l-47.3-31.9L388.2,199.7z"/>
+	<path class="st2" d="M310.6,241.9l-2.6,57l-31.4-47.7l53.4,20.1l-55,15.1L310.6,241.9z"/>
+</g>
+<g>
+	<g id="Layer_1-2">
+		<path class="st3" d="M861.1,6c13.7,0.1,24.8,11.2,24.9,24.9V569c0,13.8-11.1,24.9-24.9,24.9h0H30.9c-13.7,0-24.9-11-24.9-24.7
+			c0,0,0,0,0-0.1V30.9C6.1,17.2,17.2,6.1,30.9,6H861.1 M861.1,0H30.9C13.9,0,0,13.8,0,30.8c0,0,0,0.1,0,0.1l0,0V569
+			c-0.1,17.1,13.7,30.9,30.8,31c0,0,0.1,0,0.1,0H861c17,0,30.9-13.8,30.9-30.8c0,0,0-0.1,0-0.1V30.9c0.1-17-13.6-30.8-30.5-30.9
+			C861.3,0,861.2,0,861.1,0z"/>
+	</g>
+</g>
+</svg>

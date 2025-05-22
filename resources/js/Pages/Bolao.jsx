@@ -81,7 +81,7 @@ const Bolao = ({ bolaos, user }) => {
                                     {bolao.ativo ? "SIM" : "NÃO"}
                                 </span>
                             </div>
-                            <div className="p-2 md:w-40 truncate">
+                            <div className="p-2 md:w-48 truncate">
                                 <span className="font-bold md:hidden mr-1">Nome:</span>
                                 <span>{bolao.nome}</span>
                             </div>

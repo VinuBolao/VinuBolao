@@ -54,7 +54,7 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                             </button>
 
                             {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
-                                <button key={key} onClick={() => handleRodada(item + 1)}>
+                                <button key={key} onClick={() => handleRodada(item + 1)} className={bolao.rodada === (item + 1) ? "active" : ""}>
                                     {item + 1}ª
                                 </button>
                             ))}

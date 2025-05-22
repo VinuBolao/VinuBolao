@@ -36,7 +36,7 @@ const Bolao = ({ bolaos, user }) => {
                         {user.master && <div className="flex items-start justify-end order-last mr-4">Ações</div>}
 
                         <div className="px-2 w-20">Ativo</div>
-                        <div className="px-2 w-40">Nome</div>
+                        <div className="px-2 w-64">Nome</div>
                         <div className="px-2 w-40">Criador</div>
                         <div className="px-2 w-40">Data inicial</div>
                         <div className="px-2 w-40 flex-1">Descrição</div>

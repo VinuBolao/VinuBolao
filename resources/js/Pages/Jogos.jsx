@@ -130,7 +130,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                 <div className="flex items-center justify-center gap-2">
                                     <div className="flex items-center gap-2">
                                         <span className="vb-sigla-time">{jogo.timecasa.sigla}</span>
-                                        <span className="w-28 hidden sm:flex justify-end truncate">
+                                        <span className="w-48 hidden sm:flex justify-end truncate">
                                             {jogo.timecasa.nome}
                                         </span>
 
@@ -180,7 +180,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                             src={jogo.timefora.escudo_url}
                                         />
 
-                                        <span className="w-28 hidden sm:flex truncate">{jogo.timefora.nome}</span>
+                                        <span className="w-48 hidden sm:flex truncate">{jogo.timefora.nome}</span>
                                         <span className="vb-sigla-time">{jogo.timefora.sigla}</span>
                                     </div>
                                 </div>

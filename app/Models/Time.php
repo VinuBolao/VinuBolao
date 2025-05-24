@@ -19,7 +19,7 @@ class Time extends Model
     protected function escudoUrl(): Attribute
     {
         return new Attribute(
-            get: fn ($value, $attr) => $attr['escudo'],
+            get: fn ($value, $attr) => "/images/logos/" . $attr['escudo'],
         );
     }
 

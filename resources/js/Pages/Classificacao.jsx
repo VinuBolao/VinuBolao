@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon } from "../helpers";
 
 const Classificacao = ({ bolao, participantes, rodada, turno }) => {
     const [dropdown, setDropdown] = useState(false);
+    const dropdownRef = useRef();
 
     const handleRodada = (value) => {
         if (value >= 0) {
@@ -11,6 +12,19 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
             Inertia.get(`/classificacao?rodada=${value}`);
         }
     };
+
+    const handleOpen = () => {
+        setDropdown(!dropdown);
+
+        if (!dropdown && bolao.rodada > 16) {
+            setTimeout(() => {
+                dropdownRef.current.scrollTo({
+                    top: 48 * (bolao.rodada / 4),
+                    behavior: 'smooth'
+                });
+            }, 500);
+        }
+    }
 
     const handleSeason = (type) => {
         setDropdown(false);
@@ -28,7 +42,7 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                         <button onClick={() => handleRodada(+rodada - 1)} disabled={+rodada <= 1}>
                             {ArrowLeftIcon}
                         </button>
-                        <button onClick={() => setDropdown(!dropdown)}>
+                        <button onClick={handleOpen}>
                             <span className="flex items-center justify-center">
                                 {turno && `${turno}º Turno`}
                                 {rodada && `${rodada}ª Rodada`}
@@ -42,7 +56,7 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                     </div>
 
                     {dropdown && (
-                        <div className="vb-dropdown">
+                        <div ref={dropdownRef} className="vb-dropdown">
                             <button className="col-span-4" onClick={() => handleSeason(0)}>
                                 Geral
                             </button>

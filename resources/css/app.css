@@ -61,7 +61,7 @@
     }
 
     .vb-dropdown > button.active {
-        @apply border border-slate-500;
+        @apply border border-slate-400;
     }
 }
 

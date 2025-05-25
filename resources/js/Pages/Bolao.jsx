@@ -37,8 +37,8 @@ const Bolao = ({ bolaos, user }) => {
 
                         <div className="px-2 w-20">Ativo</div>
                         <div className="px-2 w-64">Nome</div>
-                        <div className="px-2 w-40">Criador</div>
-                        <div className="px-2 w-40">Data inicial</div>
+                        <div className="hidden lg:flex px-2 w-40">Criador</div>
+                        <div className="hidden lg:flex px-2 w-40">Data inicial</div>
                         <div className="px-2 w-40 flex-1">Descrição</div>
                     </div>
 
@@ -85,11 +85,11 @@ const Bolao = ({ bolaos, user }) => {
                                 <span className="font-bold md:hidden mr-1">Nome:</span>
                                 <span>{bolao.nome}</span>
                             </div>
-                            <div className="p-2 md:w-40 truncate">
+                            <div className="hidden lg:flex p-2 md:w-40 truncate">
                                 <span className="font-bold md:hidden mr-1">Criador:</span>
                                 <span>{bolao.user_name}</span>
                             </div>
-                            <div className="p-2 md:w-40 truncate">
+                            <div className="hidden lg:flex p-2 md:w-40 truncate">
                                 <span className="font-bold md:hidden mr-1">Data inicial:</span>
                                 <span>{bolao.inicio.split("-").reverse().join("/")}</span>
                             </div>

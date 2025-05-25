@@ -1,11 +1,12 @@
 import { Inertia } from "@inertiajs/inertia";
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, CircleCheckIcon, CircleXisIcon, EditIcon } from "../helpers";
 
 const Jogos = ({ bolao, jogos, rodada, user }) => {
     const [loading, setLoading] = useState(false);
     const [dropdown, setDropdown] = useState(false);
     const [placar, setPlacar] = useState({ jogo: 0, casa: null, fora: null });
+    const dropdownRef = useRef();
 
     const handleChange = (e, jogo) => {
         if (placar.jogo === 0 || jogo.id === placar.jogo) {
@@ -22,6 +23,19 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
             handleSave(jogo);
         }
     };
+
+    const handleOpen = () => {
+        setDropdown(!dropdown);
+
+        if (!dropdown && bolao.rodada > 16) {
+            setTimeout(() => {
+                dropdownRef.current.scrollTo({
+                    top: 48 * (bolao.rodada / 4),
+                    behavior: 'smooth'
+                });
+            }, 500);
+        }
+    }
 
     const handleRodada = (value) => {
         if (value > 0) {
@@ -69,7 +83,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                             <button onClick={() => handleRodada(+rodada - 1)} disabled={+rodada === 1}>
                                 {ArrowLeftIcon}
                             </button>
-                            <button onClick={() => setDropdown(!dropdown)}>
+                            <button onClick={handleOpen}>
                                 <span className="flex items-center justify-center">
                                     {rodada}ª Rodada {ArrowDownIcon}
                                 </span>
@@ -80,7 +94,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                         </div>
 
                         {dropdown && (
-                            <div className="vb-dropdown">
+                            <div ref={dropdownRef} className="vb-dropdown">
                                 {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
                                     <button key={key} onClick={() => handleRodada(item + 1)} className={bolao.rodada === (item + 1) ? "active" : ""}>
                                         {item + 1}ª

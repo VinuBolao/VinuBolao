@@ -35,30 +35,28 @@
                 @if(count($times) > 0)
 
                 <div class="p-3 sm:p-6 bg-white dark:bg-slate-800 dark:text-slate-300 border-b border-gray-200 last:border-b-0">
-                    <div class="hidden md:flex md:flex-row border-b-2 pb-4 font-bold">
+                    <div class="flex flex-row border-b-2 pb-4 font-bold">
                         <div class="flex items-start justify-end order-last mr-4">Ações</div>
                         <div class="px-2 w-8">#</div>
-                        <div class="px-2 w-40 flex-1 truncate">Nome</div>
-                        <div class="px-2 w-40 flex-1 truncate">Sigla</div>
-                        <div class="px-2 w-40 flex-1 truncate">Estádio</div>
+                        <div class="px-2 flex-1 truncate">Nome</div>
+                        <div class="hidden md:flex flex-1 truncate">Sigla</div>
+                        <div class="hidden md:flex flex-1 truncate">Estádio</div>
                     </div>
 
                     @foreach ($times as $key => $time)
-                        <div class="flex flex-col md:flex-row border-b-2 last:border-none py-4">
+                        <div class="flex flex-row border-b-2 last:border-none py-4">
                             <div class="flex items-start justify-end order-last">
                                 <a href="{{ route('admin.times.edit', $time->id) }}" class="btn-primary">Editar</a>
                             </div>
                             <div class="p-2 w-8">{{ $key + 1 }}</div>
-                            <div class="p-2 md:w-40 flex-1 truncate">
-                                <span class="font-bold md:hidden">Nome:</span>
+                            <div class="p-2 flex-1 flex items-center gap-3 truncate">
+                                <img src="/images/logos/{{$time->escudo}}" alt="{{ $time->nome }}" class="w-7 h-7">
                                 <span>{{ $time->nome }}</span>
                             </div>
-                            <div class="p-2 md:w-40 flex-1 truncate">
-                                <span class="font-bold md:hidden">Sigla:</span>
+                            <div class="hidden md:flex p-2 flex-1 truncate">
                                 <span>{{ $time->sigla }}</span>
                             </div>
-                            <div class="p-2 md:w-60 flex-1 truncate">
-                                <span class="font-bold md:hidden">Estádio:</span>
+                            <div class="hidden md:flex p-2 flex-1 truncate">
                                 <span>{{ $time->estadio }}</span>
                             </div>
                         </div>

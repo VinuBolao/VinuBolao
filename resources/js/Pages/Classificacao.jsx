@@ -16,7 +16,7 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
     const handleOpen = () => {
         setDropdown(!dropdown);
 
-        if (!dropdown && bolao.rodada > 16) {
+        if (!dropdown && bolao.rodada > 8) {
             setTimeout(() => {
                 dropdownRef.current.scrollTo({
                     top: 48 * (bolao.rodada / 4),

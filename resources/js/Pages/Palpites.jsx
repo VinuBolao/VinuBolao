@@ -1,5 +1,5 @@
 import { Inertia } from "@inertiajs/inertia";
-import React, {useRef, useState} from "react";
+import { useRef, useState } from "react";
 import ModalPalpites from "../Components/ModalPalpites";
 import {
     ArrowDownIcon,
@@ -62,11 +62,11 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
             setTimeout(() => {
                 dropdownRef.current.scrollTo({
                     top: 48 * (bolao.rodada / 4),
-                    behavior: 'smooth'
+                    behavior: "smooth",
                 });
             }, 500);
         }
-    }
+    };
 
     const handleRodada = (value) => {
         if (value > 0) {
@@ -210,7 +210,11 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                             {dropdown && (
                                 <div ref={dropdownRef} className="vb-dropdown">
                                     {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
-                                        <button key={key} onClick={() => handleRodada(item + 1)} className={bolao.rodada === (item + 1) ? "active" : ""}>
+                                        <button
+                                            key={key}
+                                            onClick={() => handleRodada(item + 1)}
+                                            className={bolao.rodada === item + 1 ? "active" : ""}
+                                        >
                                             {item + 1}ª
                                         </button>
                                     ))}
@@ -270,7 +274,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                     <div className="flex items-center justify-center gap-2">
                                         <div className="flex items-center gap-2">
                                             <span className="vb-sigla-time">{jogo.timecasa.sigla}</span>
-                                            <span className="w-28 hidden sm:flex justify-end truncate">
+                                            <span className="w-48 hidden sm:flex justify-end truncate">
                                                 {jogo.timecasa.nome}
                                             </span>
 
@@ -335,7 +339,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                                 src={jogo.timefora.escudo_url}
                                             />
 
-                                            <span className="w-28 hidden sm:flex truncate">{jogo.timefora.nome}</span>
+                                            <span className="w-48 hidden sm:flex truncate">{jogo.timefora.nome}</span>
                                             <span className="vb-sigla-time">{jogo.timefora.sigla}</span>
                                         </div>
                                     </div>

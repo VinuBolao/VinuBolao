@@ -1,5 +1,5 @@
 import { Inertia } from "@inertiajs/inertia";
-import { useRef, useState } from "react";
+import React, {useRef, useState} from "react";
 import ModalPalpites from "../Components/ModalPalpites";
 import {
     ArrowDownIcon,

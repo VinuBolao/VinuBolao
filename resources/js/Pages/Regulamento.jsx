@@ -17,6 +17,9 @@ const Regulamento = ({ bolao }) => {
                         <li className="list-disc">
                             Clicando em uma rodada especifica o cálculo é feito apenas para aquela rodada.
                         </li>
+                        <li className="list-disc">
+                            O placar do jogo leva em consideração o tempo do jogo e a prorrogação, se houver.
+                        </li>
                     </ul>
                 </div>
 

@@ -46,6 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/buscarJogos', [JogosController::class, 'search'])->name('buscarJogos');
 
     Route::post('/finishBolao', [BolaoController::class, 'finish'])->name('finishBolao');
+    Route::post('/currentBolao', [BolaoController::class, 'currentBolao'])->name('currentBolao');
     Route::post('/participantes', [ParticipanteController::class, 'store'])->name('participantes.store');
 
     Route::put('/updateRodada/{id}', [CampeonatoController::class, 'updateRodada'])->name('updateRodada');

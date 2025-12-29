@@ -65,11 +65,12 @@ class Bolao extends Model
 
     public function getByUser($id)
     {
-        return Participante::join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
+        return Participante::join('users', 'users.id', '=', 'participantes.user_id')
+            ->join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
             ->join('campeonatos', 'campeonatos.id', '=', 'bolaos.campeonato_id')
             ->where('participantes.user_id', $id)
             ->where('bolaos.ativo', 1)
-            ->orderByDesc('bolaos.id')
+            ->whereColumn('bolaos.id', 'users.current_bolao_id')
             ->first();
     }
 
@@ -79,5 +80,15 @@ class Bolao extends Model
             ->join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
             ->join('users', 'users.id', '=', 'bolaos.user_id')
             ->where('participantes.user_id', $id);
+    }
+
+    public function listForSelectByUser($id)
+    {
+        return Participante::select('bolaos.*', 'users.current_bolao_id')
+            ->join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
+            ->join('users', 'users.id', '=', 'bolaos.user_id')
+            ->where('participantes.user_id', $id)
+            ->where('bolaos.ativo', 1)
+            ->get();
     }
 }

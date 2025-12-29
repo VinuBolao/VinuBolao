@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bolao;
 use App\Models\Campeonato;
 use App\Models\Participante;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -34,6 +35,8 @@ class BolaoController extends Controller
     {
         $bolaos = $this->model->listByUser(Auth::id())->orderByRaw($this->model->order)->paginate(50)->withQueryString();
 
+        $listSelect = $this->model->listForSelectByUser(Auth::id());
+
         $bolaos->transform(function ($bolao) use ($participante) {
             $bolao->campeoes = $participante->getRanking($bolao->campeonato_id, 0, 0);
             return $bolao;
@@ -43,6 +46,7 @@ class BolaoController extends Controller
             'title' => 'Lista de Bolões',
             'subtitle' => "Veja a lista de bolões que você participa!",
             'bolaos' => $bolaos,
+            'listForSelectUser' => $listSelect,
         ]);
     }
 
@@ -106,7 +110,7 @@ class BolaoController extends Controller
         return redirect()->route("bolaos.index");
     }
 
-    public function finish(Request $request, Participante $participante)
+    public function finish(Request $request, Participante $participante, User $user)
     {
         if ($request->has('id')) {
             $id = $request->get('id');
@@ -121,9 +125,22 @@ class BolaoController extends Controller
                     'placarvencedor' => $item->placarvencedor,
                     'posicao' => $key + 1,
                 ]);
+
+                $user->where('current_bolao_id', $id)->update(['current_bolao_id' => null]);
             }
 
             $this->model->where(['id' => $id])->update(['ativo' => 0]);
+        }
+
+        return redirect()->route("bolaos.index");
+    }
+
+    public function currentBolao(Request $request, User $user)
+    {
+        if ($request->has('bolaoId')) {
+            $bolaoId = $request->get('bolaoId');
+
+            $user->where('id', Auth::id())->update(['current_bolao_id' => $bolaoId]);
         }
 
         return redirect()->route("bolaos.index");

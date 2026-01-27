@@ -5,10 +5,10 @@ import ModalDelete from "../Components/ModalDelete";
 
 const Participantes = ({ bolao, user, users, participantes }) => {
     const [modal, setModal] = useState(false);
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState(null);
 
     function openModal(id) {
-        setSelected(id);
+        setSelected(participantes.find(p => p.id === id));
         setModal(true);
     }
 
@@ -30,8 +30,8 @@ const Participantes = ({ bolao, user, users, participantes }) => {
     }
 
     function handleDelete() {
-        if (selected > 0) {
-            Inertia.visit(`/participantes/${selected}`, {
+        if (selected && selected.id > 0) {
+            Inertia.visit(`/participantes/${selected.id}`, {
                 method: "DELETE",
                 preserveScroll: true,
             });
@@ -58,35 +58,26 @@ const Participantes = ({ bolao, user, users, participantes }) => {
             )}
 
             {participantes.length > 0 ? (
-                <div className="p-3 sm:p-6">
-                    <div className="hidden md:flex md:flex-row border-b-2 pb-2 font-bold dark:border-slate-500">
-                        <div className="flex items-start justify-end order-last mr-4">Ações</div>
-                        <div className="px-2">#</div>
-                        <div className="px-2 flex-1 truncate">Nome</div>
-                        <div className="px-2 flex-1 truncate">Criação</div>
-                    </div>
-
+                <div className="p-2">
                     {participantes.map((participante, key) => (
                         <div
                             key={key}
-                            className="flex flex-col md:flex-row border-b-2 last:border-none py-2 dark:border-slate-500"
+                            className="flex border-b-2 last:border-none py-2 text-sm dark:border-slate-500"
                         >
-                            <div className="flex items-start justify-end order-last">
-                                <button
-                                    onClick={() => openModal(participante.id)}
-                                    className="btn-primary bg-red-700 hover:bg-red-800 focus:bg-red-800 dark:text-slate-300"
-                                >
-                                    Excluir
-                                </button>
-                            </div>
-                            <div className="p-2">{key + 1}</div>
+                            <div className="p-2">{participantes.length - key}</div>
                             <div className="p-2 flex-1 truncate">
-                                <span className="font-bold md:hidden">Nome:</span>
                                 <span>{participante.user.name}</span>
                             </div>
                             <div className="p-2 flex-1 truncate">
-                                <span className="font-bold md:hidden">Criação:</span>
                                 <span>{participante.created_format}</span>
+                            </div>
+                            <div className="flex items-center justify-center">
+                                <button
+                                    onClick={() => openModal(participante.id)}
+                                    className="btn-primary py-1 px-3 bg-red-700 hover:bg-red-800 focus:bg-red-800 dark:text-slate-300"
+                                >
+                                    Excluir
+                                </button>
                             </div>
                         </div>
                     ))}
@@ -95,7 +86,7 @@ const Participantes = ({ bolao, user, users, participantes }) => {
                         <ModalDelete
                             onConfirm={handleDelete}
                             onClose={() => setModal(false)}
-                            message="Tem certeza que deseja excluir este participante?"
+                            message={`Tem certeza que deseja excluir o ${selected.user.name}?`}
                         />
                     )}
                 </div>

@@ -23,7 +23,7 @@ class ParticipanteController extends Controller
     {
         $users = $user->orderBy('name')->get();
         $userBolao = $bolao->getByUser(Auth::id());
-        $participantes = $this->model->with('user')->where('bolao_id', $id)->get();
+        $participantes = $this->model->with('user')->where('bolao_id', $id)->orderBy("id", "desc")->get();
 
         return Inertia::render('Participantes', [
             'title' => 'Participantes',

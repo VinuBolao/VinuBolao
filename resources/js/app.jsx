@@ -13,7 +13,7 @@ if (document.getElementById("app")) {
                 <>
                     <App {...props}></App>
                     <Toaster
-                        position="top-right"
+                        position="top-center"
                         gutter={3}
                         toastOptions={{
                             success: {

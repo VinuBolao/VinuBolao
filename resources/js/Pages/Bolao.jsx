@@ -38,7 +38,7 @@ const Bolao = ({ bolaos, listForSelectUser, user }) => {
                 method: "POST",
                 data: { bolaoId: bolaoId },
                 onFinish: () => {
-                    toast.success("Bolão selecionado com sucesso!", { duration: 3000 });
+                    toast.success("Bolão selecionado!", { duration: 2000 });
                 },
             });
         }

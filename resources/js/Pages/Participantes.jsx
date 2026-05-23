@@ -71,7 +71,7 @@ const Participantes = ({ bolao, user, users, participantes }) => {
                                 <span>{participante.created_format}</span>
                             </div>
                             <div className="flex items-center justify-center">
-                                {isCurrentBolao && (
+                                {user.master && isCurrentBolao && (
                                     <button
                                         onClick={() => openModal(participante.id)}
                                         className="btn-primary py-1 px-3 bg-red-700 hover:bg-red-800 focus:bg-red-800 dark:text-slate-300"

@@ -7,8 +7,10 @@ const Participantes = ({ bolao, user, users, participantes }) => {
     const [modal, setModal] = useState(false);
     const [selected, setSelected] = useState(null);
 
+    const isCurrentBolao = bolao?.bolao_id === participantes[0]?.bolao_id;
+
     function openModal(id) {
-        setSelected(participantes.find(p => p.id === id));
+        setSelected(participantes.find((p) => p.id === id));
         setModal(true);
     }
 
@@ -40,7 +42,7 @@ const Participantes = ({ bolao, user, users, participantes }) => {
 
     return (
         <div className="bg-white dark:bg-slate-800 dark:text-slate-100 overflow-hidden shadow-sm sm:rounded-lg">
-            {user.master && (
+            {user.master && isCurrentBolao && (
                 <div className="flex items-center justify-between p-3 sm:p-6 border-b border-gray-200 last:border-b-0 dark:border-slate-500 gap-4">
                     <select name="user_id" className="vb-custom-input italic">
                         <option value="">Selecione um usuário...</option>
@@ -60,10 +62,7 @@ const Participantes = ({ bolao, user, users, participantes }) => {
             {participantes.length > 0 ? (
                 <div className="p-2">
                     {participantes.map((participante, key) => (
-                        <div
-                            key={key}
-                            className="flex border-b-2 last:border-none py-2 text-sm dark:border-slate-500"
-                        >
+                        <div key={key} className="flex border-b-2 last:border-none py-2 text-sm dark:border-slate-500">
                             <div className="p-2">{participantes.length - key}</div>
                             <div className="p-2 flex-1 truncate">
                                 <span>{participante.user.name}</span>
@@ -72,12 +71,14 @@ const Participantes = ({ bolao, user, users, participantes }) => {
                                 <span>{participante.created_format}</span>
                             </div>
                             <div className="flex items-center justify-center">
-                                <button
-                                    onClick={() => openModal(participante.id)}
-                                    className="btn-primary py-1 px-3 bg-red-700 hover:bg-red-800 focus:bg-red-800 dark:text-slate-300"
-                                >
-                                    Excluir
-                                </button>
+                                {isCurrentBolao && (
+                                    <button
+                                        onClick={() => openModal(participante.id)}
+                                        className="btn-primary py-1 px-3 bg-red-700 hover:bg-red-800 focus:bg-red-800 dark:text-slate-300"
+                                    >
+                                        Excluir
+                                    </button>
+                                )}
                             </div>
                         </div>
                     ))}

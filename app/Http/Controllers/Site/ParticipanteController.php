@@ -25,7 +25,7 @@ class ParticipanteController extends Controller
         $userBolao = $bolao->getByUser(Auth::id());
         $participantes = $this->model->with('user')->where('bolao_id', $id)->orderBy("id", "desc")->get();
         
-        $nameBolao = $userBolao->id == $id ? $userBolao->nome : "Bolão";
+        $nameBolao = (int) $userBolao->bolao_id === (int) $id ? $userBolao->nome : "Bolão";
 
         return Inertia::render('Participantes', [
             'title' => 'Participantes',

@@ -24,10 +24,12 @@ class ParticipanteController extends Controller
         $users = $user->orderBy('name')->get();
         $userBolao = $bolao->getByUser(Auth::id());
         $participantes = $this->model->with('user')->where('bolao_id', $id)->orderBy("id", "desc")->get();
+        
+        $nameBolao = $userBolao->id == $id ? $userBolao->nome : "Bolão";
 
         return Inertia::render('Participantes', [
             'title' => 'Participantes',
-            'subtitle' => "Gerencie a lista de participantes do <strong>". ($userBolao->nome ?? 'Bolão') ."</strong>!",
+            'subtitle' => "Lista de participantes do <strong>". ($nameBolao) ."</strong>!",
             'users' => $users,
             'bolao' => $userBolao ?? false,
             'participantes' => $participantes

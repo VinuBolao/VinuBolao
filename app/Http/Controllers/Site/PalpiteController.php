@@ -67,7 +67,7 @@ class PalpiteController extends Controller
     {
         $request->validate($this->model->rules());
 
-        $now = Carbon::now()->timezone('America/Fortaleza')->format('Y-m-d H:i:s');
+        $now = Carbon::now()->timezone('America/Sao_Paulo')->format('Y-m-d H:i:s');
 
         $data = $request->except('inicio_jogo');
         $data['horario'] = $now;
@@ -85,7 +85,7 @@ class PalpiteController extends Controller
     {
         $request->validate($this->model->rules());
 
-        $now = Carbon::now()->timezone('America/Fortaleza')->format('Y-m-d H:i:s');
+        $now = Carbon::now()->timezone('America/Sao_Paulo')->format('Y-m-d H:i:s');
 
         $data = $request->except('inicio_jogo');
         $data['horario'] = $now;

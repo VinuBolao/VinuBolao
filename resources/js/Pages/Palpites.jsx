@@ -49,9 +49,9 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
     const handleCompare = (jogo) => {
         if (jogo) {
             setCompare(jogo);
-            Inertia.get(`/palpites?rodada=${rodada}&compare=${jogo.id}`, {}, { preserveState: true });
+            Inertia.get(`/palpites?rodada=${rodada}&compare=${jogo.id}`, {}, { preserveScroll: true, preserveState: true });
         } else {
-            Inertia.get(`/palpites?rodada=${rodada}`);
+            Inertia.get(`/palpites?rodada=${rodada}`, {}, { preserveScroll: true });
         }
     };
 

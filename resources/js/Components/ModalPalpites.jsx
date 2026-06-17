@@ -29,14 +29,16 @@ const ModalPalpites = ({ jogo, list, handleClose }) => {
     };
 
     return (
-        <div className="absolute grid place-content-center inset-0 w-full h-screen bg-[#000000bf] z-[100]">
-            <div className="w-[90vw] sm:w-[600px] bg-white dark:bg-slate-800 shadow-md rounded-t-xl rounded-b-lg text-gray-600 dark:text-slate-300">
+        <div className="fixed inset-0 z-[100] grid place-content-center bg-[#000000bf]">
+            <div className="w-[90vw] sm:w-[600px] max-h-[90vh] bg-white dark:bg-slate-800 shadow-md rounded-t-xl rounded-b-lg text-gray-600 dark:text-slate-300">
                 <h1 className="flex justify-between font-bold text-xl text-center bg-slate-800 dark:bg-slate-900 text-white p-4 rounded-t-lg">
-                    <span className=""></span>
+                    <span></span>
+
                     <span className="flex items-center justify-center">
                         {`${jogo?.timecasa?.nome || ""} vs ${jogo?.timefora?.nome || ""}`}
                     </span>
-                    <span className="">
+
+                    <span>
                         <button
                             onClick={() => handleClose(null)}
                             className="p-2 bg-gray-100 rounded-[50%] text-slate-800"
@@ -46,7 +48,7 @@ const ModalPalpites = ({ jogo, list, handleClose }) => {
                     </span>
                 </h1>
 
-                <ul className="h-[80vh] divide-y overflow-y-auto py-2 px-4">
+                <ul className="max-h-[75vh] divide-y overflow-y-auto py-2 px-4">
                     {list.map((item, key) => (
                         <li key={key} className="flex justify-between p-2 font-bold border-gray-700">
                             <div className="w-[10%]">{key + 1}</div>

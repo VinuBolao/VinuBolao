@@ -29,7 +29,7 @@ const ModalPalpites = ({ jogo, list, handleClose }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-[100] grid place-content-center bg-[#000000bf]">
+        <div className="fixed inset-0 z-[100] grid place-items-start justify-center bg-[#000000bf] pt-10 sm:pt-16">
             <div className="w-[90vw] sm:w-[600px] max-h-[90vh] bg-white dark:bg-slate-800 shadow-md rounded-t-xl rounded-b-lg text-gray-600 dark:text-slate-300">
                 <h1 className="flex justify-between font-bold text-xl text-center bg-slate-800 dark:bg-slate-900 text-white p-4 rounded-t-lg">
                     <span></span>

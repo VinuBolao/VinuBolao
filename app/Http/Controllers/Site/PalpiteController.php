@@ -30,9 +30,12 @@ class PalpiteController extends Controller
             $participantes = $participante->getByBolao($userBolao->bolao_id);
 
             if ($request->has('compare')) {
-                $compare = $this->model->with('user')
+                $compare = $compare = $this->model
+                    ->with('user')
                     ->where('jogo_id', $request->get('compare'))
-                    ->get();
+                    ->get()
+                    ->sortBy('user.name')
+                    ->values();
             }
 
             $jogos = Jogo::with(['timecasa', 'timefora', 'palpite' => function($query) use ($userSelected) {

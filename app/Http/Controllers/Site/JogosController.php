@@ -21,22 +21,22 @@ class JogosController extends Controller
 
     public function index(Bolao $bolao, Request $request)
     {
-        $userBolao = $bolao->getByUser(Auth::id());
+        $currentBolao = $bolao->getCurrentForUser(Auth::id());
 
-        if ($userBolao) {
+        if ($currentBolao) {
             $jogos = $this->model->with('timecasa', 'timefora')
-                ->where('bolao_id', $userBolao->bolao_id)
-                ->where('jogos.rodada', $request->get('rodada') ?? $userBolao->rodada)
+                ->where('bolao_id', $currentBolao->id)
+                ->where('jogos.rodada', $request->get('rodada') ?? $currentBolao->campeonato->rodada)
                 ->orderBy('jogos.inicio')
                 ->get();
         }
 
         return Inertia::render('Jogos', [
             'title' => 'Jogos',
-            'subtitle' => "Lista de jogos do bolão <strong>". ($userBolao->nome ?? '') ."</strong> filtrados por campeonato e rodada, preencha os resultados.",
+            'subtitle' => "Lista de jogos do bolão <strong>{$currentBolao?->nome}</strong> filtrados por campeonato e rodada, preencha os resultados.",
             'jogos' => $jogos ?? [],
-            'bolao' => $userBolao ?? false,
-            'rodada' => $request->get('rodada') ?? $userBolao?->rodada,
+            'bolao' => $currentBolao ?? false,
+            'rodada' => $request->get('rodada') ?? $currentBolao?->campeonato?->rodada,
         ]);
     }
 
@@ -52,10 +52,12 @@ class JogosController extends Controller
 
     public function search(Bolao $bolao, Request $request)
     {
+        $currentBolao = $bolao->getCurrentForUser(Auth::id());
+
         return Inertia::render('BuscarJogos', [
             'title' => 'Buscar Jogos',
             'subtitle' => '',
-            'bolao' => $bolao->getByUser(Auth::id()) ?? [],
+            'bolao' => $currentBolao ?? [],
             'rodada' => $request->all(),
         ]);
     }

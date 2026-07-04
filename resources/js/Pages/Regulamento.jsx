@@ -1,6 +1,6 @@
 import React from "react";
 
-const Regulamento = ({ bolao }) => {
+const Regulamento = ({ placar_exato, placar_vencedor }) => {
     return (
         <div className="bg-white dark:bg-slate-800 dark:text-slate-300 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-3 sm:p-6 border-b border-gray-200 last:border-none">
@@ -15,7 +15,7 @@ const Regulamento = ({ bolao }) => {
                             na página de jogo e de palpite.
                         </li>
                         <li className="list-disc">
-                            Clicando em uma rodada especifica o cálculo é feito apenas para aquela rodada.
+                            Clicando em uma rodada específica, o cálculo é feito apenas para aquela rodada.
                         </li>
                         <li className="list-disc">
                             O placar do jogo leva em consideração o tempo do jogo e a prorrogação, se houver.
@@ -64,15 +64,15 @@ const Regulamento = ({ bolao }) => {
                     <h5 className="font-bold">Apostando que a partida terá um vencedor</h5>
 
                     <ul className="py-2 pl-12">
-                        <li className="list-disc">Acertando o Placar Exato = {bolao.placar_exato} pontos.</li>
-                        <li className="list-disc">Acertando o Time Vencedor = {bolao.placar_vencedor} pontos.</li>
+                        <li className="list-disc">Acertando o Placar Exato = {placar_exato} pontos.</li>
+                        <li className="list-disc">Acertando o Time Vencedor = {placar_vencedor} pontos.</li>
                     </ul>
 
                     <h5 className="font-bold">Apostando que a partida terminará empatada</h5>
 
                     <ul className="py-2 pl-12">
-                        <li className="list-disc">Acertando o Placar Exato = {bolao.placar_exato} pontos.</li>
-                        <li className="list-disc">Qualquer outro empate NÃO EXATO = {bolao.placar_vencedor} pontos.</li>
+                        <li className="list-disc">Acertando o Placar Exato = {placar_exato} pontos.</li>
+                        <li className="list-disc">Qualquer outro empate NÃO EXATO = {placar_vencedor} pontos.</li>
                     </ul>
                 </div>
 

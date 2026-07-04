@@ -16,10 +16,10 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
     const handleOpen = () => {
         setDropdown(!dropdown);
 
-        if (!dropdown && bolao.rodada > 8) {
+        if (!dropdown && bolao.campeonato.rodada > 8) {
             setTimeout(() => {
                 dropdownRef.current.scrollTo({
-                    top: 48 * (bolao.rodada / 4),
+                    top: 48 * (bolao.campeonato.rodada / 4),
                     behavior: 'smooth'
                 });
             }, 500);
@@ -50,7 +50,7 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                                 {ArrowDownIcon}
                             </span>
                         </button>
-                        <button onClick={() => handleRodada(+rodada + 1)} disabled={bolao.qtd_rodadas === +rodada}>
+                        <button onClick={() => handleRodada(+rodada + 1)} disabled={bolao.campeonato.qtd_rodadas === +rodada}>
                             {ArrowRightIcon}
                         </button>
                     </div>
@@ -67,8 +67,8 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                                 2º turno
                             </button>
 
-                            {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
-                                <button key={key} onClick={() => handleRodada(item + 1)} className={bolao.rodada === (item + 1) ? "active" : ""}>
+                            {[...Array(bolao.campeonato.qtd_rodadas).keys()].map((item, key) => (
+                                <button key={key} onClick={() => handleRodada(item + 1)} className={bolao.campeonato.rodada === (item + 1) ? "active" : ""}>
                                     {item + 1}ª
                                 </button>
                             ))}

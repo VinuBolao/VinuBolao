@@ -23,11 +23,11 @@ class PalpiteController extends Controller
 
     public function index(Participante $participante, Bolao $bolao, Request $request)
     {
-        $userBolao = $bolao->getByUser(Auth::id());
+        $currentBolao = $bolao->getCurrentForUser(Auth::id());
         $userSelected = $request->get('participante') ?? Auth::id();
 
-        if ($userBolao) {
-            $participantes = $participante->getByBolao($userBolao->bolao_id);
+        if ($currentBolao) {
+            $participantes = $participante->getByBolao($currentBolao->id);
 
             if ($request->has('compare')) {
                 $compare = $compare = $this->model
@@ -41,8 +41,8 @@ class PalpiteController extends Controller
             $jogos = Jogo::with(['timecasa', 'timefora', 'palpite' => function($query) use ($userSelected) {
                     $query->where('user_id', $userSelected);
                 }])
-                ->where('bolao_id', $userBolao->bolao_id)
-                ->where('jogos.rodada', $request->get('rodada') ?? $userBolao->rodada)
+                ->where('bolao_id', $currentBolao->id)
+                ->where('jogos.rodada', $request->get('rodada') ?? $currentBolao->campeonato->rodada)
                 ->orderBy('jogos.inicio')
                 ->get();
 
@@ -56,12 +56,12 @@ class PalpiteController extends Controller
 
         return Inertia::render('Palpites', [
             'title' => 'Palpites',
-            'subtitle' => "Lista de jogos do bolão <strong>". ($userBolao->nome ?? '') ."</strong> para você preencher os seus palpites, lembre-se de preencher seu palpite antes do inicio de cada jogo.",
+            'subtitle' => "Lista de jogos do bolão <strong>{$currentBolao?->nome}</strong> para você preencher os seus palpites, lembre-se de preencher seu palpite antes do inicio de cada jogo.",
             'jogos' => $jogos ?? [],
-            'bolao' => $userBolao ?? false,
+            'bolao' => $currentBolao ?? false,
             'compare' => $compare ?? [],
             'participantes' => $participantes ?? [],
-            'rodada' => $request->get('rodada') ?? $userBolao?->rodada,
+            'rodada' => $request->get('rodada') ?? $currentBolao?->campeonato->rodada,
             'selected' => $userSelected,
         ]);
     }

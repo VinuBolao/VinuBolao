@@ -1,5 +1,5 @@
 import { Inertia } from "@inertiajs/inertia";
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, CircleCheckIcon, CircleXisIcon, EditIcon } from "../helpers";
 
 const Jogos = ({ bolao, jogos, rodada, user }) => {
@@ -27,15 +27,15 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
     const handleOpen = () => {
         setDropdown(!dropdown);
 
-        if (!dropdown && bolao.rodada > 16) {
+        if (!dropdown && bolao.campeonato.rodada > 16) {
             setTimeout(() => {
                 dropdownRef.current.scrollTo({
-                    top: 48 * (bolao.rodada / 4),
-                    behavior: 'smooth'
+                    top: 48 * (bolao.campeonato.rodada / 4),
+                    behavior: "smooth",
                 });
             }, 500);
         }
-    }
+    };
 
     const handleRodada = (value) => {
         if (value > 0) {
@@ -88,15 +88,22 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                     {rodada}ª Rodada {ArrowDownIcon}
                                 </span>
                             </button>
-                            <button onClick={() => handleRodada(+rodada + 1)} disabled={bolao.qtd_rodadas === +rodada}>
+                            <button
+                                onClick={() => handleRodada(+rodada + 1)}
+                                disabled={bolao.campeonato.qtd_rodadas === +rodada}
+                            >
                                 {ArrowRightIcon}
                             </button>
                         </div>
 
                         {dropdown && (
                             <div ref={dropdownRef} className="vb-dropdown">
-                                {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
-                                    <button key={key} onClick={() => handleRodada(item + 1)} className={bolao.rodada === (item + 1) ? "active" : ""}>
+                                {[...Array(bolao.campeonato.qtd_rodadas).keys()].map((item, key) => (
+                                    <button
+                                        key={key}
+                                        onClick={() => handleRodada(item + 1)}
+                                        className={bolao.campeonato.rodada === item + 1 ? "active" : ""}
+                                    >
                                         {item + 1}ª
                                     </button>
                                 ))}
@@ -104,7 +111,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                         )}
                     </div>
 
-                    {(user.master || user.manager) && rodada != bolao.rodada && (
+                    {(user.master || user.manager) && rodada != bolao.campeonato.rodada && (
                         <div className="flex p-3 sm:p-6 pb-0 sm:pb-0">
                             <button className="btn-primary" onClick={handleUpdateRodada}>
                                 Atual?
@@ -129,7 +136,7 @@ const Jogos = ({ bolao, jogos, rodada, user }) => {
                                     <strong className="capitalize">Salvando...</strong>
                                 ) : (
                                     <strong className="capitalize">
-                                        {`${bolao.termino} 23:59:00` == jogo.inicio
+                                        {`${bolao.campeonato.termino} 23:59:00` == jogo.inicio
                                             ? "DATA INDEFINIDA"
                                             : jogo.inicio_format}
                                     </strong>

@@ -3,11 +3,11 @@ import toast from "react-hot-toast";
 import { Inertia } from "@inertiajs/inertia";
 import ModalDelete from "../Components/ModalDelete";
 
-const Participantes = ({ bolao, user, users, participantes }) => {
+const Participantes = ({ user, users, participantes, bolao_id }) => {
     const [modal, setModal] = useState(false);
     const [selected, setSelected] = useState(null);
 
-    const isCurrentBolao = bolao?.bolao_id === participantes[0]?.bolao_id;
+    const isCurrentBolao = user.current_bolao_id === bolao_id;
 
     function openModal(id) {
         setSelected(participantes.find((p) => p.id === id));
@@ -18,7 +18,7 @@ const Participantes = ({ bolao, user, users, participantes }) => {
         const user_id = document.querySelector("[name=user_id]").value;
 
         if (user_id > 0) {
-            const data = { bolao_id: bolao.bolao_id, user_id };
+            const data = { bolao_id, user_id };
 
             Inertia.visit(`/participantes`, {
                 method: "POST",
@@ -46,9 +46,9 @@ const Participantes = ({ bolao, user, users, participantes }) => {
                 <div className="flex items-center justify-between p-3 sm:p-6 border-b border-gray-200 last:border-b-0 dark:border-slate-500 gap-4">
                     <select name="user_id" className="vb-custom-input italic">
                         <option value="">Selecione um usuário...</option>
-                        {users.map((user, key) => (
-                            <option key={key} value={user.id}>
-                                {user.name}
+                        {users.map((u, key) => (
+                            <option key={key} value={u.id}>
+                                {u.name}
                             </option>
                         ))}
                     </select>

@@ -13,16 +13,21 @@ class ClassificacaoController extends Controller
 {
     public function index(Bolao $bolao, Participante $participante, Request $request)
     {
-        $userBolao = $bolao->getByUser(Auth::id());
-        $participantes = $userBolao ? $participante->getRanking($userBolao->campeonato_id, $request->get('rodada'), $request->get('turno')) : [];
+        $currentBolao = $bolao->getCurrentForUser(Auth::id());
+        $participantes = $currentBolao
+            ? $participante->getRanking(
+                $currentBolao->campeonato_id,
+                $request->get('rodada'),
+                $request->get('turno'))
+            : [];
 
         return Inertia::render('Classificacao', [
             'title' => 'Classificação',
-            'subtitle' => "Veja sua posição em relação aos outros participantes no bolão <strong>". ($userBolao->nome ?? '') ."</strong>!",
+            'subtitle' => "Veja sua posição em relação aos outros participantes no bolão <strong>". ($currentBolao->nome ?? '') ."</strong>!",
             'participantes' => $participantes,
-            'bolao' => $userBolao ?? false,
+            'bolao' => $currentBolao ?? false,
             'rodada' => $request->get('rodada'),
-            'turno' => $request->get('turno'),
+            'turno' => $request->get('turno')
         ]);
     }
 }

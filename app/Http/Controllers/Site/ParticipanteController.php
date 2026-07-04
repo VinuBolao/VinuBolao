@@ -18,26 +18,22 @@ class ParticipanteController extends Controller
     {
         $this->model = $model;
     }
-    
-    public function getByBolao(Bolao $bolao, User $user, $id)
+
+    public function getByBolao(User $user, $id)
     {
         $users = $user->orderBy('name')->get();
-    
-        $userBolao = $bolao->getByUser(Auth::id());
-    
-        $nameBolao = $bolao->where('id', $id)->value('nome') ?? '';
-    
+        $bolao = Bolao::where('id', $id)->first();
         $participantes = $this->model
             ->with('user')
             ->where('bolao_id', $id)
             ->orderBy('id', 'desc')
             ->get();
-    
+
         return Inertia::render('Participantes', [
             'title' => 'Participantes',
-            'subtitle' => "Lista de participantes do bolão: <strong>{$nameBolao}</strong>!",
+            'subtitle' => "Lista de participantes do bolão: <strong>{$bolao?->nome}</strong>!",
             'users' => $users,
-            'bolao' => $userBolao ?? false,
+            'bolao_id' => $bolao?->id,
             'participantes' => $participantes,
         ]);
     }

@@ -7,6 +7,7 @@ use App\Models\Bolao;
 use App\Models\Campeonato;
 use App\Models\Participante;
 use App\Models\User;
+use App\Services\RankingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -115,13 +116,13 @@ class BolaoController extends Controller
         return redirect()->route("bolaos.index");
     }
 
-    public function finish(Request $request, Participante $participante, User $user)
+    public function finish(Request $request, Participante $participante, User $user, RankingService $rankingService)
     {
         if ($request->has('id')) {
             $id = $request->get('id');
             $bolao = $this->model->findOrFail($id);
 
-            $data = $participante->getRanking($bolao->campeonato_id);
+            $data = $rankingService->getRanking($bolao->campeonato_id);
 
             foreach ($data as $key => $item) {
                 $participante->where(['bolao_id' => $id, 'user_id' => $item->id])->update([

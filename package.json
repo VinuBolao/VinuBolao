@@ -17,7 +17,7 @@
         "axios": "^0.32",
         "laravel-vite-plugin": "^0.6.0",
         "lodash": "^4.17.19",
-        "postcss": "^8.4.6",
+        "postcss": "^8.5.26",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-hot-toast": "^2.4.0",

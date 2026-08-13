@@ -1,5 +1,5 @@
 import { Inertia } from "@inertiajs/inertia";
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import ModalPalpites from "../Components/ModalPalpites";
 import {
     ArrowDownIcon,
@@ -49,7 +49,11 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
     const handleCompare = (jogo) => {
         if (jogo) {
             setCompare(jogo);
-            Inertia.get(`/palpites?rodada=${rodada}&compare=${jogo.id}`, {}, { preserveScroll: true, preserveState: true });
+            Inertia.get(
+                `/palpites?rodada=${rodada}&compare=${jogo.id}`,
+                {},
+                { preserveScroll: true, preserveState: true },
+            );
         } else {
             Inertia.get(`/palpites?rodada=${rodada}`, {}, { preserveScroll: true });
         }
@@ -58,10 +62,10 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
     const handleOpen = () => {
         setDropdown(!dropdown);
 
-        if (!dropdown && bolao.rodada > 16) {
+        if (!dropdown && bolao.campeonato.rodada > 16) {
             setTimeout(() => {
                 dropdownRef.current.scrollTo({
-                    top: 48 * (bolao.rodada / 4),
+                    top: 48 * (bolao.campeonato.rodada / 4),
                     behavior: "smooth",
                 });
             }, 500);
@@ -201,7 +205,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                 </button>
                                 <button
                                     onClick={() => handleRodada(+rodada + 1)}
-                                    disabled={bolao.qtd_rodadas === +rodada}
+                                    disabled={bolao.campeonato.qtd_rodadas === +rodada}
                                 >
                                     {ArrowRightIcon}
                                 </button>
@@ -209,11 +213,11 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
 
                             {dropdown && (
                                 <div ref={dropdownRef} className="vb-dropdown">
-                                    {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
+                                    {[...Array(bolao.campeonato.qtd_rodadas).keys()].map((item, key) => (
                                         <button
                                             key={key}
                                             onClick={() => handleRodada(item + 1)}
-                                            className={bolao.rodada === item + 1 ? "active" : ""}
+                                            className={bolao.campeonato.rodada === item + 1 ? "active" : ""}
                                         >
                                             {item + 1}ª
                                         </button>
@@ -255,7 +259,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                                             <strong className="capitalize">Salvando...</strong>
                                         ) : (
                                             <strong className="capitalize">
-                                                {`${bolao.termino} 23:59:00` == jogo.inicio
+                                                {`${bolao.campeonato.termino} 23:59:00` == jogo.inicio
                                                     ? "DATA INDEFINIDA"
                                                     : jogo.inicio_format}
                                             </strong>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Estatisticas = ({ champions, participants }) => {
+const Estatisticas = ({ champions, classificacao }) => {
     return (
         <div>
             <div className="bg-white dark:bg-slate-800 dark:text-slate-300 overflow-hidden shadow-sm sm:rounded-lg">
@@ -99,7 +99,7 @@ const Estatisticas = ({ champions, participants }) => {
             </div>
 
             <div className="bg-white dark:bg-slate-800 dark:text-slate-300 overflow-hidden shadow-sm sm:rounded-lg mt-3 sm:mt-6">
-                {participants.length > 0 ? (
+                {classificacao.length > 0 ? (
                     <div className="p-3 sm:p-6 border-b border-gray-200 dark:border-gray-600 last:border-none">
                         <div>
                             <h1 className="text-3xl text-center font-bold">Maiores Pontuadores</h1>
@@ -118,25 +118,25 @@ const Estatisticas = ({ champions, participants }) => {
                             <div className="w-[14%] text-center">DP</div>
                         </div>
 
-                        {participants.map((participant, key) => (
-                            <div key={key} id="classificacao">
+                        {classificacao.map((item) => (
+                            <div key={item.posicao} id="classificacao">
                                 <div className="w-[10%] text-center">
-                                    <span>{key + 1}º</span>
+                                    <span>{item.posicao}º</span>
                                 </div>
                                 <div className="w-[38%] font-bold truncate">
-                                    <span>{participant.name}</span>
+                                    <span>{item.name}</span>
                                 </div>
                                 <div className="w-[14%] text-center font-bold">
-                                    <span>{participant.pontosganhos}</span>
+                                    <span>{item.pontosganhos}</span>
                                 </div>
                                 <div className="w-[12%] text-center">
-                                    <span>{participant.placarexato}</span>
+                                    <span>{item.placarexato}</span>
                                 </div>
                                 <div className="w-[12%] text-center">
-                                    <span>{participant.placarvencedor}</span>
+                                    <span>{item.placarvencedor}</span>
                                 </div>
                                 <div className="w-[14%] text-center">
-                                    <span>{participant.pontosganhos - participants[0].pontosganhos}</span>
+                                    <span>{item.pontosganhos - classificacao[0].pontosganhos}</span>
                                 </div>
                             </div>
                         ))}

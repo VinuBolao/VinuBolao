@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Jogos = ({ bolao }) => {
     const [url, setUrl] = useState("");
@@ -23,11 +23,11 @@ const Jogos = ({ bolao }) => {
 
     const handleSave = () => {
         const data = jogos.map((jogo) => {
-            let date = jogo?.horario.length > 15 ? `${jogo.horario}:00` : `${bolao.termino} 23:59:00`;
+            let date = jogo?.horario.length > 15 ? `${jogo.horario}:00` : `${bolao.campeonato.termino} 23:59:00`;
 
             return {
                 rodada: rodada,
-                bolao_id: bolao.bolao_id,
+                bolao_id: bolao.id,
                 inicio: date,
                 timecasa_id: jogo.mandante.id,
                 timefora_id: jogo.visitante.id,
@@ -71,9 +71,11 @@ const Jogos = ({ bolao }) => {
                         </div>
                     </label>
                     <span className="text-sm text-gray-500">
-                        https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-{new Date().getFullYear()}/rodada/1/jogos
+                        https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-
+                        {new Date().getFullYear()}/rodada/1/jogos
                         <br />
-                        https://api.globoesporte.globo.com/tabela/4b20b911-f174-4958-9be8-4033dc74f970/fase/primeira-fase-campeonato-paulista-{new Date().getFullYear()}/rodada/1/jogos
+                        https://api.globoesporte.globo.com/tabela/4b20b911-f174-4958-9be8-4033dc74f970/fase/primeira-fase-campeonato-paulista-
+                        {new Date().getFullYear()}/rodada/1/jogos
                     </span>
                 </form>
 
@@ -88,9 +90,14 @@ const Jogos = ({ bolao }) => {
 
                 {jogos.length > 0 && (
                     <div>
+                        <h3 className="text-sm mb-2">Os jogos abaixo serão salvos no campeonato abaixo:</h3>
+
                         <h2 className="text-xl mb-4 font-bold">
-                            {bolao.nome} - Rodada {rodada}
+                            {bolao.campeonato.nome} (Rodada {rodada})
                         </h2>
+
+                        <hr className="mb-4 border-gray-500" />
+
                         {jogos.map((item, key) => (
                             <div key={key} className="flex gap-1 mb-2 font-bold uppercase">
                                 <span>{key + 1} - </span>

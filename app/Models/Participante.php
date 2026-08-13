@@ -43,23 +43,11 @@ class Participante extends Model
         return $this->belongsTo(Bolao::class, 'bolao_id', 'id');
     }
 
-    public function getByBolao($id)
+    public function getByBolao($bolaoId)
     {
         return $this->join('users', 'users.id', '=', 'user_id')
-            ->where('bolao_id', $id)
+            ->where('bolao_id', $bolaoId)
             ->orderBy('users.name')
             ->get();
-    }
-
-    public function getRanking($campeonato_id, $rodada = null, $turno = null)
-    {
-        $inicio = 1;
-        $fim = 38;
-
-        if ($turno == 1) $fim = 19;
-        if ($turno == 2) $inicio = 20;
-        if ($rodada) {$inicio = $rodada;$fim = $rodada;}
-
-        return DB::select('CALL pr_classificacao(?, ?, ?)', [$campeonato_id, $inicio, $fim]);
     }
 }

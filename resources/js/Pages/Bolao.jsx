@@ -102,7 +102,7 @@ const Bolao = ({ bolaos, listForSelectUser, user }) => {
                                             <span className="tooltip ml-[-114px]">Participantes</span>
                                             {ParticipantsIcon}
                                         </a>
-                                        {bolao.ativo === 1 && (
+                                        {bolao.ativo && (
                                             <button
                                                 onClick={() => openModal(bolao.id)}
                                                 className="btn-primary rounded-3xl p-[0.75rem] bg-red-700 hover:bg-red-800 focus:bg-red-800 has-tooltip dark:text-slate-300"
@@ -134,7 +134,7 @@ const Bolao = ({ bolaos, listForSelectUser, user }) => {
                                 </div>
                                 <div className="p-2 md:w-40 flex-1">
                                     <span className="font-bold md:hidden mr-1">Descrição:</span>
-                                    {bolao.ativo === 1 || (bolao.ativo === 0 && bolao.campeoes.length === 0) ? (
+                                    {bolao.ativo || (!bolao.ativo && bolao.campeoes.length === 0) ? (
                                         <span
                                             className="font-light"
                                             dangerouslySetInnerHTML={{ __html: bolao.descricao }}
@@ -142,11 +142,12 @@ const Bolao = ({ bolaos, listForSelectUser, user }) => {
                                     ) : (
                                         <>
                                             Campeões: <br />
-                                            1º Lugar: {bolao?.campeoes[0]?.name || ""}
-                                            <br />
-                                            2º Lugar: {bolao?.campeoes[1]?.name || ""}
-                                            <br />
-                                            3º Lugar: {bolao?.campeoes[2]?.name || ""}
+                                            {bolao?.campeoes.map((campeao, index) => (
+                                                <span key={index}>
+                                                    {index + 1}º Lugar: {campeao.user.name}
+                                                    <br />
+                                                </span>
+                                            ))}
                                             <br />
                                         </>
                                     )}

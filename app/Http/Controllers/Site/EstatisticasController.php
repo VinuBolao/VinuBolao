@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Bolao;
 use App\Models\Participante;
+use App\Services\RankingService;
 use Inertia\Inertia;
 
 class EstatisticasController extends Controller
 {
-    public function getStatistcs(Participante $participante)
+    public function getStatistcs(Participante $participante, RankingService $rankingService)
     {
+        $classificacao = $rankingService->getRanking(0, 0, 0);
+
         return Inertia::render('Estatisticas', [
             'title' => 'Estatísticas',
             'subtitle' => "Veja algumas estatísticas da história do VinúBolão!",
-            'participants' => $this->getAllRanking($participante),
+            'classificacao' => $classificacao,
             'champions' => $this->getAllChampions($participante),
         ]);
-    }
-
-    private function getAllRanking($participante) {
-       return $participante->getRanking(0, 0, 0);
     }
 
     private function getAllChampions($participante) {

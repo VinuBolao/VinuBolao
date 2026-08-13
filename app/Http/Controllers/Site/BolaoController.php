@@ -7,6 +7,7 @@ use App\Models\Bolao;
 use App\Models\Campeonato;
 use App\Models\Participante;
 use App\Models\User;
+use App\Services\RankingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -33,12 +34,17 @@ class BolaoController extends Controller
 
     public function index(Participante $participante)
     {
-        $bolaos = $this->model->listByUser(Auth::id())->orderByRaw($this->model->order)->paginate(50)->withQueryString();
+        $bolaos = $this->model->getAllForUser(Auth::id())->orderByRaw($this->model->order)->paginate(50)->withQueryString();
 
-        $listSelect = $this->model->listForSelectByUser(Auth::id());
+        $listForSelect = $this->model->getActiveForUser(Auth::id());
 
         $bolaos->transform(function ($bolao) use ($participante) {
-            $bolao->campeoes = $participante->getRanking($bolao->campeonato_id, 0, 0);
+            $bolao->campeoes = $participante
+                ->with('user')
+                ->where('bolao_id', $bolao->id)
+                ->orderByDesc('pontosganhos')
+                ->limit(3)
+                ->get();
             return $bolao;
         });
 
@@ -46,7 +52,7 @@ class BolaoController extends Controller
             'title' => 'Lista de Bolões',
             'subtitle' => "Veja a lista de bolões que você participa!",
             'bolaos' => $bolaos,
-            'listForSelectUser' => $listSelect,
+            'listForSelectUser' => $listForSelect,
         ]);
     }
 
@@ -110,13 +116,13 @@ class BolaoController extends Controller
         return redirect()->route("bolaos.index");
     }
 
-    public function finish(Request $request, Participante $participante, User $user)
+    public function finish(Request $request, Participante $participante, User $user, RankingService $rankingService)
     {
         if ($request->has('id')) {
             $id = $request->get('id');
             $bolao = $this->model->findOrFail($id);
 
-            $data = $participante->getRanking($bolao->campeonato_id);
+            $data = $rankingService->getRanking($bolao->campeonato_id);
 
             foreach ($data as $key => $item) {
                 $participante->where(['bolao_id' => $id, 'user_id' => $item->id])->update([

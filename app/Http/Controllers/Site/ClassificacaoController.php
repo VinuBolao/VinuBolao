@@ -4,25 +4,30 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bolao;
-use App\Models\Participante;
+use App\Services\RankingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ClassificacaoController extends Controller
 {
-    public function index(Bolao $bolao, Participante $participante, Request $request)
+    public function index(Bolao $bolao, RankingService $rankingService, Request $request)
     {
-        $userBolao = $bolao->getByUser(Auth::id());
-        $participantes = $userBolao ? $participante->getRanking($userBolao->campeonato_id, $request->get('rodada'), $request->get('turno')) : [];
+        $currentBolao = $bolao->getCurrentForUser(Auth::id());
+        $classificacao = $currentBolao
+            ? $rankingService->getRanking(
+                $currentBolao->campeonato_id,
+                $request->get('rodada'),
+                $request->get('turno'))
+            : [];
 
         return Inertia::render('Classificacao', [
             'title' => 'Classificação',
-            'subtitle' => "Veja sua posição em relação aos outros participantes no bolão <strong>". ($userBolao->nome ?? '') ."</strong>!",
-            'participantes' => $participantes,
-            'bolao' => $userBolao ?? false,
+            'subtitle' => "Veja sua posição em relação aos outros participantes no bolão <strong>". ($currentBolao->nome ?? '') ."</strong>!",
+            'classificacao' => $classificacao,
+            'bolao' => $currentBolao ?? false,
             'rodada' => $request->get('rodada'),
-            'turno' => $request->get('turno'),
+            'turno' => $request->get('turno')
         ]);
     }
 }

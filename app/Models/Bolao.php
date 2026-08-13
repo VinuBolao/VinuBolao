@@ -63,31 +63,44 @@ class Bolao extends Model
         return $this->belongsTo(Campeonato::class);
     }
 
-    public function getByUser($id)
+    public function getCurrentForUser($userId)
     {
-        return Participante::join('users', 'users.id', '=', 'participantes.user_id')
-            ->join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
-            ->join('campeonatos', 'campeonatos.id', '=', 'bolaos.campeonato_id')
-            ->where('participantes.user_id', $id)
+        $bolao = self::select(
+                'bolaos.*',
+                'participantes.id as participante_id',
+                'participantes.pontosganhos as participante_pontosganhos',
+                'participantes.placarexato as participante_placar_exato',
+                'participantes.placarvencedor as participante_placar_vencedor',
+            )
+            ->with('campeonato')
+            ->join('participantes', 'participantes.bolao_id', '=', 'bolaos.id')
+            ->join('users', 'users.id', '=', 'participantes.user_id')
+            ->where('participantes.user_id', $userId)
             ->where('bolaos.ativo', 1)
             ->whereColumn('bolaos.id', 'users.current_bolao_id')
             ->first();
+
+        if ($bolao) {
+            $bolao->setRelation('currentUser', User::find($userId));
+        }
+
+        return $bolao;
     }
 
-    public function listByUser($id)
+    public function getAllForUser($userId)
     {
-        return Participante::select('bolaos.*', 'users.name as user_name')
-            ->join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
+        return self::select('bolaos.*', 'users.name as user_name')
+            ->join('participantes', 'participantes.bolao_id', '=', 'bolaos.id')
             ->join('users', 'users.id', '=', 'bolaos.user_id')
-            ->where('participantes.user_id', $id);
+            ->where('participantes.user_id', $userId);
     }
 
-    public function listForSelectByUser($id)
+    public function getActiveForUser($userId)
     {
-        return Participante::select('bolaos.*', 'users.current_bolao_id')
-            ->join('bolaos', 'bolaos.id', '=', 'participantes.bolao_id')
-            ->join('users', 'users.id', '=', 'bolaos.user_id')
-            ->where('participantes.user_id', $id)
+        return self::select('bolaos.*', 'user_participant.current_bolao_id')
+            ->join('participantes', 'participantes.bolao_id', '=', 'bolaos.id')
+            ->join('users as user_participant', 'user_participant.id', '=', 'participantes.user_id')
+            ->where('participantes.user_id', $userId)
             ->where('bolaos.ativo', 1)
             ->get();
     }

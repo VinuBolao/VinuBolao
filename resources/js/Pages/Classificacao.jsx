@@ -2,7 +2,7 @@ import React, {useRef, useState} from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon } from "../helpers";
 
-const Classificacao = ({ bolao, participantes, rodada, turno }) => {
+const Classificacao = ({ bolao, classificacao, rodada, turno }) => {
     const [dropdown, setDropdown] = useState(false);
     const dropdownRef = useRef();
 
@@ -16,10 +16,10 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
     const handleOpen = () => {
         setDropdown(!dropdown);
 
-        if (!dropdown && bolao.rodada > 8) {
+        if (!dropdown && bolao.campeonato.rodada > 8) {
             setTimeout(() => {
                 dropdownRef.current.scrollTo({
-                    top: 48 * (bolao.rodada / 4),
+                    top: 48 * (bolao.campeonato.rodada / 4),
                     behavior: 'smooth'
                 });
             }, 500);
@@ -34,9 +34,11 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
         }
     };
 
+    console.log(classificacao)
+
     return (
         <div className="bg-white dark:bg-slate-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-600 dark:text-slate-100">
-            {(participantes.length > 0 || rodada > 0 || turno > 0) && (
+            {(classificacao.length > 0 || rodada > 0 || turno > 0) && (
                 <>
                     <div className={dropdown ? "vb-btn-group open" : "vb-btn-group"}>
                         <button onClick={() => handleRodada(+rodada - 1)} disabled={+rodada <= 1}>
@@ -50,7 +52,7 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                                 {ArrowDownIcon}
                             </span>
                         </button>
-                        <button onClick={() => handleRodada(+rodada + 1)} disabled={bolao.qtd_rodadas === +rodada}>
+                        <button onClick={() => handleRodada(+rodada + 1)} disabled={bolao.campeonato.qtd_rodadas === +rodada}>
                             {ArrowRightIcon}
                         </button>
                     </div>
@@ -67,8 +69,8 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                                 2º turno
                             </button>
 
-                            {[...Array(bolao.qtd_rodadas).keys()].map((item, key) => (
-                                <button key={key} onClick={() => handleRodada(item + 1)} className={bolao.rodada === (item + 1) ? "active" : ""}>
+                            {[...Array(bolao.campeonato.qtd_rodadas).keys()].map((item, key) => (
+                                <button key={key} onClick={() => handleRodada(item + 1)} className={bolao.campeonato.rodada === (item + 1) ? "active" : ""}>
                                     {item + 1}ª
                                 </button>
                             ))}
@@ -77,7 +79,7 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                 </>
             )}
 
-            {participantes.length > 0 ? (
+            {classificacao.length > 0 ? (
                 <div className="p-3 sm:p-6 border-b border-gray-200 last:border-none">
                     <div className="flex flex-row border-b-2 py-2 font-bold bg-slate-800 dark:border-slate-500 dark:bg-slate-900 text-white rounded-t-lg">
                         <div className="w-[10%] text-center">#</div>
@@ -88,31 +90,31 @@ const Classificacao = ({ bolao, participantes, rodada, turno }) => {
                         <div className="w-[14%] text-center">DP</div>
                     </div>
 
-                    {participantes.map((participante, key) => (
+                    {classificacao.map((item, key) => (
                         <div
-                            key={key}
+                            key={item.posicao}
                             id="classificacao"
                             className={`${!+rodada && key <= 2 && "vb-winners"} ${
-                                !+rodada && key > participantes.length - 3 && "vb-losers"
+                                !+rodada && key > classificacao.length - 3 && "vb-losers"
                             }`}
                         >
                             <div className="w-[10%] text-center">
-                                <span>{key + 1}º</span>
+                                <span>{item.posicao}º</span>
                             </div>
                             <div className="w-[38%] font-bold truncate">
-                                <span>{participante.name}</span>
+                                <span>{item.name}</span>
                             </div>
                             <div className="w-[14%] text-center font-bold">
-                                <span>{participante.pontosganhos}</span>
+                                <span>{item.pontosganhos}</span>
                             </div>
                             <div className="w-[12%] text-center">
-                                <span>{participante.placarexato}</span>
+                                <span>{item.placarexato}</span>
                             </div>
                             <div className="w-[12%] text-center">
-                                <span>{participante.placarvencedor}</span>
+                                <span>{item.placarvencedor}</span>
                             </div>
                             <div className="w-[14%] text-center">
-                                <span>{participante.pontosganhos - participantes[0].pontosganhos}</span>
+                                <span>{item.pontosganhos - classificacao[0].pontosganhos}</span>
                             </div>
                         </div>
                     ))}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Jogos = ({ bolao }) => {
     const [url, setUrl] = useState("");
@@ -71,9 +71,11 @@ const Jogos = ({ bolao }) => {
                         </div>
                     </label>
                     <span className="text-sm text-gray-500">
-                        https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-2026/rodada/1/jogos
+                        https://api.globoesporte.globo.com/tabela/d1a37fa4-e948-43a6-ba53-ab24ab3a45b1/fase/fase-unica-campeonato-brasileiro-
+                        {new Date().getFullYear()}/rodada/1/jogos
                         <br />
-                        https://api.globoesporte.globo.com/tabela/4b20b911-f174-4958-9be8-4033dc74f970/fase/primeira-fase-paulista-2026/rodada/1/jogos
+                        https://api.globoesporte.globo.com/tabela/4b20b911-f174-4958-9be8-4033dc74f970/fase/primeira-fase-campeonato-paulista-
+                        {new Date().getFullYear()}/rodada/1/jogos
                     </span>
                 </form>
 

@@ -34,8 +34,6 @@ const Classificacao = ({ bolao, classificacao, rodada, turno }) => {
         }
     };
 
-    console.log(classificacao)
-
     return (
         <div className="bg-white dark:bg-slate-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-600 dark:text-slate-100">
             {(classificacao.length > 0 || rodada > 0 || turno > 0) && (

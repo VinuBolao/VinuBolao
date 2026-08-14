@@ -18,6 +18,15 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+const logInfo = {
+    Project: "VinúBolão",
+    Environment: window.location.origin === "https://www.vinubolao.com.br" ? "Produção" : "Local",
+    DateTime: new Date().toLocaleString(),
+    Version: "2.0.0"
+};
+
+window.LogInfo = logInfo;
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

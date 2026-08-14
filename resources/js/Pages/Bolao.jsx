@@ -7,6 +7,7 @@ import ModalDelete from "../Components/ModalDelete";
 import { EditIcon, FinishIcon, ParticipantsIcon } from "../helpers";
 
 const Bolao = ({ bolaos, listForSelectUser, user }) => {
+    console.table(LogInfo);
     const [modal, setModal] = React.useState(false);
     const [selected, setSelected] = React.useState(0);
 

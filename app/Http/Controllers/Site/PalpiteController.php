@@ -30,7 +30,7 @@ class PalpiteController extends Controller
             $participantes = $participante->getByBolao($currentBolao->id);
 
             if ($request->has('compare')) {
-                $compare = $compare = $this->model
+                $compare = $this->model
                     ->with('user')
                     ->where('jogo_id', $request->get('compare'))
                     ->get()
@@ -38,12 +38,19 @@ class PalpiteController extends Controller
                     ->values();
             }
 
-            $jogos = Jogo::with(['timecasa', 'timefora', 'palpite' => function($query) use ($userSelected) {
+            $rodada = $request->get('rodada')
+                ?? $currentBolao->campeonato->rodada;
+
+            $jogos = Jogo::with([
+                'timecasa',
+                'timefora',
+                'palpite' => function ($query) use ($userSelected) {
                     $query->where('user_id', $userSelected);
-                }])
-                ->where('bolao_id', $currentBolao->id)
-                ->where('jogos.rodada', $request->get('rodada') ?? $currentBolao->campeonato->rodada)
-                ->orderBy('jogos.inicio')
+                }
+            ])
+                ->where('campeonato_id', $currentBolao->campeonato_id)
+                ->where('rodada', $rodada)
+                ->orderBy('inicio')
                 ->get();
 
             foreach ($jogos as $jogo) {
@@ -70,31 +77,52 @@ class PalpiteController extends Controller
     {
         $request->validate($this->model->rules());
 
-        $now = Carbon::now()->timezone('America/Sao_Paulo')->format('Y-m-d H:i:s');
+        $jogo = Jogo::findOrFail($request->jogo_id);
 
-        $data = $request->except('inicio_jogo');
-        $data['horario'] = $now;
-
-        if ($request->get('inicio_jogo') > $now) {
-            $count = $this->model->where('jogo_id', $data['jogo_id'])->where('user_id', $data['user_id'])->count();
-
-            if ($count === 0) {
-                $this->model->create($data);
-            }
+        if (!Carbon::parse($jogo->inicio)->isFuture()) {
+            return;
         }
+
+        $data = $request->except([
+            'inicio_jogo',
+            'user_id',
+        ]);
+
+        $data['user_id'] = Auth::id();
+        $data['horario'] = Carbon::now('America/Sao_Paulo');
+
+        $this->model->firstOrCreate(
+            [
+                'jogo_id' => $jogo->id,
+                'user_id' => Auth::id(),
+            ],
+            $data
+        );
     }
 
     public function update(Request $request, $id)
     {
         $request->validate($this->model->rules());
 
-        $now = Carbon::now()->timezone('America/Sao_Paulo')->format('Y-m-d H:i:s');
+        $palpite = $this->model
+            ->where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
-        $data = $request->except('inicio_jogo');
-        $data['horario'] = $now;
+        $jogo = Jogo::findOrFail($palpite->jogo_id);
 
-        if ($request->get('inicio_jogo') > $now) {
-            $this->model->findOrFail($id)->update($data);
+        if (!Carbon::parse($jogo->inicio)->isFuture()) {
+            return;
         }
+
+        $data = $request->except([
+            'inicio_jogo',
+            'user_id',
+            'jogo_id',
+        ]);
+
+        $data['horario'] = Carbon::now('America/Sao_Paulo');
+
+        $palpite->update($data);
     }
 }

@@ -13,7 +13,7 @@ class RankingService
         $ranking = DB::table('palpites as p')
             ->join('jogos as j', 'j.id', '=', 'p.jogo_id')
             ->join('users as u', 'u.id', '=', 'p.user_id')
-            ->join('bolaos as b', 'b.id', '=', 'j.bolao_id')
+            ->join('bolaos as b', 'b.campeonato_id', '=', 'j.campeonato_id')
             ->whereNotNull('j.placar_casa')
             ->whereNotNull('j.placar_fora')
             ->whereNotNull('p.palpite_casa')

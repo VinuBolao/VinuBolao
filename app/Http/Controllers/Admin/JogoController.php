@@ -21,7 +21,6 @@ class JogoController extends Controller
     protected $relationships = ['bolao', 'campeonato', 'timecasa', 'timefora'];
 
     protected $fields = [
-        ['label' => 'Bolão', 'name' => 'bolao_id', 'type' => 'select', 'options' => 'boloes', 'required' => true],
         ['label' => 'Campeonato', 'name' => 'campeonato_id', 'type' => 'select', 'options' => 'campeonatos', 'required' => true],
         ['label' => 'Rodada', 'name' => 'rodada', 'type' => 'number', 'required' => true],
         ['label' => 'Mandante', 'name' => 'timecasa_id', 'type' => 'select', 'options' => 'times', 'required' => true],

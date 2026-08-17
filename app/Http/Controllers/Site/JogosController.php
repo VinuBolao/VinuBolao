@@ -25,7 +25,7 @@ class JogosController extends Controller
 
         if ($currentBolao) {
             $jogos = $this->model->with('timecasa', 'timefora')
-                ->where('bolao_id', $currentBolao->id)
+                ->where('campeonato_id', $currentBolao->campeonato_id)
                 ->where('jogos.rodada', $request->get('rodada') ?? $currentBolao->campeonato->rodada)
                 ->orderBy('jogos.inicio')
                 ->get();
@@ -71,7 +71,6 @@ class JogosController extends Controller
                 Jogo::updateOrCreate(
                     [
                         "rodada" => $jogo["rodada"],
-                        "bolao_id" => $jogo["bolao_id"],
                         "timecasa_id" => $jogo["timecasa_id"],
                         "timefora_id" => $jogo["timefora_id"],
                         "campeonato_id" => $jogo["campeonato_id"]

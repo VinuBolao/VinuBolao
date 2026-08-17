@@ -12,7 +12,7 @@ class Jogo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'bolao_id', 'campeonato_id', 'rodada', 'inicio', 'timecasa_id', 'placar_casa', 'placar_fora', 'timefora_id'
+        'campeonato_id', 'rodada', 'inicio', 'timecasa_id', 'placar_casa', 'placar_fora', 'timefora_id'
     ];
 
     protected $guarded = ['id'];
@@ -44,7 +44,6 @@ class Jogo extends Model
     public function rules()
     {
         return [
-            "bolao_id" => "required|exists:bolaos,id",
             "campeonato_id" => "required|exists:campeonatos,id",
             "timecasa_id" => "required|exists:times,id",
             "timefora_id" => "required|exists:times,id",

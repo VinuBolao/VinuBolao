@@ -6,18 +6,22 @@ use Illuminate\Support\Facades\DB;
 
 class RankingService
 {
-    public function getRanking(int $campeonatoId, ?int $rodada = null, ?int $turno = null): array
+    public function getRanking(int $campeonatoId, int $bolaoId, ?int $rodada = null, ?int $turno = null): array
     {
         [$inicio, $fim] = $this->definirIntervaloRodadas($rodada, $turno);
 
         $ranking = DB::table('palpites as p')
             ->join('jogos as j', 'j.id', '=', 'p.jogo_id')
-            ->join('users as u', 'u.id', '=', 'p.user_id')
-            ->join('bolaos as b', 'b.campeonato_id', '=', 'j.campeonato_id')
+            ->join('participantes as pa', 'pa.id', '=', 'p.participante_id')
+            ->join('users as u', 'u.id', '=', 'pa.user_id')
+            ->join('bolaos as b', 'b.id', '=', 'pa.bolao_id')
             ->whereNotNull('j.placar_casa')
             ->whereNotNull('j.placar_fora')
             ->whereNotNull('p.palpite_casa')
             ->whereNotNull('p.palpite_fora')
+            ->when($bolaoId > 0, function ($query) use ($bolaoId) {
+                $query->where('b.id', $bolaoId);
+            })
             ->when($campeonatoId > 0, function ($query) use ($campeonatoId) {
                 $query->where('j.campeonato_id', $campeonatoId);
             })

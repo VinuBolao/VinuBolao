@@ -35,7 +35,9 @@ const ModalPalpites = ({ jogo, list, handleClose }) => {
                     <span></span>
 
                     <span className="flex items-center justify-center">
-                        {`${jogo?.timecasa?.nome || ""} vs ${jogo?.timefora?.nome || ""}`}
+                        {jogo?.timecasa?.nome || ""} {jogo?.placar_casa ?? ""}
+                        <span className="mx-1">x</span>
+                        {jogo?.placar_fora ?? ""} {jogo?.timefora?.nome || ""}
                     </span>
 
                     <span>
@@ -52,7 +54,7 @@ const ModalPalpites = ({ jogo, list, handleClose }) => {
                     {list.map((item, key) => (
                         <li key={key} className="flex justify-between p-2 font-bold border-gray-700">
                             <div className="w-[10%]">{key + 1}</div>
-                            <div className="w-[60%]">{item.user.name}</div>
+                            <div className="w-[60%]">{item.participante?.user?.name ?? ""}</div>
                             <div className={checkPalpite(jogo.placar_casa, jogo.placar_fora, item)}>
                                 {item.palpite_casa} x {item.palpite_fora}
                             </div>

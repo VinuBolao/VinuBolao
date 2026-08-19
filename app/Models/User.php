@@ -67,4 +67,14 @@ class User extends Authenticatable
             "password" => "sometimes|required|min:6|confirmed",
         ];
     }
+
+    public function participantes()
+    {
+        return $this->hasMany(Participante::class);
+    }
+
+    public function currentBolao()
+    {
+        return $this->belongsTo(Bolao::class, 'current_bolao_id');
+    }
 }

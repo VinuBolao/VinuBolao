@@ -52,14 +52,9 @@ class Jogo extends Model
         ];
     }
 
-    public function bolao()
+    public function palpites()
     {
-        return $this->belongsTo(Bolao::class);
-    }
-
-    public function palpite()
-    {
-        return $this->hasOne(Palpite::class);
+        return $this->hasMany(Palpite::class);
     }
 
     public function campeonato()

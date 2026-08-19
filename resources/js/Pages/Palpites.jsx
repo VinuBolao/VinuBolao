@@ -18,6 +18,11 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
     const [palpite, setPalpite] = useState({ jogo: 0, casa: null, fora: null });
     const dropdownRef = useRef();
 
+    const jogosFormatados = jogos.map((jogo) => ({
+        ...jogo,
+        palpite: jogo.palpites?.[0] ?? null,
+    }));
+
     const handleChange = (e, jogo) => {
         if (palpite.jogo === 0 || jogo.id === palpite.jogo) {
             setPalpite({
@@ -89,7 +94,6 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
     const handleSave = (jogo) => {
         const data = {
             jogo_id: jogo.id,
-            user_id: user.id,
             inicio_jogo: jogo.inicio,
             palpite_casa: palpite.casa,
             palpite_fora: palpite.fora,
@@ -251,7 +255,7 @@ const Palpites = ({ user, bolao, compare, jogos, rodada, participantes, selected
                             <div className="px-2 text-center">Ações</div>
                         </div>
 
-                        {jogos.map((jogo, key) => (
+                        {jogosFormatados.map((jogo, key) => (
                             <div key={key} className={checkPalpite(jogo)}>
                                 <div className="flex text-sm justify-center pt-2 gap-1">
                                     <strong className="capitalize">

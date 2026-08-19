@@ -27,14 +27,21 @@ class PalpiteController extends Controller
         $userSelected = $request->get('participante') ?? Auth::id();
 
         if ($currentBolao) {
+            $participanteSelected = Participante::where('user_id', $userSelected)
+                ->where('bolao_id', $currentBolao->id)
+                ->first();
+
             $participantes = $participante->getByBolao($currentBolao->id);
 
             if ($request->has('compare')) {
                 $compare = $this->model
-                    ->with('user')
+                    ->with('participante.user')
+                    ->whereHas('participante', function ($query) use ($currentBolao) {
+                        $query->where('bolao_id', $currentBolao->id);
+                    })
                     ->where('jogo_id', $request->get('compare'))
                     ->get()
-                    ->sortBy('user.name')
+                    ->sortBy('participante.user.name')
                     ->values();
             }
 
@@ -44,8 +51,8 @@ class PalpiteController extends Controller
             $jogos = Jogo::with([
                 'timecasa',
                 'timefora',
-                'palpite' => function ($query) use ($userSelected) {
-                    $query->where('user_id', $userSelected);
+                'palpites' => function ($query) use ($participanteSelected) {
+                    $query->where('participante_id', $participanteSelected?->id);
                 }
             ])
                 ->where('campeonato_id', $currentBolao->campeonato_id)
@@ -54,9 +61,10 @@ class PalpiteController extends Controller
                 ->get();
 
             foreach ($jogos as $jogo) {
-                if ($userSelected != Auth::id() && $jogo->palpite && $jogo->inicio_timestamp > Carbon::now()->timestamp) {
-                    $jogo->palpite->palpite_casa = null;
-                    $jogo->palpite->palpite_fora = null;
+                $palpite = $jogo->palpites->first();
+                if ($userSelected != Auth::id() && $palpite && $jogo->inicio_timestamp > Carbon::now()->timestamp) {
+                    $palpite->palpite_casa = null;
+                    $palpite->palpite_fora = null;
                 }
             }
         }
@@ -77,24 +85,31 @@ class PalpiteController extends Controller
     {
         $request->validate($this->model->rules());
 
-        $jogo = Jogo::findOrFail($request->jogo_id);
+        $currentBolao = Bolao::findOrFail(Auth::user()->current_bolao_id);
+
+        $jogo = Jogo::where('id', $request->jogo_id)
+            ->where('campeonato_id', $currentBolao->campeonato_id)
+            ->firstOrFail();
 
         if (!Carbon::parse($jogo->inicio)->isFuture()) {
             return;
         }
 
+        $currentBolao = (new Bolao)->getCurrentForUser(Auth::id());
+
         $data = $request->except([
             'inicio_jogo',
             'user_id',
+            'participante_id',
         ]);
 
-        $data['user_id'] = Auth::id();
+        $data['participante_id'] = $currentBolao->participante_id;
         $data['horario'] = Carbon::now('America/Sao_Paulo');
 
         $this->model->firstOrCreate(
             [
                 'jogo_id' => $jogo->id,
-                'user_id' => Auth::id(),
+                'participante_id' => $currentBolao->participante_id,
             ],
             $data
         );
@@ -104,12 +119,16 @@ class PalpiteController extends Controller
     {
         $request->validate($this->model->rules());
 
+        $currentBolao = (new Bolao)->getCurrentForUser(Auth::id());
+
         $palpite = $this->model
             ->where('id', $id)
-            ->where('user_id', Auth::id())
+            ->where('participante_id', $currentBolao->participante_id)
             ->firstOrFail();
 
-        $jogo = Jogo::findOrFail($palpite->jogo_id);
+        $jogo = Jogo::where('id', $palpite->jogo_id)
+            ->where('campeonato_id', $currentBolao->campeonato_id)
+            ->firstOrFail();
 
         if (!Carbon::parse($jogo->inicio)->isFuture()) {
             return;
@@ -118,6 +137,7 @@ class PalpiteController extends Controller
         $data = $request->except([
             'inicio_jogo',
             'user_id',
+            'participante_id',
             'jogo_id',
         ]);
 

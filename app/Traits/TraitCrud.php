@@ -26,6 +26,8 @@ trait TraitCrud
 
     public function create()
     {
+        session(['crud_return_url' => url()->previous()]);
+
         return view("{$this->prefixView}.add", ['fields' => $this->fields]);
     }
 
@@ -35,13 +37,21 @@ trait TraitCrud
 
         $this->model->create($request->all());
 
-        return redirect()->route("{$this->prefixView}s.index");
+        $returnUrl = session()->pull('crud_return_url');
+
+        return $returnUrl ? redirect()->to($returnUrl) : redirect()->route("{$this->prefixView}s.index");
     }
 
     public function edit($id)
     {
+        session(['crud_return_url' => url()->previous()]);
+
         $name = substr($this->model->getTable(), 0, -1);
-        return view("{$this->prefixView}.edit", ['fields' => $this->fields, "{$name}" => $this->model->findOrFail($id)]);
+
+        return view("{$this->prefixView}.edit", [
+            'fields' => $this->fields,
+            "{$name}" => $this->model->findOrFail($id)
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -70,7 +80,9 @@ trait TraitCrud
         $request->validate($rules);
         $this->model->findOrFail($id)->update($data);
 
-        return redirect()->route("{$this->prefixView}s.index");
+        $returnUrl = session()->pull('crud_return_url');
+
+        return $returnUrl ? redirect()->to($returnUrl) : redirect()->route("{$this->prefixView}s.index");
     }
 
     public function destroy($id)

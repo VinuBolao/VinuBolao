@@ -18,7 +18,7 @@ class JogoController extends Controller
 
     protected $prefixView = "admin.jogo";
 
-    protected $relationships = ['bolao', 'campeonato', 'timecasa', 'timefora'];
+    protected $relationships = ['campeonato', 'timecasa', 'timefora'];
 
     protected $fields = [
         ['label' => 'Campeonato', 'name' => 'campeonato_id', 'type' => 'select', 'options' => 'campeonatos', 'required' => true],
@@ -54,6 +54,8 @@ class JogoController extends Controller
 
     public function create()
     {
+        session(['crud_return_url' => url()->previous()]);
+
         $fields = $this->fields;
 
         $times = Time::orderBy('nome')->get();
@@ -65,6 +67,8 @@ class JogoController extends Controller
 
     public function edit($id)
     {
+        session(['crud_return_url' => url()->previous()]);
+        
         $fields = $this->fields;
 
         $jogo = $this->model->findOrFail($id);

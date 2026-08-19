@@ -12,7 +12,7 @@ class EstatisticasController extends Controller
 {
     public function getStatistcs(Participante $participante, RankingService $rankingService)
     {
-        $classificacao = $rankingService->getRanking(0, 0, 0);
+        $classificacao = $rankingService->getRanking(0, 0);
 
         return Inertia::render('Estatisticas', [
             'title' => 'Estatísticas',

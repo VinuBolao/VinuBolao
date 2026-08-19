@@ -43,6 +43,11 @@ class Participante extends Model
         return $this->belongsTo(Bolao::class, 'bolao_id', 'id');
     }
 
+    public function palpites()
+    {
+        return $this->hasMany(Palpite::class);
+    }
+
     public function getByBolao($bolaoId)
     {
         return $this->join('users', 'users.id', '=', 'user_id')

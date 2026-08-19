@@ -78,7 +78,7 @@ class JogosController extends Controller
                     [
                         "inicio" => $jogo["inicio"],
                     ]
-                )->toSql();
+                );
             }
         }
 

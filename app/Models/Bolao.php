@@ -63,6 +63,11 @@ class Bolao extends Model
         return $this->belongsTo(Campeonato::class);
     }
 
+    public function participantes()
+    {
+        return $this->hasMany(Participante::class);
+    }
+
     public function getCurrentForUser($userId)
     {
         $bolao = self::select(

@@ -43,4 +43,14 @@ class Campeonato extends Model
             "termino" => "required",
         ];
     }
+
+    public function jogos()
+    {
+        return $this->hasMany(Jogo::class);
+    }
+
+    public function bolaos()
+    {
+        return $this->hasMany(Bolao::class);
+    }
 }

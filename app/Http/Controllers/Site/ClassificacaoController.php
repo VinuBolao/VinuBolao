@@ -17,6 +17,7 @@ class ClassificacaoController extends Controller
         $classificacao = $currentBolao
             ? $rankingService->getRanking(
                 $currentBolao->campeonato_id,
+                $currentBolao->id,
                 $request->get('rodada'),
                 $request->get('turno'))
             : [];

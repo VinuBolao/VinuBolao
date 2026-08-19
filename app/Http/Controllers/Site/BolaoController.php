@@ -122,7 +122,7 @@ class BolaoController extends Controller
             $id = $request->get('id');
             $bolao = $this->model->findOrFail($id);
 
-            $data = $rankingService->getRanking($bolao->campeonato_id);
+            $data = $rankingService->getRanking($bolao->campeonato_id, $bolao->id);
 
             foreach ($data as $key => $item) {
                 $participante->where(['bolao_id' => $id, 'user_id' => $item->id])->update([
